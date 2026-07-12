@@ -4,6 +4,9 @@ const challengeId = params.get("id") || "challenge01";
 
 let challengeData = null;
 
+// La hacemos global para poder acceder desde el botón
+let game = null;
+
 async function loadChallenge() {
 
     const response = await fetch(`challenges/${challengeId}.json`);
@@ -31,9 +34,12 @@ function startGame() {
 
         case "snake":
 
-            const snake = new SnakeGame(canvas, challengeData);
+            game = new SnakeGame(canvas, challengeData);
 
-            snake.start();
+            // Hacerla accesible desde el botón HTML
+            window.game = game;
+
+            game.start();
 
             break;
 
