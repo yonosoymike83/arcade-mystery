@@ -1,2 +1,2 @@
-# arcade-mystery
-Arcade Games for Mystery Caches
+# guitar-mystery
+Guitar Notes for Mystery Caches

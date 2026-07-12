@@ -1,0 +1,30 @@
+{
+  "mode": "sequence",
+
+  "title": {
+    "ca": "Seven Nation Army",
+    "es": "Seven Nation Army",
+    "en": "Seven Nation Army"
+  },
+
+  "instructions": {
+    "ca": "Toca el riff en l'ordre correcte.",
+    "es": "Toca el riff en el orden correcto.",
+    "en": "Play the riff in the correct order."
+  },
+
+  "coordinates": {
+    "north": "41°40'37.9\"N",
+    "east": "2°48'22.0\"E"
+  },
+
+  "solution": [
+    "5-7",
+    "5-7",
+    "5-10",
+    "5-7",
+    "5-5",
+    "5-3",
+    "5-2"
+  ]
+}
