@@ -455,3 +455,8 @@ this.ctx.fillText(
     this.canvas.width/2,
     this.button.y+this.button.h/2
 );
+  }
+
+    }
+
+}
