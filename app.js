@@ -537,3 +537,13 @@ function copyCoords(){
 }
 
 loadChallenge();
+
+window.addEventListener("load", () => {
+
+    const canvas = document.getElementById("gameCanvas");
+
+    const game = new SnakeGame(canvas);
+
+    game.start();
+
+});
