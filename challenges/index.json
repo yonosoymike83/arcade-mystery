@@ -2,25 +2,25 @@
   {
     "id": "challenge01",
     "title": {
-      "ca": "Pentatònica menor de La",
-      "es": "Pentatónica menor de La",
-      "en": "A Minor Pentatonic"
+      "ca": "Serp",
+      "es": "Serpiente",
+      "en": "Snake"
     }
   },
   {
     "id": "challenge02",
     "title": {
-      "ca": "Seven Nation Army",
-      "es": "Seven Nation Army",
-      "en": "Seven Nation Army"
+      "ca": "Arkanoid",
+      "es": "Arkanoid",
+      "en": "Arkanoid"
     }
   },
   {
     "id": "challenge03",
     "title": {
-      "ca": "Smoke on the Water",
-      "es": "Smoke on the Water",
-      "en": "Smoke on the Water"
+      "ca": "Pong",
+      "es": "Pong",
+      "en": "Pong"
     }
   }
 ]
