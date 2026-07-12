@@ -9,7 +9,7 @@ class SnakeGame {
         this.grid = 20;
 
         this.score = 0;
-        this.goal = this.challenge.goal || 15;
+        this.goal = this.challenge.goal || 20;
 
         this.snake = [
             {x:10,y:10},
