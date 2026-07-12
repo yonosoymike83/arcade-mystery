@@ -19,6 +19,8 @@ class SnakeGame {
 
         this.direction = {x:1,y:0};
 
+        this.gameOver = false;
+
         this.food = {x:15,y:10};
         this.spawnFood();
 
@@ -75,6 +77,7 @@ class SnakeGame {
     }
 
     start(){
+
         this.timer=setInterval(()=>{
             this.update();
             this.draw();
@@ -84,6 +87,8 @@ class SnakeGame {
     }
 
     update(){
+
+        if(this.gameOver) return;
 
         const head={
             x:this.snake[0].x+this.direction.x,
@@ -97,18 +102,43 @@ class SnakeGame {
 
         this.snake.unshift(head);
 
+        // ===== GAME OVER =====
+
+        for(let i=1;i<this.snake.length;i++){
+
+            if(
+                head.x===this.snake[i].x &&
+                head.y===this.snake[i].y
+            ){
+
+                this.gameOver=true;
+
+                clearInterval(this.timer);
+
+                this.draw();
+
+                return;
+
+            }
+
+        }
+
         if(head.x===this.food.x && head.y===this.food.y){
 
             this.score++;
 
             const score=document.getElementById("score");
-            if(score) score.textContent=this.score.toString().padStart(4,"0");
+            if(score)
+                score.textContent=this.score.toString().padStart(4,"0");
 
             if(this.score>=this.goal){
+
                 clearInterval(this.timer);
 
                 const box=document.getElementById("coordinates");
-                if(box) box.style.display="block";
+
+                if(box)
+                    box.style.display="block";
 
                 return;
             }
@@ -116,7 +146,9 @@ class SnakeGame {
             this.spawnFood();
 
         }else{
+
             this.snake.pop();
+
         }
 
     }
@@ -131,9 +163,13 @@ class SnakeGame {
             const hit=this.snake.some(p=>p.x===x && p.y===y);
 
             if(!hit){
+
                 this.food={x,y};
+
                 return;
+
             }
+
         }
 
     }
@@ -146,6 +182,7 @@ class SnakeGame {
         this.ctx.strokeStyle="#1f1f1f";
 
         for(let i=0;i<=this.canvas.width;i+=this.size){
+
             this.ctx.beginPath();
             this.ctx.moveTo(i,0);
             this.ctx.lineTo(i,this.canvas.height);
@@ -155,29 +192,73 @@ class SnakeGame {
             this.ctx.moveTo(0,i);
             this.ctx.lineTo(this.canvas.width,i);
             this.ctx.stroke();
+
         }
 
+        // Fruta
+
         this.ctx.fillStyle="#ff3030";
+
         this.ctx.beginPath();
+
         this.ctx.arc(
             this.food.x*this.size+this.size/2,
             this.food.y*this.size+this.size/2,
             this.size/2.8,
-            0,Math.PI*2
+            0,
+            Math.PI*2
         );
+
         this.ctx.fill();
+
+        // Serpiente
 
         this.ctx.fillStyle="#42ff42";
 
         this.snake.forEach(part=>{
+
             this.ctx.fillRect(
                 part.x*this.size+1,
                 part.y*this.size+1,
                 this.size-2,
                 this.size-2
             );
+
         });
 
-    }
+        // GAME OVER
+
+        if(this.gameOver){
+
+            this.ctx.fillStyle="rgba(0,0,0,0.75)";
+            this.ctx.fillRect(
+                0,
+                0,
+                this.canvas.width,
+                this.canvas.height
+            );
+
+            this.ctx.fillStyle="#ff4040";
+            this.ctx.font="bold 32px Arial";
+            this.ctx.textAlign="center";
+
+            this.ctx.fillText(
+                "GAME OVER",
+                this.canvas.width/2,
+                this.canvas.height/2-15
+            );
+
+            this.ctx.fillStyle="#ffffff";
+            this.ctx.font="18px Arial";
+
+            this.ctx.fillText(
+                "Recarga la página para volver a jugar",
+                this.canvas.width/2,
+                this.canvas.height/2+25
+            );
+
+        }
 
     }
+
+}
