@@ -26,6 +26,34 @@ class SnakeGame {
             y: 0
         };
 
+        document.addEventListener("keydown", (e) => {
+
+    switch (e.key) {
+
+        case "ArrowUp":
+            if (this.direction.y === 0)
+                this.direction = { x: 0, y: -1 };
+            break;
+
+        case "ArrowDown":
+            if (this.direction.y === 0)
+                this.direction = { x: 0, y: 1 };
+            break;
+
+        case "ArrowLeft":
+            if (this.direction.x === 0)
+                this.direction = { x: -1, y: 0 };
+            break;
+
+        case "ArrowRight":
+            if (this.direction.x === 0)
+                this.direction = { x: 1, y: 0 };
+            break;
+
+    }
+
+});
+
     }
 
     start() {
