@@ -27,7 +27,6 @@ class SnakeGame {
         };
 
         this.bindControls();
-
     }
 
     bindControls() {
@@ -62,26 +61,28 @@ class SnakeGame {
 
         });
 
-        // ===== SWIPE MÓVIL =====
+        // ===== CONTROLES TÁCTILES =====
 
         let startX = 0;
         let startY = 0;
 
         this.canvas.addEventListener("touchstart", (e) => {
 
+            e.preventDefault();
+
             startX = e.touches[0].clientX;
             startY = e.touches[0].clientY;
 
-        }, { passive: true });
+        }, { passive: false });
 
         this.canvas.addEventListener("touchmove", (e) => {
 
-            if (startX === 0 && startY === 0) return;
+            e.preventDefault();
 
             const dx = e.touches[0].clientX - startX;
             const dy = e.touches[0].clientY - startY;
 
-            if (Math.abs(dx) < 30 && Math.abs(dy) < 30)
+            if (Math.abs(dx) < 25 && Math.abs(dy) < 25)
                 return;
 
             if (Math.abs(dx) > Math.abs(dy)) {
@@ -102,10 +103,10 @@ class SnakeGame {
 
             }
 
-            startX = 0;
-            startY = 0;
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
 
-        }, { passive: true });
+        }, { passive: false });
 
     }
 
@@ -148,6 +149,8 @@ class SnakeGame {
         this.ctx.fillStyle = "#111";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
+        // Cuadrícula
+
         this.ctx.strokeStyle = "#1f1f1f";
 
         for (let i = 0; i <= this.canvas.width; i += this.size) {
@@ -164,7 +167,7 @@ class SnakeGame {
 
         }
 
-        // Comida
+        // Fruta
 
         this.ctx.fillStyle = "#ff3030";
 
@@ -197,4 +200,4 @@ class SnakeGame {
 
     }
 
-}
+            }
