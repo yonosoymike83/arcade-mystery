@@ -26,33 +26,86 @@ class SnakeGame {
             y: 0
         };
 
-        document.addEventListener("keydown", (e) => {
-
-    switch (e.key) {
-
-        case "ArrowUp":
-            if (this.direction.y === 0)
-                this.direction = { x: 0, y: -1 };
-            break;
-
-        case "ArrowDown":
-            if (this.direction.y === 0)
-                this.direction = { x: 0, y: 1 };
-            break;
-
-        case "ArrowLeft":
-            if (this.direction.x === 0)
-                this.direction = { x: -1, y: 0 };
-            break;
-
-        case "ArrowRight":
-            if (this.direction.x === 0)
-                this.direction = { x: 1, y: 0 };
-            break;
+        this.bindControls();
 
     }
 
-});
+    bindControls() {
+
+        // ===== TECLADO =====
+
+        document.addEventListener("keydown", (e) => {
+
+            switch (e.key) {
+
+                case "ArrowUp":
+                    if (this.direction.y === 0)
+                        this.direction = { x: 0, y: -1 };
+                    break;
+
+                case "ArrowDown":
+                    if (this.direction.y === 0)
+                        this.direction = { x: 0, y: 1 };
+                    break;
+
+                case "ArrowLeft":
+                    if (this.direction.x === 0)
+                        this.direction = { x: -1, y: 0 };
+                    break;
+
+                case "ArrowRight":
+                    if (this.direction.x === 0)
+                        this.direction = { x: 1, y: 0 };
+                    break;
+
+            }
+
+        });
+
+        // ===== SWIPE MÓVIL =====
+
+        let startX = 0;
+        let startY = 0;
+
+        this.canvas.addEventListener("touchstart", (e) => {
+
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+
+        }, { passive: true });
+
+        this.canvas.addEventListener("touchmove", (e) => {
+
+            if (startX === 0 && startY === 0) return;
+
+            const dx = e.touches[0].clientX - startX;
+            const dy = e.touches[0].clientY - startY;
+
+            if (Math.abs(dx) < 30 && Math.abs(dy) < 30)
+                return;
+
+            if (Math.abs(dx) > Math.abs(dy)) {
+
+                if (dx > 0 && this.direction.x === 0)
+                    this.direction = { x: 1, y: 0 };
+
+                if (dx < 0 && this.direction.x === 0)
+                    this.direction = { x: -1, y: 0 };
+
+            } else {
+
+                if (dy > 0 && this.direction.y === 0)
+                    this.direction = { x: 0, y: 1 };
+
+                if (dy < 0 && this.direction.y === 0)
+                    this.direction = { x: 0, y: -1 };
+
+            }
+
+            startX = 0;
+            startY = 0;
+
+        }, { passive: true });
 
     }
 
@@ -78,7 +131,6 @@ class SnakeGame {
 
         };
 
-        // Sale por un lado y entra por el otro
         if (head.x >= this.grid) head.x = 0;
         if (head.x < 0) head.x = this.grid - 1;
 
@@ -93,11 +145,9 @@ class SnakeGame {
 
     draw() {
 
-        // Fondo
         this.ctx.fillStyle = "#111";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-        // Cuadrícula
         this.ctx.strokeStyle = "#1f1f1f";
 
         for (let i = 0; i <= this.canvas.width; i += this.size) {
@@ -115,25 +165,32 @@ class SnakeGame {
         }
 
         // Comida
+
         this.ctx.fillStyle = "#ff3030";
 
-        this.ctx.fillRect(
-            this.food.x * this.size,
-            this.food.y * this.size,
-            this.size,
-            this.size
+        this.ctx.beginPath();
+
+        this.ctx.arc(
+            this.food.x * this.size + this.size / 2,
+            this.food.y * this.size + this.size / 2,
+            this.size / 2.8,
+            0,
+            Math.PI * 2
         );
 
+        this.ctx.fill();
+
         // Serpiente
+
         this.ctx.fillStyle = "#42ff42";
 
         for (const part of this.snake) {
 
             this.ctx.fillRect(
-                part.x * this.size,
-                part.y * this.size,
-                this.size,
-                this.size
+                part.x * this.size + 1,
+                part.y * this.size + 1,
+                this.size - 2,
+                this.size - 2
             );
 
         }
