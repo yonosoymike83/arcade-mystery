@@ -408,46 +408,50 @@ class SnakeGame {
                 170
             );
 
-            // Botón PLAY AGAIN
+          // Botón reiniciar
 
-            this.button={
+this.button={
 
-                x:this.canvas.width/2-75,
-                y:200,
-                w:150,
-                h:45
+    x:this.canvas.width/2-22,
+    y:205,
+    w:44,
+    h:44
 
-            };
+};
 
-            this.ctx.fillStyle="#2ecc71";
-            this.ctx.fillRect(
-                this.button.x,
-                this.button.y,
-                this.button.w,
-                this.button.h
-            );
+this.ctx.fillStyle="#f2f2f2";
 
-            this.ctx.strokeStyle="#ffffff";
-            this.ctx.lineWidth=2;
+// Si el navegador soporta esquinas redondeadas
+if(this.ctx.roundRect){
 
-            this.ctx.strokeRect(
-                this.button.x,
-                this.button.y,
-                this.button.w,
-                this.button.h
-            );
+    this.ctx.beginPath();
+    this.ctx.roundRect(
+        this.button.x,
+        this.button.y,
+        this.button.w,
+        this.button.h,
+        8
+    );
+    this.ctx.fill();
 
-            this.ctx.fillStyle="#ffffff";
-            this.ctx.font="bold 20px Arial";
+}else{
 
-            this.ctx.fillText(
-                "PLAY AGAIN",
-                this.canvas.width/2,
-                229
-            );
-
-        }
-
-    }
+    this.ctx.fillRect(
+        this.button.x,
+        this.button.y,
+        this.button.w,
+        this.button.h
+    );
 
 }
+
+this.ctx.fillStyle="#111";
+this.ctx.font="bold 24px Arial";
+this.ctx.textAlign="center";
+this.ctx.textBaseline="middle";
+
+this.ctx.fillText(
+    "↻",
+    this.canvas.width/2,
+    this.button.y+this.button.h/2
+);
