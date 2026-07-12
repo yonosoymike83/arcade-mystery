@@ -22,6 +22,7 @@ class SnakeGame {
         this.gameOver = false;
 
         this.food = {x:15,y:10};
+
         this.spawnFood();
 
         this.bindControls();
@@ -30,79 +31,196 @@ class SnakeGame {
     bindControls(){
 
         document.addEventListener("keydown",(e)=>{
-            switch(e.key){
-                case "ArrowUp":
-                    if(this.direction.y===0) this.direction={x:0,y:-1};
-                    break;
-                case "ArrowDown":
-                    if(this.direction.y===0) this.direction={x:0,y:1};
-                    break;
-                case "ArrowLeft":
-                    if(this.direction.x===0) this.direction={x:-1,y:0};
-                    break;
-                case "ArrowRight":
-                    if(this.direction.x===0) this.direction={x:1,y:0};
-                    break;
+
+            if(this.gameOver && e.code==="Space"){
+                this.restart();
+                return;
             }
+
+            switch(e.key){
+
+                case "ArrowUp":
+                    if(this.direction.y===0)
+                        this.direction={x:0,y:-1};
+                    break;
+
+                case "ArrowDown":
+                    if(this.direction.y===0)
+                        this.direction={x:0,y:1};
+                    break;
+
+                case "ArrowLeft":
+                    if(this.direction.x===0)
+                        this.direction={x:-1,y:0};
+                    break;
+
+                case "ArrowRight":
+                    if(this.direction.x===0)
+                        this.direction={x:1,y:0};
+                    break;
+
+            }
+
         });
 
-        let sx=0, sy=0;
+        let sx=0;
+        let sy=0;
 
         this.canvas.addEventListener("touchstart",(e)=>{
+
+            if(this.gameOver){
+
+                if(this.button){
+
+                    const r=this.canvas.getBoundingClientRect();
+
+                    const x=e.touches[0].clientX-r.left;
+                    const y=e.touches[0].clientY-r.top;
+
+                    if(
+                        x>=this.button.x &&
+                        x<=this.button.x+this.button.w &&
+                        y>=this.button.y &&
+                        y<=this.button.y+this.button.h
+                    ){
+
+                        e.preventDefault();
+
+                        this.restart();
+
+                    }
+
+                }
+
+                return;
+
+            }
+
             e.preventDefault();
+
             sx=e.touches[0].clientX;
             sy=e.touches[0].clientY;
+
         },{passive:false});
 
         this.canvas.addEventListener("touchmove",(e)=>{
+
+            if(this.gameOver) return;
+
             e.preventDefault();
 
             const dx=e.touches[0].clientX-sx;
             const dy=e.touches[0].clientY-sy;
 
-            if(Math.abs(dx)<25 && Math.abs(dy)<25) return;
+            if(Math.abs(dx)<25 && Math.abs(dy)<25)
+                return;
 
             if(Math.abs(dx)>Math.abs(dy)){
-                if(dx>0 && this.direction.x===0) this.direction={x:1,y:0};
-                if(dx<0 && this.direction.x===0) this.direction={x:-1,y:0};
+
+                if(dx>0 && this.direction.x===0)
+                    this.direction={x:1,y:0};
+
+                if(dx<0 && this.direction.x===0)
+                    this.direction={x:-1,y:0};
+
             }else{
-                if(dy>0 && this.direction.y===0) this.direction={x:0,y:1};
-                if(dy<0 && this.direction.y===0) this.direction={x:0,y:-1};
+
+                if(dy>0 && this.direction.y===0)
+                    this.direction={x:0,y:1};
+
+                if(dy<0 && this.direction.y===0)
+                    this.direction={x:0,y:-1};
+
             }
 
             sx=e.touches[0].clientX;
             sy=e.touches[0].clientY;
 
         },{passive:false});
+
+        this.canvas.addEventListener("click",(e)=>{
+
+            if(!this.gameOver || !this.button)
+                return;
+
+            const r=this.canvas.getBoundingClientRect();
+
+            const x=e.clientX-r.left;
+            const y=e.clientY-r.top;
+
+            if(
+                x>=this.button.x &&
+                x<=this.button.x+this.button.w &&
+                y>=this.button.y &&
+                y<=this.button.y+this.button.h
+            ){
+
+                this.restart();
+
+            }
+
+        });
+
     }
 
     start(){
 
         this.timer=setInterval(()=>{
+
             this.update();
             this.draw();
+
         },200);
 
         this.draw();
+
+    }
+
+    restart(){
+
+        clearInterval(this.timer);
+
+        this.score=0;
+
+        const score=document.getElementById("score");
+        if(score)
+            score.textContent="0000";
+
+        this.gameOver=false;
+
+        this.direction={x:1,y:0};
+
+        this.snake=[
+            {x:10,y:10},
+            {x:9,y:10},
+            {x:8,y:10}
+        ];
+
+        this.spawnFood();
+
+        this.start();
+
     }
 
     update(){
 
-        if(this.gameOver) return;
+        if(this.gameOver)
+            return;
 
         const head={
+
             x:this.snake[0].x+this.direction.x,
             y:this.snake[0].y+this.direction.y
+
         };
 
         if(head.x>=this.grid) head.x=0;
         if(head.x<0) head.x=this.grid-1;
+
         if(head.y>=this.grid) head.y=0;
         if(head.y<0) head.y=this.grid-1;
 
         this.snake.unshift(head);
-
-        // ===== GAME OVER =====
 
         for(let i=1;i<this.snake.length;i++){
 
@@ -128,6 +246,7 @@ class SnakeGame {
             this.score++;
 
             const score=document.getElementById("score");
+
             if(score)
                 score.textContent=this.score.toString().padStart(4,"0");
 
@@ -141,6 +260,7 @@ class SnakeGame {
                     box.style.display="block";
 
                 return;
+
             }
 
             this.spawnFood();
@@ -152,8 +272,7 @@ class SnakeGame {
         }
 
     }
-
-    spawnFood(){
+        spawnFood(){
 
         while(true){
 
@@ -179,6 +298,7 @@ class SnakeGame {
         this.ctx.fillStyle="#111";
         this.ctx.fillRect(0,0,this.canvas.width,this.canvas.height);
 
+        // Cuadrícula
         this.ctx.strokeStyle="#1f1f1f";
 
         for(let i=0;i<=this.canvas.width;i+=this.size){
@@ -215,7 +335,7 @@ class SnakeGame {
 
         this.ctx.fillStyle="#42ff42";
 
-        this.snake.forEach(part=>{
+        this.snake.forEach((part,index)=>{
 
             this.ctx.fillRect(
                 part.x*this.size+1,
@@ -224,13 +344,44 @@ class SnakeGame {
                 this.size-2
             );
 
+            // Ojos en la cabeza
+            if(index===0){
+
+                this.ctx.fillStyle="#000";
+
+                this.ctx.beginPath();
+                this.ctx.arc(
+                    part.x*this.size+7,
+                    part.y*this.size+7,
+                    2,
+                    0,
+                    Math.PI*2
+                );
+                this.ctx.fill();
+
+                this.ctx.beginPath();
+                this.ctx.arc(
+                    part.x*this.size+13,
+                    part.y*this.size+7,
+                    2,
+                    0,
+                    Math.PI*2
+                );
+                this.ctx.fill();
+
+                this.ctx.fillStyle="#42ff42";
+
+            }
+
         });
 
+        // =====================
         // GAME OVER
+        // =====================
 
         if(this.gameOver){
 
-            this.ctx.fillStyle="rgba(0,0,0,0.75)";
+            this.ctx.fillStyle="rgba(0,0,0,.75)";
             this.ctx.fillRect(
                 0,
                 0,
@@ -239,22 +390,60 @@ class SnakeGame {
             );
 
             this.ctx.fillStyle="#ff4040";
-            this.ctx.font="bold 32px Arial";
+            this.ctx.font="bold 34px Arial";
             this.ctx.textAlign="center";
 
             this.ctx.fillText(
                 "GAME OVER",
                 this.canvas.width/2,
-                this.canvas.height/2-15
+                135
             );
 
             this.ctx.fillStyle="#ffffff";
             this.ctx.font="18px Arial";
 
             this.ctx.fillText(
-                "Recarga la página para volver a jugar",
+                "Score: "+this.score,
                 this.canvas.width/2,
-                this.canvas.height/2+25
+                170
+            );
+
+            // Botón PLAY AGAIN
+
+            this.button={
+
+                x:this.canvas.width/2-75,
+                y:200,
+                w:150,
+                h:45
+
+            };
+
+            this.ctx.fillStyle="#2ecc71";
+            this.ctx.fillRect(
+                this.button.x,
+                this.button.y,
+                this.button.w,
+                this.button.h
+            );
+
+            this.ctx.strokeStyle="#ffffff";
+            this.ctx.lineWidth=2;
+
+            this.ctx.strokeRect(
+                this.button.x,
+                this.button.y,
+                this.button.w,
+                this.button.h
+            );
+
+            this.ctx.fillStyle="#ffffff";
+            this.ctx.font="bold 20px Arial";
+
+            this.ctx.fillText(
+                "PLAY AGAIN",
+                this.canvas.width/2,
+                229
             );
 
         }
