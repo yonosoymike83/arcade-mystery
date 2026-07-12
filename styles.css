@@ -78,3 +78,9 @@ h1 {
   color: white !important;
   border-color: #1e7e34 !important;
 }
+#gameCanvas{
+    touch-action:none;
+}
+body{
+    overscroll-behavior:none;
+}
