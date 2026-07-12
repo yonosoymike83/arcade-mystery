@@ -1,8 +1,8 @@
 {
     "title": "Serpiente",
-    "instructions": "Consigue 15 puntos para desbloquear las coordenadas.",
+    "instructions": "Consigue 20 puntos para desbloquear las coordenadas.",
     "game": "snake",
-    "goal": 15,
+    "goal": 20,
     "coordinates": {
         "north": "N 41°40.xxx",
         "east": "E 002°46.xxx"
