@@ -329,7 +329,7 @@ class SnakeGame {
                 );
                 this.ctx.fill();
 
-                this.ctx.fillStyle="#42ff42";
+                this.ctx.fillStyle="#239923";
 
             }
 
