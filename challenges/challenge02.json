@@ -1,30 +1,19 @@
 {
-  "mode": "sequence",
+    "game":"arkanoid",
 
-  "title": {
-    "ca": "Seven Nation Army",
-    "es": "Seven Nation Army",
-    "en": "Seven Nation Army"
-  },
+    "goal":20,
 
-  "instructions": {
-    "ca": "Toca el riff en l'ordre correcte.",
-    "es": "Toca el riff en el orden correcto.",
-    "en": "Play the riff in the correct order."
-  },
+    "coordinates":"N 41°40.231' E 002°46.800'",
 
-  "coordinates": {
-    "north": "41°40'37.9\"N",
-    "east": "2°48'22.0\"E"
-  },
+    "title":{
+        "ca":"Arkanoid",
+        "es":"Arkanoid",
+        "en":"Arkanoid"
+    },
 
-  "solution": [
-    "5-7",
-    "5-7",
-    "5-10",
-    "5-7",
-    "5-5",
-    "5-3",
-    "5-2"
-  ]
+    "instructions":{
+        "ca":"Destrueix 20 blocs per desbloquejar les coordenades.",
+        "es":"Destruye 20 bloques para desbloquear las coordenadas.",
+        "en":"Destroy 20 bricks to unlock the coordinates."
+    }
 }
