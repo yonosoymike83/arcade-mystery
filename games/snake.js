@@ -185,13 +185,15 @@ class SnakeGame {
                 head.y===this.snake[i].y
             ){
 
-                this.gameOver=true;
+        this.gameOver=true;
 
-                clearInterval(this.timer);
+        clearInterval(this.timer);
 
-                this.draw();
+        document.getElementById("gameOverButtons").style.display="block";
 
-                return;
+        this.draw();
+
+        return;
 
             }
 
