@@ -1,10 +1,17 @@
 {
-    "title": "Serpiente",
-    "instructions": "Consigue 20 puntos para desbloquear las coordenadas.",
-    "game": "snake",
-    "goal": 20,
-    "coordinates": {
-        "north": "N 41°40.xxx",
-        "east": "E 002°46.xxx"
-    }
+    "title":{
+        "ca":"Serp",
+        "es":"Serpiente",
+        "en":"Snake"
+    },
+
+    "instructions":{
+        "ca":"Aconsegueix 20 punts per desbloquejar les coordenades.",
+        "es":"Consigue 20 puntos para desbloquear las coordenadas.",
+        "en":"Score 20 points to unlock the coordinates."
+    },
+
+    "goal":20,
+
+    "game":"snake"
 }
