@@ -138,29 +138,6 @@ class SnakeGame {
 
         },{passive:false});
 
-        this.canvas.addEventListener("click",(e)=>{
-
-            if(!this.gameOver || !this.button)
-                return;
-
-            const r=this.canvas.getBoundingClientRect();
-
-            const x=e.clientX-r.left;
-            const y=e.clientY-r.top;
-
-            if(
-                x>=this.button.x &&
-                x<=this.button.x+this.button.w &&
-                y>=this.button.y &&
-                y<=this.button.y+this.button.h
-            ){
-
-                this.restart();
-
-            }
-
-        });
-
     }
 
     start(){
