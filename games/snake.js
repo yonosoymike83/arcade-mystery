@@ -134,6 +134,9 @@ class SnakeGame {
         clearInterval(this.timer);
 
         this.score=0;
+        
+        document.getElementById("gameOverButtons").style.display="none";
+        document.getElementById("coordinates").style.display="none";
 
         const score=document.getElementById("score");
         if(score)
