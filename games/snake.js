@@ -118,6 +118,8 @@ class SnakeGame {
 
     start(){
 
+        clearInterval(this.timer);
+        
         this.timer=setInterval(()=>{
 
             this.update();
