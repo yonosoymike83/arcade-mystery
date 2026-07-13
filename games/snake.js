@@ -143,7 +143,9 @@ class SnakeGame {
             score.textContent="0000";
 
         this.gameOver=false;
-
+        
+        this.draw()
+        
         this.direction={x:1,y:0};
 
         this.snake=[
