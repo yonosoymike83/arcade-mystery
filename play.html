@@ -148,15 +148,15 @@
 
     <div id="gameInfo">
 
-        <strong>Score:</strong>
-        <span id="score">0000</span>
+    <strong id="scoreLabel">Score</strong>:
+    <span id="score">0000</span>
 
-        &nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;
 
-        <strong>Goal:</strong>
-        <span id="goal">20</span>
+    <strong id="goalLabel">Goal</strong>:
+    <span id="goal">20</span>
 
-    </div>
+</div>
 
     <div id="gameArea">
 
@@ -166,10 +166,10 @@
 
     <div id="coordinates">
 
-        <div class="result-title">
-
+        <div class="result-title" id="levelCompleteLabel">
+        
             🏆 LEVEL COMPLETE
-
+        
         </div>
 
         <div class="coords" id="coordsText">
@@ -177,19 +177,17 @@
         </div>
 
         <button id="copyButton" onclick="copyCoords()">
-
-            📋 Copy coordinates
-
+        
+            📋 <span id="copyLabel">Copy coordinates</span>
+        
         </button>
 
     </div>
 
-    <div id="gameOverButtons">
-
         <button id="restartButton" onclick="game.restart()">
-
-            🔄 Vuelve a intentarlo
-
+        
+            🔄 <span id="retryLabel">Try again</span>
+        
         </button>
 
     </div>
