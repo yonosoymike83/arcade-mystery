@@ -149,11 +149,21 @@ function copyCoords(){
 
     navigator.clipboard.writeText(challengeData.coordinates);
 
-    document.getElementById("copyLabel").textContent=t("copied");
+    const button=document.getElementById("copyButton");
+
+    button.innerHTML="📋 ✔";
+
+    button.style.background="#d9d9d9";
+
+    button.disabled=true;
 
     setTimeout(()=>{
 
-        document.getElementById("copyLabel").textContent=t("copy");
+        button.innerHTML="📋 <span id='copyLabel'>"+t("copy")+"</span>";
+
+        button.style.background="#f2f2f2";
+
+        button.disabled=false;
 
     },2000);
 
