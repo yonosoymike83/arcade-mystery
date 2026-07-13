@@ -50,9 +50,7 @@ const ui={
 // =======================
 
 function t(key){
-
     return ui[currentLanguage][key] || key;
-
 }
 
 function setLanguage(lang){
@@ -159,7 +157,7 @@ function copyCoords(){
 
     setTimeout(()=>{
 
-        button.innerHTML="📋 <span id='copyLabel'>"+t("copy")+"</span>";
+        button.innerHTML='📋 <span id="copyLabel">'+t("copy")+'</span>';
 
         button.style.background="#f2f2f2";
 
@@ -181,13 +179,25 @@ function startGame(){
 
             game=new SnakeGame(canvas,challengeData);
 
-            window.game=game;
+            break;
 
-            game.start();
+        case "arkanoid":
+
+            game=new ArkanoidGame(canvas,challengeData);
 
             break;
 
+        default:
+
+            alert("Juego no soportado: "+challengeData.game);
+
+            return;
+
     }
+
+    window.game=game;
+
+    game.start();
 
 }
 
