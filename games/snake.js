@@ -293,7 +293,7 @@ class SnakeGame {
 
         // Serpiente
 
-        this.ctx.fillStyle="#42ff42";
+        this.ctx.fillStyle="#239923";
 
         this.snake.forEach((part,index)=>{
 
