@@ -9,14 +9,18 @@ let currentLanguage =
 if(!["ca","es","en"].includes(currentLanguage))
     currentLanguage="en";
 
-// Traducciones de la interfaz
-const ui = {
+// =======================
+// Traducciones interfaz
+// =======================
+
+const ui={
 
     ca:{
         score:"Puntuació",
         goal:"Objectiu",
         retry:"Torna-ho a provar",
         copy:"Copiar coordenades",
+        copied:"✅ Coordenades copiades!",
         level:"🏆 REPTE SUPERAT",
         gameOver:"FI DE LA PARTIDA"
     },
@@ -26,6 +30,7 @@ const ui = {
         goal:"Objetivo",
         retry:"Vuelve a intentarlo",
         copy:"Copiar coordenadas",
+        copied:"✅ ¡Coordenadas copiadas!",
         level:"🏆 NIVEL SUPERADO",
         gameOver:"GAME OVER"
     },
@@ -35,44 +40,48 @@ const ui = {
         goal:"Goal",
         retry:"Try again",
         copy:"Copy coordinates",
+        copied:"✅ Coordinates copied!",
         level:"🏆 LEVEL COMPLETE",
         gameOver:"GAME OVER"
     }
 
 };
 
+// =======================
+
+function t(key){
+
+    return ui[currentLanguage][key] || key;
+
+}
+
 function setLanguage(lang){
 
-    currentLanguage = lang;
+    currentLanguage=lang;
 
-    localStorage.setItem("language", lang);
+    localStorage.setItem("language",lang);
 
     updateTexts();
 
 }
 
-// Función global para traducir textos
-function t(key){
-    return ui[currentLanguage][key] || key;
-}
-
 // =======================
 
-const params = new URLSearchParams(window.location.search);
+const params=new URLSearchParams(window.location.search);
 
-const challengeId = params.get("id") || "challenge01";
+const challengeId=params.get("id") || "challenge01";
 
-let challengeData = null;
+let challengeData=null;
 
-let game = null;
+let game=null;
 
 // =======================
 
 async function loadChallenge(){
 
-    const response = await fetch(`challenges/${challengeId}.json`);
+    const response=await fetch(`challenges/${challengeId}.json`);
 
-    challengeData = await response.json();
+    challengeData=await response.json();
 
     updateTexts();
 
@@ -86,46 +95,67 @@ function updateTexts(){
 
     if(!challengeData) return;
 
-    // Título
+    // ---------- Título ----------
 
-    if(typeof challengeData.title === "object"){
+    if(typeof challengeData.title==="object"){
 
-        document.getElementById("challengeTitle").textContent =
+        document.getElementById("challengeTitle").textContent=
             challengeData.title[currentLanguage];
 
     }else{
 
-        document.getElementById("challengeTitle").textContent =
+        document.getElementById("challengeTitle").textContent=
             challengeData.title;
 
     }
 
-    // Instrucciones
+    // ---------- Instrucciones ----------
 
-    if(typeof challengeData.instructions === "object"){
+    if(typeof challengeData.instructions==="object"){
 
-        document.getElementById("instructions").textContent =
+        document.getElementById("instructions").textContent=
             challengeData.instructions[currentLanguage];
 
     }else{
 
-        document.getElementById("instructions").textContent =
+        document.getElementById("instructions").textContent=
             challengeData.instructions;
 
     }
 
-    // Objetivo
+    // ---------- Objetivo ----------
 
-    document.getElementById("goal").textContent =
+    document.getElementById("goal").textContent=
         challengeData.goal;
 
-    // Traducciones de la interfaz
+    // ---------- Coordenadas ----------
 
-    document.getElementById("scoreLabel").textContent = t("score");
-    document.getElementById("goalLabel").textContent = t("goal");
-    document.getElementById("retryLabel").textContent = t("retry");
-    document.getElementById("copyLabel").textContent = t("copy");
-    document.getElementById("levelCompleteLabel").textContent = t("level");
+    document.getElementById("coordsText").textContent=
+        challengeData.coordinates;
+
+    // ---------- Traducciones interfaz ----------
+
+    document.getElementById("scoreLabel").textContent=t("score");
+    document.getElementById("goalLabel").textContent=t("goal");
+    document.getElementById("retryLabel").textContent=t("retry");
+    document.getElementById("copyLabel").textContent=t("copy");
+    document.getElementById("levelCompleteLabel").textContent=t("level");
+
+}
+
+// =======================
+
+function copyCoords(){
+
+    navigator.clipboard.writeText(challengeData.coordinates);
+
+    document.getElementById("copyLabel").textContent=t("copied");
+
+    setTimeout(()=>{
+
+        document.getElementById("copyLabel").textContent=t("copy");
+
+    },2000);
 
 }
 
@@ -133,15 +163,15 @@ function updateTexts(){
 
 function startGame(){
 
-    const canvas = document.getElementById("gameCanvas");
+    const canvas=document.getElementById("gameCanvas");
 
     switch(challengeData.game){
 
         case "snake":
 
-            game = new SnakeGame(canvas, challengeData);
+            game=new SnakeGame(canvas,challengeData);
 
-            window.game = game;
+            window.game=game;
 
             game.start();
 
@@ -150,5 +180,7 @@ function startGame(){
     }
 
 }
+
+// =======================
 
 loadChallenge();
