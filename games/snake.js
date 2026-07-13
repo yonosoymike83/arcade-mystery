@@ -69,31 +69,7 @@ class SnakeGame {
         this.canvas.addEventListener("touchstart",(e)=>{
 
             if(this.gameOver){
-
-                if(this.button){
-
-                    const r=this.canvas.getBoundingClientRect();
-
-                    const x=e.touches[0].clientX-r.left;
-                    const y=e.touches[0].clientY-r.top;
-
-                    if(
-                        x>=this.button.x &&
-                        x<=this.button.x+this.button.w &&
-                        y>=this.button.y &&
-                        y<=this.button.y+this.button.h
-                    ){
-
-                        e.preventDefault();
-
-                        this.restart();
-
-                    }
-
-                }
-
                 return;
-
             }
 
             e.preventDefault();
