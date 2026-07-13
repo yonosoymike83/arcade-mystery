@@ -367,3 +367,8 @@ class SnakeGame {
                 this.canvas.width/2,
                 170
             );
+        }
+
+    }
+
+}
