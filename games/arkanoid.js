@@ -397,6 +397,26 @@ update(){
 
         this.ctx.fill();
 
+    if(this.gameOver){
+
+    this.ctx.fillStyle="rgba(0,0,0,.65)";
+    this.ctx.fillRect(
+        0,
+        0,
+        this.canvas.width,
+        this.canvas.height
+    );
+
+    this.ctx.fillStyle="#ff4040";
+    this.ctx.font="bold 34px Arial";
+    this.ctx.textAlign="center";
+
+    this.ctx.fillText(
+        t("gameOver"),
+        this.canvas.width/2,
+        this.canvas.height/2-10
+    );
+
     }
 
 }
