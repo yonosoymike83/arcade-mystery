@@ -425,4 +425,4 @@ update(){
 
     }
 
-}
+}   // ← cierra la clase ArkanoidGame
