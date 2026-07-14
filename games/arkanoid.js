@@ -423,6 +423,8 @@ update(){
         this.canvas.height/2-10
     );
 
-    }
+        }
 
-}   // ← cierra la clase ArkanoidGame
+    }   // ← cierra draw()
+
+}       // ← cierra la clase
