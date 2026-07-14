@@ -71,45 +71,46 @@ class ArkanoidGame {
 
     }
 
-    limitPaddle(){
-    
+limitPaddle(){
+
+    if(this.paddle.x<0)
+        this.paddle.x=0;
+
+    if(this.paddle.x+this.paddle.w>this.canvas.width)
+        this.paddle.x=this.canvas.width-this.paddle.w;
+
+}
+
 update(){
 
-    this.ball.x += this.ball.dx;
-    this.ball.y += this.ball.dy;
+    this.ball.x+=this.ball.dx;
+    this.ball.y+=this.ball.dy;
 
     // Pared izquierda
-    if(this.ball.x <= this.ball.r){
+    if(this.ball.x<=this.ball.r){
 
-        this.ball.x = this.ball.r;
-        this.ball.dx *= -1;
+        this.ball.x=this.ball.r;
+        this.ball.dx*=-1;
 
     }
 
     // Pared derecha
-    if(this.ball.x >= this.canvas.width - this.ball.r){
+    if(this.ball.x>=this.canvas.width-this.ball.r){
 
-        this.ball.x = this.canvas.width - this.ball.r;
-        this.ball.dx *= -1;
+        this.ball.x=this.canvas.width-this.ball.r;
+        this.ball.dx*=-1;
 
     }
 
     // Techo
-    if(this.ball.y <= this.ball.r){
+    if(this.ball.y<=this.ball.r){
 
-        this.ball.y = this.ball.r;
-        this.ball.dy *= -1;
-
-    }
-
-               }
-        if(this.paddle.x<0)
-            this.paddle.x=0;
-
-        if(this.paddle.x+this.paddle.w>this.canvas.width)
-            this.paddle.x=this.canvas.width-this.paddle.w;
+        this.ball.y=this.ball.r;
+        this.ball.dy*=-1;
 
     }
+
+}
 
     start(){
 
