@@ -6,6 +6,7 @@ class ArkanoidGame {
         this.ctx = canvas.getContext("2d");
 
         this.challenge = challenge || {};
+        this.gameOver = false;
 
         this.paddle = {
 
@@ -83,30 +84,106 @@ limitPaddle(){
 
 update(){
 
-    this.ball.x+=this.ball.dx;
-    this.ball.y+=this.ball.dy;
+    this.ball.x += this.ball.dx;
+    this.ball.y += this.ball.dy;
 
+    // =====================
     // Pared izquierda
-    if(this.ball.x<=this.ball.r){
+    // =====================
 
-        this.ball.x=this.ball.r;
-        this.ball.dx*=-1;
+    if(this.ball.x <= this.ball.r){
+
+        this.ball.x = this.ball.r;
+        this.ball.dx *= -1;
 
     }
 
+    // =====================
     // Pared derecha
-    if(this.ball.x>=this.canvas.width-this.ball.r){
+    // =====================
 
-        this.ball.x=this.canvas.width-this.ball.r;
-        this.ball.dx*=-1;
+    if(this.ball.x >= this.canvas.width - this.ball.r){
+
+        this.ball.x = this.canvas.width - this.ball.r;
+        this.ball.dx *= -1;
 
     }
 
+    // =====================
     // Techo
-    if(this.ball.y<=this.ball.r){
+    // =====================
 
-        this.ball.y=this.ball.r;
-        this.ball.dy*=-1;
+    if(this.ball.y <= this.ball.r){
+
+        this.ball.y = this.ball.r;
+        this.ball.dy *= -1;
+
+    }
+
+    // =====================
+    // Rebote con la barra
+    // =====================
+
+    if(
+
+        this.ball.dy > 0 &&
+
+        this.ball.y + this.ball.r >= this.paddle.y &&
+
+        this.ball.y - this.ball.r <= this.paddle.y + this.paddle.h &&
+
+        this.ball.x >= this.paddle.x &&
+
+        this.ball.x <= this.paddle.x + this.paddle.w
+
+    ){
+
+        const impact =
+
+            (this.ball.x - this.paddle.x) / this.paddle.w;
+
+        if(impact < 0.2){
+
+            this.ball.dx = -4;
+            this.ball.dy = -2;
+
+        }else if(impact < 0.4){
+
+            this.ball.dx = -2;
+            this.ball.dy = -3;
+
+        }else if(impact < 0.6){
+
+            this.ball.dx = 0;
+            this.ball.dy = -4;
+
+        }else if(impact < 0.8){
+
+            this.ball.dx = 2;
+            this.ball.dy = -3;
+
+        }else{
+
+            this.ball.dx = 4;
+            this.ball.dy = -2;
+
+        }
+
+        this.ball.y = this.paddle.y - this.ball.r;
+
+    }
+
+    // =====================
+    // GAME OVER
+    // =====================
+
+    if(this.ball.y - this.ball.r > this.canvas.height){
+
+        clearInterval(this.timer);
+
+        this.gameOver = true;
+
+        document.getElementById("gameOverButtons").style.display = "block";
 
     }
 
@@ -114,6 +191,7 @@ update(){
 
     start(){
 
+        clearInterval(this.timer);
         this.timer=setInterval(()=>{
 
             this.update();
