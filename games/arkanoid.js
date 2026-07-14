@@ -118,4 +118,12 @@ class ArkanoidGame {
             this.ball.x,
             this.ball.y,
             this.ball.r,
-            
+            0,
+    Math.PI*2
+);
+
+this.ctx.fill();
+
+}
+
+}
