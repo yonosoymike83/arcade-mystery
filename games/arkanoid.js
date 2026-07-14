@@ -7,6 +7,38 @@ class ArkanoidGame {
 
         this.challenge = challenge || {};
         this.gameOver = false;
+        this.bricks=[];
+
+const rows=4;
+const cols=5;
+
+const brickWidth=70;
+const brickHeight=20;
+
+const gap=6;
+
+const offsetX=12;
+const offsetY=40;
+
+for(let r=0;r<rows;r++){
+
+    for(let c=0;c<cols;c++){
+
+        this.bricks.push({
+
+            x:offsetX+c*(brickWidth+gap),
+            y:offsetY+r*(brickHeight+gap),
+
+            w:brickWidth,
+            h:brickHeight,
+
+            alive:true
+
+        });
+
+    }
+
+}
 
         this.paddle = {
 
