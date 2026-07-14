@@ -21,6 +21,8 @@ class ArkanoidGame {
             x:200,
             y:340,
             r:8
+            dx:3,
+            dy:-3
 
         };
 
@@ -70,7 +72,37 @@ class ArkanoidGame {
     }
 
     limitPaddle(){
+    
+update(){
 
+    this.ball.x += this.ball.dx;
+    this.ball.y += this.ball.dy;
+
+    // Pared izquierda
+    if(this.ball.x <= this.ball.r){
+
+        this.ball.x = this.ball.r;
+        this.ball.dx *= -1;
+
+    }
+
+    // Pared derecha
+    if(this.ball.x >= this.canvas.width - this.ball.r){
+
+        this.ball.x = this.canvas.width - this.ball.r;
+        this.ball.dx *= -1;
+
+    }
+
+    // Techo
+    if(this.ball.y <= this.ball.r){
+
+        this.ball.y = this.ball.r;
+        this.ball.dy *= -1;
+
+    }
+
+               }
         if(this.paddle.x<0)
             this.paddle.x=0;
 
@@ -83,6 +115,7 @@ class ArkanoidGame {
 
         this.timer=setInterval(()=>{
 
+            this.update();
             this.draw();
 
         },16);
