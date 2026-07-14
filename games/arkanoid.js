@@ -206,6 +206,31 @@ update(){
     }
 
     // =====================
+    // Colisión con ladrillos
+    // =====================
+
+    this.bricks.forEach(brick=>{
+
+        if(!brick.alive) return;
+
+        if(
+
+            this.ball.x + this.ball.r >= brick.x &&
+            this.ball.x - this.ball.r <= brick.x + brick.w &&
+            this.ball.y + this.ball.r >= brick.y &&
+            this.ball.y - this.ball.r <= brick.y + brick.h
+
+        ){
+
+            brick.alive = false;
+
+            this.ball.dy *= -1;
+
+        }
+
+    });
+    
+    // =====================
     // GAME OVER
     // =====================
 
