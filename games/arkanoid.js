@@ -237,7 +237,48 @@ update(){
 
         this.ctx.fillStyle="#111";
         this.ctx.fillRect(0,0,this.canvas.width,this.canvas.height);
-
+        
+        // =====================
+        // Ladrillos
+        // =====================
+        
+        this.bricks.forEach(brick=>{
+        
+            if(!brick.alive) return;
+        
+            this.ctx.fillStyle="#1e90ff";
+        
+            this.ctx.fillRect(
+                brick.x,
+                brick.y,
+                brick.w,
+                brick.h
+            );
+        
+            // Brillo
+        
+            this.ctx.fillStyle="#8fc7ff";
+        
+            this.ctx.fillRect(
+                brick.x,
+                brick.y,
+                brick.w,
+                2
+            );
+        
+            // Sombra
+        
+            this.ctx.fillStyle="#0b4f99";
+        
+            this.ctx.fillRect(
+                brick.x,
+                brick.y+brick.h-2,
+                brick.w,
+                2
+            );
+        
+        });
+        
         // =====================
         // Barra estilo Arkanoid
         // =====================
