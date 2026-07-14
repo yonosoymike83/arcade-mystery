@@ -22,7 +22,7 @@ const ui={
         copy:"Copiar coordenades",
         copied:"✅ Coordenades copiades!",
         level:"🏆 REPTE SUPERAT",
-        gameOver:"FI DE LA PARTIDA"
+        gameOver:"GAME OVER"
     },
 
     es:{
