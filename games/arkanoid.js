@@ -420,7 +420,16 @@ update(){
     this.ctx.fillText(
         t("gameOver"),
         this.canvas.width/2,
-        this.canvas.height/2-10
+        this.canvas.height/2-25
+    );
+
+    this.ctx.fillStyle="#ffffff";
+    this.ctx.font="18px Arial";
+
+    this.ctx.fillText(
+        "Score: " + this.score,
+        this.canvas.width/2,
+        this.canvas.height/2+15
     );
 
         }
