@@ -94,36 +94,50 @@ class ArkanoidGame {
         this.ctx.fillStyle="#111";
         this.ctx.fillRect(0,0,this.canvas.width,this.canvas.height);
 
-        // Barra
+        // =====================
+        // Barra estilo Arkanoid
+        // =====================
 
-        this.ctx.fillStyle="#2dbb2d";
+        const x=this.paddle.x;
+        const y=this.paddle.y;
+        const w=this.paddle.w;
+        const h=this.paddle.h;
 
-        this.ctx.fillRect(
+        // Puntas rojas
+        this.ctx.fillStyle="#d63b2f";
+        this.ctx.fillRect(x,y,8,h);
+        this.ctx.fillRect(x+w-8,y,8,h);
 
-            this.paddle.x,
-            this.paddle.y,
-            this.paddle.w,
-            this.paddle.h
+        // Cuerpo gris
+        this.ctx.fillStyle="#bdbdbd";
+        this.ctx.fillRect(x+8,y,w-16,h);
 
-        );
+        // Brillo
+        this.ctx.fillStyle="#f5f5f5";
+        this.ctx.fillRect(x+8,y,w-16,2);
 
+        // Sombra
+        this.ctx.fillStyle="#7a7a7a";
+        this.ctx.fillRect(x+8,y+h-2,w-16,2);
+
+        // =====================
         // Pelota
+        // =====================
 
         this.ctx.fillStyle="#ffffff";
 
         this.ctx.beginPath();
 
         this.ctx.arc(
-
             this.ball.x,
             this.ball.y,
             this.ball.r,
             0,
-    Math.PI*2
-);
+            Math.PI*2
+        );
 
-this.ctx.fill();
+        this.ctx.fill();
 
-}
+    }
 
 }
