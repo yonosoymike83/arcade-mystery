@@ -7,6 +7,8 @@ class ArkanoidGame {
 
         this.challenge = challenge || {};
         this.gameOver = false;
+        this.score = 0;
+        this.goal = this.challenge.goal || 20;
         this.bricks=[];
 
 const rows=4;
@@ -224,8 +226,19 @@ update(){
 
             brick.alive = false;
 
-            this.ball.dy *= -1;
+            this.score++;
 
+            document.getElementById("score").textContent =
+            this.score.toString().padStart(4,"0");
+
+            this.ball.dy *= -1;
+            if(this.score >= this.goal){
+
+              clearInterval(this.timer);
+
+            document.getElementById("coordinates").style.display="block";
+
+            }
         }
 
     });
