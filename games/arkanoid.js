@@ -20,7 +20,7 @@ class ArkanoidGame {
 
             x:200,
             y:340,
-            r:8
+            r:8,
             dx:3,
             dy:-3
 
