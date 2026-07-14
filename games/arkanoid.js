@@ -261,15 +261,21 @@ update(){
 
     start(){
 
-        clearInterval(this.timer);
-        this.timer=setInterval(()=>{
+    clearInterval(this.timer);
+
+    this.timer=setInterval(()=>{
+
+        if(!this.gameOver){
 
             this.update();
-            this.draw();
 
-        },16);
+        }
 
-    }
+        this.draw();
+
+    },16);
+
+}
 
     restart(){
 
