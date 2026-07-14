@@ -271,6 +271,42 @@ update(){
 
     }
 
+    restart(){
+
+    clearInterval(this.timer);
+
+    this.score = 0;
+
+    document.getElementById("score").textContent = "0000";
+
+    document.getElementById("coordinates").style.display = "none";
+    document.getElementById("gameOverButtons").style.display = "none";
+
+    this.gameOver = false;
+
+    // Reiniciar barra
+
+    this.paddle.x = 160;
+
+    // Reiniciar pelota
+
+    this.ball.x = 200;
+    this.ball.y = 340;
+    this.ball.dx = 3;
+    this.ball.dy = -3;
+
+    // Reiniciar ladrillos
+
+    this.bricks.forEach(brick=>{
+
+        brick.alive = true;
+
+    });
+
+    this.start();
+
+        }
+    
     draw(){
 
         this.ctx.fillStyle="#111";
