@@ -323,41 +323,67 @@ update(){
         // =====================
         
         this.bricks.forEach(brick=>{
-        
-            if(!brick.alive) return;
-        
-            this.ctx.fillStyle="#1e90ff";
-        
-            this.ctx.fillRect(
-                brick.x,
-                brick.y,
-                brick.w,
-                brick.h
-            );
-        
-            // Brillo
-        
-            this.ctx.fillStyle="#8fc7ff";
-        
-            this.ctx.fillRect(
-                brick.x,
-                brick.y,
-                brick.w,
-                2
-            );
-        
-            // Sombra
-        
-            this.ctx.fillStyle="#0b4f99";
-        
-            this.ctx.fillRect(
-                brick.x,
-                brick.y+brick.h-2,
-                brick.w,
-                2
-            );
-        
-        });
+
+    if(!brick.alive) return;
+
+    let color="#1e90ff";
+    let light="#8fc7ff";
+    let dark="#0b4f99";
+
+    if(brick.y < 66){
+
+        color="#e53935";      // rojo
+        light="#ff8a80";
+        dark="#8e0000";
+
+    }else if(brick.y < 92){
+
+        color="#fb8c00";      // naranja
+        light="#ffd180";
+        dark="#c25e00";
+
+    }else if(brick.y < 118){
+
+        color="#43a047";      // verde
+        light="#a5d6a7";
+        dark="#1b5e20";
+
+    }else{
+
+        color="#1e88e5";      // azul
+        light="#90caf9";
+        dark="#0d47a1";
+
+    }
+
+    this.ctx.fillStyle=color;
+
+    this.ctx.fillRect(
+        brick.x,
+        brick.y,
+        brick.w,
+        brick.h
+    );
+
+    this.ctx.fillStyle=light;
+
+    this.ctx.fillRect(
+        brick.x,
+        brick.y,
+        brick.w,
+        2
+    );
+
+    this.ctx.fillStyle=dark;
+
+    this.ctx.fillRect(
+        brick.x,
+        brick.y+brick.h-2,
+        brick.w,
+        2
+    );
+
+});
         
         // =====================
         // Barra estilo Arkanoid
