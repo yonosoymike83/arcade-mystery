@@ -222,7 +222,7 @@ update(){
 
     this.bricks.forEach(brick=>{
 
-        if(!brick.alive) return;
+        if(!brick.alive || brick.hit) return;
 
         if(
 
