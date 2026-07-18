@@ -91,3 +91,11 @@ body{
     transform:scale(1.05);
 
 }
+
+#touchArea{
+    width:400px;
+    height:70px;      /* puedes probar entre 60 y 100 px */
+    margin:0 auto;
+    background:transparent;
+    touch-action:none;
+}
