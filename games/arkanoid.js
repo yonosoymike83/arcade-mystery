@@ -66,7 +66,9 @@ for(let r=0;r<rows;r++){
     }
 
     bindControls(){
-
+        
+        const touchArea = document.getElementById("touchArea");
+       
         document.addEventListener("keydown",(e)=>{
 
             if(e.key==="ArrowLeft")
@@ -82,7 +84,7 @@ for(let r=0;r<rows;r++){
         let startX=0;
         let paddleStart=0;
 
-        this.canvas.addEventListener("touchstart",(e)=>{
+        touchArea.addEventListener("touchstart",(e)=>{
 
             e.preventDefault();
 
@@ -92,7 +94,7 @@ for(let r=0;r<rows;r++){
 
         },{passive:false});
 
-        this.canvas.addEventListener("touchmove",(e)=>{
+        touchArea.addEventListener("touchmove",(e)=>{
 
             e.preventDefault();
 
