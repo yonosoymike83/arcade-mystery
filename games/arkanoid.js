@@ -34,7 +34,9 @@ for(let r=0;r<rows;r++){
             w:brickWidth,
             h:brickHeight,
 
-            alive:true
+            alive:true,
+            hit:false,
+            hitTime:0
 
         });
 
@@ -231,13 +233,14 @@ update(){
 
         ){
 
-            brick.alive = false;
-
+            brick.hit = true;
+            brick.hitTime = performance.now();
+            
             this.score++;
-
+            
             document.getElementById("score").textContent =
             this.score.toString().padStart(4,"0");
-
+            
             this.ball.dy *= -1;
             if(this.score >= this.goal){
 
@@ -313,6 +316,8 @@ update(){
     this.bricks.forEach(brick=>{
 
         brick.alive = true;
+        brick.hit = false;
+        brick.hitTime = 0;
 
     });
 
@@ -332,6 +337,28 @@ update(){
         this.bricks.forEach(brick=>{
 
     if(!brick.alive) return;
+
+    if(brick.hit){
+    
+        if(performance.now()-brick.hitTime>60){
+    
+            brick.alive=false;
+            return;
+    
+        }
+    
+        this.ctx.fillStyle="#ffffff";
+    
+        this.ctx.fillRect(
+            brick.x,
+            brick.y,
+            brick.w,
+            brick.h
+        );
+    
+        return;
+    
+}
 
     let color="#1e90ff";
     let light="#8fc7ff";
