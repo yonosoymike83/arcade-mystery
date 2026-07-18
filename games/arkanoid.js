@@ -82,7 +82,7 @@ for(let r=0;r<rows;r++){
         let startX=0;
         let paddleStart=0;
 
-        this.canvas.addEventListener("touchstart",(e)=>{
+        document.addEventListener("touchstart",(e)=>{
 
             e.preventDefault();
 
@@ -92,18 +92,25 @@ for(let r=0;r<rows;r++){
 
         },{passive:false});
 
-        this.canvas.addEventListener("touchmove",(e)=>{
+        document.addEventListener("touchmove",(e)=>{
 
             e.preventDefault();
 
             const dx=e.touches[0].clientX-startX;
 
+            if(startX===0) return;
+            
             this.paddle.x=paddleStart+dx;
 
             this.limitPaddle();
 
         },{passive:false});
-
+        
+        document.addEventListener("touchend",()=>{
+        
+            startX = 0;
+        
+        },{passive:false});
     }
 
 limitPaddle(){
