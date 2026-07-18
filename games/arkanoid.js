@@ -65,48 +65,53 @@ for(let r=0;r<rows;r++){
 
     }
 
-    bindControls(){
-        
-        const touchArea = document.getElementById("touchArea");
-       
-        document.addEventListener("keydown",(e)=>{
+   bindControls(){
 
-            if(e.key==="ArrowLeft")
-                this.paddle.x-=20;
+    const touchArea = document.getElementById("touchArea");
 
-            if(e.key==="ArrowRight")
-                this.paddle.x+=20;
+    document.addEventListener("keydown",(e)=>{
 
-            this.limitPaddle();
+        if(e.key==="ArrowLeft")
+            this.paddle.x-=20;
 
-        });
+        if(e.key==="ArrowRight")
+            this.paddle.x+=20;
 
-        let startX=0;
-        let paddleStart=0;
+        this.limitPaddle();
 
-        touchArea.addEventListener("touchstart",(e)=>{
+    });
 
-            e.preventDefault();
+    let startX=0;
+    let paddleStart=0;
 
-            startX=e.touches[0].clientX;
+    const touchStart = (e)=>{
 
-            paddleStart=this.paddle.x;
+        e.preventDefault();
 
-        },{passive:false});
+        startX = e.touches[0].clientX;
+        paddleStart = this.paddle.x;
 
-        touchArea.addEventListener("touchmove",(e)=>{
+    };
 
-            e.preventDefault();
+    const touchMove = (e)=>{
 
-            const dx=e.touches[0].clientX-startX;
+        e.preventDefault();
 
-            this.paddle.x=paddleStart+dx;
+        const dx = e.touches[0].clientX - startX;
 
-            this.limitPaddle();
+        this.paddle.x = paddleStart + dx;
 
-        },{passive:false});
+        this.limitPaddle();
 
-    }
+    };
+
+    this.canvas.addEventListener("touchstart",touchStart,{passive:false});
+    this.canvas.addEventListener("touchmove",touchMove,{passive:false});
+
+    touchArea.addEventListener("touchstart",touchStart,{passive:false});
+    touchArea.addEventListener("touchmove",touchMove,{passive:false});
+
+}
 
 limitPaddle(){
 
