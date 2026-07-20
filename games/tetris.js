@@ -138,6 +138,7 @@ class TetrisGame{
             this.piece.shape
         )){
             this.gameOver=true;
+            clearInterval(this.timer);
         }
 
     }
@@ -284,8 +285,14 @@ class TetrisGame{
 
                 if(!s[y][x]) continue;
 
-                this.board[this.piece.y+y][this.piece.x+x]=1;
-
+                if(
+    this.isInsideBoard(
+        this.piece.x + x,
+        this.piece.y + y
+    )
+){
+    this.board[this.piece.y + y][this.piece.x + x] = 1;
+}
             }
 
         }
