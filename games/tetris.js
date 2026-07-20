@@ -41,22 +41,28 @@ class TetrisGame{
 
     constructor(canvas,challenge){
 
-        this.canvas=canvas;
-        this.ctx=canvas.getContext("2d");
+        this.canvas = canvas;
+        this.ctx = canvas.getContext("2d");
 
-        this.challenge=challenge||{};
+        this.challenge = challenge || {};
 
-        this.cols=TETRIS_COLS;
-        this.rows=TETRIS_ROWS;
+        this.cols = TETRIS_COLS;
+        this.rows = TETRIS_ROWS;
 
-        this.block=this.canvas.width/this.cols;
+        this.block = Math.min(
+            this.canvas.width / this.cols,
+            this.canvas.height / this.rows
+        );
 
-        this.score=0;
-        this.goal=this.challenge.goal||20;
+        this.offsetX = (this.canvas.width - this.cols * this.block) / 2;
+        this.offsetY = (this.canvas.height - this.rows * this.block) / 2;
 
-        this.gameOver=false;
+        this.score = 0;
+        this.goal = this.challenge.goal || 20;
 
-        this.board=[];
+        this.gameOver = false;
+
+        this.board = [];
 
         for(let y=0;y<this.rows;y++){
 
@@ -78,13 +84,43 @@ class TetrisGame{
 
     bindControls(){
 
-        // De momento vacío
+        document.addEventListener("keydown",(e)=>{
+
+            if(this.gameOver) return;
+
+            switch(e.key){
+
+                case "ArrowLeft":
+                    this.move(-1);
+                    break;
+
+                case "ArrowRight":
+                    this.move(1);
+                    break;
+
+                case "ArrowUp":
+                    this.rotate();
+                    break;
+
+                case "ArrowDown":
+                    this.drop();
+                    break;
+
+            }
+
+            this.draw();
+
+        });
 
     }
 
     spawnPiece(){
 
-        const shape=PIECES[Math.floor(Math.random()*PIECES.length)];
+        const shape = JSON.parse(
+            JSON.stringify(
+                PIECES[Math.floor(Math.random()*PIECES.length)]
+            )
+        );
 
         this.piece={
 
@@ -95,6 +131,14 @@ class TetrisGame{
             y:0
 
         };
+
+        if(this.collides(
+            this.piece.x,
+            this.piece.y,
+            this.piece.shape
+        )){
+            this.gameOver=true;
+        }
 
     }
 
@@ -145,35 +189,182 @@ class TetrisGame{
 
     }
 
+    move(dir){
+
+        if(!this.collides(
+            this.piece.x+dir,
+            this.piece.y,
+            this.piece.shape
+        )){
+            this.piece.x+=dir;
+        }
+
+    }
+
+    drop(){
+
+        if(!this.collides(
+            this.piece.x,
+            this.piece.y+1,
+            this.piece.shape
+        )){
+            this.piece.y++;
+        }
+
+    }
+
+    rotate(){
+
+        const rotated=[];
+
+        for(let x=0;x<this.piece.shape[0].length;x++){
+
+            rotated[x]=[];
+
+            for(let y=this.piece.shape.length-1;y>=0;y--){
+
+                rotated[x].push(
+                    this.piece.shape[y][x]
+                );
+
+            }
+
+        }
+
+        if(!this.collides(
+            this.piece.x,
+            this.piece.y,
+            rotated
+        )){
+            this.piece.shape=rotated;
+        }
+
+    }
+
+    collides(px,py,shape){
+
+        for(let y=0;y<shape.length;y++){
+
+            for(let x=0;x<shape[y].length;x++){
+
+                if(!shape[y][x]) continue;
+
+                let bx=px+x;
+                let by=py+y;
+
+                if(
+                    bx<0 ||
+                    bx>=this.cols ||
+                    by>=this.rows
+                ){
+                    return true;
+                }
+
+                if(
+                    by>=0 &&
+                    this.board[by][bx]
+                ){
+                    return true;
+                }
+
+            }
+
+        }
+
+        return false;
+
+    }
+        lockPiece(){
+
+        const s=this.piece.shape;
+
+        for(let y=0;y<s.length;y++){
+
+            for(let x=0;x<s[y].length;x++){
+
+                if(!s[y][x]) continue;
+
+                this.board[this.piece.y+y][this.piece.x+x]=1;
+
+            }
+
+        }
+
+        this.spawnPiece();
+
+    }
+
     update(){
 
         if(this.gameOver)
             return;
 
-        this.piece.y++;
+        if(!this.collides(
+            this.piece.x,
+            this.piece.y+1,
+            this.piece.shape
+        )){
 
-        if(this.piece.y+this.piece.shape.length>this.rows){
+            this.piece.y++;
 
-            this.spawnPiece();
+        }else{
+
+            this.lockPiece();
 
         }
+
+    }
+
+    drawBlock(x,y){
+
+        const px=this.offsetX+x*this.block;
+        const py=this.offsetY+y*this.block;
+
+        this.ctx.fillStyle="#d8d8d8";
+        this.ctx.fillRect(
+            px+1,
+            py+1,
+            this.block-2,
+            this.block-2
+        );
+
+        this.ctx.strokeStyle="#8a8a8a";
+        this.ctx.lineWidth=2;
+        this.ctx.strokeRect(
+            px+1,
+            py+1,
+            this.block-2,
+            this.block-2
+        );
 
     }
 
     draw(){
 
         this.ctx.fillStyle="#111";
-        this.ctx.fillRect(0,0,this.canvas.width,this.canvas.height);
+        this.ctx.fillRect(
+            0,
+            0,
+            this.canvas.width,
+            this.canvas.height
+        );
 
         // Cuadrícula
 
-        this.ctx.strokeStyle="#1f1f1f";
+        this.ctx.strokeStyle="#222";
+        this.ctx.lineWidth=1;
 
         for(let x=0;x<=this.cols;x++){
 
             this.ctx.beginPath();
-            this.ctx.moveTo(x*this.block,0);
-            this.ctx.lineTo(x*this.block,this.canvas.height);
+            this.ctx.moveTo(
+                this.offsetX+x*this.block,
+                this.offsetY
+            );
+            this.ctx.lineTo(
+                this.offsetX+x*this.block,
+                this.offsetY+this.rows*this.block
+            );
             this.ctx.stroke();
 
         }
@@ -181,15 +372,19 @@ class TetrisGame{
         for(let y=0;y<=this.rows;y++){
 
             this.ctx.beginPath();
-            this.ctx.moveTo(0,y*this.block);
-            this.ctx.lineTo(this.canvas.width,y*this.block);
+            this.ctx.moveTo(
+                this.offsetX,
+                this.offsetY+y*this.block
+            );
+            this.ctx.lineTo(
+                this.offsetX+this.cols*this.block,
+                this.offsetY+y*this.block
+            );
             this.ctx.stroke();
 
         }
 
         // Tablero
-
-        this.ctx.fillStyle="#42ff42";
 
         for(let y=0;y<this.rows;y++){
 
@@ -197,14 +392,7 @@ class TetrisGame{
 
                 if(this.board[y][x]){
 
-                    this.ctx.fillRect(
-
-                        x*this.block+1,
-                        y*this.block+1,
-                        this.block-2,
-                        this.block-2
-
-                    );
+                    this.drawBlock(x,y);
 
                 }
 
@@ -220,22 +408,52 @@ class TetrisGame{
 
             for(let x=0;x<s[y].length;x++){
 
-                if(!s[y][x])
-                    continue;
+                if(!s[y][x]) continue;
 
-                this.ctx.fillRect(
-
-                    (this.piece.x+x)*this.block+1,
-                    (this.piece.y+y)*this.block+1,
-                    this.block-2,
-                    this.block-2
-
+                this.drawBlock(
+                    this.piece.x+x,
+                    this.piece.y+y
                 );
 
             }
 
         }
 
+        if(this.gameOver){
+
+            this.ctx.fillStyle="rgba(0,0,0,0.65)";
+            this.ctx.fillRect(
+                0,
+                0,
+                this.canvas.width,
+                this.canvas.height
+            );
+
+            this.ctx.fillStyle="#ffffff";
+            this.ctx.font="bold 28px Arial";
+            this.ctx.textAlign="center";
+            this.ctx.fillText(
+                "GAME OVER",
+                this.canvas.width/2,
+                this.canvas.height/2
+            );
+
+        }
+
+    }
+    
+     // Evita errores cuando una pieza queda parcialmente
+    // fuera del tablero superior al aparecer.
+
+    isInsideBoard(x, y) {
+
+        return (
+            x >= 0 &&
+            x < this.cols &&
+            y >= 0 &&
+            y < this.rows
+        );
+
     }
 
-}
+}   
