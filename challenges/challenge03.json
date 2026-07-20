@@ -1,35 +1,19 @@
 {
-  "mode": "sequence",
+    "game":"tetris",
 
-  "title": {
-    "ca": "Smoke on the Water",
-    "es": "Smoke on the Water",
-    "en": "Smoke on the Water"
-  },
+    "goal":20,
 
-  "instructions": {
-    "ca": "Toca el riff en l'ordre correcte.",
-    "es": "Toca el riff en el orden correcto.",
-    "en": "Play the riff in the correct order."
-  },
+    "coordinates":"N 41°00.001' E 002°00.000'",
 
-  "coordinates": {
-    "north": "41°40'37.8\"N",
-    "east": "2°48'22.1\"E"
-  },
+    "title":{
+        "ca":"Tetris",
+        "es":"Tetris",
+        "en":"Tetris"
+    },
 
-  "solution": [
-    "4-0",
-    "4-3",
-    "4-5",
-    "4-0",
-    "4-3",
-    "4-6",
-    "4-5",
-    "4-0",
-    "4-3",
-    "4-5",
-    "4-3",
-    "4-0"
-  ]
+    "instructions":{
+        "ca":"Completa 20 filades per desbloquejar les coordenades.",
+        "es":"Completa 20 filas para desbloquear las coordenadas.",
+        "en":"Complete 20 lines to unlock the coordinates."
+    }
 }
