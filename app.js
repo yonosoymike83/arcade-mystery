@@ -187,6 +187,12 @@ function startGame(){
 
             break;
 
+        case "tetris":
+
+            game = new TetrisGame(canvas, challengeData);
+
+            break;
+
         default:
 
             alert("Juego no soportado: "+challengeData.game);
