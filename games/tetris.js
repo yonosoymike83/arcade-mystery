@@ -84,34 +84,104 @@ class TetrisGame{
 
     bindControls(){
 
-        document.addEventListener("keydown",(e)=>{
+        window.addEventListener("keydown",(e)=>{
 
-            if(this.gameOver) return;
+    if(this.gameOver) return;
 
-            switch(e.key){
+    if([
+        "ArrowLeft",
+        "ArrowRight",
+        "ArrowUp",
+        "ArrowDown"
+    ].includes(e.key)){
+        e.preventDefault();
+    }
 
-                case "ArrowLeft":
-                    this.move(-1);
-                    break;
+    switch(e.key){
 
-                case "ArrowRight":
-                    this.move(1);
-                    break;
+        case "ArrowLeft":
+            this.move(-1);
+            break;
 
-                case "ArrowUp":
-                    this.rotate();
-                    break;
+        case "ArrowRight":
+            this.move(1);
+            break;
 
-                case "ArrowDown":
-                    this.drop();
-                    break;
+        case "ArrowUp":
+            this.rotate();
+            break;
 
-            }
+        case "ArrowDown":
+            this.drop();
+            break;
+    }
 
-            this.draw();
+    this.draw();
 
-        });
+});
 
+let touchStartX = 0;
+let touchStartY = 0;
+
+this.canvas.addEventListener("touchstart", (e) => {
+
+    e.preventDefault();
+    
+    const t = e.touches[0];
+    touchStartX = t.clientX;
+    touchStartY = t.clientY;
+
+}, { passive: false });
+
+this.canvas.addEventListener("touchend", (e) => {
+
+    e.preventDefault();
+    if(this.gameOver) return;
+
+    const t = e.changedTouches[0];
+
+    const dx = t.clientX - touchStartX;
+    const dy = t.clientY - touchStartY;
+
+    const minSwipe = 25;
+
+    // Tap
+    if(Math.abs(dx) < 10 && Math.abs(dy) < 10){
+
+    this.hardDrop();
+    this.draw();
+    return;
+
+}
+
+    if(Math.abs(dx) > Math.abs(dy)){
+
+        if(Math.abs(dx) > minSwipe){
+
+            if(dx > 0)
+                this.move(1);
+            else
+                this.move(-1);
+
+        }
+
+    }else{
+
+        if(Math.abs(dy) > minSwipe){
+
+            if(dy > 0)
+                this.drop();
+            else
+                this.rotate();
+
+        }
+
+    }
+
+    this.draw();
+
+}, { passive: false });
+        
     }
 
     spawnPiece(){
@@ -164,7 +234,7 @@ class TetrisGame{
 
         this.score=0;
 
-        document.getElementById("score").textContent="0000";
+        document.getElementById("score").textContent=this.score;
         document.getElementById("coordinates").style.display="none";
         document.getElementById("gameOverButtons").style.display="none";
 
@@ -213,7 +283,21 @@ class TetrisGame{
         }
 
     }
-
+    
+    hardDrop(){
+    
+        while(!this.collides(
+            this.piece.x,
+            this.piece.y + 1,
+            this.piece.shape
+        )){
+            this.piece.y++;
+        }
+    
+        this.lockPiece();
+    
+    }
+    
     rotate(){
 
         const rotated=[];
@@ -297,10 +381,17 @@ class TetrisGame{
 
         }
 
+        this.clearLines();
         this.spawnPiece();
 
     }
-
+    
+    clearLines(){
+    
+        // Próxima versión
+    
+    }
+    
     update(){
 
         if(this.gameOver)
