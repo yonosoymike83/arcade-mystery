@@ -216,4 +216,26 @@ class TetrisGame{
 
         const s=this.piece.shape;
 
-       
+        for(let y=0;y<s.length;y++){
+
+            for(let x=0;x<s[y].length;x++){
+
+                if(!s[y][x])
+                    continue;
+
+                this.ctx.fillRect(
+
+                    (this.piece.x+x)*this.block+1,
+                    (this.piece.y+y)*this.block+1,
+                    this.block-2,
+                    this.block-2
+
+                );
+
+            }
+
+        }
+
+    }
+
+}
