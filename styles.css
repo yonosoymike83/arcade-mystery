@@ -23,6 +23,32 @@ h1 {
   margin-bottom: 20px;
 }
 
+.language-selector{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:25px 0 35px;
+}
+
+.language-selector button{
+
+    width:70px;
+    height:38px;
+
+    border:none;
+    border-radius:8px;
+
+    font-size:0.95rem;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.language-selector button:hover{
+    opacity:.9;
+}
 .controls {
   margin-bottom: 20px;
 }
