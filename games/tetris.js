@@ -388,7 +388,48 @@ this.canvas.addEventListener("touchend", (e) => {
     
     clearLines(){
     
-        // Próxima versión
+        let linesCleared = 0;
+    
+        for(let y = this.rows - 1; y >= 0; y--){
+    
+            let full = true;
+    
+            for(let x = 0; x < this.cols; x++){
+    
+                if(this.board[y][x] === 0){
+                    full = false;
+                    break;
+                }
+    
+            }
+    
+            if(full){
+    
+                // Elimina la fila completa
+                this.board.splice(y,1);
+    
+                // Añade una fila vacía arriba
+                this.board.unshift(
+                    new Array(this.cols).fill(0)
+                );
+    
+                linesCleared++;
+    
+                // Volver a comprobar la misma fila
+                y++;
+    
+            }
+    
+        }
+    
+        if(linesCleared > 0){
+    
+            this.score += linesCleared;
+    
+            document.getElementById("score").textContent =
+                this.score.toString().padStart(4,"0");
+    
+        }
     
     }
     
