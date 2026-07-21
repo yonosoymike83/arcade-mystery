@@ -423,13 +423,25 @@ this.canvas.addEventListener("touchend", (e) => {
         }
     
         if(linesCleared > 0){
-    
-            this.score += linesCleared;
-    
-            document.getElementById("score").textContent =
-                this.score.toString().padStart(4,"0");
-    
-        }
+
+    this.score += linesCleared;
+
+    document.getElementById("score").textContent =
+        this.score.toString().padStart(4,"0");
+
+    if(this.score >= this.goal){
+
+        clearInterval(this.timer);
+
+        // Evitar que el jugador siga moviendo piezas
+        this.gameOver = true;
+
+        // Mostrar las coordenadas
+        document.getElementById("coordinates").style.display = "block";
+
+    }
+
+}
     
     }
     
