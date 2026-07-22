@@ -138,7 +138,7 @@ limitPaddle(){
 
 update(){
 
-    const speed = 10;
+    const speed = 8;
 
     if(this.leftPressed)
         this.paddle.x -= speed;
