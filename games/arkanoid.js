@@ -10,6 +10,9 @@ class ArkanoidGame {
         this.score = 0;
         this.goal = this.challenge.goal || 20;
         this.bricks=[];
+        
+        this.leftPressed = false;
+        this.rightPressed = false;
 
 const rows=4;
 const cols=5;
@@ -73,15 +76,23 @@ for(let r=0;r<rows;r++){
 
     document.addEventListener("keydown",(e)=>{
 
-        if(e.key==="ArrowLeft")
-            this.paddle.x-=20;
+    if(e.key==="ArrowLeft")
+        this.leftPressed = true;
 
-        if(e.key==="ArrowRight")
-            this.paddle.x+=20;
+    if(e.key==="ArrowRight")
+        this.rightPressed = true;
 
-        this.limitPaddle();
+});
 
-    });
+document.addEventListener("keyup",(e)=>{
+
+    if(e.key==="ArrowLeft")
+        this.leftPressed = false;
+
+    if(e.key==="ArrowRight")
+        this.rightPressed = false;
+
+});
 
     let startX=0;
     let paddleStart=0;
@@ -126,6 +137,16 @@ limitPaddle(){
 }
 
 update(){
+
+    const speed = 10;
+
+    if(this.leftPressed)
+        this.paddle.x -= speed;
+    
+    if(this.rightPressed)
+        this.paddle.x += speed;
+    
+    this.limitPaddle();
 
     this.ball.x += this.ball.dx;
     this.ball.y += this.ball.dy;
