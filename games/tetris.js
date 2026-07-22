@@ -598,12 +598,12 @@ for(let y=0; y<this.rows; y++){
 
             if(Math.floor(Date.now()/60)%2===0){
 
-                this.ctx.fillStyle="#ffffff";
+                this.ctx.fillStyle = "#ffffff";
                 this.ctx.fillRect(
-                    this.offsetX+x*this.block+1,
-                    this.offsetY+y*this.block+1,
-                    this.block-2,
-                    this.block-2
+                    this.offsetX,
+                    this.offsetY + y * this.block,
+                    this.cols * this.block,
+                    this.block
                 );
 
             }else{
