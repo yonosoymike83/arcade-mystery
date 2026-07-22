@@ -37,6 +37,18 @@ const PIECES = [
 
 ];
 
+const PIECE_COLORS = [
+
+    "#00BFFF", // I - Azul cielo
+    "#FFD700", // O - Amarillo
+    "#BA55D3", // T - Morado
+    "#32CD32", // S - Verde lima
+    "#FF3030", // Z - Rojo
+    "#1E3AFF", // J - Azul intenso
+    "#FF8C00"  // L - Naranja
+
+];
+
 class TetrisGame{
 
     constructor(canvas,challenge){
@@ -188,21 +200,25 @@ this.canvas.addEventListener("touchend", (e) => {
 
     spawnPiece(){
 
+        const index = Math.floor(Math.random()*PIECES.length);
+
         const shape = JSON.parse(
             JSON.stringify(
-                PIECES[Math.floor(Math.random()*PIECES.length)]
+                PIECES[index]
             )
         );
 
         this.piece={
 
-            shape:shape,
+        shape:shape,
 
-            x:Math.floor((this.cols-shape[0].length)/2),
-
-            y:0
-
-        };
+        color:PIECE_COLORS[index],
+    
+        x:Math.floor((this.cols-shape[0].length)/2),
+    
+        y:0
+    
+    };
 
         if(this.collides(
             this.piece.x,
@@ -388,7 +404,7 @@ this.canvas.addEventListener("touchend", (e) => {
         this.piece.y + y
     )
 ){
-    this.board[this.piece.y + y][this.piece.x + x] = 1;
+    this.board[this.piece.y + y][this.piece.x + x] = this.piece.color;
 }
             }
 
@@ -516,12 +532,12 @@ this.canvas.addEventListener("touchend", (e) => {
 
     }
 
-    drawBlock(x,y){
+    drawBlock(x,y,color="#d8d8d8"){
 
         const px=this.offsetX+x*this.block;
         const py=this.offsetY+y*this.block;
 
-        this.ctx.fillStyle="#d8d8d8";
+        this.ctx.fillStyle=color;
         this.ctx.fillRect(
             px+1,
             py+1,
@@ -608,14 +624,22 @@ for(let y=0; y<this.rows; y++){
 
             }else{
 
-                this.drawBlock(x,y);
-
+                this.drawBlock(
+                    x,
+                    y,
+                    this.board[y][x]
+                );
+            
             }
 
         }
         else if(this.board[y][x]){
 
-            this.drawBlock(x,y);
+            this.drawBlock(
+                x,
+                y,
+                this.board[y][x]
+            );
 
         }
 
@@ -635,7 +659,8 @@ for(let y=0; y<this.rows; y++){
 
                 this.drawBlock(
                     this.piece.x+x,
-                    this.piece.y+y
+                    this.piece.y+y,
+                    this.piece.color
                 );
 
             }
