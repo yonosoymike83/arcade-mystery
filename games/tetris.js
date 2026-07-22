@@ -61,7 +61,8 @@ class TetrisGame{
         this.goal = this.challenge.goal || 20;
 
         this.gameOver = false;
-
+        this.completed = false;
+        
         this.board = [];
 
         for(let y=0;y<this.rows;y++){
@@ -86,7 +87,7 @@ class TetrisGame{
 
         window.addEventListener("keydown",(e)=>{
 
-    if(this.gameOver) return;
+    if(this.gameOver || this.completed) return;
 
     if([
         "ArrowLeft",
@@ -136,7 +137,7 @@ this.canvas.addEventListener("touchstart", (e) => {
 this.canvas.addEventListener("touchend", (e) => {
 
     e.preventDefault();
-    if(this.gameOver) return;
+    if(this.gameOver || this.completed) return;
 
     const t = e.changedTouches[0];
 
@@ -149,7 +150,6 @@ this.canvas.addEventListener("touchend", (e) => {
     if(Math.abs(dx) < 10 && Math.abs(dy) < 10){
 
     this.hardDrop();
-    this.draw();
     return;
 
 }
@@ -207,8 +207,15 @@ this.canvas.addEventListener("touchend", (e) => {
             this.piece.y,
             this.piece.shape
         )){
-            this.gameOver=true;
+        
+            this.gameOver = true;
+        
             clearInterval(this.timer);
+        
+            document.getElementById("gameOverButtons").style.display="block";
+        
+            this.draw();
+
         }
 
     }
@@ -230,6 +237,9 @@ this.canvas.addEventListener("touchend", (e) => {
 
     restart(){
 
+        document.getElementById("gameOverButtons").style.display="none";
+        document.getElementById("coordinates").style.display="none";
+        
         clearInterval(this.timer);
 
         this.score=0;
@@ -239,6 +249,7 @@ this.canvas.addEventListener("touchend", (e) => {
         document.getElementById("gameOverButtons").style.display="none";
 
         this.gameOver=false;
+        this.completed=false;
 
         this.board=[];
 
@@ -382,6 +393,11 @@ this.canvas.addEventListener("touchend", (e) => {
         }
 
         this.clearLines();
+
+        if(this.completed){
+            return;
+        }
+
         this.spawnPiece();
 
     }
@@ -431,14 +447,16 @@ this.canvas.addEventListener("touchend", (e) => {
 
     if(this.score >= this.goal){
 
+        this.completed = true;
+    
         clearInterval(this.timer);
-
-        // Evitar que el jugador siga moviendo piezas
-        this.gameOver = true;
-
-        // Mostrar las coordenadas
+    
         document.getElementById("coordinates").style.display = "block";
-
+    
+        this.draw();
+    
+        return;
+    
     }
 
 }
@@ -447,7 +465,7 @@ this.canvas.addEventListener("touchend", (e) => {
     
     update(){
 
-        if(this.gameOver)
+         if(this.gameOver || this.completed)
             return;
 
         if(!this.collides(
@@ -572,24 +590,34 @@ this.canvas.addEventListener("touchend", (e) => {
 
         if(this.gameOver){
 
-            this.ctx.fillStyle="rgba(0,0,0,0.65)";
-            this.ctx.fillRect(
-                0,
-                0,
-                this.canvas.width,
-                this.canvas.height
-            );
+    this.ctx.fillStyle="rgba(0,0,0,.75)";
+    this.ctx.fillRect(
+        0,
+        0,
+        this.canvas.width,
+        this.canvas.height
+    );
 
-            this.ctx.fillStyle="#ffffff";
-            this.ctx.font="bold 28px Arial";
-            this.ctx.textAlign="center";
-            this.ctx.fillText(
-                "GAME OVER",
-                this.canvas.width/2,
-                this.canvas.height/2
-            );
+    this.ctx.fillStyle="#ff4040";
+    this.ctx.font="bold 34px Arial";
+    this.ctx.textAlign="center";
 
-        }
+    this.ctx.fillText(
+        "GAME OVER",
+        this.canvas.width/2,
+        135
+    );
+
+    this.ctx.fillStyle="#ffffff";
+    this.ctx.font="18px Arial";
+
+    this.ctx.fillText(
+        "Score: "+this.score,
+        this.canvas.width/2,
+        170
+    );
+
+}
 
     }
     
