@@ -586,45 +586,42 @@ this.canvas.addEventListener("touchend", (e) => {
         }
 
         // Tablero
+for(let y=0; y<this.rows; y++){
 
-        for(let y=0;y<this.rows;y++){
+    for(let x=0; x<this.cols; x++){
 
-            for(let x=0;x<this.cols;x++){
+        // Animación de borrado
+        if(
+            this.clearAnimation &&
+            this.linesToClear.includes(y)
+        ){
 
-                if(this.board[y][x]){
+            if(Math.floor(Date.now()/60)%2===0){
 
-                    if(
-                        this.clearAnimation &&
-                        this.linesToClear.includes(y)
-                    ){
-                
-                        if(Math.floor(Date.now()/60)%2===0){
-                
-                            this.ctx.fillStyle="#ffffff";
-                            this.ctx.fillRect(
-                                this.offsetX+x*this.block+1,
-                                this.offsetY+y*this.block+1,
-                                this.block-2,
-                                this.block-2
-                            );
-                
-                        }else{
-                
-                            this.drawBlock(x,y);
-                
-                        }
-                
-                    }else{
-                
-                        this.drawBlock(x,y);
-                
-                    }
+                this.ctx.fillStyle="#ffffff";
+                this.ctx.fillRect(
+                    this.offsetX+x*this.block+1,
+                    this.offsetY+y*this.block+1,
+                    this.block-2,
+                    this.block-2
+                );
 
-}
+            }else{
+
+                this.drawBlock(x,y);
 
             }
 
         }
+        else if(this.board[y][x]){
+
+            this.drawBlock(x,y);
+
+        }
+
+    }
+
+}
 
         // Pieza actual
 
