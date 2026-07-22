@@ -62,6 +62,8 @@ class TetrisGame{
 
         this.gameOver = false;
         this.completed = false;
+        this.clearAnimation = false;
+        this.linesToClear = [];
         
         this.board = [];
 
@@ -244,7 +246,7 @@ this.canvas.addEventListener("touchend", (e) => {
 
         this.score=0;
 
-        document.getElementById("score").textContent=this.score;
+        document.getElementById("score").textContent = "0000";
         document.getElementById("coordinates").style.display="none";
         document.getElementById("gameOverButtons").style.display="none";
 
@@ -394,72 +396,102 @@ this.canvas.addEventListener("touchend", (e) => {
 
         this.clearLines();
 
-        if(this.completed){
+        if(this.completed || this.clearAnimation){
             return;
         }
-
-        this.spawnPiece();
 
     }
     
     clearLines(){
-    
-        let linesCleared = 0;
-    
-        for(let y = this.rows - 1; y >= 0; y--){
-    
-            let full = true;
-    
-            for(let x = 0; x < this.cols; x++){
-    
-                if(this.board[y][x] === 0){
-                    full = false;
-                    break;
-                }
-    
+
+    let linesCleared = 0;
+    const rows = [];
+
+    // Buscar líneas completas
+    for(let y = this.rows - 1; y >= 0; y--){
+
+        let full = true;
+
+        for(let x = 0; x < this.cols; x++){
+
+            if(this.board[y][x] === 0){
+                full = false;
+                break;
             }
-    
-            if(full){
-    
-                // Elimina la fila completa
-                this.board.splice(y,1);
-    
-                // Añade una fila vacía arriba
-                this.board.unshift(
-                    new Array(this.cols).fill(0)
-                );
-    
-                linesCleared++;
-    
-                // Volver a comprobar la misma fila
-                y++;
-    
-            }
-    
+
         }
-    
-        if(linesCleared > 0){
 
-    this.score += linesCleared;
+        if(full){
 
-    document.getElementById("score").textContent =
-        this.score.toString().padStart(4,"0");
+            rows.push(y);
+            linesCleared++;
 
-    if(this.score >= this.goal){
+        }
 
-        this.completed = true;
-    
-        clearInterval(this.timer);
-    
-        document.getElementById("coordinates").style.display = "block";
-    
-        this.draw();
-    
-        return;
-    
     }
 
-}
+    // Si no hay líneas, continuar normalmente
+    if(linesCleared === 0){
+        this.spawnPiece();
+        return;
+    }
+
+    // Preparar animación
+    this.clearAnimation = true;
+    this.linesToClear = rows;
+
+    clearInterval(this.timer);
+
+    let flashes = 0;
+
+    const anim = setInterval(()=>{
+
+        this.draw();
+
+        flashes++;
+
+        if(flashes >= 6){
+
+            clearInterval(anim);
+
+            // Eliminar líneas
+            for(let i = this.linesToClear.length - 1; i >= 0; i--){
+
+                this.board.splice(this.linesToClear[i],1);
+                this.board.unshift(new Array(this.cols).fill(0));
+
+            }
+
+            // Actualizar puntuación
+            this.score += linesCleared;
+
+            document.getElementById("score").textContent =
+                this.score.toString().padStart(4,"0");
+
+            this.clearAnimation = false;
+            this.linesToClear = [];
+
+            // ¿Reto completado?
+            if(this.score >= this.goal){
+
+                this.completed = true;
+
+                document.getElementById("coordinates").style.display = "block";
+
+                this.draw();
+
+                return;
+
+            }
+
+            // Continuar juego
+            this.spawnPiece();
+            this.start();
+            return;
+
+        }
+
+    },30);
     
     }
     
@@ -561,9 +593,34 @@ this.canvas.addEventListener("touchend", (e) => {
 
                 if(this.board[y][x]){
 
-                    this.drawBlock(x,y);
+                    if(
+                        this.clearAnimation &&
+                        this.linesToClear.includes(y)
+                    ){
+                
+                        if(Math.floor(Date.now()/60)%2===0){
+                
+                            this.ctx.fillStyle="#ffffff";
+                            this.ctx.fillRect(
+                                this.offsetX+x*this.block+1,
+                                this.offsetY+y*this.block+1,
+                                this.block-2,
+                                this.block-2
+                            );
+                
+                        }else{
+                
+                            this.drawBlock(x,y);
+                
+                        }
+                
+                    }else{
+                
+                        this.drawBlock(x,y);
+                
+                    }
 
-                }
+}
 
             }
 
