@@ -1,161 +1,554 @@
+/* ======================================================
+   ARCADE MYSTERY CACHE
+   ====================================================== */
+
 body {
-  background: #111;
-  color: white;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin: 0;
+
+    background: #111;
+
+    color: white;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    text-align: center;
+
+    margin: 0;
+
+    overscroll-behavior: none;
+
 }
+
+
+/* ======================================================
+   CONTENEDOR PRINCIPAL
+   ====================================================== */
 
 .container {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
+
+    max-width: 800px;
+
+    margin: auto;
+
+    padding: 20px;
+
 }
+
+
+/* ======================================================
+   LOGO
+   ====================================================== */
 
 .logo {
-  width: 250px;
-  max-width: 90%;
-  margin-bottom: 10px;
+
+    width: 250px;
+
+    max-width: 90%;
+
+    margin-bottom: 10px;
+
 }
+
+
+/* ======================================================
+   TITULO
+   ====================================================== */
 
 h1 {
-  margin-top: 0;
-  margin-bottom: 20px;
+
+    margin-top: 0;
+
+    margin-bottom: 20px;
+
 }
 
-.language-selector{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    margin:25px 0 35px;
+
+/* ======================================================
+   IDIOMAS
+   ====================================================== */
+
+.language-selector {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin: 25px 0 35px;
+
 }
 
-#language-selector{
-    margin-bottom:25px;
+
+#language-selector {
+
+    margin-bottom: 25px;
+
 }
 
-#language-selector button{
-    margin:0 4px;
-    padding:8px 16px;
-    font-weight:bold;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-}
-.controls {
-  margin-bottom: 20px;
+
+#language-selector button {
+
+    margin: 0 4px;
+
+    padding: 8px 16px;
+
+    font-weight: bold;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
 }
 
-.controls button {
-  margin: 0 4px;
-  padding: 8px 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
+
+/* ======================================================
+   RETOS
+   ====================================================== */
 
 .challenge {
-  display: block;
-  background: #222;
-  color: white;
-  text-decoration: none;
-  padding: 15px;
-  margin: 12px 0;
-  border-radius: 10px;
-  font-size: 1.1rem;
-  transition: 0.2s;
+
+    display: block;
+
+    background: #222;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 15px;
+
+    margin: 12px 0;
+
+    border-radius: 10px;
+
+    font-size: 1.1rem;
+
+    transition: .2s;
+
 }
+
 
 .challenge:hover {
-  background: #333;
+
+    background: #333;
+
 }
+
 
 .hidden {
-  display: none;
+
+    display: none;
+
 }
+
+
+/* ======================================================
+   CANVAS
+   ====================================================== */
 
 #gameCanvas {
-  touch-action: none;
+
+    touch-action: none;
+
 }
 
-body {
-  overscroll-behavior: none;
-}
 
-/* ===========================
+/* ======================================================
    GAME OVER
-=========================== */
+   ====================================================== */
 
 #gameOverButtons {
-  display: none;
-  text-align: center;
-  margin-top: 20px;
+
+    display: none;
+
+    text-align: center;
+
+    margin-top: 20px;
+
 }
+
 
 #restartButton {
-  padding: 8px 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  background: #f2f2f2;
-  color: #000;
-  transition: .2s;
+
+    padding: 8px 16px;
+
+    font-weight: bold;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 1rem;
+
+    background: #f2f2f2;
+
+    color: #000;
+
+    transition: .2s;
+
 }
+
 
 #restartButton:hover {
-  transform: scale(1.05);
-}
 
-/* ===========================
-   ÁREA TÁCTIL INVISIBLE
-=========================== */
-
-#gameWrapper{
-
-    width:400px;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+    transform: scale(1.05);
 
 }
 
-@media (max-width:700px){
 
-    #gameWrapper{
+/* ======================================================
+   ÁREA TÁCTIL
+   ====================================================== */
 
-        width:320px;
+#gameWrapper {
+
+    width: 400px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+
+@media (max-width:700px) {
+
+    #gameWrapper {
+
+        width: 320px;
 
     }
 
 }
 
-#touchArea{
 
-    width:100%;
-    height:70px;
+#touchArea {
 
-    margin-top:-10px;
+    width: 100%;
 
-    background:transparent;
+    height: 70px;
 
-    touch-action:none;
+    margin-top: -10px;
+
+    background: transparent;
+
+    touch-action: none;
 
 }
 
-/* ===========================
-   MÓVIL
-=========================== */
 
-@media (max-width:700px){
+@media (max-width:700px) {
 
-  #touchArea{
+    #touchArea {
 
-    max-width:320px;
+        max-width: 320px;
 
-  }
+    }
+
+}
+
+
+/* ======================================================
+   ======================================================
+   MODO GAME BOY
+   ======================================================
+   ====================================================== */
+
+body.gameboy-mode {
+
+    width: 100%;
+
+    height: 100%;
+
+    margin: 0;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    background: #9bbc0f;
+
+    color: #0f380f;
+
+    font-family:
+        'Silkscreen',
+        monospace;
+
+    text-align: center;
+
+}
+
+
+/* ======================================================
+   CONTENEDOR GAME BOY
+   ====================================================== */
+
+body.gameboy-mode .container {
+
+    width: 100%;
+
+    height: 100%;
+
+    max-width: none;
+
+    margin: 0;
+
+    padding: 5px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    overflow: hidden;
+
+}
+
+
+/* ======================================================
+   OCULTAR ELEMENTOS GRANDES
+   ====================================================== */
+
+body.gameboy-mode .logo {
+
+    display: none;
+
+}
+
+
+body.gameboy-mode h1 {
+
+    display: none;
+
+}
+
+
+/* ======================================================
+   SELECTOR DE IDIOMA
+   ====================================================== */
+
+body.gameboy-mode #language-selector {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 3px;
+
+    margin: 2px 0 5px;
+
+    flex-shrink: 0;
+
+}
+
+
+body.gameboy-mode
+#language-selector button {
+
+    margin: 0;
+
+    padding: 2px 5px;
+
+    border: 1px solid #306230;
+
+    border-radius: 2px;
+
+    background: #8bac0f;
+
+    color: #0f380f;
+
+    font-family:
+        'Silkscreen',
+        monospace;
+
+    font-size: 7px;
+
+    font-weight: normal;
+
+    line-height: 1;
+
+}
+
+
+/* ======================================================
+   LISTA DE RETOS
+   ====================================================== */
+
+body.gameboy-mode #list {
+
+    width: 100%;
+
+    flex: 1;
+
+    min-height: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: stretch;
+
+    overflow: hidden;
+
+    padding: 2px;
+
+    box-sizing: border-box;
+
+}
+
+
+/* ======================================================
+   BOTONES DE RETOS
+   ====================================================== */
+
+body.gameboy-mode .challenge {
+
+    display: block;
+
+    box-sizing: border-box;
+
+    width: 100%;
+
+    padding: 5px 3px;
+
+    margin: 2px 0;
+
+    border-radius: 2px;
+
+    border: 1px solid #306230;
+
+    background: #8bac0f;
+
+    color: #0f380f;
+
+    text-decoration: none;
+
+    font-family:
+        'Silkscreen',
+        monospace;
+
+    font-size: 8px;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+body.gameboy-mode .challenge:hover {
+
+    background: #9bbc0f;
+
+}
+
+
+/* ======================================================
+   QUITAR EFECTOS DE SCROLL
+   ====================================================== */
+
+body.gameboy-mode * {
+
+    scrollbar-width: none;
+
+}
+
+
+body.gameboy-mode *::-webkit-scrollbar {
+
+    display: none;
+
+}
+
+
+/* ======================================================
+   GAME WRAPPER
+   ====================================================== */
+
+body.gameboy-mode #gameWrapper {
+
+    width: 100%;
+
+    max-width: none;
+
+}
+
+
+body.gameboy-mode #touchArea {
+
+    width: 100%;
+
+    max-width: none;
+
+}
+
+
+/* ======================================================
+   MÓVIL / PANTALLA MUY PEQUEÑA
+   ====================================================== */
+
+@media (max-width:700px) {
+
+    body.gameboy-mode .challenge {
+
+        font-size: 7px;
+
+        padding: 4px 2px;
+
+    }
+
+    body.gameboy-mode
+    #language-selector button {
+
+        font-size: 6px;
+
+        padding: 2px 4px;
+
+    }
+
+}
+
+
+/* ======================================================
+   PANTALLA GAME BOY MUY PEQUEÑA
+   ====================================================== */
+
+@media (max-height:300px) {
+
+    body.gameboy-mode
+    #language-selector {
+
+        display: none;
+
+    }
+
+    body.gameboy-mode .challenge {
+
+        margin: 1px 0;
+
+        padding: 3px 2px;
+
+        font-size: 6px;
+
+    }
 
 }
