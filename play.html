@@ -1,31 +1,51 @@
 <!DOCTYPE html>
 <html lang="ca">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Arcade Mystery Cache</title>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet"
+      href="styles.css">
+
 
 <style>
 
+/* ======================================================
+   ESTILOS NORMALES
+   ====================================================== */
+
 .instructions{
+
     margin-bottom:20px;
+
 }
 
+
 #gameInfo{
+
     text-align:center;
+
     font-size:1.2rem;
+
     margin:20px 0;
+
 }
+
 
 #gameArea{
 
     display:flex;
+
     flex-direction:column;
 
     align-items:center;
+
     justify-content:center;
 
     width:100%;
@@ -34,9 +54,11 @@
 
 }
 
+
 #gameCanvas{
 
     width:400px;
+
     height:400px;
 
     max-width:100%;
@@ -53,6 +75,7 @@
 
 }
 
+
 #coordinates{
 
     display:none;
@@ -62,6 +85,7 @@
     margin-top:30px;
 
 }
+
 
 .result-title{
 
@@ -73,6 +97,7 @@
 
 }
 
+
 .coords{
 
     font-size:1.05rem;
@@ -80,6 +105,7 @@
     margin-bottom:15px;
 
 }
+
 
 #copyButton,
 #restartButton{
@@ -104,12 +130,14 @@
 
 }
 
+
 #copyButton:hover,
 #restartButton:hover{
 
     transform:scale(1.05);
 
 }
+
 
 #gameOverButtons{
 
@@ -121,14 +149,312 @@
 
 }
 
+
 @media (max-width:700px){
 
     #gameCanvas{
 
         width:320px;
+
         height:320px;
 
     }
+
+}
+
+
+/* ======================================================
+   GAME BOY MODE
+   ====================================================== */
+
+body.gameboy-mode{
+
+    margin:0;
+
+    padding:0;
+
+    width:100%;
+
+    height:100%;
+
+    overflow:hidden;
+
+    background:#9bbc0f;
+
+    color:#0f380f;
+
+    font-family:
+        'Silkscreen',
+        monospace;
+
+    overscroll-behavior:none;
+
+}
+
+
+/* ------------------------------------------------------
+   CONTENEDOR
+   ------------------------------------------------------ */
+
+body.gameboy-mode .container{
+
+    width:100%;
+
+    height:100%;
+
+    max-width:none;
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+/* ------------------------------------------------------
+   OCULTAR INTERFAZ NORMAL
+   ------------------------------------------------------ */
+
+body.gameboy-mode h1{
+
+    display:none;
+
+}
+
+
+body.gameboy-mode .controls{
+
+    display:none;
+
+}
+
+
+body.gameboy-mode .instructions{
+
+    display:none;
+
+}
+
+
+body.gameboy-mode #gameInfo{
+
+    display:none;
+
+}
+
+
+/* ------------------------------------------------------
+   ÁREA DEL JUEGO
+   ------------------------------------------------------ */
+
+body.gameboy-mode #gameArea{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    margin:0;
+
+    padding:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+/* ------------------------------------------------------
+   WRAPPER
+   ------------------------------------------------------ */
+
+body.gameboy-mode #gameWrapper{
+
+    width:100%;
+
+    height:100%;
+
+    margin:0;
+
+    padding:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-direction:column;
+
+}
+
+
+/* ------------------------------------------------------
+   CANVAS
+   ------------------------------------------------------ */
+
+body.gameboy-mode #gameCanvas{
+
+    display:block;
+
+    width:100%;
+
+    height:100%;
+
+    max-width:100%;
+
+    max-height:100%;
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+    border:none;
+
+    border-radius:0;
+
+    box-shadow:none;
+
+    background:#111;
+
+    image-rendering:pixelated;
+
+}
+
+
+/* ------------------------------------------------------
+   ÁREA TÁCTIL
+   ------------------------------------------------------ */
+
+body.gameboy-mode #touchArea{
+
+    display:none;
+
+}
+
+
+/* ------------------------------------------------------
+   COORDENADAS
+   ------------------------------------------------------ */
+
+body.gameboy-mode #coordinates{
+
+    position:absolute;
+
+    inset:0;
+
+    margin:0;
+
+    padding:10px;
+
+    box-sizing:border-box;
+
+    background:#9bbc0f;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+
+body.gameboy-mode .result-title{
+
+    font-size:12px;
+
+}
+
+
+body.gameboy-mode .coords{
+
+    font-size:9px;
+
+}
+
+
+body.gameboy-mode #copyButton{
+
+    font-family:
+        'Silkscreen',
+        monospace;
+
+    font-size:8px;
+
+    padding:5px 8px;
+
+}
+
+
+/* ------------------------------------------------------
+   GAME OVER
+   ------------------------------------------------------ */
+
+body.gameboy-mode #gameOverButtons{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:5px;
+
+    margin:0;
+
+}
+
+
+body.gameboy-mode #restartButton{
+
+    font-family:
+        'Silkscreen',
+        monospace;
+
+    font-size:8px;
+
+    padding:5px 8px;
+
+}
+
+
+/* ------------------------------------------------------
+   EVITAR SCROLL
+   ------------------------------------------------------ */
+
+body.gameboy-mode *{
+
+    scrollbar-width:none;
+
+}
+
+
+body.gameboy-mode *::-webkit-scrollbar{
+
+    display:none;
 
 }
 
@@ -136,80 +462,182 @@
 
 </head>
 
+
 <body>
+
+
+<script>
+
+/* ======================================================
+   DETECTAR GAME BOY
+   ====================================================== */
+
+const gameBoyMode =
+    new URLSearchParams(
+        window.location.search
+    ).get("gameboy") === "true";
+
+
+if(gameBoyMode){
+
+    document.body.classList.add(
+        "gameboy-mode"
+    );
+
+}
+
+</script>
+
 
 <div class="container">
 
-    <h1 id="challengeTitle">Loading...</h1>
+
+    <h1 id="challengeTitle">
+        Loading...
+    </h1>
+
 
     <div class="controls">
-        <button onclick="window.location='index.html'">←</button>
-        <button onclick="setLanguage('ca')">CAT</button>
-        <button onclick="setLanguage('es')">ESP</button>
-        <button onclick="setLanguage('en')">ENG</button>
+
+        <button onclick="window.location='index.html'">
+            ←
+        </button>
+
+        <button onclick="setLanguage('ca')">
+            CAT
+        </button>
+
+        <button onclick="setLanguage('es')">
+            ESP
+        </button>
+
+        <button onclick="setLanguage('en')">
+            ENG
+        </button>
+
     </div>
 
-    <div id="instructions" class="instructions">
+
+    <div id="instructions"
+         class="instructions">
+
         Loading...
+
     </div>
+
 
     <div id="gameInfo">
 
-    <strong id="scoreLabel">Score</strong>:
-    <span id="score">0000</span>
+        <strong id="scoreLabel">
+            Score
+        </strong>:
 
-    &nbsp;&nbsp;&nbsp;
+        <span id="score">
+            0000
+        </span>
 
-    <strong id="goalLabel">Goal</strong>:
-    <span id="goal">20</span>
+        &nbsp;&nbsp;&nbsp;
 
-<div id="gameArea">
+        <strong id="goalLabel">
+            Goal
+        </strong>:
 
-    <div id="gameWrapper">
-
-        <canvas id="gameCanvas" width="400" height="400"></canvas>
-        <div id="touchArea"></div>
+        <span id="goal">
+            20
+        </span>
 
     </div>
 
-</div>
+
+    <div id="gameArea">
+
+
+        <div id="gameWrapper">
+
+
+            <canvas
+                id="gameCanvas"
+                width="400"
+                height="400">
+            </canvas>
+
+
+            <div id="touchArea"></div>
+
+
+        </div>
+
+
+    </div>
+
 
     <div id="coordinates">
 
-        <div class="result-title" id="levelCompleteLabel">
-        
+
+        <div
+            class="result-title"
+            id="levelCompleteLabel">
+
             🏆 LEVEL COMPLETE
-        
+
         </div>
 
-        <div class="coords" id="coordsText">
+
+        <div
+            class="coords"
+            id="coordsText">
+
             --
+
         </div>
 
-        <button id="copyButton" onclick="copyCoords()">
-        
-            📋 <span id="copyLabel">Copy coordinates</span>
-        
+
+        <button
+            id="copyButton"
+            onclick="copyCoords()">
+
+            📋
+            <span id="copyLabel">
+                Copy coordinates
+            </span>
+
         </button>
 
+
     </div>
-    
+
+
     <div id="gameOverButtons">
-            
-        <button id="restartButton" onclick="game.restart()">
-        
-            🔄 <span id="retryLabel">Try again</span>
-        
+
+
+        <button
+            id="restartButton"
+            onclick="game.restart()">
+
+            🔄
+
+            <span id="retryLabel">
+                Try again
+            </span>
+
         </button>
 
+
     </div>
+
 
 </div>
 
+
 <script src="games/snake.js"></script>
+
 <script src="games/arkanoid.js"></script>
+
 <script src="games/tetris.js"></script>
+
 <script src="app.js"></script>
 
+
 </body>
+
 </html>
