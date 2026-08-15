@@ -134,9 +134,17 @@ async function loadList(){
             "challenge";
 
 
-        link.href =
-            `play.html?id=${challenge.id}`;
+        if(gameBoyMode){
 
+            link.href =
+                `play.html?id=${challenge.id}&gameboy=true`;
+
+        }else{
+
+            link.href =
+                `play.html?id=${challenge.id}`;
+
+        }
 
         link.textContent =
             challenge.title[language];
