@@ -1,14 +1,146 @@
 <!doctype html>
-<html lang="es"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Olympia 8-Bit — 100 m</title><link rel="stylesheet" href="css/sports.css"></head>
-<body><main class="arcade"><div class="cabinet"><div class="marquee">OLYMPIA 8-BIT</div>
-<div class="screen race-screen">
-<div class="hud"><div><small>EVENT</small><b>100 M</b></div><div id="timer">00.00</div><div><small>DISTANCE</small><b id="distance">0 M</b></div></div>
-<div class="track"><div class="runner" id="runner">🏃</div><div class="finish-line"></div></div>
-<div id="message" class="message">READY?</div>
-<div id="result" class="result hidden"><div>FINISH!</div><strong id="final-time">00.00</strong><div id="score">SCORE 00000</div>
-<button id="again">RUN AGAIN</button><a href="index.html">BACK TO EVENTS</a></div>
-<div class="controls" id="controls"><button class="nes-button button-a" id="buttonA">A</button><button class="nes-button button-b" id="buttonB">B</button></div>
-<div class="pace"><small>PACE</small><div class="pace-bar"><div id="pace-fill"></div></div><div id="pace-text">PRESS A TO START</div></div>
-</div></div></main><script src="js/controller.js"></script><script src="js/100m.js"></script></body></html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Olympia 8-Bit — 100 m</title>
+
+  <link rel="stylesheet" href="css/sports.css">
+</head>
+
+<body>
+
+<main class="arcade">
+  <div class="cabinet">
+
+    <div class="marquee">
+      OLYMPIA 8-BIT
+    </div>
+
+    <div class="screen race-screen">
+
+      <!-- PANTALLA INICIAL -->
+      <div id="start-screen" class="start-screen">
+
+        <h1>100 METROS</h1>
+
+        <p>THE 8-BIT SPORTS GAMES</p>
+
+        <button id="start-button">
+          START
+        </button>
+
+        <p class="rotate-text">
+          ↻ MODO HORIZONTAL
+        </p>
+
+      </div>
+
+
+      <!-- JUEGO -->
+      <div id="game-screen" class="hidden">
+
+        <div class="hud">
+
+          <div>
+            <small>EVENT</small>
+            <b>100 M</b>
+          </div>
+
+          <div id="timer">
+            00.00
+          </div>
+
+          <div>
+            <small>DISTANCE</small>
+            <b id="distance">0 M</b>
+          </div>
+
+        </div>
+
+
+        <div class="track">
+
+          <div class="runner" id="runner">
+            🏃
+          </div>
+
+          <div class="finish-line"></div>
+
+        </div>
+
+
+        <div id="message" class="message">
+          READY?
+        </div>
+
+
+        <div id="result" class="result hidden">
+
+          <div>FINISH!</div>
+
+          <strong id="final-time">
+            00.00
+          </strong>
+
+          <div id="score">
+            SCORE 00000
+          </div>
+
+          <button id="again">
+            RUN AGAIN
+          </button>
+
+          <a href="index.html">
+            BACK TO EVENTS
+          </a>
+
+        </div>
+
+
+        <div class="controls" id="controls">
+
+          <button
+            class="nes-button button-a"
+            id="buttonA">
+            A
+          </button>
+
+          <button
+            class="nes-button button-b"
+            id="buttonB">
+            B
+          </button>
+
+        </div>
+
+
+        <div class="pace">
+
+          <small>PACE</small>
+
+          <div class="pace-bar">
+            <div id="pace-fill"></div>
+          </div>
+
+          <div id="pace-text">
+            PRESS A TO START
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+
+<script src="js/controller.js"></script>
+<script src="js/100m.js"></script>
+
+</body>
+</html>
