@@ -1,132 +1,214 @@
 <!doctype html>
 <html lang="es">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <title>Olympia 8-Bit — 100 m</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+  >
 
-  <link rel="stylesheet" href="css/sports.css">
+  <title>
+    Olympia 8-Bit — 100 m
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="css/sports.css"
+  >
+
 </head>
 
 <body>
 
-<main class="arcade">
-  <div class="cabinet">
+  <main class="arcade">
 
-    <div class="marquee">
-      OLYMPIA 8-BIT
-    </div>
+    <div class="cabinet">
 
-    <div class="screen race-screen">
-
-      <!-- PANTALLA INICIAL -->
-      <div id="start-screen" class="start-screen">
-
-        <h1>100 METROS</h1>
-
-        <p>THE 8-BIT SPORTS GAMES</p>
-
-        <button id="start-button">
-          START
-        </button>
-
-        <p class="rotate-text">
-          ↻ MODO HORIZONTAL
-        </p>
-
+      <div class="marquee">
+        OLYMPIA 8-BIT
       </div>
 
 
-      <!-- JUEGO -->
-      <div id="game-screen" class="hidden">
-
-        <div class="hud">
-
-          <div>
-            <small>EVENT</small>
-            <b>100 M</b>
-          </div>
-
-          <div id="timer">
-            00.00
-          </div>
-
-          <div>
-            <small>DISTANCE</small>
-            <b id="distance">0 M</b>
-          </div>
-
-        </div>
+      <div class="screen race-screen">
 
 
-        <div class="track">
+        <!-- ==============================
+             PANTALLA DE INICIO
+             ============================== -->
 
-          <div class="runner" id="runner">
-            🏃
-          </div>
+        <div
+          id="start-screen"
+          class="start-screen"
+        >
 
-          <div class="finish-line"></div>
+          <h1>
+            100 METROS
+          </h1>
 
-        </div>
-
-
-        <div id="message" class="message">
-          READY?
-        </div>
-
-
-        <div id="result" class="result hidden">
-
-          <div>FINISH!</div>
-
-          <strong id="final-time">
-            00.00
-          </strong>
-
-          <div id="score">
-            SCORE 00000
-          </div>
-
-          <button id="again">
-            RUN AGAIN
-          </button>
-
-          <a href="index.html">
-            BACK TO EVENTS
-          </a>
-
-        </div>
-
-
-        <div class="controls" id="controls">
+          <p>
+            THE 8-BIT SPORTS GAMES
+          </p>
 
           <button
-            class="nes-button button-a"
-            id="buttonA">
-            A
-          </button>
-
-          <button
-            class="nes-button button-b"
-            id="buttonB">
-            B
+            id="start-button"
+            type="button"
+          >
+            START
           </button>
 
         </div>
 
 
-        <div class="pace">
+        <!-- ==============================
+             PANTALLA DEL JUEGO
+             ============================== -->
 
-          <small>PACE</small>
+        <div
+          id="game-screen"
+          class="hidden"
+        >
 
-          <div class="pace-bar">
-            <div id="pace-fill"></div>
+          <div class="hud">
+
+            <div>
+
+              <small>
+                EVENT
+              </small>
+
+              <b>
+                100 M
+              </b>
+
+            </div>
+
+
+            <div id="timer">
+              00.00
+            </div>
+
+
+            <div>
+
+              <small>
+                DISTANCE
+              </small>
+
+              <b id="distance">
+                0 M
+              </b>
+
+            </div>
+
           </div>
 
-          <div id="pace-text">
-            PRESS A TO START
+
+          <!-- PISTA -->
+
+          <div class="track">
+
+            <div
+              class="runner"
+              id="runner"
+            >
+              🏃
+            </div>
+
+            <div class="finish-line"></div>
+
+          </div>
+
+
+          <!-- MENSAJE -->
+
+          <div
+            id="message"
+            class="message"
+          >
+            READY?
+          </div>
+
+
+          <!-- RESULTADO -->
+
+          <div
+            id="result"
+            class="result hidden"
+          >
+
+            <div>
+              FINISH!
+            </div>
+
+            <strong id="final-time">
+              00.00
+            </strong>
+
+            <div id="score">
+              SCORE 00000
+            </div>
+
+            <button
+              id="again"
+              type="button"
+            >
+              RUN AGAIN
+            </button>
+
+            <a href="index.html">
+              BACK TO EVENTS
+            </a>
+
+          </div>
+
+
+          <!-- CONTROLES -->
+
+          <div
+            class="controls"
+            id="controls"
+          >
+
+            <button
+              class="nes-button button-a"
+              id="buttonA"
+              type="button"
+            >
+              A
+            </button>
+
+            <button
+              class="nes-button button-b"
+              id="buttonB"
+              type="button"
+            >
+              B
+            </button>
+
+          </div>
+
+
+          <!-- RITMO -->
+
+          <div class="pace">
+
+            <small>
+              PACE
+            </small>
+
+            <div class="pace-bar">
+
+              <div id="pace-fill"></div>
+
+            </div>
+
+            <div id="pace-text">
+              PRESS A TO START
+            </div>
+
           </div>
 
         </div>
@@ -135,12 +217,12 @@
 
     </div>
 
-  </div>
-</main>
+  </main>
 
 
-<script src="js/controller.js"></script>
-<script src="js/100m.js"></script>
+  <script src="js/controller.js"></script>
+  <script src="js/100m.js"></script>
 
 </body>
+
 </html>
