@@ -10,7 +10,7 @@
     content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
   >
 
-  <title>Olympia 8-Bit — 100 m</title>
+  <title>Olympia 8-Bit - 100 M</title>
 
   <link
     rel="stylesheet"
@@ -18,7 +18,6 @@
   >
 
 </head>
-
 
 <body>
 
@@ -31,12 +30,12 @@
     </div>
 
 
-    <div class="screen race-screen">
+    <div class="screen">
 
 
-      <!-- ==============================
+      <!-- =================================
            START
-           ============================== -->
+           ================================= -->
 
       <div
         id="start-screen"
@@ -62,21 +61,22 @@
       </div>
 
 
-      <!-- ==============================
-           GAME
-           ============================== -->
+      <!-- =================================
+           JUEGO
+           ================================= -->
 
       <div
         id="game-screen"
-        class="hidden"
+        class="game-screen hidden"
       >
 
 
-        <!-- ==========================
-             HUD
-             ========================== -->
+        <!-- =================================
+             MARCADOR
+             ================================= -->
 
         <div class="race-hud">
+
 
           <div class="hud-box">
 
@@ -87,10 +87,6 @@
             <strong>
               100 M
             </strong>
-
-            <small>
-              WR 09.58
-            </small>
 
           </div>
 
@@ -111,32 +107,57 @@
           <div class="hud-box">
 
             <span>
+              WR
+            </span>
+
+            <strong>
+              09.58
+            </strong>
+
+          </div>
+
+
+          <div class="hud-box">
+
+            <span>
               POSITION
             </span>
 
             <strong id="position">
-              4TH
+              2ND
             </strong>
 
-            <small id="distance">
+          </div>
+
+
+          <div class="hud-box">
+
+            <span>
+              DISTANCE
+            </span>
+
+            <strong id="distance">
               0 M
-            </small>
+            </strong>
 
           </div>
 
         </div>
 
 
-        <!-- ==========================
+        <!-- =================================
              ESTADIO
-             ========================== -->
+             ================================= -->
 
         <div class="stadium">
 
+
+          <!-- CIELO -->
+
           <div class="sky">
 
-            <div class="cloud cloud1"></div>
-            <div class="cloud cloud2"></div>
+            <div class="cloud cloud-left"></div>
+            <div class="cloud cloud-right"></div>
 
             <div class="flags">
               🇪🇸 🇫🇷 🇮🇹 🇩🇪 🇬🇧 🇯🇵 🇺🇸
@@ -145,116 +166,68 @@
           </div>
 
 
+          <!-- PUBLICO -->
+
           <div class="crowd">
-            ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ●
+
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+            <span>●</span>
+
           </div>
 
 
-          <div class="banner">
+          <!-- CARTEL -->
+
+          <div class="stadium-banner">
             OLYMPIA 8-BIT
           </div>
 
 
-          <!-- ========================
-               PISTA
-               ======================== -->
+          <!-- =================================
+               PISTA CPU
+               ================================= -->
 
-          <div class="track">
+          <div class="race-track cpu-track">
 
-            <div class="lane lane1">
-
-              <span class="lane-number">
-                1
-              </span>
-
-              <div
-                class="cpu runner"
-                id="cpu1"
-              >
-                🏃
-              </div>
-
-              <span class="runner-name">
-                CPU 1
-              </span>
-
+            <div class="lane-number">
+              1
             </div>
 
-
-            <div class="lane lane2">
-
-              <span class="lane-number">
-                2
-              </span>
-
-              <div
-                class="cpu runner"
-                id="cpu2"
-              >
-                🏃
-              </div>
-
-              <span class="runner-name">
-                CPU 2
-              </span>
-
+            <div class="lane-label">
+              CPU
             </div>
 
-
-            <div class="lane lane3">
-
-              <span class="lane-number">
-                3
-              </span>
-
-              <div
-                class="cpu runner"
-                id="cpu3"
-              >
-                🏃
-              </div>
-
-              <span class="runner-name">
-                CPU 3
-              </span>
-
+            <div
+              id="cpu-runner"
+              class="runner cpu-runner"
+            >
+              🏃
             </div>
 
-
-            <div class="lane player-lane">
-
-              <span class="lane-number">
-                4
-              </span>
-
-              <div
-                class="player runner"
-                id="player"
-              >
-                🏃
-              </div>
-
-              <span class="runner-name you">
-                YOU
-              </span>
-
-            </div>
-
-
-            <div class="finish-line">
-
-              <span>
-                FINISH
-              </span>
-
-            </div>
+            <div class="finish-line"></div>
 
           </div>
 
 
-          <!-- ========================
-               DISTANCIA
-               ======================== -->
+          <!-- ESCALA CPU -->
 
           <div class="distance-line">
 
@@ -267,12 +240,53 @@
 
           </div>
 
+
+          <!-- =================================
+               PISTA JUGADOR
+               ================================= -->
+
+          <div class="race-track player-track">
+
+            <div class="lane-number">
+              2
+            </div>
+
+            <div class="lane-label you-label">
+              YOU
+            </div>
+
+            <div
+              id="player-runner"
+              class="runner player-runner"
+            >
+              🏃
+            </div>
+
+            <div class="finish-line"></div>
+
+          </div>
+
+
+          <!-- ESCALA PLAYER -->
+
+          <div class="distance-line">
+
+            <span>0</span>
+            <span>20</span>
+            <span>40</span>
+            <span>60</span>
+            <span>80</span>
+            <span>100</span>
+
+          </div>
+
+
         </div>
 
 
-        <!-- ==========================
+        <!-- =================================
              MENSAJE
-             ========================== -->
+             ================================= -->
 
         <div
           id="message"
@@ -282,9 +296,9 @@
         </div>
 
 
-        <!-- ==========================
-             CONTROLES NES
-             ========================== -->
+        <!-- =================================
+             BOTONES NES
+             ================================= -->
 
         <div class="nes-controls">
 
@@ -295,6 +309,32 @@
           >
             A
           </button>
+
+
+          <div class="rhythm">
+
+            <div>
+              KEEP THE RHYTHM!
+            </div>
+
+            <div class="rhythm-bar">
+
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+
+            </div>
+
+          </div>
 
 
           <button
@@ -308,9 +348,9 @@
         </div>
 
 
-        <!-- ==========================
+        <!-- =================================
              RESULTADO
-             ========================== -->
+             ================================= -->
 
         <div
           id="result"
@@ -321,10 +361,11 @@
             FINISH!
           </div>
 
-          <div class="result-position">
-            <span id="result-position">
-              1ST PLACE
-            </span>
+          <div
+            id="result-position"
+            class="result-position"
+          >
+            1ST PLACE
           </div>
 
           <div class="result-time-label">
@@ -355,6 +396,7 @@
 
         </div>
 
+
       </div>
 
     </div>
@@ -363,6 +405,10 @@
 
 </main>
 
+
+<!-- =================================
+     START / FULLSCREEN
+     ================================= -->
 
 <script>
 
