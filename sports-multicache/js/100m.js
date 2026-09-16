@@ -1,3 +1,17 @@
+async function requestSportsFullscreen() {
+  try {
+    if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+      await document.documentElement.requestFullscreen();
+    }
+  } catch (e) {}
+  try {
+    if (screen.orientation && screen.orientation.lock) {
+      await screen.orientation.lock("landscape");
+    }
+  } catch (e) {}
+}
+requestSportsFullscreen();
+
 (()=>{const $=id=>document.getElementById(id),timer=$("timer"),dist=$("distance"),runner=$("runner"),msg=$("message"),result=$("result"),finalTime=$("final-time"),scoreEl=$("score"),controls=$("controls"),again=$("again"),fill=$("pace-fill"),paceText=$("pace-text");
 let state="ready",last=null,start=0,lastPress=0,distance=0,good=0,total=0,intervalId;const OPT_MIN=110,OPT_MAX=210,TOO_FAST=65,STEP=1.85;
 const fmt=ms=>(ms/1000).toFixed(2).padStart(5,"0");
