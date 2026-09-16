@@ -249,6 +249,19 @@ body {
 
   box-shadow:
     0 5px 0 #123c15;
+
+  cursor:
+    pointer;
+}
+
+
+.start-screen button:active {
+
+  transform:
+    translateY(5px);
+
+  box-shadow:
+    0 0 0 #123c15;
 }
 
 
@@ -497,7 +510,7 @@ body {
 
 
 /* =========================================
-   PISTA
+   PISTAS
    ========================================= */
 
 .race-track {
@@ -523,7 +536,7 @@ body {
 
 
 /*
- * Líneas horizontales de la pista
+ * Líneas horizontales de la pista.
  */
 
 .race-track::after {
@@ -591,7 +604,7 @@ body {
 
 
 /* =========================================
-   ETIQUETA CPU / YOU
+   CPU / YOU
    ========================================= */
 
 .lane-label {
@@ -636,7 +649,7 @@ body {
 
 
 /* =========================================
-   CORREDOR
+   CORREDORES
    ========================================= */
 
 .runner {
@@ -656,14 +669,24 @@ body {
   font-size:
     32px;
 
+  /*
+   * El emoji 🏃 suele mirar hacia
+   * la izquierda.
+   *
+   * Lo invertimos para que los
+   * corredores avancen hacia la
+   * derecha.
+   */
+
+  transform:
+    scaleX(-1);
+
   transition:
     left .08s linear;
 }
 
 
-/*
- * CPU azul
- */
+/* CPU */
 
 .cpu-runner {
 
@@ -673,9 +696,7 @@ body {
 }
 
 
-/*
- * Jugador rojo
- */
+/* JUGADOR */
 
 .player-runner {
 
@@ -840,6 +861,12 @@ body {
 
   touch-action:
     manipulation;
+
+  user-select:
+    none;
+
+  cursor:
+    pointer;
 }
 
 
@@ -1047,6 +1074,9 @@ body {
 
   border:
     4px solid #8fd18f;
+
+  cursor:
+    pointer;
 }
 
 
@@ -1085,10 +1115,40 @@ body {
   orientation: landscape
 ) {
 
+  .arcade {
+
+    padding:
+      2px;
+  }
+
+
+  .cabinet {
+
+    max-height:
+      calc(100dvh - 4px);
+
+    padding:
+      3px;
+  }
+
+
+  .marquee {
+
+    height:
+      38px;
+
+    padding:
+      5px;
+
+    font-size:
+      17px;
+  }
+
+
   .screen {
 
     height:
-      calc(100dvh - 55px);
+      calc(100dvh - 50px);
 
     padding:
       5px 10px;
@@ -1096,13 +1156,6 @@ body {
 
 
   .race-hud {
-
-    grid-template-columns:
-      1fr
-      1.4fr
-      1fr
-      1fr
-      1fr;
 
     margin-bottom:
       3px;
@@ -1151,6 +1204,14 @@ body {
 
     bottom:
       4px;
+
+    /*
+     * Mantener la orientación
+     * correcta también en horizontal.
+     */
+
+    transform:
+      scaleX(-1);
   }
 
 
@@ -1337,6 +1398,9 @@ body {
 
     bottom:
       3px;
+
+    transform:
+      scaleX(-1);
   }
 
 
@@ -1434,4 +1498,76 @@ body {
       1px;
   }
 
-    }
+
+  /* RESULTADO */
+
+  .result {
+
+    width:
+      min(70%, 450px);
+
+    padding:
+      10px;
+  }
+
+
+  .result-title {
+
+    font-size:
+      13px;
+
+    margin-bottom:
+      5px;
+  }
+
+
+  .result-position {
+
+    font-size:
+      9px;
+
+    margin-bottom:
+      4px;
+  }
+
+
+  .result > strong {
+
+    font-size:
+      28px;
+
+    margin:
+      2px 0 5px;
+  }
+
+
+  .result-score {
+
+    font-size:
+      8px;
+
+    margin-bottom:
+      6px;
+  }
+
+
+  .result button {
+
+    font-size:
+      7px;
+
+    padding:
+      7px 11px;
+  }
+
+
+  .result a {
+
+    margin-top:
+      6px;
+
+    font-size:
+      5px;
+  }
+
+  }
