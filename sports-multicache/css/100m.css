@@ -1906,78 +1906,36 @@ body {
 }
 
 /* =========================================================
-   AJUSTE: CONTENIDO DENTRO DEL MARCO GRIS
+   CORRECCIÓN DEFINITIVA DEL MARCO DEL ARCADE
    ========================================================= */
 
-.screen {
-  position: relative;
-  overflow: hidden;
+/* El cabinet reparte correctamente su altura entre
+   el marquee y la pantalla */
+
+.cabinet {
+  display: flex;
+  flex-direction: column;
   min-height: 0;
 }
 
-/* El área del juego nunca puede sobresalir del screen */
+
+/* La pantalla ocupa SOLO el espacio que queda
+   después del marquee */
+
+.screen {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+
+/* El contenido del juego también queda limitado
+   al interior de la pantalla */
+
 .game-screen {
+  flex: 1 1 auto;
   min-height: 0;
-  max-height: 100%;
+  height: auto;
   overflow: hidden;
-}
-
-/* El estadio queda completamente dentro del marco */
-.stadium {
-  min-height: 0;
-  max-width: 100%;
-  overflow: hidden;
-}
-
-
-/* =========================================================
-   EVITAR QUE EL FONDO VERDE SOBRESALGA
-   ========================================================= */
-
-.screen {
-  padding-bottom: 7px;
-}
-
-
-/* PC */
-@media (min-width: 1100px) {
-
-  .screen {
-    padding-bottom: 9px;
-  }
-
-}
-
-
-/* MÓVIL */
-@media (max-width: 900px) {
-
-  .screen {
-    padding-bottom: 5px;
-  }
-
-}
-
-
-/* MÓVIL HORIZONTAL */
-@media (
-  max-width: 900px
-) and (
-  orientation: landscape
-) {
-
-  .screen {
-    padding-bottom: 3px;
-  }
-
-}
-
-
-/* PANTALLAS BAJAS */
-@media (max-height: 500px) {
-
-  .screen {
-    padding-bottom: 3px;
-  }
-
 }
