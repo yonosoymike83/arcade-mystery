@@ -10,7 +10,9 @@
     content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
   >
 
-  <title>Olympia 8-Bit — 100 m</title>
+  <title>
+    Olympia 8-Bit — 100 m
+  </title>
 
   <link
     rel="stylesheet"
@@ -105,7 +107,9 @@
           </div>
 
 
-          <!-- PISTA -->
+          <!-- =================================
+               PISTA
+               ================================= -->
 
           <div class="track">
 
@@ -121,7 +125,9 @@
           </div>
 
 
-          <!-- MENSAJE -->
+          <!-- =================================
+               MENSAJE
+               ================================= -->
 
           <div
             id="message"
@@ -131,22 +137,31 @@
           </div>
 
 
-          <!-- RESULTADO -->
+          <!-- =================================
+               RESULTADO
+               ================================= -->
 
           <div
             id="result"
             class="result hidden"
           >
 
-            <div>
+            <div class="result-title">
               FINISH!
+            </div>
+
+            <div class="result-time-label">
+              TIME
             </div>
 
             <strong id="final-time">
               00.00
             </strong>
 
-            <div id="score">
+            <div
+              id="score"
+              class="result-score"
+            >
               SCORE 00000
             </div>
 
@@ -164,7 +179,9 @@
           </div>
 
 
-          <!-- CONTROLES -->
+          <!-- =================================
+               CONTROLES
+               ================================= -->
 
           <div
             class="controls"
@@ -191,7 +208,9 @@
           </div>
 
 
-          <!-- RITMO -->
+          <!-- =================================
+               RITMO
+               ================================= -->
 
           <div class="pace">
 
@@ -223,7 +242,7 @@
 
 
   <!-- =================================
-       START / FULLSCREEN / LANDSCAPE
+       FULLSCREEN + HORIZONTAL
        ================================= -->
 
   <script>
@@ -231,8 +250,7 @@
     function startGame() {
 
       /*
-       * Mostrar el juego INMEDIATAMENTE.
-       * No esperamos a fullscreen ni a orientation.
+       * Mostrar el juego inmediatamente.
        */
 
       document
@@ -245,7 +263,7 @@
 
 
       /*
-       * Intentar activar FULLSCREEN.
+       * Intentar activar pantalla completa.
        */
 
       try {
@@ -265,7 +283,7 @@
 
 
       /*
-       * Intentar bloquear HORIZONTAL.
+       * Intentar bloquear orientación horizontal.
        */
 
       try {
