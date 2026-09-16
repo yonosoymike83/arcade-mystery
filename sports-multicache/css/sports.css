@@ -1,41 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url(
+  'https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'
+);
 
+
+/* =========================================
+   GENERAL
+   ========================================= */
 
 * {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
+
+  box-sizing:
+    border-box;
+
+  -webkit-tap-highlight-color:
+    transparent;
 }
 
 
 html,
 body {
 
-  margin: 0;
+  margin:
+    0;
 
-  width: 100%;
-  height: 100%;
+  width:
+    100%;
 
-  background: #050505;
+  height:
+    100%;
 
-  color: white;
+  background:
+    #050505;
+
+  color:
+    white;
 
   font-family:
     "Press Start 2P",
     monospace;
 
-  overflow: hidden;
+  overflow:
+    hidden;
 }
 
 
 body {
 
-  min-height: 100dvh;
-  height: 100dvh;
+  min-height:
+    100dvh;
 
-  display: flex;
+  height:
+    100dvh;
 
-  justify-content: center;
-  align-items: center;
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  align-items:
+    center;
 }
 
 
@@ -45,29 +69,39 @@ body {
 
 .arcade {
 
-  width: 100vw;
-  height: 100dvh;
+  width:
+    100vw;
 
-  padding: 4px;
+  height:
+    100dvh;
 
-  display: flex;
+  padding:
+    3px;
 
-  justify-content: center;
-  align-items: center;
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
 }
 
 
 .cabinet {
 
-  width: 100%;
+  width:
+    100%;
 
-  max-width: 1250px;
+  max-width:
+    1400px;
 
   max-height:
-    calc(100dvh - 8px);
+    calc(100dvh - 6px);
 
   background:
-    #242424;
+    #292929;
 
   border:
     6px solid #555;
@@ -92,23 +126,26 @@ body {
 
 .marquee {
 
-  text-align:
+  height:
+    42px;
+
+  display:
+    flex;
+
+  align-items:
     center;
 
-  padding:
-    9px;
-
-  font-size:
-    clamp(17px, 3vw, 28px);
+  justify-content:
+    center;
 
   background:
-    #101010;
+    #111;
 
   border:
     4px solid #777;
 
-  color:
-    #fff;
+  font-size:
+    clamp(16px, 3vw, 28px);
 
   letter-spacing:
     3px;
@@ -121,6 +158,9 @@ body {
 
 .screen {
 
+  position:
+    relative;
+
   margin-top:
     5px;
 
@@ -128,7 +168,7 @@ body {
     calc(100dvh - 55px);
 
   background:
-    #061306;
+    #061606;
 
   border:
     5px solid #111;
@@ -138,9 +178,6 @@ body {
 
   overflow:
     hidden;
-
-  position:
-    relative;
 }
 
 
@@ -150,7 +187,8 @@ body {
 
 .start-screen {
 
-  height: 100%;
+  height:
+    100%;
 
   display:
     flex;
@@ -158,10 +196,10 @@ body {
   flex-direction:
     column;
 
-  justify-content:
+  align-items:
     center;
 
-  align-items:
+  justify-content:
     center;
 
   text-align:
@@ -200,11 +238,11 @@ body {
   font-size:
     18px;
 
-  background:
-    #28752d;
-
   color:
     white;
+
+  background:
+    #28752d;
 
   border:
     5px solid #8fd18f;
@@ -224,13 +262,17 @@ body {
     grid;
 
   grid-template-columns:
-    1fr 1.4fr 1fr;
+    1fr
+    1.4fr
+    1fr
+    1fr
+    1fr;
 
   gap:
-    6px;
+    4px;
 
   margin-bottom:
-    6px;
+    5px;
 }
 
 
@@ -243,7 +285,7 @@ body {
     3px solid #20d6e8;
 
   padding:
-    7px;
+    5px;
 
   text-align:
     center;
@@ -259,10 +301,10 @@ body {
     #20d6e8;
 
   font-size:
-    7px;
+    6px;
 
   margin-bottom:
-    5px;
+    4px;
 }
 
 
@@ -272,30 +314,21 @@ body {
     block;
 
   font-size:
-    clamp(12px, 3vw, 22px);
-}
-
-
-.hud-box small {
-
-  display:
-    block;
-
-  margin-top:
-    4px;
-
-  font-size:
-    7px;
-
-  color:
-    #ffe900;
+    clamp(10px, 2vw, 17px);
 }
 
 
 .timer-box strong {
 
   font-size:
-    clamp(25px, 6vw, 45px);
+    clamp(20px, 5vw, 34px);
+}
+
+
+.hud-box:nth-child(3) strong {
+
+  color:
+    #ffe600;
 }
 
 
@@ -305,54 +338,34 @@ body {
 
 .stadium {
 
-  position:
-    relative;
+  border:
+    3px solid #20d6e8;
 
   overflow:
     hidden;
 
-  border:
-    3px solid #20d6e8;
+  background:
+    #30cf26;
 }
 
 
-/* CIELO */
+/* =========================================
+   CIELO
+   ========================================= */
 
 .sky {
 
   height:
-    48px;
-
-  background:
-    linear-gradient(
-      #16a9ef,
-      #62d8ff
-    );
+    34px;
 
   position:
     relative;
-}
 
-
-.flags {
-
-  position:
-    absolute;
-
-  bottom:
-    5px;
-
-  left:
-    50%;
-
-  transform:
-    translateX(-50%);
-
-  font-size:
-    18px;
-
-  white-space:
-    nowrap;
+  background:
+    linear-gradient(
+      #19aef0,
+      #63dfff
+    );
 }
 
 
@@ -362,10 +375,10 @@ body {
     absolute;
 
   width:
-    70px;
+    60px;
 
   height:
-    12px;
+    10px;
 
   background:
     white;
@@ -375,79 +388,108 @@ body {
 }
 
 
-.cloud1 {
+.cloud-left {
 
   left:
-    10%;
+    8%;
 
   top:
-    9px;
+    7px;
 }
 
 
-.cloud2 {
+.cloud-right {
 
   right:
-    20%;
+    13%;
 
   top:
-    20px;
+    15px;
 }
 
 
-/* PÚBLICO */
+.flags {
 
-.crowd {
+  position:
+    absolute;
 
-  height:
-    20px;
+  left:
+    50%;
 
-  background:
-    #3040d8;
+  bottom:
+    2px;
 
-  color:
-    #ffd52a;
+  transform:
+    translateX(-50%);
 
   font-size:
-    12px;
-
-  line-height:
-    20px;
-
-  overflow:
-    hidden;
+    15px;
 
   white-space:
     nowrap;
 }
 
 
-/* CARTEL */
+/* =========================================
+   PUBLICO
+   ========================================= */
 
-.banner {
+.crowd {
 
   height:
-    32px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #143de5,
-      #ff2424,
-      #143de5
-    );
+    20px;
 
   display:
     flex;
 
-  justify-content:
+  align-items:
     center;
+
+  justify-content:
+    space-around;
+
+  background:
+    #2939d9;
+
+  color:
+    #ffdb24;
+
+  font-size:
+    12px;
+}
+
+
+/* =========================================
+   CARTEL
+   ========================================= */
+
+.stadium-banner {
+
+  height:
+    27px;
+
+  display:
+    flex;
 
   align-items:
     center;
 
+  justify-content:
+    center;
+
+  background:
+    linear-gradient(
+      90deg,
+      #2939e8,
+      #ef2929,
+      #2939e8
+    );
+
+  color:
+    white;
+
   font-size:
-    clamp(10px, 2vw, 17px);
+    11px;
 
   text-shadow:
     2px 2px #000;
@@ -458,46 +500,67 @@ body {
    PISTA
    ========================================= */
 
-.track {
+.race-track {
 
   position:
     relative;
-
-  background:
-    #ef594b;
-
-  border-top:
-    4px solid #fff;
-
-  border-bottom:
-    4px solid #fff;
-}
-
-
-/* CARRIL */
-
-.lane {
 
   height:
-    55px;
+    58px;
 
-  position:
-    relative;
+  background:
+    #e85b4c;
+
+  border-top:
+    3px solid white;
 
   border-bottom:
-    3px solid #fff;
+    3px solid white;
 
   overflow:
     hidden;
 }
 
 
-.lane:last-of-type {
+/*
+ * Líneas horizontales de la pista
+ */
 
-  border-bottom:
+.race-track::after {
+
+  content:
+    "";
+
+  position:
+    absolute;
+
+  left:
+    0;
+
+  right:
+    0;
+
+  top:
+    50%;
+
+  height:
+    2px;
+
+  background:
+    rgba(255,255,255,.75);
+
+  box-shadow:
+    0 -18px rgba(255,255,255,.55),
+    0 18px rgba(255,255,255,.55);
+
+  pointer-events:
     none;
 }
 
+
+/* =========================================
+   NÚMERO DE CARRIL
+   ========================================= */
 
 .lane-number {
 
@@ -508,23 +571,73 @@ body {
     8px;
 
   top:
-    14px;
+    12px;
+
+  z-index:
+    8;
+
+  padding:
+    5px 8px;
 
   background:
     #050505;
 
-  padding:
-    7px 10px;
+  color:
+    white;
 
   font-size:
-    10px;
-
-  z-index:
-    5;
+    9px;
 }
 
 
-/* CORREDORES */
+/* =========================================
+   ETIQUETA CPU / YOU
+   ========================================= */
+
+.lane-label {
+
+  position:
+    absolute;
+
+  left:
+    42px;
+
+  top:
+    12px;
+
+  z-index:
+    8;
+
+  padding:
+    5px 7px;
+
+  background:
+    #050505;
+
+  color:
+    white;
+
+  font-size:
+    7px;
+}
+
+
+.you-label {
+
+  color:
+    #28ff43;
+
+  border:
+    2px solid #28ff43;
+
+  padding:
+    3px 6px;
+}
+
+
+/* =========================================
+   CORREDOR
+   ========================================= */
 
 .runner {
 
@@ -535,68 +648,46 @@ body {
     2%;
 
   bottom:
-    8px;
+    5px;
+
+  z-index:
+    7;
 
   font-size:
     32px;
 
   transition:
     left .08s linear;
-
-  z-index:
-    3;
 }
 
 
-.cpu:nth-child(1) {
-  filter:
-    hue-rotate(20deg);
-}
+/*
+ * CPU azul
+ */
 
-
-.player {
+.cpu-runner {
 
   filter:
-    none;
+    hue-rotate(170deg)
+    saturate(1.5);
 }
 
 
-.runner-name {
+/*
+ * Jugador rojo
+ */
 
-  position:
-    absolute;
+.player-runner {
 
-  left:
-    45px;
-
-  top:
-    7px;
-
-  background:
-    rgba(0,0,0,.75);
-
-  padding:
-    4px 6px;
-
-  font-size:
-    6px;
-
-  z-index:
-    4;
+  filter:
+    hue-rotate(315deg)
+    saturate(1.5);
 }
 
 
-.runner-name.you {
-
-  color:
-    #2dff3b;
-
-  border:
-    2px solid #2dff3b;
-}
-
-
-/* META */
+/* =========================================
+   META
+   ========================================= */
 
 .finish-line {
 
@@ -610,10 +701,13 @@ body {
     0;
 
   width:
-    12px;
+    13px;
 
   height:
     100%;
+
+  z-index:
+    10;
 
   background:
     repeating-linear-gradient(
@@ -621,31 +715,6 @@ body {
       white 0 9px,
       black 9px 18px
     );
-
-  z-index:
-    6;
-}
-
-
-.finish-line span {
-
-  position:
-    absolute;
-
-  right:
-    20px;
-
-  top:
-    4px;
-
-  font-size:
-    7px;
-
-  color:
-    #fff;
-
-  white-space:
-    nowrap;
 }
 
 
@@ -656,10 +725,7 @@ body {
 .distance-line {
 
   height:
-    25px;
-
-  background:
-    #063b08;
+    18px;
 
   display:
     flex;
@@ -670,11 +736,17 @@ body {
   align-items:
     center;
 
-  font-size:
-    7px;
+  background:
+    #20a921;
 
   color:
     white;
+
+  font-size:
+    7px;
+
+  border-bottom:
+    2px solid #fff;
 }
 
 
@@ -685,24 +757,7 @@ body {
 .message {
 
   height:
-    20px;
-
-  text-align:
-    center;
-
-  font-size:
-    9px;
-
-  margin:
-    4px;
-}
-
-
-/* =========================================
-   BOTONES NES
-   ========================================= */
-
-.nes-controls {
+    18px;
 
   display:
     flex;
@@ -713,27 +768,62 @@ body {
   align-items:
     center;
 
-  gap:
-    70px;
+  font-size:
+    8px;
 
   margin:
-    3px 0 0;
+    2px;
 }
 
+
+/* =========================================
+   CONTROLES NES
+   ========================================= */
+
+.nes-controls {
+
+  display:
+    grid;
+
+  grid-template-columns:
+    110px
+    1fr
+    110px;
+
+  align-items:
+    center;
+
+  gap:
+    20px;
+
+  margin-top:
+    2px;
+
+  padding:
+    3px 15px;
+}
+
+
+/* =========================================
+   BOTONES
+   ========================================= */
 
 .nes-button {
 
   width:
-    72px;
+    82px;
 
   height:
-    72px;
+    82px;
+
+  justify-self:
+    center;
 
   border-radius:
     50%;
 
   border:
-    6px solid #222;
+    7px solid #171717;
 
   color:
     white;
@@ -742,17 +832,14 @@ body {
     inherit;
 
   font-size:
-    22px;
+    24px;
 
   box-shadow:
-    inset 0 -7px 0 rgba(0,0,0,.35),
-    0 5px 0 #050505;
+    inset 0 -8px 0 rgba(0,0,0,.35),
+    0 5px 0 #000;
 
   touch-action:
     manipulation;
-
-  user-select:
-    none;
 }
 
 
@@ -763,7 +850,7 @@ body {
 
   box-shadow:
     inset 0 -3px 0 rgba(0,0,0,.35),
-    0 1px 0 #050505;
+    0 1px 0 #000;
 }
 
 
@@ -777,7 +864,70 @@ body {
 .button-b {
 
   background:
-    #3d55e8;
+    #245be8;
+}
+
+
+/* =========================================
+   RITMO
+   ========================================= */
+
+.rhythm {
+
+  text-align:
+    center;
+
+  font-size:
+    8px;
+
+  color:
+    #fff;
+}
+
+
+.rhythm-bar {
+
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  gap:
+    4px;
+
+  margin-top:
+    9px;
+}
+
+
+.rhythm-bar span {
+
+  width:
+    10px;
+
+  height:
+    14px;
+
+  background:
+    #29e83c;
+
+  border:
+    2px solid #123e16;
+}
+
+
+.rhythm-bar span:nth-child(n+7) {
+
+  background:
+    #ffe000;
+}
+
+
+.rhythm-bar span:nth-child(n+10) {
+
+  background:
+    #333;
 }
 
 
@@ -800,35 +950,35 @@ body {
     translate(-50%, -50%);
 
   width:
-    min(75%, 520px);
+    min(70%, 500px);
 
   padding:
-    16px;
+    15px;
 
   background:
     #092409;
 
   border:
-    4px solid #ffe500;
+    4px solid #ffe600;
 
   text-align:
     center;
 
   z-index:
-    20;
+    50;
 }
 
 
 .result-title {
 
-  font-size:
-    17px;
-
   color:
-    #ffe500;
+    #ffe600;
+
+  font-size:
+    16px;
 
   margin-bottom:
-    10px;
+    8px;
 }
 
 
@@ -838,7 +988,7 @@ body {
     11px;
 
   margin-bottom:
-    8px;
+    7px;
 }
 
 
@@ -858,23 +1008,23 @@ body {
     block;
 
   font-size:
-    clamp(30px, 6vw, 42px);
+    34px;
 
   margin:
-    4px 0 8px;
+    3px 0 7px;
 }
 
 
 .result-score {
 
-  font-size:
-    10px;
-
   color:
     #20d6e8;
 
+  font-size:
+    10px;
+
   margin-bottom:
-    12px;
+    10px;
 }
 
 
@@ -886,6 +1036,9 @@ body {
   font-size:
     8px;
 
+  padding:
+    9px 14px;
+
   color:
     white;
 
@@ -894,9 +1047,6 @@ body {
 
   border:
     4px solid #8fd18f;
-
-  padding:
-    9px 14px;
 }
 
 
@@ -906,10 +1056,10 @@ body {
     block;
 
   margin-top:
-    10px;
+    9px;
 
   color:
-    #fff;
+    white;
 
   font-size:
     6px;
@@ -917,7 +1067,7 @@ body {
 
 
 /* =========================================
-   UTILIDAD
+   OCULTO
    ========================================= */
 
 .hidden {
@@ -935,37 +1085,10 @@ body {
   orientation: landscape
 ) {
 
-  .arcade {
-
-    padding:
-      2px;
-  }
-
-
-  .cabinet {
-
-    max-height:
-      calc(100dvh - 4px);
-
-    padding:
-      3px;
-  }
-
-
-  .marquee {
-
-    padding:
-      5px;
-
-    font-size:
-      17px;
-  }
-
-
   .screen {
 
     height:
-      calc(100dvh - 42px);
+      calc(100dvh - 55px);
 
     padding:
       5px 10px;
@@ -974,99 +1097,67 @@ body {
 
   .race-hud {
 
+    grid-template-columns:
+      1fr
+      1.4fr
+      1fr
+      1fr
+      1fr;
+
     margin-bottom:
-      4px;
+      3px;
   }
 
 
   .hud-box {
 
     padding:
-      5px;
+      4px;
   }
 
 
-  .stadium {
+  .stadium-banner {
 
-    margin:
-      0;
+    height:
+      24px;
   }
 
 
   .sky {
 
     height:
-      35px;
+      30px;
   }
 
 
   .crowd {
 
     height:
-      14px;
-
-    line-height:
-      14px;
-
-    font-size:
-      8px;
+      17px;
   }
 
 
-  .banner {
+  .race-track {
 
     height:
-      25px;
-
-    font-size:
-      10px;
-  }
-
-
-  .lane {
-
-    height:
-      43px;
+      52px;
   }
 
 
   .runner {
 
+    font-size:
+      29px;
+
     bottom:
-      5px;
-
-    font-size:
-      27px;
-  }
-
-
-  .lane-number {
-
-    top:
-      8px;
-
-    padding:
-      5px 7px;
-
-    font-size:
-      8px;
-  }
-
-
-  .runner-name {
-
-    top:
       4px;
-
-    font-size:
-      5px;
   }
 
 
   .distance-line {
 
     height:
-      18px;
+      16px;
   }
 
 
@@ -1075,65 +1166,64 @@ body {
     height:
       15px;
 
-    margin:
-      2px;
-
     font-size:
       7px;
-  }
-
-
-  .nes-controls {
-
-    gap:
-      55px;
-
-    margin-top:
-      2px;
   }
 
 
   .nes-button {
 
     width:
-      62px;
+      65px;
 
     height:
-      62px;
+      65px;
 
-    border-width:
+    font-size:
+      19px;
+  }
+
+
+  .nes-controls {
+
+    grid-template-columns:
+      90px
+      1fr
+      90px;
+
+    gap:
+      15px;
+  }
+
+
+  .rhythm {
+
+    font-size:
+      7px;
+  }
+
+
+  .rhythm-bar {
+
+    margin-top:
       5px;
-
-    font-size:
-      18px;
   }
 
 
-  .result {
+  .rhythm-bar span {
 
-    padding:
-      12px;
-  }
+    width:
+      8px;
 
-
-  .result-title {
-
-    font-size:
-      14px;
-  }
-
-
-  .result > strong {
-
-    font-size:
-      32px;
+    height:
+      11px;
   }
 
 }
 
 
 /* =========================================
-   POCA ALTURA
+   PANTALLAS MUY BAJAS
    ========================================= */
 
 @media (
@@ -1142,54 +1232,158 @@ body {
   max-height: 500px
 ) {
 
-  .lane {
+  .marquee {
 
     height:
-      37px;
-  }
+      34px;
 
-
-  .runner {
-
-    bottom:
+    padding:
       3px;
 
     font-size:
-      23px;
+      15px;
+  }
+
+
+  .screen {
+
+    height:
+      calc(100dvh - 46px);
+
+    padding:
+      3px 7px;
+  }
+
+
+  .race-hud {
+
+    gap:
+      2px;
+  }
+
+
+  .hud-box {
+
+    border-width:
+      2px;
+
+    padding:
+      2px;
+  }
+
+
+  .hud-box span {
+
+    font-size:
+      5px;
+
+    margin-bottom:
+      2px;
+  }
+
+
+  .hud-box strong {
+
+    font-size:
+      9px;
+  }
+
+
+  .timer-box strong {
+
+    font-size:
+      20px;
   }
 
 
   .sky {
 
     height:
-      27px;
+      23px;
   }
 
 
   .crowd {
 
     height:
-      10px;
+      12px;
 
-    line-height:
-      10px;
+    font-size:
+      7px;
   }
 
 
-  .banner {
+  .stadium-banner {
 
     height:
-      20px;
+      18px;
+
+    font-size:
+      8px;
+  }
+
+
+  .race-track {
+
+    height:
+      42px;
+  }
+
+
+  .runner {
+
+    font-size:
+      24px;
+
+    bottom:
+      3px;
+  }
+
+
+  .lane-number,
+  .lane-label {
+
+    top:
+      7px;
+
+    font-size:
+      6px;
+  }
+
+
+  .distance-line {
+
+    height:
+      12px;
+
+    font-size:
+      5px;
+  }
+
+
+  .message {
+
+    height:
+      12px;
+
+    margin:
+      1px;
+
+    font-size:
+      6px;
   }
 
 
   .nes-button {
 
     width:
-      54px;
+      52px;
 
     height:
-      54px;
+      52px;
+
+    border-width:
+      5px;
 
     font-size:
       16px;
@@ -1198,8 +1392,46 @@ body {
 
   .nes-controls {
 
+    grid-template-columns:
+      70px
+      1fr
+      70px;
+
+    padding:
+      1px 8px;
+
     gap:
-      45px;
+      8px;
   }
 
-     }
+
+  .rhythm {
+
+    font-size:
+      6px;
+  }
+
+
+  .rhythm-bar {
+
+    gap:
+      2px;
+
+    margin-top:
+      3px;
+  }
+
+
+  .rhythm-bar span {
+
+    width:
+      6px;
+
+    height:
+      8px;
+
+    border-width:
+      1px;
+  }
+
+    }
