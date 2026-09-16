@@ -10,9 +10,7 @@
     content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
   >
 
-  <title>
-    Olympia 8-Bit — 100 m
-  </title>
+  <title>Olympia 8-Bit — 100 m</title>
 
   <link
     rel="stylesheet"
@@ -35,9 +33,9 @@
       <div class="screen race-screen">
 
 
-        <!-- ==============================
+        <!-- =================================
              PANTALLA DE INICIO
-             ============================== -->
+             ================================= -->
 
         <div
           id="start-screen"
@@ -55,6 +53,7 @@
           <button
             id="start-button"
             type="button"
+            onclick="startGame()"
           >
             START
           </button>
@@ -62,9 +61,9 @@
         </div>
 
 
-        <!-- ==============================
+        <!-- =================================
              PANTALLA DEL JUEGO
-             ============================== -->
+             ================================= -->
 
         <div
           id="game-screen"
@@ -180,6 +179,7 @@
               A
             </button>
 
+
             <button
               class="nes-button button-b"
               id="buttonB"
@@ -201,7 +201,9 @@
 
             <div class="pace-bar">
 
-              <div id="pace-fill"></div>
+              <div
+                id="pace-fill"
+              ></div>
 
             </div>
 
@@ -220,8 +222,76 @@
   </main>
 
 
+  <!-- =================================
+       START / FULLSCREEN / LANDSCAPE
+       ================================= -->
+
+  <script>
+
+    function startGame() {
+
+      /*
+       * Mostrar el juego INMEDIATAMENTE.
+       * No esperamos a fullscreen ni a orientation.
+       */
+
+      document
+        .getElementById("start-screen")
+        .classList.add("hidden");
+
+      document
+        .getElementById("game-screen")
+        .classList.remove("hidden");
+
+
+      /*
+       * Intentar activar FULLSCREEN.
+       */
+
+      try {
+
+        if (
+          !document.fullscreenElement &&
+          document.documentElement.requestFullscreen
+        ) {
+
+          document.documentElement
+            .requestFullscreen()
+            .catch(() => {});
+
+        }
+
+      } catch (e) {}
+
+
+      /*
+       * Intentar bloquear HORIZONTAL.
+       */
+
+      try {
+
+        if (
+          screen.orientation &&
+          screen.orientation.lock
+        ) {
+
+          screen.orientation
+            .lock("landscape")
+            .catch(() => {});
+
+        }
+
+      } catch (e) {}
+
+    }
+
+  </script>
+
+
   <script src="js/controller.js"></script>
+
   <script src="js/100m.js"></script>
+
 
 </body>
 
