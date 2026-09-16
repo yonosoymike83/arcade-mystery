@@ -1,11 +1,10 @@
-@import url(
-  'https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'
-);
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-
-/* =========================================
-   GENERAL
-   ========================================= */
+/* =========================================================
+   OLYMPIA 8-BIT
+   100 METROS
+   CSS EXCLUSIVO DEL JUEGO
+   ========================================================= */
 
 * {
   box-sizing: border-box;
@@ -15,314 +14,542 @@
 html,
 body {
   margin: 0;
+  padding: 0;
   width: 100%;
   height: 100%;
-
-  background: #050505;
-  color: white;
-
-  font-family:
-    "Press Start 2P",
-    monospace;
 
   overflow: hidden;
 }
 
 body {
+  min-height: 100vh;
   min-height: 100dvh;
-  height: 100dvh;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      #263544 0%,
+      #18222d 55%,
+      #0c1219 100%
+    );
+
+  color: #ffffff;
+
+  font-family: 'Press Start 2P', monospace;
+
+  touch-action: manipulation;
 }
 
 
-/* =========================================
-   ARCADE
-   ========================================= */
+/* =========================================================
+   CONTENEDOR ARCADE
+   ========================================================= */
 
 .arcade {
-  width: 100vw;
+  width: 100%;
+  height: 100vh;
   height: 100dvh;
-
-  padding: 3px;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  padding: 12px;
 }
+
+
+/* =========================================================
+   CABINET
+   ========================================================= */
 
 .cabinet {
   width: 100%;
-  max-width: 1400px;
+  height: 100%;
 
-  max-height:
-    calc(100dvh - 6px);
+  max-width: 1500px;
+  max-height: 920px;
 
-  background: #292929;
+  padding: 8px;
 
-  border: 6px solid #555;
-  border-radius: 12px;
+  background:
+    linear-gradient(
+      145deg,
+      #505b68 0%,
+      #303946 45%,
+      #1b222b 100%
+    );
 
-  padding: 5px;
+  border: 4px solid #090d12;
+  border-radius: 15px;
 
   box-shadow:
-    0 5px 0 #000;
-
-  overflow: hidden;
+    0 0 0 3px #687583,
+    0 15px 35px rgba(0, 0, 0, 0.55);
 }
 
 
-/* =========================================
+/* =========================================================
+   PANTALLA
+   ========================================================= */
+
+.screen {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 7px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #031a08 0%,
+      #041907 100%
+    );
+
+  border: 4px solid #090d12;
+  border-radius: 8px;
+
+  overflow: hidden;
+
+  box-shadow:
+    inset 0 0 0 2px #39444c,
+    inset 0 0 35px rgba(0, 0, 0, 0.65);
+}
+
+
+/* =========================================================
+   CRT
+   ========================================================= */
+
+.screen::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 50;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.018) 0px,
+      rgba(255,255,255,0.018) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+}
+
+
+/* =========================================================
    MARQUEE
-   ========================================= */
+   ========================================================= */
 
 .marquee {
+  flex: 0 0 auto;
+
   height: 42px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: #111;
+  margin-bottom: 7px;
 
-  border: 4px solid #777;
+  background:
+    linear-gradient(
+      180deg,
+      #e95042 0%,
+      #c52f30 50%,
+      #8e2229 100%
+    );
 
-  font-size:
-    clamp(16px, 3vw, 28px);
+  border: 3px solid #11151a;
+  border-radius: 5px;
 
-  letter-spacing: 3px;
+  color: #ffe66d;
+
+  font-size: clamp(16px, 2.5vw, 25px);
+
+  line-height: 1;
+
+  text-shadow:
+    2px 2px 0 #65191d;
+
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.16),
+    inset 0 -3px 0 rgba(0,0,0,0.25);
 }
 
 
-/* =========================================
-   SCREEN
-   ========================================= */
-
-.screen {
-  position: relative;
-
-  margin-top: 5px;
-
-  height:
-    calc(100dvh - 55px);
-
-  background: #061606;
-
-  border: 5px solid #111;
-
-  padding: 8px;
-
-  overflow: hidden;
-}
-
-
-/* =========================================
-   START
-   ========================================= */
+/* =========================================================
+   START SCREEN
+   ========================================================= */
 
 .start-screen {
-  height: 100%;
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 100;
 
   display: flex;
-
   flex-direction: column;
 
   align-items: center;
   justify-content: center;
 
+  gap: 20px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #123f4b 0%,
+      #082a33 55%,
+      #04191f 100%
+    );
+
   text-align: center;
 }
 
 .start-screen h1 {
-  font-size:
-    clamp(22px, 5vw, 45px);
+  margin: 0;
 
-  margin:
-    0 0 18px;
+  color: #ffe66d;
+
+  font-size: clamp(22px, 5vw, 48px);
+
+  line-height: 1.4;
+
+  text-shadow:
+    4px 4px 0 #5a4918;
 }
 
 .start-screen p {
-  font-size: 10px;
+  margin: 0;
+
+  color: #91d9df;
+
+  font-size: clamp(8px, 1.7vw, 13px);
 }
 
-.start-screen button {
-  margin-top: 30px;
+#start-button {
+  margin-top: 15px;
 
-  padding: 18px 40px;
+  padding: 18px 34px;
 
-  font-family: inherit;
-  font-size: 18px;
+  background:
+    linear-gradient(
+      180deg,
+      #e94d42,
+      #a9262c
+    );
 
-  color: white;
+  border: 4px solid #11151a;
+  border-radius: 8px;
 
-  background: #28752d;
+  color: #ffe66d;
 
-  border: 5px solid #8fd18f;
-
-  box-shadow:
-    0 5px 0 #123c15;
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(12px, 2vw, 18px);
 
   cursor: pointer;
-}
-
-.start-screen button:active {
-  transform:
-    translateY(5px);
 
   box-shadow:
-    0 0 0 #123c15;
+    0 7px 0 #55161c,
+    inset 0 2px 0 rgba(255,255,255,0.18);
+}
+
+#start-button:active {
+  transform: translateY(5px);
+
+  box-shadow:
+    0 2px 0 #55161c;
 }
 
 
-/* =========================================
+/* =========================================================
    HUD
-   ========================================= */
+   ========================================================= */
 
 .race-hud {
+  flex: 0 0 auto;
+
   display: grid;
 
   grid-template-columns:
     1fr
-    1.4fr
+    1.35fr
     1fr
     1fr
     1fr;
 
   gap: 4px;
 
-  margin-bottom: 5px;
+  height: 66px;
+
+  margin-bottom: 6px;
 }
 
 .hud-box {
-  background: #050505;
+  min-width: 0;
 
-  border: 3px solid #20d6e8;
+  display: flex;
+  flex-direction: column;
 
-  padding: 5px;
+  align-items: center;
+  justify-content: center;
+
+  background: #020505;
+
+  border: 3px solid #00d9d9;
 
   text-align: center;
 }
 
 .hud-box span {
-  display: block;
+  margin-bottom: 7px;
 
-  color: #20d6e8;
+  color: #5be7e7;
 
-  font-size: 6px;
+  font-size: 7px;
 
-  margin-bottom: 4px;
+  line-height: 1;
 }
 
 .hud-box strong {
-  display: block;
+  color: #ffffff;
 
-  font-size:
-    clamp(10px, 2vw, 17px);
+  font-size: clamp(11px, 1.6vw, 18px);
+
+  line-height: 1;
 }
 
 .timer-box strong {
-  font-size:
-    clamp(20px, 5vw, 34px);
+  color: #ffffff;
+
+  font-size: clamp(22px, 3vw, 34px);
+
+  text-shadow:
+    2px 2px 0 #555;
 }
 
 .hud-box:nth-child(3) strong {
   color: #ffe600;
 }
 
+.hud-box:nth-child(4) strong {
+  color: #ffffff;
+}
 
-/* =========================================
-   ESTADIO
-   ========================================= */
+.hud-box:nth-child(5) strong {
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   GAME SCREEN
+   ========================================================= */
+
+.game-screen {
+  position: relative;
+
+  flex: 1 1 auto;
+
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.game-screen.hidden {
+  display: none;
+}
+
+
+/* =========================================================
+   STADIUM
+   ========================================================= */
 
 .stadium {
-  border: 3px solid #20d6e8;
+  position: relative;
+
+  flex: 1 1 auto;
+
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
 
   overflow: hidden;
 
-  background: #30cf26;
+  border: 3px solid #00dddd;
+
+  background: #15942b;
 }
 
 
-/* =========================================
-   CIELO
-   ========================================= */
+/* =========================================================
+   SKY
+   ========================================================= */
 
 .sky {
-  height: 34px;
-
   position: relative;
+
+  flex: 0 0 17%;
+
+  min-height: 70px;
 
   background:
     linear-gradient(
-      #19aef0,
-      #63dfff
+      180deg,
+      #31c9f2 0%,
+      #55d8ef 65%,
+      #20a7d5 100%
     );
+
+  overflow: hidden;
 }
+
+
+/* =========================================================
+   NUBES
+   ========================================================= */
 
 .cloud {
   position: absolute;
 
-  width: 60px;
   height: 10px;
 
-  background: white;
+  background: #ffffff;
 
-  opacity: .9;
+  opacity: 0.9;
+
+  box-shadow:
+    10px 0 #ffffff,
+    20px 0 #ffffff,
+    30px 0 #ffffff;
 }
 
 .cloud-left {
+  width: 40px;
+
   left: 8%;
-  top: 7px;
+  top: 28%;
 }
 
 .cloud-right {
-  right: 13%;
-  top: 15px;
+  width: 40px;
+
+  right: 12%;
+  top: 42%;
 }
+
+
+/* =========================================================
+   BANDERAS
+   ========================================================= */
 
 .flags {
   position: absolute;
 
+  z-index: 5;
+
   left: 50%;
-  bottom: 2px;
+  bottom: 7px;
 
-  transform:
-    translateX(-50%);
+  transform: translateX(-50%);
 
-  font-size: 15px;
+  width: max-content;
+  max-width: 95%;
 
   white-space: nowrap;
+
+  font-family:
+    "Segoe UI Emoji",
+    "Apple Color Emoji",
+    "Noto Color Emoji",
+    sans-serif;
+
+  font-size: clamp(14px, 2vw, 22px);
+
+  letter-spacing: clamp(3px, 0.8vw, 10px);
+
+  line-height: 1;
+
+  text-align: center;
+
+  color: #ffffff;
 }
 
 
-/* =========================================
-   PUBLICO
-   ========================================= */
+/* =========================================================
+   PÚBLICO
+   ========================================================= */
 
 .crowd {
-  height: 20px;
+  position: relative;
+
+  flex: 0 0 10%;
+
+  min-height: 38px;
 
   display: flex;
 
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 
-  background: #2939d9;
+  gap: clamp(5px, 1vw, 12px);
 
-  color: #ffdb24;
+  overflow: hidden;
 
-  font-size: 12px;
+  background:
+    linear-gradient(
+      180deg,
+      #2438d9 0%,
+      #2e2cc0 100%
+    );
+
+  color: #ffe900;
+
+  font-size: clamp(8px, 1.3vw, 14px);
+}
+
+.crowd span {
+  display: inline-block;
+
+  animation:
+    crowd-jump 1.2s steps(2, start) infinite;
+}
+
+.crowd span:nth-child(2n) {
+  animation-delay: 0.2s;
+}
+
+.crowd span:nth-child(3n) {
+  animation-delay: 0.4s;
+}
+
+@keyframes crowd-jump {
+  50% {
+    transform: translateY(-3px);
+  }
 }
 
 
-/* =========================================
-   CARTEL
-   ========================================= */
+/* =========================================================
+   CARTEL DEL ESTADIO
+   ========================================================= */
 
 .stadium-banner {
-  height: 27px;
+  flex: 0 0 10%;
+
+  min-height: 34px;
 
   display: flex;
 
@@ -331,309 +558,336 @@ body {
 
   background:
     linear-gradient(
-      90deg,
-      #2939e8,
-      #ef2929,
-      #2939e8
+      180deg,
+      #4a1f91,
+      #35146f
     );
 
-  color: white;
+  border-top: 2px solid #ffe66d;
+  border-bottom: 2px solid #ffe66d;
 
-  font-size: 11px;
+  color: #ffffff;
+
+  font-size: clamp(9px, 1.5vw, 15px);
 
   text-shadow:
-    2px 2px #000;
+    2px 2px 0 #111;
 }
 
 
-/* =========================================
+/* =========================================================
    PISTAS
-   ========================================= */
+   ========================================================= */
 
 .race-track {
   position: relative;
 
-  height: 58px;
+  flex: 0 0 17%;
 
-  background: #e85b4c;
+  min-height: 58px;
 
-  border-top: 3px solid white;
-  border-bottom: 3px solid white;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #ed594c 0px,
+      #ed594c calc(100% - 5px),
+      #ffffff calc(100% - 5px),
+      #ffffff 100%
+    );
+
+  border-top: 3px solid #ffffff;
+  border-bottom: 3px solid #ffffff;
 
   overflow: hidden;
 }
 
 
-/*
- * Líneas de la pista
- */
-
-.race-track::after {
-  content: "";
-
-  position: absolute;
-
-  left: 0;
-  right: 0;
-
-  top: 50%;
-
-  height: 2px;
-
-  background:
-    rgba(255,255,255,.75);
-
-  box-shadow:
-    0 -18px rgba(255,255,255,.55),
-    0 18px rgba(255,255,255,.55);
-
-  pointer-events: none;
-}
-
-
-/* =========================================
-   NÚMERO DE CARRIL
-   ========================================= */
-
-.lane-number {
-  position: absolute;
-
-  left: 8px;
-  top: 12px;
-
-  z-index: 8;
-
-  padding: 5px 8px;
-
-  background: #050505;
-
-  color: white;
-
-  font-size: 9px;
-}
-
-
-/* =========================================
-   CPU / YOU
-   ========================================= */
-
-.lane-label {
-  position: absolute;
-
-  left: 42px;
-  top: 12px;
-
-  z-index: 8;
-
-  padding: 5px 7px;
-
-  background: #050505;
-
-  color: white;
-
-  font-size: 7px;
-}
-
-.you-label {
-  color: #28ff43;
-
-  border: 2px solid #28ff43;
-
-  padding: 3px 6px;
-}
-
-
-/* =========================================
-   CORREDORES
-   ========================================= */
-
-.runner {
-  position: absolute;
-
-  left: 2%;
-  bottom: 5px;
-
-  z-index: 7;
-
-  font-size: 32px;
-
-  /*
-   * Hace que el corredor mire
-   * hacia la derecha.
-   */
-
-  transform:
-    scaleX(-1);
-
-  transition:
-    left .08s linear;
-}
-
-
-/* CPU */
-
-.cpu-runner {
-  filter:
-    hue-rotate(170deg)
-    saturate(1.5);
-}
-
-
-/* JUGADOR */
-
-.player-runner {
-  filter:
-    hue-rotate(315deg)
-    saturate(1.5);
-}
-
-
-/* =========================================
-   META
-   ========================================= */
+/* =========================================================
+   LÍNEA DE META
+   ========================================================= */
 
 .finish-line {
   position: absolute;
 
-  right: 3%;
+  z-index: 2;
+
   top: 0;
+  bottom: 0;
 
-  width: 13px;
-  height: 100%;
+  right: 3%;
 
-  z-index: 10;
+  width: 14px;
 
   background:
     repeating-linear-gradient(
-      to bottom,
-      white 0 9px,
-      black 9px 18px
+      0deg,
+      #ffffff 0px,
+      #ffffff 9px,
+      #111111 9px,
+      #111111 18px
     );
+
+  box-shadow:
+    -3px 0 0 rgba(0,0,0,0.25);
 }
 
 
-/* =========================================
-   DISTANCIA
-   ========================================= */
+/* =========================================================
+   NÚMERO DE CALLE
+   ========================================================= */
 
-.distance-line {
-  height: 18px;
+.lane-number {
+  position: absolute;
+
+  z-index: 8;
+
+  left: 8px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 29px;
+  height: 29px;
 
   display: flex;
-
-  justify-content: space-around;
   align-items: center;
-
-  background: #20a921;
-
-  color: white;
-
-  font-size: 7px;
-
-  border-bottom: 2px solid white;
-}
-
-
-/* =========================================
-   MENSAJE
-   ========================================= */
-
-.message {
-  height: 18px;
-
-  display: flex;
-
   justify-content: center;
-  align-items: center;
+
+  background: #111111;
+
+  border: 2px solid #ffffff;
+
+  color: #ffffff;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   ETIQUETA CPU / YOU
+   ========================================================= */
+
+.lane-label {
+  position: absolute;
+
+  z-index: 8;
+
+  left: 48px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  padding: 4px 7px;
+
+  background: #000000;
+
+  color: #ffffff;
+
+  font-family: 'Press Start 2P', monospace;
 
   font-size: 8px;
 
-  margin: 2px;
+  line-height: 1;
+}
+
+.you-label {
+  color: #00ff6a;
+
+  border: 2px solid #00ff6a;
 }
 
 
-/* =========================================
-   CONTROLES NES
-   ========================================= */
+/* =========================================================
+   CORREDORES
+   ========================================================= */
 
-.nes-controls {
-  display: grid;
+.runner {
+  position: absolute;
 
-  grid-template-columns:
-    110px
-    1fr
-    110px;
+  z-index: 6;
+
+  left: 2%;
+
+  top: 50%;
+
+  transform:
+    translateY(-50%)
+    scaleX(-1);
+
+  transform-origin: center;
+
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family:
+    "Segoe UI Emoji",
+    "Apple Color Emoji",
+    "Noto Color Emoji",
+    sans-serif;
+
+  font-size: 38px;
+
+  line-height: 1;
+
+  transition: left 0.05s linear;
+}
+
+.cpu-runner {
+  filter: drop-shadow(2px 2px 0 #111111);
+}
+
+.player-runner {
+  filter:
+    drop-shadow(2px 2px 0 #111111)
+    drop-shadow(0 0 3px #00ff6a);
+}
+
+
+/* =========================================================
+   LÍNEA DE DISTANCIA
+   ========================================================= */
+
+.distance-line {
+  flex: 0 0 5%;
+
+  min-height: 20px;
+
+  display: flex;
 
   align-items: center;
+  justify-content: space-between;
 
-  gap: 20px;
+  padding: 0 7%;
 
-  margin-top: 2px;
+  background: #13a52b;
 
-  padding:
-    3px 15px;
+  color: #ffffff;
+
+  font-size: clamp(7px, 1vw, 11px);
+
+  line-height: 1;
+
+  border-bottom: 2px solid #ffffff;
 }
 
 
-/* =========================================
-   BOTONES
-   ========================================= */
+/* =========================================================
+   MENSAJE
+   ========================================================= */
+
+.message {
+  flex: 0 0 auto;
+
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  font-size: clamp(7px, 1vw, 10px);
+
+  text-align: center;
+
+  text-shadow:
+    1px 1px 0 #000000;
+}
+
+.message.hidden {
+  display: none;
+}
+
+
+/* =========================================================
+   CONTROLES
+   ========================================================= */
+
+.nes-controls {
+  position: relative;
+
+  flex: 0 0 105px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 5px 3% 12px;
+}
 
 .nes-button {
-  width: 82px;
-  height: 82px;
+  width: 70px;
+  height: 70px;
 
-  justify-self: center;
-
+  border: 5px solid #111111;
   border-radius: 50%;
 
-  border: 7px solid #171717;
+  font-family: 'Press Start 2P', monospace;
 
-  color: white;
+  font-size: 20px;
 
-  font-family: inherit;
-
-  font-size: 24px;
-
-  box-shadow:
-    inset 0 -8px 0 rgba(0,0,0,.35),
-    0 5px 0 #000;
-
-  touch-action: manipulation;
-
-  user-select: none;
+  color: #ffffff;
 
   cursor: pointer;
-}
-
-.nes-button:active {
-  transform:
-    translateY(5px);
 
   box-shadow:
-    inset 0 -3px 0 rgba(0,0,0,.35),
-    0 1px 0 #000;
+    0 8px 0 #050505,
+    inset 0 4px 0 rgba(255,255,255,0.25);
 }
 
 .button-a {
-  background: #e52535;
+  background:
+    linear-gradient(
+      145deg,
+      #ff4352,
+      #d91f35
+    );
 }
 
 .button-b {
-  background: #245be8;
+  background:
+    linear-gradient(
+      145deg,
+      #3f79ff,
+      #214dcc
+    );
+}
+
+.nes-button:active {
+  transform: translateY(6px);
+
+  box-shadow:
+    0 2px 0 #050505,
+    inset 0 2px 0 rgba(0,0,0,0.2);
 }
 
 
-/* =========================================
-   RITMO
-   ========================================= */
+/* =========================================================
+   BARRA DE RITMO
+   ========================================================= */
 
 .rhythm {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: min(300px, 35vw);
+
   text-align: center;
 
-  font-size: 8px;
+  color: #ffffff;
 
-  color: white;
+  font-size: clamp(6px, 0.9vw, 9px);
+
+  line-height: 1.6;
 }
 
 .rhythm-bar {
@@ -643,418 +897,683 @@ body {
 
   gap: 4px;
 
-  margin-top: 9px;
+  margin-top: 5px;
 }
 
 .rhythm-bar span {
-  width: 10px;
-  height: 14px;
+  width: 7px;
+  height: 11px;
 
-  background: #29e83c;
+  background: #12551e;
 
-  border: 2px solid #123e16;
-}
-
-.rhythm-bar span:nth-child(n+7) {
-  background: #ffe000;
-}
-
-.rhythm-bar span:nth-child(n+10) {
-  background: #333;
+  border: 1px solid #071c0b;
 }
 
 
-/* =========================================
+/* =========================================================
    RESULTADO
-   ========================================= */
+   ========================================================= */
 
 .result {
   position: absolute;
 
-  left: 50%;
-  top: 50%;
+  z-index: 100;
 
-  transform:
-    translate(-50%, -50%);
+  inset: 8% 15%;
 
-  width:
-    min(70%, 500px);
+  display: flex;
+  flex-direction: column;
 
-  padding: 15px;
+  align-items: center;
+  justify-content: center;
 
-  background: #092409;
+  gap: 13px;
 
-  border: 4px solid #ffe600;
+  background:
+    linear-gradient(
+      180deg,
+      #103d48,
+      #092a32
+    );
+
+  border: 5px solid #ffe66d;
+  border-radius: 10px;
+
+  box-shadow:
+    0 0 0 4px #10151a,
+    0 15px 30px rgba(0,0,0,0.65);
 
   text-align: center;
+}
 
-  z-index: 50;
+.result.hidden {
+  display: none;
 }
 
 .result-title {
-  color: #ffe600;
+  color: #ffe66d;
 
-  font-size: 16px;
+  font-size: clamp(18px, 3vw, 30px);
 
-  margin-bottom: 8px;
+  text-shadow:
+    3px 3px 0 #574716;
 }
 
 .result-position {
-  font-size: 11px;
+  color: #ffffff;
 
-  margin-bottom: 7px;
+  font-size: clamp(10px, 1.7vw, 16px);
 }
 
 .result-time-label {
-  font-size: 7px;
+  color: #78dce2;
 
-  opacity: .7;
+  font-size: 8px;
 }
 
-.result > strong {
-  display: block;
+#final-time {
+  color: #ffffff;
 
-  font-size: 34px;
+  font-size: clamp(25px, 4vw, 45px);
 
-  margin: 3px 0 7px;
+  text-shadow:
+    3px 3px 0 #444;
 }
 
 .result-score {
-  color: #20d6e8;
+  color: #ffe66d;
 
-  font-size: 10px;
-
-  margin-bottom: 10px;
+  font-size: clamp(8px, 1.4vw, 12px);
 }
 
-.result button {
-  font-family: inherit;
+#again {
+  margin-top: 5px;
+
+  padding: 12px 18px;
+
+  background: #e3423d;
+
+  border: 3px solid #111111;
+  border-radius: 6px;
+
+  color: #ffffff;
+
+  font-family: 'Press Start 2P', monospace;
 
   font-size: 8px;
 
-  padding: 9px 14px;
-
-  color: white;
-
-  background: #28752d;
-
-  border: 4px solid #8fd18f;
-
   cursor: pointer;
+
+  box-shadow:
+    0 4px 0 #5b171c;
+}
+
+#again:active {
+  transform: translateY(3px);
+
+  box-shadow:
+    0 1px 0 #5b171c;
 }
 
 .result a {
-  display: block;
+  color: #8edce2;
 
-  margin-top: 9px;
+  font-size: 7px;
 
-  color: white;
+  text-decoration: none;
+}
 
-  font-size: 6px;
+.result a:hover {
+  color: #ffe66d;
 }
 
 
-/* =========================================
+/* =========================================================
    OCULTO
-   ========================================= */
+   ========================================================= */
 
 .hidden {
   display: none !important;
 }
 
 
-/* =========================================
-   HORIZONTAL
-   ========================================= */
+/* =========================================================
+   PC GRANDE
+   ========================================================= */
 
-@media (orientation: landscape) {
+@media (min-width: 1100px) {
+
+  .cabinet {
+    padding: 10px;
+  }
+
+  .screen {
+    padding: 9px;
+  }
+
+  .marquee {
+    height: 48px;
+
+    margin-bottom: 8px;
+
+    font-size: 27px;
+  }
+
+  .race-hud {
+    height: 72px;
+
+    gap: 5px;
+
+    margin-bottom: 8px;
+  }
+
+  .hud-box span {
+    font-size: 8px;
+  }
+
+  .hud-box strong {
+    font-size: 18px;
+  }
+
+  .timer-box strong {
+    font-size: 36px;
+  }
+
+  .sky {
+    flex-basis: 19%;
+  }
+
+  .crowd {
+    flex-basis: 11%;
+  }
+
+  .stadium-banner {
+    flex-basis: 10%;
+  }
+
+  .race-track {
+    flex-basis: 18%;
+
+    min-height: 70px;
+  }
+
+  .distance-line {
+    flex-basis: 5%;
+  }
+
+  .runner {
+    width: 64px;
+    height: 64px;
+
+    font-size: 48px;
+  }
+
+  .lane-number {
+    width: 34px;
+    height: 34px;
+
+    left: 10px;
+
+    font-size: 11px;
+  }
+
+  .lane-label {
+    left: 52px;
+
+    font-size: 9px;
+  }
+
+  .nes-controls {
+    flex-basis: 120px;
+  }
+
+  .nes-button {
+    width: 78px;
+    height: 78px;
+
+    font-size: 22px;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .arcade {
+    padding: 6px;
+  }
+
+  .cabinet {
+    padding: 6px;
+  }
+
+  .screen {
+    padding: 5px;
+  }
+
+  .marquee {
+    height: 38px;
+
+    margin-bottom: 5px;
+
+    font-size: 18px;
+  }
+
+  .race-hud {
+    height: 58px;
+  }
+
+  .hud-box span {
+    font-size: 6px;
+  }
+
+  .hud-box strong {
+    font-size: 10px;
+  }
+
+  .timer-box strong {
+    font-size: 23px;
+  }
+
+  .runner {
+    font-size: 32px;
+  }
+
+  .nes-controls {
+    flex-basis: 90px;
+  }
+
+  .nes-button {
+    width: 62px;
+    height: 62px;
+
+    font-size: 17px;
+  }
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  .arcade {
+    padding: 0;
+  }
+
+  .cabinet {
+    max-width: none;
+    max-height: none;
+
+    padding: 4px;
+
+    border: 2px solid #687583;
+    border-radius: 7px;
+
+    box-shadow: none;
+  }
+
+  .screen {
+    padding: 4px;
+
+    border-width: 2px;
+  }
+
+  .marquee {
+    height: 34px;
+
+    margin-bottom: 4px;
+
+    border-width: 2px;
+
+    font-size: 15px;
+  }
+
+  .race-hud {
+    height: 53px;
+
+    gap: 2px;
+  }
+
+  .hud-box {
+    border-width: 2px;
+  }
+
+  .hud-box span {
+    margin-bottom: 4px;
+
+    font-size: 5px;
+  }
+
+  .hud-box strong {
+    font-size: 8px;
+  }
+
+  .timer-box strong {
+    font-size: 18px;
+  }
+
+  .sky {
+    min-height: 45px;
+  }
+
+  .flags {
+    font-size: 13px;
+
+    letter-spacing: 2px;
+  }
+
+  .crowd {
+    min-height: 28px;
+
+    font-size: 7px;
+  }
+
+  .stadium-banner {
+    min-height: 27px;
+
+    font-size: 7px;
+  }
+
+  .race-track {
+    min-height: 48px;
+  }
+
+  .lane-number {
+    width: 24px;
+    height: 24px;
+
+    left: 5px;
+
+    font-size: 7px;
+  }
+
+  .lane-label {
+    left: 34px;
+
+    padding: 3px 5px;
+
+    font-size: 6px;
+  }
+
+  .runner {
+    width: 40px;
+    height: 40px;
+
+    font-size: 28px;
+  }
+
+  .finish-line {
+    width: 10px;
+  }
+
+  .distance-line {
+    min-height: 17px;
+
+    font-size: 6px;
+
+    padding-left: 7%;
+    padding-right: 7%;
+  }
+
+  .message {
+    height: 24px;
+
+    font-size: 7px;
+  }
+
+  .nes-controls {
+    flex-basis: 78px;
+
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+
+  .nes-button {
+    width: 55px;
+    height: 55px;
+
+    border-width: 4px;
+
+    font-size: 15px;
+
+    box-shadow:
+      0 6px 0 #050505,
+      inset 0 3px 0 rgba(255,255,255,0.25);
+  }
+
+  .rhythm {
+    width: 180px;
+
+    font-size: 6px;
+  }
+
+  .rhythm-bar {
+    gap: 2px;
+  }
+
+  .rhythm-bar span {
+    width: 5px;
+    height: 8px;
+  }
+
+  .result {
+    inset: 8% 7%;
+
+    border-width: 3px;
+  }
+}
+
+
+/* =========================================================
+   MÓVIL HORIZONTAL
+   ========================================================= */
+
+@media (max-width: 900px) and (orientation: landscape) {
+
+  .arcade {
+    padding: 0;
+  }
+
+  .cabinet {
+    width: 100%;
+    height: 100%;
+
+    padding: 3px;
+
+    border-width: 2px;
+    border-radius: 5px;
+  }
+
+  .screen {
+    padding: 3px;
+
+    border-width: 2px;
+  }
+
+  .marquee {
+    height: 28px;
+
+    margin-bottom: 3px;
+
+    font-size: 13px;
+  }
+
+  .race-hud {
+    height: 43px;
+  }
+
+  .hud-box span {
+    margin-bottom: 3px;
+
+    font-size: 5px;
+  }
+
+  .hud-box strong {
+    font-size: 8px;
+  }
+
+  .timer-box strong {
+    font-size: 17px;
+  }
+
+  .stadium {
+    border-width: 2px;
+  }
+
+  .sky {
+    flex-basis: 15%;
+
+    min-height: 32px;
+  }
+
+  .crowd {
+    flex-basis: 9%;
+
+    min-height: 22px;
+
+    font-size: 6px;
+  }
+
+  .stadium-banner {
+    flex-basis: 9%;
+
+    min-height: 22px;
+
+    font-size: 6px;
+  }
+
+  .race-track {
+    flex-basis: 19%;
+
+    min-height: 38px;
+  }
+
+  .distance-line {
+    flex-basis: 5%;
+
+    min-height: 14px;
+
+    font-size: 5px;
+  }
+
+  .flags {
+    bottom: 3px;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+  }
+
+  .runner {
+    width: 34px;
+    height: 34px;
+
+    font-size: 24px;
+  }
+
+  .lane-number {
+    width: 20px;
+    height: 20px;
+
+    left: 4px;
+
+    font-size: 6px;
+  }
+
+  .lane-label {
+    left: 28px;
+
+    padding: 2px 4px;
+
+    font-size: 5px;
+  }
+
+  .finish-line {
+    width: 8px;
+  }
+
+  .message {
+    height: 18px;
+
+    font-size: 6px;
+  }
+
+  .nes-controls {
+    flex-basis: 62px;
+
+    padding-bottom: 5px;
+  }
+
+  .nes-button {
+    width: 46px;
+    height: 46px;
+
+    border-width: 3px;
+
+    font-size: 12px;
+
+    box-shadow:
+      0 5px 0 #050505,
+      inset 0 2px 0 rgba(255,255,255,0.25);
+  }
+
+  .rhythm {
+    font-size: 5px;
+  }
+
+  .rhythm-bar {
+    margin-top: 2px;
+  }
+
+  .rhythm-bar span {
+    width: 4px;
+    height: 6px;
+  }
+
+  .result {
+    inset: 5% 15%;
+  }
+}
+
+
+/* =========================================================
+   PANTALLAS MUY BAJAS
+   ========================================================= */
+
+@media (max-height: 500px) {
 
   .arcade {
     padding: 2px;
   }
 
   .cabinet {
-    max-height:
-      calc(100dvh - 4px);
+    padding: 3px;
+  }
 
+  .screen {
     padding: 3px;
   }
 
   .marquee {
-    height: 38px;
+    height: 27px;
 
-    padding: 5px;
-
-    font-size: 17px;
-  }
-
-  .screen {
-    height:
-      calc(100dvh - 50px);
-
-    padding:
-      5px 10px;
+    font-size: 13px;
   }
 
   .race-hud {
-    margin-bottom: 3px;
-  }
-
-  .hud-box {
-    padding: 4px;
-  }
-
-  .stadium-banner {
-    height: 24px;
-  }
-
-  .sky {
-    height: 30px;
-  }
-
-  .crowd {
-    height: 17px;
-  }
-
-  .race-track {
-    height: 52px;
-  }
-
-  .runner {
-    font-size: 29px;
-
-    bottom: 4px;
-
-    transform:
-      scaleX(-1);
-  }
-
-  .distance-line {
-    height: 16px;
-  }
-
-  .message {
-    height: 15px;
-
-    font-size: 7px;
-  }
-
-  .nes-button {
-    width: 65px;
-    height: 65px;
-
-    font-size: 19px;
-  }
-
-  .nes-controls {
-    grid-template-columns:
-      90px
-      1fr
-      90px;
-
-    gap: 15px;
-  }
-
-  .rhythm {
-    font-size: 7px;
-  }
-
-  .rhythm-bar {
-    margin-top: 5px;
-  }
-
-  .rhythm-bar span {
-    width: 8px;
-    height: 11px;
-  }
-
-}
-
-
-/* =========================================
-   PANTALLAS MUY BAJAS
-   ========================================= */
-
-@media (
-  orientation: landscape
-) and (
-  max-height: 500px
-) {
-
-  .marquee {
-    height: 34px;
-
-    padding: 3px;
-
-    font-size: 15px;
-  }
-
-  .screen {
-    height:
-      calc(100dvh - 46px);
-
-    padding:
-      3px 7px;
-  }
-
-  .race-hud {
-    gap: 2px;
-  }
-
-  .hud-box {
-    border-width: 2px;
-
-    padding: 2px;
-  }
-
-  .hud-box span {
-    font-size: 5px;
-
-    margin-bottom: 2px;
-  }
-
-  .hud-box strong {
-    font-size: 9px;
-  }
-
-  .timer-box strong {
-    font-size: 20px;
-  }
-
-  .sky {
-    height: 23px;
-  }
-
-  .crowd {
-    height: 12px;
-
-    font-size: 7px;
-  }
-
-  .stadium-banner {
-    height: 18px;
-
-    font-size: 8px;
-  }
-
-  .race-track {
     height: 42px;
   }
 
-  .runner {
-    font-size: 24px;
-
-    bottom: 3px;
-
-    transform:
-      scaleX(-1);
-  }
-
-  .lane-number,
-  .lane-label {
-    top: 7px;
-
-    font-size: 6px;
-  }
-
-  .distance-line {
-    height: 12px;
-
-    font-size: 5px;
-  }
-
-  .message {
-    height: 12px;
-
-    margin: 1px;
-
-    font-size: 6px;
-  }
-
-  .nes-button {
-    width: 52px;
-    height: 52px;
-
-    border-width: 5px;
-
-    font-size: 16px;
+  .stadium {
+    min-height: 0;
   }
 
   .nes-controls {
-    grid-template-columns:
-      70px
-      1fr
-      70px;
-
-    padding:
-      1px 8px;
-
-    gap: 8px;
+    flex-basis: 60px;
   }
-
-  .rhythm {
-    font-size: 6px;
-  }
-
-  .rhythm-bar {
-    gap: 2px;
-
-    margin-top: 3px;
-  }
-
-  .rhythm-bar span {
-    width: 6px;
-    height: 8px;
-
-    border-width: 1px;
-  }
-
-
-  /* RESULTADO */
-
-  .result {
-    width:
-      min(70%, 450px);
-
-    padding: 10px;
-  }
-
-  .result-title {
-    font-size: 13px;
-
-    margin-bottom: 5px;
-  }
-
-  .result-position {
-    font-size: 9px;
-
-    margin-bottom: 4px;
-  }
-
-  .result > strong {
-    font-size: 28px;
-
-    margin:
-      2px 0 5px;
-  }
-
-  .result-score {
-    font-size: 8px;
-
-    margin-bottom: 6px;
-  }
-
-  .result button {
-    font-size: 7px;
-
-    padding:
-      7px 11px;
-  }
-
-  .result a {
-    margin-top: 6px;
-
-    font-size: 5px;
-  }
-
 }
