@@ -1,27 +1,42 @@
 /* =========================================
+   OLYMPIA 8-BIT
    100 METROS
    ========================================= */
+
+const $ = id =>
+  document.getElementById(id);
 
 
 /* =========================================
    ELEMENTOS
    ========================================= */
 
-const $ =
-  id => document.getElementById(id);
-
-
 const timer =
   $("timer");
 
-const dist =
+const distanceEl =
   $("distance");
 
-const runner =
-  $("runner");
+const player =
+  $("player");
 
-const msg =
+const cpu1 =
+  $("cpu1");
+
+const cpu2 =
+  $("cpu2");
+
+const cpu3 =
+  $("cpu3");
+
+const positionEl =
+  $("position");
+
+const message =
   $("message");
+
+const controls =
+  document.querySelector(".nes-controls");
 
 const result =
   $("result");
@@ -32,72 +47,84 @@ const finalTime =
 const scoreEl =
   $("score");
 
-const controls =
-  $("controls");
+const resultPosition =
+  $("result-position");
 
 const again =
   $("again");
-
-const fill =
-  $("pace-fill");
-
-const paceText =
-  $("pace-text");
 
 
 /* =========================================
    ESTADO
    ========================================= */
 
-let state =
-  "ready";
+let state = "ready";
 
-let last =
-  null;
+let startTime = 0;
 
-let start =
-  0;
+let lastPress = 0;
 
-let lastPress =
-  0;
+let lastButton = null;
 
-let distance =
-  0;
+let playerDistance = 0;
 
-let good =
-  0;
+let cpuDistances = [0, 0, 0];
 
-let total =
-  0;
+let cpuSpeeds = [0, 0, 0];
 
-let intervalId;
+let timerInterval;
+
+let cpuInterval;
 
 
 /* =========================================
-   AJUSTES DEL RITMO
+   RITMO
    ========================================= */
 
-const OPT_MIN =
-  110;
+const PERFECT_MIN = 110;
+const PERFECT_MAX = 210;
 
-const OPT_MAX =
-  210;
+const TOO_FAST = 65;
 
-const TOO_FAST =
-  65;
-
-const STEP =
-  1.85;
+const PLAYER_STEP = 2.15;
 
 
 /* =========================================
-   FORMATO DEL TIEMPO
+   CPU
    ========================================= */
 
-function fmt(ms) {
+function resetCPU() {
+
+  cpuDistances = [0, 0, 0];
+
+  /*
+   * Velocidad base de cada CPU.
+   * Hay pequeñas variaciones aleatorias.
+   */
+
+  cpuSpeeds = [
+
+    0.95 + Math.random() * 0.25,
+
+    0.90 + Math.random() * 0.30,
+
+    0.85 + Math.random() * 0.35
+
+  ];
+
+}
+
+
+/* =========================================
+   TIEMPO
+   ========================================= */
+
+function formatTime(ms) {
 
   return (
+
     ms / 1000
+
   )
     .toFixed(2)
     .padStart(5, "0");
@@ -106,166 +133,191 @@ function fmt(ms) {
 
 
 /* =========================================
-   RESET
+   POSICIÓN DEL CORREDOR
    ========================================= */
 
-function reset() {
+function setRunnerPosition(
+  element,
+  distance
+) {
 
-  state =
-    "ready";
-
-  last =
-    null;
-
-  start =
-    0;
-
-  lastPress =
-    0;
-
-  distance =
-    0;
-
-  good =
-    0;
-
-  total =
-    0;
-
-
-  clearInterval(
-    intervalId
+  const percent = Math.min(
+    92,
+    2 + distance * 0.90
   );
 
-
-  timer.textContent =
-    "00.00";
-
-  dist.textContent =
-    "0 M";
-
-
-  runner.style.left =
-    "3%";
-
-
-  msg.textContent =
-    "READY?";
-
-
-  result.classList.add(
-    "hidden"
-  );
-
-
-  controls.classList.remove(
-    "hidden"
-  );
-
-
-  fill.style.width =
-    "0%";
-
-
-  paceText.textContent =
-    "PRESS A TO START";
+  element.style.left =
+    percent + "%";
 
 }
 
 
 /* =========================================
-   FINAL DE LA CARRERA
+   CLASIFICACIÓN
    ========================================= */
 
-function finish() {
+function getRanking() {
 
-  state =
-    "finished";
+  const competitors = [
+
+    {
+      name: "CPU 1",
+      distance: cpuDistances[0]
+    },
+
+    {
+      name: "CPU 2",
+      distance: cpuDistances[1]
+    },
+
+    {
+      name: "CPU 3",
+      distance: cpuDistances[2]
+    },
+
+    {
+      name: "YOU",
+      distance: playerDistance
+    }
+
+  ];
 
 
-  clearInterval(
-    intervalId
+  competitors.sort(
+    (a, b) =>
+      b.distance - a.distance
   );
 
 
-  const ms =
-    performance.now() -
-    start;
+  return competitors;
+
+}
 
 
-  timer.textContent =
-    fmt(ms);
+/* =========================================
+   ACTUALIZAR POSICIONES
+   ========================================= */
+
+function updatePosition() {
+
+  const ranking =
+    getRanking();
 
 
-  finalTime.textContent =
-    fmt(ms);
-
-
-  const score =
-    Math.max(
-      0,
-
-      Math.round(
-
-        100000 -
-
-        (ms / 1000) *
-        7000 +
-
-        good * 100
-
-      )
+  const playerIndex =
+    ranking.findIndex(
+      x => x.name === "YOU"
     );
 
 
-  scoreEl.textContent =
-    "SCORE " +
-
-    String(score)
-      .padStart(5, "0");
+  const pos =
+    playerIndex + 1;
 
 
-  msg.textContent =
-    "FINISH!";
+  const suffix =
+
+    pos === 1 ? "ST" :
+    pos === 2 ? "ND" :
+    pos === 3 ? "RD" :
+    "TH";
 
 
-  controls.classList.add(
-    "hidden"
-  );
+  positionEl.textContent =
+    pos + suffix;
 
 
-  result.classList.remove(
-    "hidden"
-  );
-
-
-  paceText.textContent =
-    "RHYTHM " +
-
-    Math.round(
-
-      good /
-      Math.max(1, total) *
-      100
-
-    ) +
-
-    "%";
+  distanceEl.textContent =
+    Math.min(
+      100,
+      Math.round(playerDistance)
+    ) + " M";
 
 }
 
 
 /* =========================================
-   PULSACIÓN A / B
+   MOVER CPU
    ========================================= */
 
-function press(button) {
+function updateCPU() {
+
+  if (
+    state !== "running"
+  ) {
+
+    return;
+
+  }
+
+
+  for (
+    let i = 0;
+    i < 3;
+    i++
+  ) {
+
+    /*
+     * Variación natural
+     */
+
+    const variation =
+      0.75 +
+      Math.random() * 0.5;
+
+
+    cpuDistances[i] +=
+      cpuSpeeds[i] *
+      variation;
+
+
+    cpuDistances[i] =
+      Math.min(
+        100,
+        cpuDistances[i]
+      );
+
+  }
+
+
+  setRunnerPosition(
+    cpu1,
+    cpuDistances[0]
+  );
+
+  setRunnerPosition(
+    cpu2,
+    cpuDistances[1]
+  );
+
+  setRunnerPosition(
+    cpu3,
+    cpuDistances[2]
+  );
+
+
+  updatePosition();
 
 
   /*
-   * Si ya hemos terminado,
-   * no hacemos nada.
+   * Si un CPU llega primero
    */
+
+  if (
+    Math.max(...cpuDistances) >= 100
+  ) {
+
+    finishRace();
+
+  }
+
+}
+
+
+/* =========================================
+   PULSACIÓN
+   ========================================= */
+
+function press(button) {
 
   if (
     state === "finished"
@@ -284,18 +336,12 @@ function press(button) {
     state === "ready"
   ) {
 
-
-    /*
-     * La carrera siempre empieza
-     * pulsando A.
-     */
-
     if (
       button !== "A"
     ) {
 
-      msg.textContent =
-        "START WITH A!";
+      message.textContent =
+        "PRESS A!";
 
       return;
 
@@ -306,38 +352,33 @@ function press(button) {
       "running";
 
 
-    start =
+    startTime =
       performance.now();
 
 
     lastPress =
-      start;
+      startTime;
 
 
-    last =
+    lastButton =
       "A";
 
 
-    msg.textContent =
+    message.textContent =
       "RUN!";
 
 
-    paceText.textContent =
-      "ALTERNATE A / B";
-
-
-    intervalId =
+    timerInterval =
       setInterval(
-        () => {
-
-          timer.textContent =
-            fmt(
-              performance.now() -
-              start
-            );
-
-        },
+        updateTimer,
         20
+      );
+
+
+    cpuInterval =
+      setInterval(
+        updateCPU,
+        100
       );
 
 
@@ -347,15 +388,14 @@ function press(button) {
 
 
   /*
-   * NO SE PUEDE PULSAR
-   * DOS VECES EL MISMO BOTÓN
+   * MISMO BOTÓN
    */
 
   if (
-    button === last
+    button === lastButton
   ) {
 
-    msg.textContent =
+    message.textContent =
       "ALTERNATE!";
 
     return;
@@ -363,163 +403,356 @@ function press(button) {
   }
 
 
-  /*
-   * CALCULAR INTERVALO
-   */
-
   const now =
     performance.now();
 
 
-  const dt =
-    now -
-    lastPress;
+  const interval =
+    now - lastPress;
 
 
   lastPress =
     now;
 
 
-  last =
+  lastButton =
     button;
 
 
-  total++;
-
-
   /*
-   * DEMASIADO RÁPIDO
+   * RITMO
    */
 
   if (
-    dt < TOO_FAST
+    interval < TOO_FAST
   ) {
 
-    distance =
+    playerDistance =
       Math.max(
         0,
-        distance - 0.8
+        playerDistance - 0.5
       );
 
 
-    msg.textContent =
+    message.textContent =
       "TOO FAST!";
 
-
-    paceText.textContent =
-      "KEEP YOUR RHYTHM";
-
   }
-
-
-  /*
-   * RITMO PERFECTO
-   */
 
   else if (
-    dt >= OPT_MIN &&
-    dt <= OPT_MAX
+    interval >= PERFECT_MIN &&
+    interval <= PERFECT_MAX
   ) {
 
-    distance +=
-      STEP;
+    playerDistance +=
+      PLAYER_STEP;
 
 
-    good++;
-
-
-    msg.textContent =
+    message.textContent =
       "GOOD!";
 
-
-    paceText.textContent =
-      "PERFECT PACE";
-
   }
-
-
-  /*
-   * RITMO INCORRECTO
-   */
 
   else {
 
-    distance +=
-      STEP * 0.72;
+    playerDistance +=
+      PLAYER_STEP * 0.70;
 
 
-    msg.textContent =
-
-      dt < OPT_MIN
+    message.textContent =
+      interval < PERFECT_MIN
         ? "SLOW DOWN!"
         : "FASTER!";
 
-
-    paceText.textContent =
-      "FIND THE RHYTHM";
-
   }
 
 
-  /*
-   * BARRA DE RITMO
-   */
-
-  fill.style.width =
-
+  playerDistance =
     Math.min(
       100,
-
-      good /
-      Math.max(1, total) *
-      100
-
-    ) + "%";
+      playerDistance
+    );
 
 
-  /*
-   * POSICIÓN DEL CORREDOR
-   */
+  setRunnerPosition(
+    player,
+    playerDistance
+  );
 
-  runner.style.left =
 
-    Math.min(
-
-      92,
-
-      3 +
-      distance / 100 *
-      89
-
-    ) + "%";
+  updatePosition();
 
 
   /*
-   * DISTANCIA
-   */
-
-  dist.textContent =
-
-    Math.min(
-
-      100,
-
-      Math.round(distance)
-
-    ) + " M";
-
-
-  /*
-   * META
+   * PLAYER META
    */
 
   if (
-    distance >= 100
+    playerDistance >= 100
   ) {
 
-    finish();
+    finishRace();
 
   }
+
+}
+
+
+/* =========================================
+   CRONÓMETRO
+   ========================================= */
+
+function updateTimer() {
+
+  if (
+    state !== "running"
+  ) {
+
+    return;
+
+  }
+
+
+  timer.textContent =
+    formatTime(
+      performance.now() -
+      startTime
+    );
+
+}
+
+
+/* =========================================
+   FINAL
+   ========================================= */
+
+function finishRace() {
+
+  if (
+    state !== "running"
+  ) {
+
+    return;
+
+  }
+
+
+  state =
+    "finished";
+
+
+  clearInterval(
+    timerInterval
+  );
+
+  clearInterval(
+    cpuInterval
+  );
+
+
+  /*
+   * Tiempo
+   */
+
+  const elapsed =
+    performance.now() -
+    startTime;
+
+
+  const time =
+    formatTime(elapsed);
+
+
+  timer.textContent =
+    time;
+
+
+  finalTime.textContent =
+    time;
+
+
+  /*
+   * Clasificación final
+   */
+
+  const ranking =
+    getRanking();
+
+
+  const playerIndex =
+    ranking.findIndex(
+      x => x.name === "YOU"
+    );
+
+
+  const place =
+    playerIndex + 1;
+
+
+  const suffix =
+
+    place === 1 ? "ST" :
+    place === 2 ? "ND" :
+    place === 3 ? "RD" :
+    "TH";
+
+
+  resultPosition.textContent =
+    place + suffix + " PLACE";
+
+
+  /*
+   * Puntuación
+   */
+
+  const score =
+    Math.max(
+      0,
+      Math.round(
+        100000 -
+        (elapsed / 1000) * 7000 +
+        playerDistance * 100
+      )
+    );
+
+
+  scoreEl.textContent =
+    "SCORE " +
+    String(score)
+      .padStart(5, "0");
+
+
+  /*
+   * Mensaje
+   */
+
+  if (
+    place === 1
+  ) {
+
+    message.textContent =
+      "GOLD!";
+
+  }
+
+  else if (
+    place === 2
+  ) {
+
+    message.textContent =
+      "SILVER!";
+
+  }
+
+  else if (
+    place === 3
+  ) {
+
+    message.textContent =
+      "BRONZE!";
+
+  }
+
+  else {
+
+    message.textContent =
+      "FINISH!";
+
+  }
+
+
+  controls.classList.add(
+    "hidden"
+  );
+
+
+  result.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+/* =========================================
+   RESET
+   ========================================= */
+
+function reset() {
+
+  state =
+    "ready";
+
+
+  clearInterval(
+    timerInterval
+  );
+
+  clearInterval(
+    cpuInterval
+  );
+
+
+  playerDistance =
+    0;
+
+
+  lastButton =
+    null;
+
+
+  lastPress =
+    0;
+
+
+  timer.textContent =
+    "00.00";
+
+
+  distanceEl.textContent =
+    "0 M";
+
+
+  positionEl.textContent =
+    "4TH";
+
+
+  message.textContent =
+    "READY!";
+
+
+  result.classList.add(
+    "hidden"
+  );
+
+
+  controls.classList.remove(
+    "hidden"
+  );
+
+
+  setRunnerPosition(
+    player,
+    0
+  );
+
+
+  resetCPU();
+
+
+  setRunnerPosition(
+    cpu1,
+    0
+  );
+
+  setRunnerPosition(
+    cpu2,
+    0
+  );
+
+  setRunnerPosition(
+    cpu3,
+    0
+  );
 
 }
 
@@ -532,7 +765,6 @@ ArcadeController.on(
   "A",
   () => press("A")
 );
-
 
 ArcadeController.on(
   "B",
@@ -549,9 +781,5 @@ again.addEventListener(
   reset
 );
 
-
-/* =========================================
-   INICIALIZAR
-   ========================================= */
 
 reset();
