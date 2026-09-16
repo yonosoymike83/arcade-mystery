@@ -1,14 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 
-/* =========================================
-   GENERAL
-   ========================================= */
-
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
+
 
 html,
 body {
@@ -18,9 +15,9 @@ body {
   width: 100%;
   height: 100%;
 
-  background: #111;
+  background: #050505;
 
-  color: #fff;
+  color: white;
 
   font-family:
     "Press Start 2P",
@@ -28,6 +25,7 @@ body {
 
   overflow: hidden;
 }
+
 
 body {
 
@@ -47,233 +45,172 @@ body {
 
 .arcade {
 
-  width: min(96vw, 900px);
-
+  width: 100vw;
   height: 100dvh;
 
-  padding: 6px;
+  padding: 4px;
 
   display: flex;
 
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
+
 
 .cabinet {
 
   width: 100%;
 
+  max-width: 1250px;
+
   max-height:
-    calc(100dvh - 12px);
+    calc(100dvh - 8px);
 
-  background: #292929;
+  background:
+    #242424;
 
-  border: 6px solid #555;
+  border:
+    6px solid #555;
 
-  border-radius: 10px;
+  border-radius:
+    12px;
 
-  padding: 6px;
+  padding:
+    5px;
 
   box-shadow:
-    0 6px 0 #050505,
-    0 12px 25px #000;
+    0 5px 0 #000;
 
-  overflow: hidden;
+  overflow:
+    hidden;
 }
+
+
+/* =========================================
+   MARQUEE
+   ========================================= */
 
 .marquee {
 
-  text-align: center;
+  text-align:
+    center;
+
+  padding:
+    9px;
 
   font-size:
-    clamp(18px, 4vw, 34px);
+    clamp(17px, 3vw, 28px);
 
-  padding: 14px 8px;
+  background:
+    #101010;
 
-  background: #181818;
+  border:
+    4px solid #777;
 
-  border: 4px solid #777;
+  color:
+    #fff;
 
-  letter-spacing: 2px;
+  letter-spacing:
+    3px;
 }
+
+
+/* =========================================
+   SCREEN
+   ========================================= */
 
 .screen {
 
-  margin-top: 8px;
+  margin-top:
+    5px;
 
-  background: #071507;
+  height:
+    calc(100dvh - 55px);
 
-  border: 5px solid #222;
+  background:
+    #061306;
 
-  width: 100%;
+  border:
+    5px solid #111;
 
-  min-height: 0;
+  padding:
+    8px;
 
-  padding: 18px;
+  overflow:
+    hidden;
 
-  text-align: center;
-
-  box-shadow:
-    inset 0 0 35px #000;
-
-  overflow: hidden;
+  position:
+    relative;
 }
 
 
 /* =========================================
-   MENU
-   ========================================= */
-
-h1 {
-
-  font-size:
-    clamp(15px, 3vw, 25px);
-
-  line-height: 1.6;
-
-  margin: 20px 0 10px;
-}
-
-.subtitle {
-
-  font-size: 11px;
-
-  margin-bottom: 25px;
-}
-
-.event-card {
-
-  display: grid;
-
-  grid-template-columns:
-    60px
-    1fr
-    70px;
-
-  align-items: center;
-
-  gap: 10px;
-
-  text-decoration: none;
-
-  color: #fff;
-
-  background: #163016;
-
-  border: 4px solid #567d56;
-
-  padding: 16px 12px;
-
-  margin: 12px auto;
-
-  max-width: 620px;
-
-  cursor: pointer;
-}
-
-.event-card:hover {
-
-  background: #214521;
-}
-
-.event-card b {
-
-  text-align: left;
-
-  font-size:
-    clamp(10px, 2vw, 15px);
-}
-
-.event-card span {
-
-  font-size: 9px;
-}
-
-.locked {
-
-  opacity: .45;
-
-  cursor: default;
-}
-
-.insert {
-
-  margin-top: 30px;
-
-  font-size: 10px;
-
-  animation:
-    blink 1s steps(2) infinite;
-}
-
-@keyframes blink {
-
-  50% {
-    opacity: 0;
-  }
-
-}
-
-
-/* =========================================
-   START SCREEN
+   START
    ========================================= */
 
 .start-screen {
 
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
   height: 100%;
 
-  min-height: 0;
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  justify-content:
+    center;
+
+  align-items:
+    center;
+
+  text-align:
+    center;
 }
+
 
 .start-screen h1 {
 
   font-size:
-    clamp(22px, 5vw, 40px);
+    clamp(22px, 5vw, 45px);
+
+  margin:
+    0 0 18px;
 }
+
 
 .start-screen p {
 
-  font-size: 10px;
+  font-size:
+    10px;
 }
+
 
 .start-screen button {
 
-  margin-top: 30px;
+  margin-top:
+    30px;
 
-  padding: 18px 38px;
+  padding:
+    18px 40px;
 
-  font-family: inherit;
+  font-family:
+    inherit;
 
-  font-size: 18px;
+  font-size:
+    18px;
 
-  color: white;
+  background:
+    #28752d;
 
-  background: #234f23;
+  color:
+    white;
 
-  border: 5px solid #729972;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 5px 0 #0b180b;
-}
-
-.start-screen button:active {
-
-  transform:
-    translateY(5px);
+  border:
+    5px solid #8fd18f;
 
   box-shadow:
-    0 0 0 #0b180b;
+    0 5px 0 #123c15;
 }
 
 
@@ -281,257 +218,566 @@ h1 {
    HUD
    ========================================= */
 
-.hud {
+.race-hud {
 
-  display: grid;
+  display:
+    grid;
 
   grid-template-columns:
-    1fr
-    1.3fr
-    1fr;
+    1fr 1.4fr 1fr;
 
-  align-items: center;
+  gap:
+    6px;
 
-  gap: 10px;
-
-  font-size: 10px;
-
-  margin-bottom: 15px;
+  margin-bottom:
+    6px;
 }
 
-.hud > div {
 
-  display: flex;
+.hud-box {
 
-  flex-direction: column;
+  background:
+    #050505;
 
-  gap: 7px;
+  border:
+    3px solid #20d6e8;
+
+  padding:
+    7px;
+
+  text-align:
+    center;
 }
 
-.hud > div:last-child {
 
-  text-align: right;
+.hud-box span {
 
-  align-items: flex-end;
-}
+  display:
+    block;
 
-.hud small {
-
-  font-size: 7px;
-
-  opacity: .65;
-}
-
-.hud #timer {
+  color:
+    #20d6e8;
 
   font-size:
-    clamp(20px, 6vw, 38px);
+    7px;
+
+  margin-bottom:
+    5px;
+}
+
+
+.hud-box strong {
+
+  display:
+    block;
+
+  font-size:
+    clamp(12px, 3vw, 22px);
+}
+
+
+.hud-box small {
+
+  display:
+    block;
+
+  margin-top:
+    4px;
+
+  font-size:
+    7px;
+
+  color:
+    #ffe900;
+}
+
+
+.timer-box strong {
+
+  font-size:
+    clamp(25px, 6vw, 45px);
 }
 
 
 /* =========================================
-   TRACK
+   ESTADIO
+   ========================================= */
+
+.stadium {
+
+  position:
+    relative;
+
+  overflow:
+    hidden;
+
+  border:
+    3px solid #20d6e8;
+}
+
+
+/* CIELO */
+
+.sky {
+
+  height:
+    48px;
+
+  background:
+    linear-gradient(
+      #16a9ef,
+      #62d8ff
+    );
+
+  position:
+    relative;
+}
+
+
+.flags {
+
+  position:
+    absolute;
+
+  bottom:
+    5px;
+
+  left:
+    50%;
+
+  transform:
+    translateX(-50%);
+
+  font-size:
+    18px;
+
+  white-space:
+    nowrap;
+}
+
+
+.cloud {
+
+  position:
+    absolute;
+
+  width:
+    70px;
+
+  height:
+    12px;
+
+  background:
+    white;
+
+  opacity:
+    .9;
+}
+
+
+.cloud1 {
+
+  left:
+    10%;
+
+  top:
+    9px;
+}
+
+
+.cloud2 {
+
+  right:
+    20%;
+
+  top:
+    20px;
+}
+
+
+/* PÚBLICO */
+
+.crowd {
+
+  height:
+    20px;
+
+  background:
+    #3040d8;
+
+  color:
+    #ffd52a;
+
+  font-size:
+    12px;
+
+  line-height:
+    20px;
+
+  overflow:
+    hidden;
+
+  white-space:
+    nowrap;
+}
+
+
+/* CARTEL */
+
+.banner {
+
+  height:
+    32px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #143de5,
+      #ff2424,
+      #143de5
+    );
+
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  align-items:
+    center;
+
+  font-size:
+    clamp(10px, 2vw, 17px);
+
+  text-shadow:
+    2px 2px #000;
+}
+
+
+/* =========================================
+   PISTA
    ========================================= */
 
 .track {
 
-  height: 150px;
-
-  position: relative;
+  position:
+    relative;
 
   background:
-
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0 43px,
-      #6a6a6a 44px 47px
-    ),
-
-    #185018;
+    #ef594b;
 
   border-top:
-    5px solid #ddd;
+    4px solid #fff;
 
   border-bottom:
-    5px solid #ddd;
-
-  overflow: hidden;
+    4px solid #fff;
 }
+
+
+/* CARRIL */
+
+.lane {
+
+  height:
+    55px;
+
+  position:
+    relative;
+
+  border-bottom:
+    3px solid #fff;
+
+  overflow:
+    hidden;
+}
+
+
+.lane:last-of-type {
+
+  border-bottom:
+    none;
+}
+
+
+.lane-number {
+
+  position:
+    absolute;
+
+  left:
+    8px;
+
+  top:
+    14px;
+
+  background:
+    #050505;
+
+  padding:
+    7px 10px;
+
+  font-size:
+    10px;
+
+  z-index:
+    5;
+}
+
+
+/* CORREDORES */
 
 .runner {
 
-  position: absolute;
+  position:
+    absolute;
 
-  left: 3%;
+  left:
+    2%;
 
-  bottom: 42px;
+  bottom:
+    8px;
 
-  font-size: 44px;
-
-  transform:
-    scaleX(-1);
+  font-size:
+    32px;
 
   transition:
     left .08s linear;
 
-  z-index: 2;
+  z-index:
+    3;
 }
+
+
+.cpu:nth-child(1) {
+  filter:
+    hue-rotate(20deg);
+}
+
+
+.player {
+
+  filter:
+    none;
+}
+
+
+.runner-name {
+
+  position:
+    absolute;
+
+  left:
+    45px;
+
+  top:
+    7px;
+
+  background:
+    rgba(0,0,0,.75);
+
+  padding:
+    4px 6px;
+
+  font-size:
+    6px;
+
+  z-index:
+    4;
+}
+
+
+.runner-name.you {
+
+  color:
+    #2dff3b;
+
+  border:
+    2px solid #2dff3b;
+}
+
+
+/* META */
 
 .finish-line {
 
-  position: absolute;
+  position:
+    absolute;
 
-  right: 5%;
+  right:
+    3%;
 
-  top: 0;
+  top:
+    0;
 
-  width: 10px;
+  width:
+    12px;
 
-  height: 100%;
+  height:
+    100%;
 
   background:
-
     repeating-linear-gradient(
       to bottom,
-      #fff 0 18px,
-      #111 18px 36px
+      white 0 9px,
+      black 9px 18px
     );
+
+  z-index:
+    6;
+}
+
+
+.finish-line span {
+
+  position:
+    absolute;
+
+  right:
+    20px;
+
+  top:
+    4px;
+
+  font-size:
+    7px;
+
+  color:
+    #fff;
+
+  white-space:
+    nowrap;
 }
 
 
 /* =========================================
-   MESSAGE
+   DISTANCIA
+   ========================================= */
+
+.distance-line {
+
+  height:
+    25px;
+
+  background:
+    #063b08;
+
+  display:
+    flex;
+
+  justify-content:
+    space-around;
+
+  align-items:
+    center;
+
+  font-size:
+    7px;
+
+  color:
+    white;
+}
+
+
+/* =========================================
+   MENSAJE
    ========================================= */
 
 .message {
 
-  min-height: 22px;
+  height:
+    20px;
 
-  font-size: 10px;
+  text-align:
+    center;
 
-  margin: 8px;
+  font-size:
+    9px;
+
+  margin:
+    4px;
 }
 
 
 /* =========================================
-   CONTROLES
+   BOTONES NES
    ========================================= */
 
-.controls {
+.nes-controls {
 
-  display: flex;
+  display:
+    flex;
 
-  justify-content: center;
+  justify-content:
+    center;
+
+  align-items:
+    center;
 
   gap:
-    clamp(35px, 12vw, 100px);
+    70px;
 
-  margin: 8px 0 12px;
+  margin:
+    3px 0 0;
 }
+
 
 .nes-button {
 
   width:
-    clamp(78px, 20vw, 115px);
+    72px;
 
   height:
-    clamp(78px, 20vw, 115px);
+    72px;
 
-  border-radius: 50%;
+  border-radius:
+    50%;
 
-  border: 6px solid #222;
+  border:
+    6px solid #222;
 
-  color: #fff;
+  color:
+    white;
 
-  font-family: inherit;
+  font-family:
+    inherit;
 
   font-size:
-    clamp(20px, 5vw, 30px);
+    22px;
 
   box-shadow:
+    inset 0 -7px 0 rgba(0,0,0,.35),
+    0 5px 0 #050505;
 
-    inset 0 -8px 0
-      rgba(0,0,0,.25),
+  touch-action:
+    manipulation;
 
-    0 5px 0 #090909;
-
-  touch-action: manipulation;
-
-  user-select: none;
-
-  cursor: pointer;
+  user-select:
+    none;
 }
+
 
 .nes-button:active {
 
   transform:
-    translateY(4px);
+    translateY(5px);
 
   box-shadow:
-
-    inset 0 -3px 0
-      rgba(0,0,0,.25),
-
-    0 1px 0 #090909;
+    inset 0 -3px 0 rgba(0,0,0,.35),
+    0 1px 0 #050505;
 }
+
 
 .button-a {
 
-  background: #b51e32;
+  background:
+    #e52535;
 }
+
 
 .button-b {
 
-  background: #8b2b75;
-}
-
-
-/* =========================================
-   PACE
-   ========================================= */
-
-.pace {
-
-  max-width: 520px;
-
-  margin: auto;
-}
-
-.pace small {
-
-  font-size: 7px;
-
-  opacity: .65;
-}
-
-.pace-bar {
-
-  height: 13px;
-
-  border: 3px solid #777;
-
-  background: #111;
-}
-
-#pace-fill {
-
-  width: 0;
-
-  height: 100%;
-
-  background: #55aa55;
-
-  transition:
-    width .1s;
-}
-
-#pace-text {
-
-  font-size: 7px;
-
-  margin-top: 6px;
-
-  min-height: 14px;
+  background:
+    #3d55e8;
 }
 
 
@@ -541,45 +787,70 @@ h1 {
 
 .result {
 
-  width:
-    min(90%, 560px);
+  position:
+    absolute;
 
-  margin:
-    15px auto;
+  left:
+    50%;
+
+  top:
+    50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  width:
+    min(75%, 520px);
 
   padding:
-    18px 20px;
-
-  border:
-    4px solid #8fb98f;
+    16px;
 
   background:
-    #102610;
+    #092409;
+
+  border:
+    4px solid #ffe500;
 
   text-align:
     center;
+
+  z-index:
+    20;
 }
+
 
 .result-title {
 
   font-size:
-    18px;
+    17px;
+
+  color:
+    #ffe500;
 
   margin-bottom:
-    15px;
+    10px;
 }
+
+
+.result-position {
+
+  font-size:
+    11px;
+
+  margin-bottom:
+    8px;
+}
+
 
 .result-time-label {
 
   font-size:
-    8px;
+    7px;
 
   opacity:
-    .65;
-
-  margin-bottom:
-    4px;
+    .7;
 }
+
 
 .result > strong {
 
@@ -587,20 +858,25 @@ h1 {
     block;
 
   font-size:
-    clamp(28px, 6vw, 42px);
+    clamp(30px, 6vw, 42px);
 
   margin:
-    4px 0 12px;
+    4px 0 8px;
 }
+
 
 .result-score {
 
   font-size:
-    12px;
+    10px;
+
+  color:
+    #20d6e8;
 
   margin-bottom:
-    17px;
+    12px;
 }
+
 
 .result button {
 
@@ -608,29 +884,21 @@ h1 {
     inherit;
 
   font-size:
-    9px;
+    8px;
 
   color:
-    #fff;
+    white;
 
   background:
-    #234f23;
+    #28752d;
 
   border:
-    4px solid #729972;
+    4px solid #8fd18f;
 
   padding:
-    11px 16px;
-
-  cursor:
-    pointer;
+    9px 14px;
 }
 
-.result button:active {
-
-  transform:
-    translateY(3px);
-}
 
 .result a {
 
@@ -638,13 +906,13 @@ h1 {
     block;
 
   margin-top:
-    12px;
+    10px;
 
   color:
-    #b7d9b7;
+    #fff;
 
   font-size:
-    7px;
+    6px;
 }
 
 
@@ -660,162 +928,12 @@ h1 {
 
 
 /* =========================================
-   CUANDO APARECE EL RESULTADO
-   =========================================
-
-   Ocultamos automáticamente el HUD,
-   el mensaje FINISH y el espacio de
-   controles/ritmo.
-
-   Así no necesitamos tocar 100m.js.
-   ========================================= */
-
-#game-screen:has(#result:not(.hidden)) .hud {
-
-  display: none;
-}
-
-#game-screen:has(#result:not(.hidden)) .message {
-
-  display: none;
-}
-
-#game-screen:has(#result:not(.hidden)) .pace {
-
-  display: none;
-}
-
-
-/* =========================================
-   MÓVIL
-   ========================================= */
-
-@media (max-width: 600px) {
-
-  .arcade {
-
-    width: 100vw;
-
-    height: 100dvh;
-
-    padding: 3px;
-  }
-
-  .cabinet {
-
-    max-height:
-      calc(100dvh - 6px);
-
-    border-width:
-      5px;
-
-    padding:
-      4px;
-  }
-
-  .marquee {
-
-    padding:
-      10px 5px;
-
-    font-size:
-      clamp(17px, 5vw, 25px);
-  }
-
-  .screen {
-
-    padding:
-      12px;
-
-    margin-top:
-      6px;
-  }
-
-}
-
-
-/* =========================================
    HORIZONTAL
    ========================================= */
 
-@media (orientation: landscape) {
-
-  body {
-
-    width: 100vw;
-
-    height: 100dvh;
-
-    align-items:
-      center;
-
-    overflow:
-      hidden;
-  }
-
-  .arcade {
-
-    width:
-      100vw;
-
-    height:
-      100dvh;
-
-    max-width:
-      1200px;
-
-    padding:
-      3px;
-  }
-
-  .cabinet {
-
-    width:
-      100%;
-
-    max-height:
-      calc(100dvh - 6px);
-
-    padding:
-      4px;
-
-    border-width:
-      4px;
-  }
-
-  .marquee {
-
-    padding:
-      6px;
-
-    font-size:
-      18px;
-  }
-
-  .screen {
-
-    margin-top:
-      4px;
-
-    height:
-      calc(100dvh - 48px);
-
-    min-height:
-      0;
-
-    padding:
-      8px 16px;
-  }
-
-}
-
-
-/* =========================================
-   HORIZONTAL + POCA ALTURA
-   ========================================= */
-
-@media (orientation: landscape)
-       and (max-height: 600px) {
+@media (
+  orientation: landscape
+) {
 
   .arcade {
 
@@ -823,85 +941,165 @@ h1 {
       2px;
   }
 
+
   .cabinet {
 
     max-height:
       calc(100dvh - 4px);
 
-    border-width:
-      4px;
-
     padding:
       3px;
   }
+
 
   .marquee {
 
     padding:
-      4px;
+      5px;
 
     font-size:
-      15px;
+      17px;
   }
+
 
   .screen {
 
-    margin-top:
-      3px;
-
     height:
-      calc(100dvh - 38px);
+      calc(100dvh - 42px);
 
     padding:
       5px 10px;
   }
 
-  .hud {
+
+  .race-hud {
 
     margin-bottom:
       4px;
   }
 
-  .track {
 
-    height:
-      85px;
+  .hud-box {
+
+    padding:
+      5px;
   }
 
-  .runner {
 
-    bottom:
-      19px;
-
-    font-size:
-      28px;
-  }
-
-  .message {
-
-    min-height:
-      16px;
+  .stadium {
 
     margin:
-      4px;
+      0;
+  }
+
+
+  .sky {
+
+    height:
+      35px;
+  }
+
+
+  .crowd {
+
+    height:
+      14px;
+
+    line-height:
+      14px;
 
     font-size:
       8px;
   }
 
-  .controls {
+
+  .banner {
+
+    height:
+      25px;
+
+    font-size:
+      10px;
+  }
+
+
+  .lane {
+
+    height:
+      43px;
+  }
+
+
+  .runner {
+
+    bottom:
+      5px;
+
+    font-size:
+      27px;
+  }
+
+
+  .lane-number {
+
+    top:
+      8px;
+
+    padding:
+      5px 7px;
+
+    font-size:
+      8px;
+  }
+
+
+  .runner-name {
+
+    top:
+      4px;
+
+    font-size:
+      5px;
+  }
+
+
+  .distance-line {
+
+    height:
+      18px;
+  }
+
+
+  .message {
+
+    height:
+      15px;
 
     margin:
-      3px 0 4px;
+      2px;
+
+    font-size:
+      7px;
   }
+
+
+  .nes-controls {
+
+    gap:
+      55px;
+
+    margin-top:
+      2px;
+  }
+
 
   .nes-button {
 
     width:
-      58px;
+      62px;
 
     height:
-      58px;
+      62px;
 
     border-width:
       5px;
@@ -910,70 +1108,98 @@ h1 {
       18px;
   }
 
-  .pace {
 
-    display:
-      none;
-  }
-
-
-  /* RESULTADO EN HORIZONTAL */
-
-  #game-screen:has(#result:not(.hidden)) .result {
-
-    width:
-      min(70%, 520px);
-
-    margin:
-      8px auto;
+  .result {
 
     padding:
-      12px 16px;
+      12px;
   }
 
-  #game-screen:has(#result:not(.hidden)) .result-title {
+
+  .result-title {
 
     font-size:
       14px;
-
-    margin-bottom:
-      8px;
   }
 
-  #game-screen:has(#result:not(.hidden)) .result > strong {
+
+  .result > strong {
 
     font-size:
       32px;
-
-    margin:
-      3px 0 8px;
   }
 
-  #game-screen:has(#result:not(.hidden)) .result-score {
+}
+
+
+/* =========================================
+   POCA ALTURA
+   ========================================= */
+
+@media (
+  orientation: landscape
+) and (
+  max-height: 500px
+) {
+
+  .lane {
+
+    height:
+      37px;
+  }
+
+
+  .runner {
+
+    bottom:
+      3px;
 
     font-size:
+      23px;
+  }
+
+
+  .sky {
+
+    height:
+      27px;
+  }
+
+
+  .crowd {
+
+    height:
       10px;
 
-    margin-bottom:
-      9px;
+    line-height:
+      10px;
   }
 
-  #game-screen:has(#result:not(.hidden)) .result button {
+
+  .banner {
+
+    height:
+      20px;
+  }
+
+
+  .nes-button {
+
+    width:
+      54px;
+
+    height:
+      54px;
 
     font-size:
-      8px;
-
-    padding:
-      8px 12px;
+      16px;
   }
 
-  #game-screen:has(#result:not(.hidden)) .result a {
 
-    margin-top:
-      8px;
+  .nes-controls {
 
-    font-size:
-      6px;
+    gap:
+      45px;
   }
 
-   }
+     }
