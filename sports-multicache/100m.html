@@ -19,380 +19,413 @@
 
 </head>
 
-<body>
 
-<main class="arcade">
-
-  <div class="cabinet">
-
-    <div class="marquee">
-      OLYMPIA 8-BIT
-    </div>
+<body class="sports-100m">
 
 
-    <div class="screen">
+  <main class="arcade">
+
+    <div class="cabinet">
 
 
       <!-- =================================
-           START
+           MARQUEE
            ================================= -->
 
-      <div
-        id="start-screen"
-        class="start-screen"
-      >
-
-        <h1>
-          100 METROS
-        </h1>
-
-        <p>
-          THE 8-BIT SPORTS GAMES
-        </p>
-
-        <button
-          id="start-button"
-          type="button"
-          onclick="startGame()"
-        >
-          START
-        </button>
-
+      <div class="marquee">
+        OLYMPIA 8-BIT
       </div>
 
 
-      <!-- =================================
-           JUEGO
-           ================================= -->
-
-      <div
-        id="game-screen"
-        class="game-screen hidden"
-      >
+      <div class="screen">
 
 
         <!-- =================================
-             MARCADOR
+             PANTALLA DE INICIO
              ================================= -->
 
-        <div class="race-hud">
+        <div
+          id="start-screen"
+          class="start-screen"
+        >
+
+          <h1>
+            100 METROS
+          </h1>
+
+          <p>
+            THE 8-BIT SPORTS GAMES
+          </p>
+
+          <button
+            id="start-button"
+            type="button"
+            onclick="startGame()"
+          >
+            START
+          </button>
+
+        </div>
 
 
-          <div class="hud-box">
+        <!-- =================================
+             PANTALLA DEL JUEGO
+             ================================= -->
 
-            <span>
-              EVENT
-            </span>
+        <div
+          id="game-screen"
+          class="game-screen hidden"
+        >
 
-            <strong>
-              100 M
-            </strong>
+
+          <!-- =================================
+               MARCADOR
+               ================================= -->
+
+          <div class="race-hud">
+
+
+            <div class="hud-box">
+
+              <span>
+                EVENT
+              </span>
+
+              <strong>
+                100 M
+              </strong>
+
+            </div>
+
+
+            <div class="hud-box timer-box">
+
+              <span>
+                TIME
+              </span>
+
+              <strong id="timer">
+                00.00
+              </strong>
+
+            </div>
+
+
+            <div class="hud-box">
+
+              <span>
+                WR
+              </span>
+
+              <strong>
+                09.58
+              </strong>
+
+            </div>
+
+
+            <div class="hud-box">
+
+              <span>
+                POSITION
+              </span>
+
+              <strong id="position">
+                2ND
+              </strong>
+
+            </div>
+
+
+            <div class="hud-box">
+
+              <span>
+                DISTANCE
+              </span>
+
+              <strong id="distance">
+                0 M
+              </strong>
+
+            </div>
+
 
           </div>
 
 
-          <div class="hud-box timer-box">
+          <!-- =================================
+               ESTADIO
+               ================================= -->
 
-            <span>
+          <div class="stadium">
+
+
+            <!-- CIELO -->
+
+            <div class="sky">
+
+              <div class="cloud cloud-left"></div>
+
+              <div class="cloud cloud-right"></div>
+
+              <div class="flags">
+                🇪🇸 🇫🇷 🇮🇹 🇩🇪 🇬🇧 🇯🇵 🇺🇸
+              </div>
+
+            </div>
+
+
+            <!-- PUBLICO -->
+
+            <div class="crowd">
+
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+              <span>●</span>
+
+            </div>
+
+
+            <!-- CARTEL -->
+
+            <div class="stadium-banner">
+              OLYMPIA 8-BIT
+            </div>
+
+
+            <!-- =================================
+                 PISTA CPU
+                 ================================= -->
+
+            <div class="race-track cpu-track">
+
+
+              <div class="lane-number">
+                1
+              </div>
+
+
+              <div class="lane-label">
+                CPU
+              </div>
+
+
+              <div
+                id="cpu-runner"
+                class="runner cpu-runner"
+              >
+                🏃
+              </div>
+
+
+              <div class="finish-line"></div>
+
+
+            </div>
+
+
+            <!-- ESCALA CPU -->
+
+            <div class="distance-line">
+
+              <span>0</span>
+              <span>20</span>
+              <span>40</span>
+              <span>60</span>
+              <span>80</span>
+              <span>100</span>
+
+            </div>
+
+
+            <!-- =================================
+                 PISTA JUGADOR
+                 ================================= -->
+
+            <div class="race-track player-track">
+
+
+              <div class="lane-number">
+                2
+              </div>
+
+
+              <div class="lane-label you-label">
+                YOU
+              </div>
+
+
+              <div
+                id="player-runner"
+                class="runner player-runner"
+              >
+                🏃
+              </div>
+
+
+              <div class="finish-line"></div>
+
+
+            </div>
+
+
+            <!-- ESCALA JUGADOR -->
+
+            <div class="distance-line">
+
+              <span>0</span>
+              <span>20</span>
+              <span>40</span>
+              <span>60</span>
+              <span>80</span>
+              <span>100</span>
+
+            </div>
+
+
+          </div>
+
+
+          <!-- =================================
+               MENSAJE
+               ================================= -->
+
+          <div
+            id="message"
+            class="message"
+          >
+            READY!
+          </div>
+
+
+          <!-- =================================
+               CONTROLES NES
+               ================================= -->
+
+          <div class="nes-controls">
+
+
+            <button
+              id="buttonA"
+              class="nes-button button-a"
+              type="button"
+            >
+              A
+            </button>
+
+
+            <div class="rhythm">
+
+              <div>
+                KEEP THE RHYTHM!
+              </div>
+
+
+              <div class="rhythm-bar">
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+              </div>
+
+            </div>
+
+
+            <button
+              id="buttonB"
+              class="nes-button button-b"
+              type="button"
+            >
+              B
+            </button>
+
+
+          </div>
+
+
+          <!-- =================================
+               RESULTADO
+               ================================= -->
+
+          <div
+            id="result"
+            class="result hidden"
+          >
+
+
+            <div class="result-title">
+              FINISH!
+            </div>
+
+
+            <div
+              id="result-position"
+              class="result-position"
+            >
+              1ST PLACE
+            </div>
+
+
+            <div class="result-time-label">
               TIME
-            </span>
+            </div>
 
-            <strong id="timer">
+
+            <strong id="final-time">
               00.00
             </strong>
 
-          </div>
-
-
-          <div class="hud-box">
-
-            <span>
-              WR
-            </span>
-
-            <strong>
-              09.58
-            </strong>
-
-          </div>
-
-
-          <div class="hud-box">
-
-            <span>
-              POSITION
-            </span>
-
-            <strong id="position">
-              2ND
-            </strong>
-
-          </div>
-
-
-          <div class="hud-box">
-
-            <span>
-              DISTANCE
-            </span>
-
-            <strong id="distance">
-              0 M
-            </strong>
-
-          </div>
-
-        </div>
-
-
-        <!-- =================================
-             ESTADIO
-             ================================= -->
-
-        <div class="stadium">
-
-
-          <!-- CIELO -->
-
-          <div class="sky">
-
-            <div class="cloud cloud-left"></div>
-            <div class="cloud cloud-right"></div>
-
-            <div class="flags">
-              🇪🇸 🇫🇷 🇮🇹 🇩🇪 🇬🇧 🇯🇵 🇺🇸
-            </div>
-
-          </div>
-
-
-          <!-- PUBLICO -->
-
-          <div class="crowd">
-
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-            <span>●</span>
-
-          </div>
-
-
-          <!-- CARTEL -->
-
-          <div class="stadium-banner">
-            OLYMPIA 8-BIT
-          </div>
-
-
-          <!-- =================================
-               PISTA CPU
-               ================================= -->
-
-          <div class="race-track cpu-track">
-
-            <div class="lane-number">
-              1
-            </div>
-
-            <div class="lane-label">
-              CPU
-            </div>
 
             <div
-              id="cpu-runner"
-              class="runner cpu-runner"
+              id="score"
+              class="result-score"
             >
-              🏃
+              SCORE 00000
             </div>
 
-            <div class="finish-line"></div>
 
-          </div>
-
-
-          <!-- ESCALA CPU -->
-
-          <div class="distance-line">
-
-            <span>0</span>
-            <span>20</span>
-            <span>40</span>
-            <span>60</span>
-            <span>80</span>
-            <span>100</span>
-
-          </div>
-
-
-          <!-- =================================
-               PISTA JUGADOR
-               ================================= -->
-
-          <div class="race-track player-track">
-
-            <div class="lane-number">
-              2
-            </div>
-
-            <div class="lane-label you-label">
-              YOU
-            </div>
-
-            <div
-              id="player-runner"
-              class="runner player-runner"
+            <button
+              id="again"
+              type="button"
             >
-              🏃
-            </div>
+              RUN AGAIN
+            </button>
 
-            <div class="finish-line"></div>
+
+            <a href="index.html">
+              BACK TO EVENTS
+            </a>
+
 
           </div>
 
-
-          <!-- ESCALA PLAYER -->
-
-          <div class="distance-line">
-
-            <span>0</span>
-            <span>20</span>
-            <span>40</span>
-            <span>60</span>
-            <span>80</span>
-            <span>100</span>
-
-          </div>
-
-
-        </div>
-
-
-        <!-- =================================
-             MENSAJE
-             ================================= -->
-
-        <div
-          id="message"
-          class="message"
-        >
-          READY!
-        </div>
-
-
-        <!-- =================================
-             BOTONES NES
-             ================================= -->
-
-        <div class="nes-controls">
-
-          <button
-            id="buttonA"
-            class="nes-button button-a"
-            type="button"
-          >
-            A
-          </button>
-
-
-          <div class="rhythm">
-
-            <div>
-              KEEP THE RHYTHM!
-            </div>
-
-            <div class="rhythm-bar">
-
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-
-            </div>
-
-          </div>
-
-
-          <button
-            id="buttonB"
-            class="nes-button button-b"
-            type="button"
-          >
-            B
-          </button>
-
-        </div>
-
-
-        <!-- =================================
-             RESULTADO
-             ================================= -->
-
-        <div
-          id="result"
-          class="result hidden"
-        >
-
-          <div class="result-title">
-            FINISH!
-          </div>
-
-          <div
-            id="result-position"
-            class="result-position"
-          >
-            1ST PLACE
-          </div>
-
-          <div class="result-time-label">
-            TIME
-          </div>
-
-          <strong id="final-time">
-            00.00
-          </strong>
-
-          <div
-            id="score"
-            class="result-score"
-          >
-            SCORE 00000
-          </div>
-
-          <button
-            id="again"
-            type="button"
-          >
-            RUN AGAIN
-          </button>
-
-          <a href="index.html">
-            BACK TO EVENTS
-          </a>
 
         </div>
 
@@ -401,66 +434,120 @@
 
     </div>
 
-  </div>
-
-</main>
+  </main>
 
 
-<!-- =================================
-     START / FULLSCREEN
-     ================================= -->
+  <!-- =================================
+       ORIENTACIÓN Y FULLSCREEN
+       ================================= -->
 
-<script>
+  <script>
 
-function startGame() {
+    async function startGame() {
 
-  document
-    .getElementById("start-screen")
-    .classList.add("hidden");
+      const startScreen =
+        document.getElementById(
+          "start-screen"
+        );
 
-  document
-    .getElementById("game-screen")
-    .classList.remove("hidden");
+      const gameScreen =
+        document.getElementById(
+          "game-screen"
+        );
 
 
-  try {
+      /*
+       * Ocultar inicio
+       */
 
-    if (
-      !document.fullscreenElement &&
-      document.documentElement.requestFullscreen
-    ) {
+      startScreen.classList.add(
+        "hidden"
+      );
 
-      document.documentElement
-        .requestFullscreen()
-        .catch(() => {});
+
+      /*
+       * Mostrar juego
+       */
+
+      gameScreen.classList.remove(
+        "hidden"
+      );
+
+
+      /*
+       * Intentar pantalla completa.
+       *
+       * En Android debe ejecutarse
+       * directamente como consecuencia
+       * del toque sobre START.
+       */
+
+      try {
+
+        if (
+          !document.fullscreenElement &&
+          document.documentElement.requestFullscreen
+        ) {
+
+          await document.documentElement
+            .requestFullscreen();
+
+        }
+
+      } catch (error) {
+
+        console.log(
+          "Fullscreen no disponible",
+          error
+        );
+
+      }
+
+
+      /*
+       * Bloquear orientación horizontal.
+       */
+
+      try {
+
+        if (
+          screen.orientation &&
+          screen.orientation.lock
+        ) {
+
+          await screen.orientation.lock(
+            "landscape"
+          );
+
+        }
+
+      } catch (error) {
+
+        console.log(
+          "Orientation lock no disponible",
+          error
+        );
+
+      }
 
     }
 
-  } catch (e) {}
+  </script>
 
 
-  try {
+  <!-- =================================
+       CONTROLADOR
+       ================================= -->
 
-    if (
-      screen.orientation &&
-      screen.orientation.lock
-    ) {
-
-      screen.orientation
-        .lock("landscape")
-        .catch(() => {});
-
-    }
-
-  } catch (e) {}
-
-}
-
-</script>
+  <script src="js/controller.js"></script>
 
 
-<script src="js/controller.js"></script>
-<script src="js/100m.js"></script>
+  <!-- =================================
+       JUEGO 100 M
+       ================================= -->
+
+  <script src="js/100m.js"></script>
+
 
 </body>
 
