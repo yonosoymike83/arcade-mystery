@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 /* =========================================================
+   OLYMPIA 8-BIT
    SPORTS MYSTERY CACHE
-   MENU PRINCIPAL
+   CSS EXCLUSIVO DEL MENÚ PRINCIPAL
    ========================================================= */
 
 * {
@@ -12,50 +13,159 @@
 
 html,
 body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
 }
 
 body {
-    background:
-        radial-gradient(circle at 50% 20%, #39495c 0%, #202a38 45%, #111722 100%);
-    color: #ffffff;
-    font-family: 'Press Start 2P', monospace;
-    overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at center top,
+      #3d4b5c 0%,
+      #222c38 45%,
+      #111821 100%
+    );
+
+  color: #ffffff;
+  font-family: 'Press Start 2P', monospace;
+
+  overflow-x: hidden;
 }
 
-/* =========================================================
-   CONTENEDOR PRINCIPAL
-   ========================================================= */
-
-.sports-menu {
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
 
 /* =========================================================
    ARCADE
    ========================================================= */
 
 .arcade {
-    width: min(100%, 900px);
+  width: 100%;
+  max-width: 900px;
+
+  padding: 20px;
 }
 
+
+/* =========================================================
+   CABINET
+   ========================================================= */
+
 .cabinet {
-    position: relative;
-    width: 100%;
-    padding: 14px;
-    background: linear-gradient(
-        145deg,
-        #4a5563,
-        #242c37 55%,
-        #151b24
+  width: 100%;
+
+  padding: 14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #4a5664 0%,
+      #303946 45%,
+      #1c232c 100%
+    );
+
+  border: 4px solid #0b0f14;
+  border-radius: 18px;
+
+  box-shadow:
+    0 0 0 3px #687583,
+    0 20px 45px rgba(0, 0, 0, 0.55);
+}
+
+
+/* =========================================================
+   MARQUEE
+   ========================================================= */
+
+.marquee {
+  width: 100%;
+
+  padding: 22px 15px;
+  margin-bottom: 14px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ed5545 0%,
+      #c93632 50%,
+      #91252a 100%
+    );
+
+  border: 4px solid #11151a;
+  border-radius: 10px;
+
+  color: #ffe66d;
+
+  font-size: clamp(20px, 4vw, 36px);
+  line-height: 1.3;
+
+  text-shadow:
+    3px 3px 0 #64191e;
+
+  box-shadow:
+    inset 0 3px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -5px 0 rgba(0, 0, 0, 0.22);
+}
+
+
+/* =========================================================
+   SCREEN
+   ========================================================= */
+
+.screen {
+  position: relative;
+
+  width: 100%;
+
+  padding: 35px 30px 28px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #123746 0%,
+      #0e2d38 50%,
+      #09232d 100%
+    );
+
+  border: 5px solid #080c11;
+  border-radius: 12px;
+
+  box-shadow:
+    inset 0 0 0 3px #263e47,
+    inset 0 0 45px rgba(0, 0, 0, 0.5);
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   EFECTO CRT
+   ========================================================= */
+
+.screen::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.018) 0px,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px,
+      transparent 4px
     );
     border: 4px solid #0b0e13;
     border-radius: 18px;
@@ -68,279 +178,251 @@ body {
    MARQUEE
    ========================================================= */
 
-.marquee {
-    position: relative;
-    text-align: center;
-    padding: 18px 12px;
-    margin-bottom: 12px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #e84b3c 0%,
-            #c72f2f 45%,
-            #8f2026 100%
-        );
-
-    border: 4px solid #11151b;
-    border-radius: 10px;
-
-    color: #ffe66d;
-    font-size: clamp(18px, 4vw, 34px);
-    line-height: 1.3;
-
-    text-shadow:
-        3px 3px 0 #6b151b,
-        -1px -1px 0 #fff08a;
-
-    box-shadow:
-        inset 0 3px 0 rgba(255,255,255,0.18),
-        inset 0 -4px 0 rgba(0,0,0,0.25);
-}
-
-/* pequeño efecto luminoso */
-.marquee::after {
-    content: "";
-    position: absolute;
-    left: 8%;
-    right: 8%;
-    bottom: 5px;
-    height: 2px;
-    background: rgba(255, 240, 138, 0.45);
-}
-
 /* =========================================================
-   PANTALLA DEL MENÚ
+   TÍTULO
    ========================================================= */
 
-.screen {
-    position: relative;
-    width: 100%;
-    padding: clamp(18px, 4vw, 35px);
+.screen h1 {
+  position: relative;
+  z-index: 1;
 
-    background:
-        linear-gradient(
-            180deg,
-            #102b38 0%,
-            #123e48 45%,
-            #09242d 100%
-        );
+  margin: 0;
 
-    border: 5px solid #090c11;
-    border-radius: 12px;
+  text-align: center;
 
-    box-shadow:
-        inset 0 0 0 3px #263946,
-        inset 0 0 35px rgba(0,0,0,0.45);
+  color: #ffe66d;
+
+  font-size: clamp(18px, 4vw, 30px);
+  line-height: 1.5;
+
+  text-shadow:
+    3px 3px 0 #554514;
 }
 
 /* =========================================================
    CABECERA DEL MENÚ
    ========================================================= */
 
-.menu-title {
-    text-align: center;
-    margin-bottom: 28px;
-}
-
-.menu-title h1 {
-    margin: 0;
-    color: #ffe66d;
-    font-size: clamp(18px, 4vw, 30px);
-    line-height: 1.5;
-    text-shadow: 3px 3px 0 #513f13;
-}
-
-.menu-title p {
-    margin: 12px 0 0;
-    color: #a9e7ed;
-    font-size: clamp(8px, 1.8vw, 12px);
-    line-height: 1.8;
-}
-
 /* =========================================================
-   LISTA DE EVENTOS
+   SUBTÍTULO
    ========================================================= */
 
-.events {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
+.subtitle {
+  position: relative;
+  z-index: 1;
+
+  margin: 14px 0 30px;
+
+  text-align: center;
+
+  color: #8ed5dc;
+
+  font-size: clamp(8px, 1.8vw, 12px);
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   EVENT CARDS
+   ========================================================= */
+
+.event-card {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  min-height: 82px;
+
+  margin-bottom: 14px;
+  padding: 14px 18px;
+
+  display: grid;
+
+  grid-template-columns: 70px 1fr 100px;
+
+  align-items: center;
+
+  gap: 15px;
+
+  text-decoration: none;
+
+  background:
+    linear-gradient(
+      145deg,
+      #344d5d 0%,
+      #273c4b 100%
+    );
+
+  border: 3px solid #0b1117;
+  border-radius: 10px;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 6px 0 #10161c,
+    inset 0 2px 0 rgba(255, 255, 255, 0.12);
+
+  transition:
+    transform 0.08s ease,
+    box-shadow 0.08s ease,
+    background 0.08s ease;
 }
 
 /* =========================================================
    BOTÓN / EVENTO
    ========================================================= */
 
-.event {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 14px;
+/* =========================================================
+   NÚMERO
+   ========================================================= */
 
-    min-height: 82px;
-    padding: 12px 14px;
+.event-card > span:first-child {
+  width: 48px;
+  height: 48px;
 
-    background:
-        linear-gradient(
-            145deg,
-            #34495e,
-            #263746
-        );
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    border: 3px solid #111820;
-    border-radius: 10px;
+  background: #e5463d;
 
-    color: #ffffff;
-    text-decoration: none;
+  border: 3px solid #10151b;
+  border-radius: 50%;
 
-    box-shadow:
-        0 5px 0 #10151c,
-        inset 0 2px 0 rgba(255,255,255,0.10);
+  color: #ffe66d;
 
-    transition:
-        transform 0.08s ease,
-        box-shadow 0.08s ease,
-        background 0.08s ease;
+  font-size: 13px;
+
+  box-shadow:
+    0 3px 0 #751d23;
 }
 
 /* número del evento */
 
-.event-number {
-    flex: 0 0 42px;
-    width: 42px;
-    height: 42px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #e84b3c;
-    color: #ffe66d;
-
-    border: 3px solid #151a20;
-    border-radius: 50%;
-
-    font-size: 13px;
-
-    box-shadow:
-        0 3px 0 #771b22;
-}
-
-/* texto */
-
-.event-info {
-    min-width: 0;
-}
-
-.event-title {
-    display: block;
-    color: #ffffff;
-    font-size: clamp(9px, 1.8vw, 13px);
-    line-height: 1.6;
-}
-
-.event-subtitle {
-    display: block;
-    margin-top: 5px;
-
-    color: #9dd9df;
-    font-size: clamp(7px, 1.4vw, 9px);
-    line-height: 1.5;
-}
-
-/* flecha */
-
-.event-arrow {
-    margin-left: auto;
-    color: #ffe66d;
-    font-size: 13px;
-}
-
 /* =========================================================
-   HOVER / ACTIVE
+   NOMBRE DEL EVENTO
    ========================================================= */
 
-.event:hover {
-    background:
-        linear-gradient(
-            145deg,
-            #40586d,
-            #304554
-        );
+.event-card b {
+  display: block;
 
-    transform: translateY(-2px);
+  color: #ffffff;
 
-    box-shadow:
-        0 7px 0 #10151c,
-        inset 0 2px 0 rgba(255,255,255,0.13);
+  font-size: clamp(10px, 2vw, 15px);
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   PLAY / SOON
+   ========================================================= */
+
+.event-card > span:last-child {
+  text-align: center;
+
+  color: #ffe66d;
+
+  font-size: clamp(8px, 1.6vw, 11px);
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.event-card:not(.locked):hover {
+  background:
+    linear-gradient(
+      145deg,
+      #416074 0%,
+      #304c5d 100%
+    );
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 9px 0 #10161c,
+    inset 0 2px 0 rgba(255, 255, 255, 0.15);
 }
 
 .event:active {
     transform: translateY(4px);
 
-    box-shadow:
-        0 1px 0 #10151c,
-        inset 0 2px 0 rgba(0,0,0,0.15);
+/* =========================================================
+   CLICK / ACTIVE
+   ========================================================= */
+
+.event-card:not(.locked):active {
+  transform: translateY(4px);
+
+  box-shadow:
+    0 2px 0 #10161c,
+    inset 0 2px 0 rgba(0, 0, 0, 0.15);
 }
 
 /* =========================================================
    EVENTO BLOQUEADO / PRÓXIMAMENTE
    ========================================================= */
 
-.event.disabled {
-    opacity: 0.55;
-    cursor: default;
-    filter: grayscale(0.25);
+/* =========================================================
+   LOCKED
+   ========================================================= */
+
+.event-card.locked {
+  opacity: 0.55;
+
+  filter: grayscale(0.25);
+
+  cursor: default;
 }
 
-.event.disabled:hover {
-    transform: none;
+.event-card.locked:hover {
+  transform: none;
 
-    box-shadow:
-        0 5px 0 #10151c,
-        inset 0 2px 0 rgba(255,255,255,0.10);
+  box-shadow:
+    0 6px 0 #10161c,
+    inset 0 2px 0 rgba(255, 255, 255, 0.12);
 }
 
 /* =========================================================
    PIE DEL MENÚ
    ========================================================= */
 
-.menu-footer {
-    margin-top: 22px;
-    text-align: center;
+/* =========================================================
+   SELECT EVENT
+   ========================================================= */
 
-    color: #75aeb5;
-    font-size: 7px;
-    line-height: 1.8;
-}
+.insert {
+  position: relative;
+  z-index: 1;
 
-.menu-footer strong {
-    color: #ffe66d;
+  margin: 26px 0 0;
+
+  text-align: center;
+
+  color: #75adb5;
+
+  font-size: 8px;
+
+  line-height: 1.8;
+
+  animation: blink 1.2s steps(2, start) infinite;
 }
 
 /* =========================================================
    EFECTO CRT MUY SUAVE
    ========================================================= */
 
-.screen::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    pointer-events: none;
-
-    background:
-        repeating-linear-gradient(
-            0deg,
-            rgba(255,255,255,0.018) 0px,
-            rgba(255,255,255,0.018) 1px,
-            transparent 1px,
-            transparent 3px
-        );
-
-    border-radius: 7px;
+@keyframes blink {
+  50% {
+    opacity: 0.35;
+  }
 }
+
 
 /* =========================================================
    MÓVIL
@@ -348,58 +430,129 @@ body {
 
 @media (max-width: 650px) {
 
-    .sports-menu {
-        padding: 10px;
-        align-items: flex-start;
-        padding-top: 12px;
-    }
+  body {
+    align-items: flex-start;
+  }
 
-    .cabinet {
-        padding: 8px;
-        border-width: 3px;
-        border-radius: 13px;
-    }
+  .arcade {
+    padding: 10px;
+    margin-top: 8px;
+  }
 
-    .marquee {
-        padding: 13px 8px;
-        margin-bottom: 8px;
-        border-width: 3px;
-    }
+  .cabinet {
+    padding: 8px;
 
-    .screen {
-        padding: 15px 10px;
-        border-width: 3px;
-    }
+    border-width: 3px;
+    border-radius: 13px;
+  }
 
-    .menu-title {
-        margin-bottom: 18px;
-    }
+  .marquee {
+    padding: 14px 8px;
 
-    .events {
-        grid-template-columns: 1fr;
-        gap: 9px;
-    }
+    margin-bottom: 8px;
 
-    .event {
-        min-height: 65px;
-        padding: 9px 10px;
-    }
+    border-width: 3px;
 
-    .event-number {
-        flex-basis: 36px;
-        width: 36px;
-        height: 36px;
-        font-size: 10px;
-    }
+    font-size: clamp(17px, 6vw, 25px);
+  }
 
-    .event-arrow {
-        font-size: 10px;
-    }
+  .screen {
+    padding: 24px 14px 20px;
 
-    .menu-footer {
-        margin-top: 14px;
-    }
+    border-width: 3px;
+  }
+
+  .screen h1 {
+    font-size: clamp(14px, 5vw, 22px);
+  }
+
+  .subtitle {
+    margin-top: 9px;
+    margin-bottom: 20px;
+
+    font-size: 8px;
+  }
+
+  .event-card {
+    min-height: 68px;
+
+    margin-bottom: 10px;
+
+    padding: 10px;
+
+    grid-template-columns: 48px 1fr 65px;
+
+    gap: 10px;
+  }
+
+  .event-card > span:first-child {
+    width: 38px;
+    height: 38px;
+
+    border-width: 2px;
+
+    font-size: 9px;
+  }
+
+  .event-card b {
+    font-size: 9px;
+  }
+
+  .event-card > span:last-child {
+    font-size: 7px;
+  }
+
+  .insert {
+    margin-top: 18px;
+
+    font-size: 7px;
+  }
 }
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+/* =========================================================
+   MÓVIL MUY PEQUEÑO
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+  .arcade {
+    padding: 6px;
+  }
+
+  .cabinet {
+    padding: 6px;
+  }
+
+  .screen {
+    padding: 20px 10px 17px;
+  }
+
+  .event-card {
+    grid-template-columns: 42px 1fr 55px;
+
+    gap: 7px;
+
+    min-height: 62px;
+  }
+
+  .event-card > span:first-child {
+    width: 34px;
+    height: 34px;
+  }
+
+  .event-card b {
+    font-size: 8px;
+  }
+
+  .event-card > span:last-child {
+    font-size: 6px;
+  }
+}
+
 
 /* =========================================================
    MÓVIL HORIZONTAL
@@ -407,60 +560,71 @@ body {
 
 @media (max-height: 520px) and (orientation: landscape) {
 
-    .sports-menu {
-        padding: 8px;
-    }
+  body {
+    align-items: center;
+  }
 
-    .cabinet {
-        padding: 7px;
-    }
+  .arcade {
+    max-width: 1000px;
+    padding: 8px;
+  }
 
-    .marquee {
-        padding: 8px;
-        margin-bottom: 7px;
-    }
+  .cabinet {
+    padding: 7px;
+  }
 
-    .screen {
-        padding: 10px 14px;
-    }
+  .marquee {
+    padding: 9px;
 
-    .menu-title {
-        margin-bottom: 10px;
-    }
+    margin-bottom: 7px;
 
-    .menu-title p {
-        margin-top: 5px;
-    }
+    font-size: 20px;
+  }
 
-    .events {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 8px;
-    }
+  .screen {
+    padding: 14px 20px 12px;
+  }
 
-    .event {
-        min-height: 58px;
-        padding: 7px;
-        gap: 7px;
-    }
+  .screen h1 {
+    font-size: 16px;
+  }
 
-    .event-number {
-        flex-basis: 28px;
-        width: 28px;
-        height: 28px;
-        border-width: 2px;
-        font-size: 8px;
-    }
+  .subtitle {
+    margin: 5px 0 12px;
 
-    .event-title {
-        font-size: 8px;
-    }
+    font-size: 7px;
+  }
 
-    .event-subtitle,
-    .event-arrow {
-        display: none;
-    }
+  .event-card {
+    min-height: 52px;
 
-    .menu-footer {
-        margin-top: 8px;
-    }
+    margin-bottom: 7px;
+
+    padding: 6px 10px;
+
+    grid-template-columns: 40px 1fr 70px;
+
+    gap: 8px;
+  }
+
+  .event-card > span:first-child {
+    width: 32px;
+    height: 32px;
+
+    font-size: 8px;
+  }
+
+  .event-card b {
+    font-size: 8px;
+  }
+
+  .event-card > span:last-child {
+    font-size: 7px;
+  }
+
+  .insert {
+    margin-top: 8px;
+
+    font-size: 6px;
+  }
 }
