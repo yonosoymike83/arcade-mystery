@@ -1,25 +1,94 @@
 <!doctype html>
-<html lang="es"><head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Olympia 8-Bit</title><link rel="stylesheet" href="css/sports.css"></head>
-<body><main class="arcade"><div class="cabinet">
-<div class="marquee">OLYMPIA 8-BIT</div><div class="screen">
-<h1>THE 8-BIT SPORTS GAMES</h1><p class="subtitle">ARCADE MYSTERY</p>
-<a class="event-card" href="100m.html" onclick="enterSportsFullscreen(event)"><span>01</span><b>100 METROS</b><span>PLAY</span></a>
-<div class="event-card locked"><span>02</span><b>110 M VALLAS</b><span>SOON</span></div>
-<p class="insert">SELECT EVENT</p></div></div></main>
-<script>
-async function enterSportsFullscreen(event) {
-  try {
-    if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
-      await document.documentElement.requestFullscreen();
-    }
-  } catch (e) {}
-  try {
-    if (screen.orientation && screen.orientation.lock) {
-      await screen.orientation.lock("landscape");
-    }
-  } catch (e) {}
-}
-</script>
-</body></html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>Olympia 8-Bit</title>
+
+  <link
+    rel="stylesheet"
+    href="css/sports.css"
+  >
+</head>
+
+<body>
+
+  <main class="arcade">
+
+    <div class="cabinet">
+
+      <div class="marquee">
+        OLYMPIA 8-BIT
+      </div>
+
+      <div class="screen">
+
+        <h1>
+          THE 8-BIT SPORTS GAMES
+        </h1>
+
+        <p class="subtitle">
+          ARCADE MYSTERY
+        </p>
+
+
+        <!-- 100 METROS -->
+
+        <a
+          class="event-card"
+          href="100m.html"
+        >
+
+          <span>
+            01
+          </span>
+
+          <b>
+            100 METROS
+          </b>
+
+          <span>
+            PLAY
+          </span>
+
+        </a>
+
+
+        <!-- PRÓXIMA PRUEBA -->
+
+        <div class="event-card locked">
+
+          <span>
+            02
+          </span>
+
+          <b>
+            110 M VALLAS
+          </b>
+
+          <span>
+            SOON
+          </span>
+
+        </div>
+
+
+        <p class="insert">
+          SELECT EVENT
+        </p>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</body>
+
+</html>
