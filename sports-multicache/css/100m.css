@@ -1904,3 +1904,80 @@ body {
     flex-basis: 60px;
   }
 }
+
+/* =========================================================
+   AJUSTE: CONTENIDO DENTRO DEL MARCO GRIS
+   ========================================================= */
+
+.screen {
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* El área del juego nunca puede sobresalir del screen */
+.game-screen {
+  min-height: 0;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+/* El estadio queda completamente dentro del marco */
+.stadium {
+  min-height: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   EVITAR QUE EL FONDO VERDE SOBRESALGA
+   ========================================================= */
+
+.screen {
+  padding-bottom: 7px;
+}
+
+
+/* PC */
+@media (min-width: 1100px) {
+
+  .screen {
+    padding-bottom: 9px;
+  }
+
+}
+
+
+/* MÓVIL */
+@media (max-width: 900px) {
+
+  .screen {
+    padding-bottom: 5px;
+  }
+
+}
+
+
+/* MÓVIL HORIZONTAL */
+@media (
+  max-width: 900px
+) and (
+  orientation: landscape
+) {
+
+  .screen {
+    padding-bottom: 3px;
+  }
+
+}
+
+
+/* PANTALLAS BAJAS */
+@media (max-height: 500px) {
+
+  .screen {
+    padding-bottom: 3px;
+  }
+
+}
