@@ -22,15 +22,9 @@
 
 <body class="sports-100m">
 
-
   <main class="arcade">
 
     <div class="cabinet">
-
-
-      <!-- =================================
-           MARQUEE
-           ================================= -->
 
       <div class="marquee">
         OLYMPIA 8-BIT
@@ -40,9 +34,9 @@
       <div class="screen">
 
 
-        <!-- =================================
+        <!-- =================================================
              PANTALLA DE INICIO
-             ================================= -->
+             ================================================= -->
 
         <div
           id="start-screen"
@@ -68,9 +62,9 @@
         </div>
 
 
-        <!-- =================================
-             PANTALLA DEL JUEGO
-             ================================= -->
+        <!-- =================================================
+             JUEGO
+             ================================================= -->
 
         <div
           id="game-screen"
@@ -78,84 +72,43 @@
         >
 
 
-          <!-- =================================
-               MARCADOR
-               ================================= -->
+          <!-- =========================
+               HUD
+               ========================= -->
 
           <div class="race-hud">
 
-
             <div class="hud-box">
-
-              <span>
-                EVENT
-              </span>
-
-              <strong>
-                100 M
-              </strong>
-
+              <span>EVENT</span>
+              <strong>100 M</strong>
             </div>
-
 
             <div class="hud-box timer-box">
-
-              <span>
-                TIME
-              </span>
-
-              <strong id="timer">
-                00.00
-              </strong>
-
+              <span>TIME</span>
+              <strong id="timer">00.00</strong>
             </div>
-
 
             <div class="hud-box">
-
-              <span>
-                WR
-              </span>
-
-              <strong>
-                09.58
-              </strong>
-
+              <span>WR</span>
+              <strong>09.58</strong>
             </div>
-
 
             <div class="hud-box">
-
-              <span>
-                POSITION
-              </span>
-
-              <strong id="position">
-                2ND
-              </strong>
-
+              <span>POSITION</span>
+              <strong id="position">2ND</strong>
             </div>
-
 
             <div class="hud-box">
-
-              <span>
-                DISTANCE
-              </span>
-
-              <strong id="distance">
-                0 M
-              </strong>
-
+              <span>DISTANCE</span>
+              <strong id="distance">0 M</strong>
             </div>
-
 
           </div>
 
 
-          <!-- =================================
+          <!-- =========================
                ESTADIO
-               ================================= -->
+               ========================= -->
 
           <div class="stadium">
 
@@ -168,14 +121,25 @@
 
               <div class="cloud cloud-right"></div>
 
+
+              <!-- BANDERAS -->
+
               <div class="flags">
-                🇪🇸 🇫🇷 🇮🇹 🇩🇪 🇬🇧 🇯🇵 🇺🇸
+
+                <span class="flag flag-es"></span>
+                <span class="flag flag-fr"></span>
+                <span class="flag flag-it"></span>
+                <span class="flag flag-de"></span>
+                <span class="flag flag-gb"></span>
+                <span class="flag flag-jp"></span>
+                <span class="flag flag-us"></span>
+
               </div>
 
             </div>
 
 
-            <!-- PUBLICO -->
+            <!-- PÚBLICO -->
 
             <div class="crowd">
 
@@ -210,22 +174,19 @@
             </div>
 
 
-            <!-- =================================
+            <!-- =========================
                  PISTA CPU
-                 ================================= -->
+                 ========================= -->
 
             <div class="race-track cpu-track">
-
 
               <div class="lane-number">
                 1
               </div>
 
-
               <div class="lane-label">
                 CPU
               </div>
-
 
               <div
                 id="cpu-runner"
@@ -234,14 +195,12 @@
                 🏃
               </div>
 
-
               <div class="finish-line"></div>
-
 
             </div>
 
 
-            <!-- ESCALA CPU -->
+            <!-- DISTANCIA -->
 
             <div class="distance-line">
 
@@ -255,22 +214,19 @@
             </div>
 
 
-            <!-- =================================
+            <!-- =========================
                  PISTA JUGADOR
-                 ================================= -->
+                 ========================= -->
 
             <div class="race-track player-track">
-
 
               <div class="lane-number">
                 2
               </div>
 
-
               <div class="lane-label you-label">
                 YOU
               </div>
-
 
               <div
                 id="player-runner"
@@ -279,14 +235,12 @@
                 🏃
               </div>
 
-
               <div class="finish-line"></div>
-
 
             </div>
 
 
-            <!-- ESCALA JUGADOR -->
+            <!-- DISTANCIA -->
 
             <div class="distance-line">
 
@@ -303,9 +257,9 @@
           </div>
 
 
-          <!-- =================================
+          <!-- =========================
                MENSAJE
-               ================================= -->
+               ========================= -->
 
           <div
             id="message"
@@ -315,12 +269,11 @@
           </div>
 
 
-          <!-- =================================
-               CONTROLES NES
-               ================================= -->
+          <!-- =========================
+               CONTROLES
+               ========================= -->
 
           <div class="nes-controls">
-
 
             <button
               id="buttonA"
@@ -336,7 +289,6 @@
               <div>
                 KEEP THE RHYTHM!
               </div>
-
 
               <div class="rhythm-bar">
 
@@ -366,24 +318,21 @@
               B
             </button>
 
-
           </div>
 
 
-          <!-- =================================
+          <!-- =========================
                RESULTADO
-               ================================= -->
+               ========================= -->
 
           <div
             id="result"
             class="result hidden"
           >
 
-
             <div class="result-title">
               FINISH!
             </div>
-
 
             <div
               id="result-position"
@@ -392,16 +341,13 @@
               1ST PLACE
             </div>
 
-
             <div class="result-time-label">
               TIME
             </div>
 
-
             <strong id="final-time">
               00.00
             </strong>
-
 
             <div
               id="score"
@@ -410,7 +356,6 @@
               SCORE 00000
             </div>
 
-
             <button
               id="again"
               type="button"
@@ -418,17 +363,14 @@
               RUN AGAIN
             </button>
 
-
             <a href="index.html">
               BACK TO EVENTS
             </a>
-
 
           </div>
 
 
         </div>
-
 
       </div>
 
@@ -437,50 +379,25 @@
   </main>
 
 
-  <!-- =================================
-       ORIENTACIÓN Y FULLSCREEN
-       ================================= -->
+  <!-- =====================================================
+       START / FULLSCREEN / LANDSCAPE
+       ===================================================== -->
 
   <script>
 
     async function startGame() {
 
       const startScreen =
-        document.getElementById(
-          "start-screen"
-        );
+        document.getElementById("start-screen");
 
       const gameScreen =
-        document.getElementById(
-          "game-screen"
-        );
+        document.getElementById("game-screen");
 
 
-      /*
-       * Ocultar inicio
-       */
+      startScreen.classList.add("hidden");
 
-      startScreen.classList.add(
-        "hidden"
-      );
+      gameScreen.classList.remove("hidden");
 
-
-      /*
-       * Mostrar juego
-       */
-
-      gameScreen.classList.remove(
-        "hidden"
-      );
-
-
-      /*
-       * Intentar pantalla completa.
-       *
-       * En Android debe ejecutarse
-       * directamente como consecuencia
-       * del toque sobre START.
-       */
 
       try {
 
@@ -489,8 +406,7 @@
           document.documentElement.requestFullscreen
         ) {
 
-          await document.documentElement
-            .requestFullscreen();
+          await document.documentElement.requestFullscreen();
 
         }
 
@@ -503,10 +419,6 @@
 
       }
 
-
-      /*
-       * Bloquear orientación horizontal.
-       */
 
       try {
 
@@ -535,16 +447,7 @@
   </script>
 
 
-  <!-- =================================
-       CONTROLADOR
-       ================================= -->
-
   <script src="js/controller.js"></script>
-
-
-  <!-- =================================
-       JUEGO 100 M
-       ================================= -->
 
   <script src="js/100m.js"></script>
 
