@@ -8,206 +8,94 @@
    ========================================= */
 
 * {
-
-  box-sizing:
-    border-box;
-
-  -webkit-tap-highlight-color:
-    transparent;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
-
 
 html,
 body {
-
-  margin:
-    0;
-
-  width:
-    100%;
-
-  height:
-    100%;
-
-  background:
-    #050505;
-
-  color:
-    white;
-
-  font-family:
-    "Press Start 2P",
-    monospace;
-
-  overflow:
-    hidden;
-}
-
-
-body {
-
-  min-height:
-    100dvh;
-
-  height:
-    100dvh;
-
-  display:
-    flex;
-
-  justify-content:
-    center;
-
-  align-items:
-    center;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: #050505;
+  color: white;
+  font-family: "Press Start 2P", monospace;
 }
 
 
 /* =========================================
-   ARCADE
+   ESTRUCTURA ARCADE
    ========================================= */
 
 .arcade {
-
-  width:
-    100vw;
-
-  height:
-    100dvh;
-
-  padding:
-    3px;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
+  width: 100vw;
+  height: 100dvh;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
 
 .cabinet {
-
-  width:
-    100%;
-
-  max-width:
-    1400px;
-
-  max-height:
-    calc(100dvh - 6px);
-
-  background:
-    #292929;
-
-  border:
-    6px solid #555;
-
-  border-radius:
-    12px;
-
-  padding:
-    5px;
-
-  box-shadow:
-    0 5px 0 #000;
-
-  overflow:
-    hidden;
+  width: 100%;
+  max-width: 1400px;
+  max-height: calc(100dvh - 6px);
+  background: #292929;
+  border: 6px solid #555;
+  border-radius: 12px;
+  padding: 5px;
+  box-shadow: 0 5px 0 #000;
+  overflow: hidden;
 }
-
-
-/* =========================================
-   MARQUEE
-   ========================================= */
 
 .marquee {
-
-  height:
-    42px;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  background:
-    #111;
-
-  border:
-    4px solid #777;
-
-  font-size:
-    clamp(16px, 3vw, 28px);
-
-  letter-spacing:
-    3px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  border: 4px solid #777;
+  font-size: clamp(16px, 3vw, 28px);
+  letter-spacing: 3px;
 }
-
-
-/* =========================================
-   SCREEN
-   ========================================= */
 
 .screen {
-
-  position:
-    relative;
-
-  margin-top:
-    5px;
-
-  height:
-    calc(100dvh - 55px);
-
-  background:
-    #061606;
-
-  border:
-    5px solid #111;
-
-  padding:
-    8px;
-
-  overflow:
-    hidden;
+  position: relative;
+  margin-top: 5px;
+  height: calc(100dvh - 55px);
+  background: #061606;
+  border: 5px solid #111;
+  padding: 8px;
+  overflow: hidden;
 }
+
+
+/* =====================================================
+   TODO LO QUE VIENE A CONTINUACIÓN ES EXCLUSIVO DEL 100 M
+   ===================================================== */
 
 
 /* =========================================
-   START
+   PANTALLA INICIAL DEL 100 M
    ========================================= */
 
-.start-screen {
+body.sports-100m .start-screen {
 
-  height:
-    100%;
+  height: 100%;
 
-  display:
-    flex;
+  display: flex;
 
-  flex-direction:
-    column;
+  flex-direction: column;
 
-  align-items:
-    center;
+  align-items: center;
 
-  justify-content:
-    center;
+  justify-content: center;
 
-  text-align:
-    center;
+  text-align: center;
 }
 
 
-.start-screen h1 {
+body.sports-100m .start-screen h1 {
 
   font-size:
     clamp(22px, 5vw, 45px);
@@ -217,14 +105,14 @@ body {
 }
 
 
-.start-screen p {
+body.sports-100m .start-screen p {
 
   font-size:
     10px;
 }
 
 
-.start-screen button {
+body.sports-100m .start-screen button {
 
   margin-top:
     30px;
@@ -255,7 +143,7 @@ body {
 }
 
 
-.start-screen button:active {
+body.sports-100m .start-screen button:active {
 
   transform:
     translateY(5px);
@@ -269,7 +157,7 @@ body {
    HUD
    ========================================= */
 
-.race-hud {
+body.sports-100m .race-hud {
 
   display:
     grid;
@@ -289,7 +177,7 @@ body {
 }
 
 
-.hud-box {
+body.sports-100m .hud-box {
 
   background:
     #050505;
@@ -305,7 +193,7 @@ body {
 }
 
 
-.hud-box span {
+body.sports-100m .hud-box span {
 
   display:
     block;
@@ -321,7 +209,7 @@ body {
 }
 
 
-.hud-box strong {
+body.sports-100m .hud-box strong {
 
   display:
     block;
@@ -331,14 +219,14 @@ body {
 }
 
 
-.timer-box strong {
+body.sports-100m .timer-box strong {
 
   font-size:
     clamp(20px, 5vw, 34px);
 }
 
 
-.hud-box:nth-child(3) strong {
+body.sports-100m .hud-box:nth-child(3) strong {
 
   color:
     #ffe600;
@@ -349,7 +237,7 @@ body {
    ESTADIO
    ========================================= */
 
-.stadium {
+body.sports-100m .stadium {
 
   border:
     3px solid #20d6e8;
@@ -366,7 +254,7 @@ body {
    CIELO
    ========================================= */
 
-.sky {
+body.sports-100m .sky {
 
   height:
     34px;
@@ -382,7 +270,7 @@ body {
 }
 
 
-.cloud {
+body.sports-100m .cloud {
 
   position:
     absolute;
@@ -401,7 +289,7 @@ body {
 }
 
 
-.cloud-left {
+body.sports-100m .cloud-left {
 
   left:
     8%;
@@ -411,7 +299,7 @@ body {
 }
 
 
-.cloud-right {
+body.sports-100m .cloud-right {
 
   right:
     13%;
@@ -421,7 +309,7 @@ body {
 }
 
 
-.flags {
+body.sports-100m .flags {
 
   position:
     absolute;
@@ -447,7 +335,7 @@ body {
    PUBLICO
    ========================================= */
 
-.crowd {
+body.sports-100m .crowd {
 
   height:
     20px;
@@ -476,7 +364,7 @@ body {
    CARTEL
    ========================================= */
 
-.stadium-banner {
+body.sports-100m .stadium-banner {
 
   height:
     27px;
@@ -513,7 +401,7 @@ body {
    PISTAS
    ========================================= */
 
-.race-track {
+body.sports-100m .race-track {
 
   position:
     relative;
@@ -535,11 +423,7 @@ body {
 }
 
 
-/*
- * Líneas horizontales de la pista.
- */
-
-.race-track::after {
+body.sports-100m .race-track::after {
 
   content:
     "";
@@ -575,7 +459,7 @@ body {
    NÚMERO DE CARRIL
    ========================================= */
 
-.lane-number {
+body.sports-100m .lane-number {
 
   position:
     absolute;
@@ -607,7 +491,7 @@ body {
    CPU / YOU
    ========================================= */
 
-.lane-label {
+body.sports-100m .lane-label {
 
   position:
     absolute;
@@ -635,7 +519,7 @@ body {
 }
 
 
-.you-label {
+body.sports-100m .you-label {
 
   color:
     #28ff43;
@@ -652,7 +536,7 @@ body {
    CORREDORES
    ========================================= */
 
-.runner {
+body.sports-100m .runner {
 
   position:
     absolute;
@@ -670,12 +554,11 @@ body {
     32px;
 
   /*
-   * El emoji 🏃 suele mirar hacia
-   * la izquierda.
+   * El emoji mira normalmente
+   * hacia la izquierda.
    *
-   * Lo invertimos para que los
-   * corredores avancen hacia la
-   * derecha.
+   * Lo invertimos para que
+   * corra hacia la derecha.
    */
 
   transform:
@@ -688,7 +571,7 @@ body {
 
 /* CPU */
 
-.cpu-runner {
+body.sports-100m .cpu-runner {
 
   filter:
     hue-rotate(170deg)
@@ -698,7 +581,7 @@ body {
 
 /* JUGADOR */
 
-.player-runner {
+body.sports-100m .player-runner {
 
   filter:
     hue-rotate(315deg)
@@ -710,7 +593,7 @@ body {
    META
    ========================================= */
 
-.finish-line {
+body.sports-100m .finish-line {
 
   position:
     absolute;
@@ -743,7 +626,7 @@ body {
    DISTANCIA
    ========================================= */
 
-.distance-line {
+body.sports-100m .distance-line {
 
   height:
     18px;
@@ -775,7 +658,7 @@ body {
    MENSAJE
    ========================================= */
 
-.message {
+body.sports-100m .message {
 
   height:
     18px;
@@ -801,7 +684,7 @@ body {
    CONTROLES NES
    ========================================= */
 
-.nes-controls {
+body.sports-100m .nes-controls {
 
   display:
     grid;
@@ -829,7 +712,7 @@ body {
    BOTONES
    ========================================= */
 
-.nes-button {
+body.sports-100m .nes-button {
 
   width:
     82px;
@@ -870,7 +753,7 @@ body {
 }
 
 
-.nes-button:active {
+body.sports-100m .nes-button:active {
 
   transform:
     translateY(5px);
@@ -881,14 +764,14 @@ body {
 }
 
 
-.button-a {
+body.sports-100m .button-a {
 
   background:
     #e52535;
 }
 
 
-.button-b {
+body.sports-100m .button-b {
 
   background:
     #245be8;
@@ -899,7 +782,7 @@ body {
    RITMO
    ========================================= */
 
-.rhythm {
+body.sports-100m .rhythm {
 
   text-align:
     center;
@@ -912,7 +795,7 @@ body {
 }
 
 
-.rhythm-bar {
+body.sports-100m .rhythm-bar {
 
   display:
     flex;
@@ -928,7 +811,7 @@ body {
 }
 
 
-.rhythm-bar span {
+body.sports-100m .rhythm-bar span {
 
   width:
     10px;
@@ -944,14 +827,14 @@ body {
 }
 
 
-.rhythm-bar span:nth-child(n+7) {
+body.sports-100m .rhythm-bar span:nth-child(n+7) {
 
   background:
     #ffe000;
 }
 
 
-.rhythm-bar span:nth-child(n+10) {
+body.sports-100m .rhythm-bar span:nth-child(n+10) {
 
   background:
     #333;
@@ -962,7 +845,7 @@ body {
    RESULTADO
    ========================================= */
 
-.result {
+body.sports-100m .result {
 
   position:
     absolute;
@@ -996,7 +879,7 @@ body {
 }
 
 
-.result-title {
+body.sports-100m .result-title {
 
   color:
     #ffe600;
@@ -1009,7 +892,7 @@ body {
 }
 
 
-.result-position {
+body.sports-100m .result-position {
 
   font-size:
     11px;
@@ -1019,7 +902,7 @@ body {
 }
 
 
-.result-time-label {
+body.sports-100m .result-time-label {
 
   font-size:
     7px;
@@ -1029,7 +912,7 @@ body {
 }
 
 
-.result > strong {
+body.sports-100m .result > strong {
 
   display:
     block;
@@ -1042,7 +925,7 @@ body {
 }
 
 
-.result-score {
+body.sports-100m .result-score {
 
   color:
     #20d6e8;
@@ -1055,7 +938,7 @@ body {
 }
 
 
-.result button {
+body.sports-100m .result button {
 
   font-family:
     inherit;
@@ -1080,7 +963,7 @@ body {
 }
 
 
-.result a {
+body.sports-100m .result a {
 
   display:
     block;
@@ -1100,7 +983,7 @@ body {
    OCULTO
    ========================================= */
 
-.hidden {
+body.sports-100m .hidden {
 
   display:
     none !important;
@@ -1115,14 +998,14 @@ body {
   orientation: landscape
 ) {
 
-  .arcade {
+  body.sports-100m .arcade {
 
     padding:
       2px;
   }
 
 
-  .cabinet {
+  body.sports-100m .cabinet {
 
     max-height:
       calc(100dvh - 4px);
@@ -1132,7 +1015,7 @@ body {
   }
 
 
-  .marquee {
+  body.sports-100m .marquee {
 
     height:
       38px;
@@ -1145,7 +1028,7 @@ body {
   }
 
 
-  .screen {
+  body.sports-100m .screen {
 
     height:
       calc(100dvh - 50px);
@@ -1155,49 +1038,49 @@ body {
   }
 
 
-  .race-hud {
+  body.sports-100m .race-hud {
 
     margin-bottom:
       3px;
   }
 
 
-  .hud-box {
+  body.sports-100m .hud-box {
 
     padding:
       4px;
   }
 
 
-  .stadium-banner {
+  body.sports-100m .stadium-banner {
 
     height:
       24px;
   }
 
 
-  .sky {
+  body.sports-100m .sky {
 
     height:
       30px;
   }
 
 
-  .crowd {
+  body.sports-100m .crowd {
 
     height:
       17px;
   }
 
 
-  .race-track {
+  body.sports-100m .race-track {
 
     height:
       52px;
   }
 
 
-  .runner {
+  body.sports-100m .runner {
 
     font-size:
       29px;
@@ -1205,24 +1088,19 @@ body {
     bottom:
       4px;
 
-    /*
-     * Mantener la orientación
-     * correcta también en horizontal.
-     */
-
     transform:
       scaleX(-1);
   }
 
 
-  .distance-line {
+  body.sports-100m .distance-line {
 
     height:
       16px;
   }
 
 
-  .message {
+  body.sports-100m .message {
 
     height:
       15px;
@@ -1232,7 +1110,7 @@ body {
   }
 
 
-  .nes-button {
+  body.sports-100m .nes-button {
 
     width:
       65px;
@@ -1245,7 +1123,7 @@ body {
   }
 
 
-  .nes-controls {
+  body.sports-100m .nes-controls {
 
     grid-template-columns:
       90px
@@ -1257,21 +1135,21 @@ body {
   }
 
 
-  .rhythm {
+  body.sports-100m .rhythm {
 
     font-size:
       7px;
   }
 
 
-  .rhythm-bar {
+  body.sports-100m .rhythm-bar {
 
     margin-top:
       5px;
   }
 
 
-  .rhythm-bar span {
+  body.sports-100m .rhythm-bar span {
 
     width:
       8px;
@@ -1293,7 +1171,7 @@ body {
   max-height: 500px
 ) {
 
-  .marquee {
+  body.sports-100m .marquee {
 
     height:
       34px;
@@ -1306,7 +1184,7 @@ body {
   }
 
 
-  .screen {
+  body.sports-100m .screen {
 
     height:
       calc(100dvh - 46px);
@@ -1316,14 +1194,14 @@ body {
   }
 
 
-  .race-hud {
+  body.sports-100m .race-hud {
 
     gap:
       2px;
   }
 
 
-  .hud-box {
+  body.sports-100m .hud-box {
 
     border-width:
       2px;
@@ -1333,7 +1211,7 @@ body {
   }
 
 
-  .hud-box span {
+  body.sports-100m .hud-box span {
 
     font-size:
       5px;
@@ -1343,28 +1221,28 @@ body {
   }
 
 
-  .hud-box strong {
+  body.sports-100m .hud-box strong {
 
     font-size:
       9px;
   }
 
 
-  .timer-box strong {
+  body.sports-100m .timer-box strong {
 
     font-size:
       20px;
   }
 
 
-  .sky {
+  body.sports-100m .sky {
 
     height:
       23px;
   }
 
 
-  .crowd {
+  body.sports-100m .crowd {
 
     height:
       12px;
@@ -1374,7 +1252,7 @@ body {
   }
 
 
-  .stadium-banner {
+  body.sports-100m .stadium-banner {
 
     height:
       18px;
@@ -1384,14 +1262,14 @@ body {
   }
 
 
-  .race-track {
+  body.sports-100m .race-track {
 
     height:
       42px;
   }
 
 
-  .runner {
+  body.sports-100m .runner {
 
     font-size:
       24px;
@@ -1404,8 +1282,8 @@ body {
   }
 
 
-  .lane-number,
-  .lane-label {
+  body.sports-100m .lane-number,
+  body.sports-100m .lane-label {
 
     top:
       7px;
@@ -1415,7 +1293,7 @@ body {
   }
 
 
-  .distance-line {
+  body.sports-100m .distance-line {
 
     height:
       12px;
@@ -1425,7 +1303,7 @@ body {
   }
 
 
-  .message {
+  body.sports-100m .message {
 
     height:
       12px;
@@ -1438,7 +1316,7 @@ body {
   }
 
 
-  .nes-button {
+  body.sports-100m .nes-button {
 
     width:
       52px;
@@ -1454,7 +1332,7 @@ body {
   }
 
 
-  .nes-controls {
+  body.sports-100m .nes-controls {
 
     grid-template-columns:
       70px
@@ -1469,14 +1347,14 @@ body {
   }
 
 
-  .rhythm {
+  body.sports-100m .rhythm {
 
     font-size:
       6px;
   }
 
 
-  .rhythm-bar {
+  body.sports-100m .rhythm-bar {
 
     gap:
       2px;
@@ -1486,7 +1364,7 @@ body {
   }
 
 
-  .rhythm-bar span {
+  body.sports-100m .rhythm-bar span {
 
     width:
       6px;
@@ -1499,9 +1377,7 @@ body {
   }
 
 
-  /* RESULTADO */
-
-  .result {
+  body.sports-100m .result {
 
     width:
       min(70%, 450px);
@@ -1511,7 +1387,7 @@ body {
   }
 
 
-  .result-title {
+  body.sports-100m .result-title {
 
     font-size:
       13px;
@@ -1521,7 +1397,7 @@ body {
   }
 
 
-  .result-position {
+  body.sports-100m .result-position {
 
     font-size:
       9px;
@@ -1531,7 +1407,7 @@ body {
   }
 
 
-  .result > strong {
+  body.sports-100m .result > strong {
 
     font-size:
       28px;
@@ -1541,7 +1417,7 @@ body {
   }
 
 
-  .result-score {
+  body.sports-100m .result-score {
 
     font-size:
       8px;
@@ -1551,7 +1427,7 @@ body {
   }
 
 
-  .result button {
+  body.sports-100m .result button {
 
     font-size:
       7px;
@@ -1561,7 +1437,7 @@ body {
   }
 
 
-  .result a {
+  body.sports-100m .result a {
 
     margin-top:
       6px;
@@ -1570,4 +1446,4 @@ body {
       5px;
   }
 
-  }
+}
