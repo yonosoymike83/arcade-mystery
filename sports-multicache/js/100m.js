@@ -91,23 +91,52 @@ let totalPresses =
    CONFIGURACIÓN
    ========================================= */
 
-const PERFECT_MIN =
-  105;
 
-const PERFECT_MAX =
-  190;
+/*
+ * Ritmo ideal:
+ *
+ * aproximadamente 7 pulsaciones por segundo.
+ *
+ * El jugador debe intentar mantener
+ * un ritmo constante.
+ */
 
-const TOO_FAST =
-  60;
+const IDEAL_INTERVAL =
+  140;
 
 
 /*
- * Distancia que avanza el jugador
- * con una pulsación perfecta.
+ * Zona en la que el ritmo se considera
+ * prácticamente perfecto.
  */
 
-const PLAYER_STEP =
-  2.25;
+const PERFECT_RANGE =
+  20;
+
+
+/*
+ * Pulsaciones demasiado rápidas.
+ */
+
+const TOO_FAST =
+  65;
+
+
+/*
+ * Distancia máxima por pulsación.
+ */
+
+const MAX_STEP =
+  2.65;
+
+
+/*
+ * Distancia mínima cuando el ritmo
+ * es bastante malo.
+ */
+
+const MIN_STEP =
+  0.15;
 
 
 /* =========================================
@@ -149,7 +178,7 @@ function setRunnerPosition(
 
 
 /* =========================================
-   RESET CPU
+   CPU
    ========================================= */
 
 function resetCPU() {
@@ -159,17 +188,15 @@ function resetCPU() {
 
 
   /*
-   * La CPU debe ser competitiva,
-   * pero no imposible.
+   * CPU más rápida que antes.
    *
-   * La velocidad se genera
-   * ligeramente diferente
-   * cada carrera.
+   * La variación hace que cada partida
+   * sea ligeramente diferente.
    */
 
   cpuSpeed =
-    0.95 +
-    Math.random() * 0.18;
+    1.18 +
+    Math.random() * 0.12;
 
 
   setRunnerPosition(
@@ -232,13 +259,12 @@ function updateCPU() {
 
 
   /*
-   * Variación para que no sea
-   * completamente mecánica.
+   * Variación natural de la CPU.
    */
 
   const variation =
     0.82 +
-    Math.random() * 0.35;
+    Math.random() * 0.30;
 
 
   cpuDistance +=
@@ -263,7 +289,7 @@ function updateCPU() {
 
 
   /*
-   * CPU llega primero
+   * CPU llega primero.
    */
 
   if (
@@ -302,6 +328,137 @@ function updateTimer() {
 
 
 /* =========================================
+   CALCULAR CALIDAD DEL RITMO
+   ========================================= */
+
+function getRhythmQuality(
+  interval
+) {
+
+  /*
+   * Si es demasiado rápido,
+   * penalización fuerte.
+   */
+
+  if (
+    interval < TOO_FAST
+  ) {
+
+    return 0;
+
+  }
+
+
+  /*
+   * Distancia respecto al ritmo ideal.
+   */
+
+  const difference =
+    Math.abs(
+      interval -
+      IDEAL_INTERVAL
+    );
+
+
+  /*
+   * Fuera de una ventana razonable
+   * todavía se puede avanzar,
+   * pero muy poco.
+   */
+
+  if (
+    difference >= 130
+  ) {
+
+    return 0.08;
+
+  }
+
+
+  /*
+   * 0 = perfecto
+   * 1 = límite de la zona
+   */
+
+  const normalized =
+    difference /
+    130;
+
+
+  /*
+   * Curva suave:
+   *
+   * cerca del ritmo ideal
+   * se obtiene mucha más velocidad.
+   */
+
+  return Math.max(
+    0.08,
+    1 -
+    Math.pow(
+      normalized,
+      1.7
+    )
+  );
+
+}
+
+
+/* =========================================
+   MENSAJE DE RITMO
+   ========================================= */
+
+function rhythmMessage(
+  interval,
+  quality
+) {
+
+  if (
+    interval < TOO_FAST
+  ) {
+
+    return "TOO FAST!";
+
+  }
+
+
+  if (
+    Math.abs(
+      interval -
+      IDEAL_INTERVAL
+    ) <= PERFECT_RANGE
+  ) {
+
+    return "PERFECT!";
+
+  }
+
+
+  if (
+    quality > 0.72
+  ) {
+
+    return "GOOD!";
+
+  }
+
+
+  if (
+    interval <
+    IDEAL_INTERVAL
+  ) {
+
+    return "SLOW DOWN!";
+
+  }
+
+
+  return "FASTER!";
+
+}
+
+
+/* =========================================
    PULSACIÓN A / B
    ========================================= */
 
@@ -316,13 +473,17 @@ function press(button) {
   }
 
 
-  /*
-   * PRIMERA PULSACIÓN
-   */
+  /* ======================================
+     PRIMERA PULSACIÓN
+     ====================================== */
 
   if (
     state === "ready"
   ) {
+
+    /*
+     * La carrera empieza con A.
+     */
 
     if (
       button !== "A"
@@ -375,21 +536,49 @@ function press(button) {
   }
 
 
-  /*
-   * NO REPETIR BOTÓN
-   */
+  /* ======================================
+     ALTERNANCIA
+     ====================================== */
 
   if (
     button === lastButton
   ) {
 
+    /*
+     * Repetir A o B rompe el ritmo.
+     */
+
     message.textContent =
       "ALTERNATE!";
+
+
+    /*
+     * Pequeña penalización.
+     */
+
+    playerDistance =
+      Math.max(
+        0,
+        playerDistance - 0.25
+      );
+
+
+    setRunnerPosition(
+      player,
+      playerDistance
+    );
+
+
+    updatePosition();
 
     return;
 
   }
 
+
+  /* ======================================
+     INTERVALO
+     ====================================== */
 
   const now =
     performance.now();
@@ -411,74 +600,82 @@ function press(button) {
   totalPresses++;
 
 
+  /* ======================================
+     CALIDAD
+     ====================================== */
+
+  const quality =
+    getRhythmQuality(
+      interval
+    );
+
+
   /*
-   * DEMASIADO RÁPIDO
+   * Convertimos la calidad
+   * en distancia recorrida.
+   */
+
+  let step =
+    MIN_STEP +
+    (
+      MAX_STEP -
+      MIN_STEP
+    ) *
+    quality;
+
+
+  /*
+   * Perfecto:
+   * pequeño bonus.
+   */
+
+  if (
+    Math.abs(
+      interval -
+      IDEAL_INTERVAL
+    ) <= PERFECT_RANGE
+  ) {
+
+    step *=
+      1.08;
+
+    goodPresses++;
+
+  }
+
+
+  /*
+   * Demasiado rápido:
+   * prácticamente no avanza.
    */
 
   if (
     interval < TOO_FAST
   ) {
 
-    playerDistance =
-      Math.max(
-        0,
-        playerDistance - 0.4
-      );
-
-
-    message.textContent =
-      "TOO FAST!";
+    step =
+      -0.35;
 
   }
 
 
-  /*
-   * RITMO PERFECTO
-   */
-
-  else if (
-    interval >= PERFECT_MIN &&
-    interval <= PERFECT_MAX
-  ) {
-
-    playerDistance +=
-      PLAYER_STEP;
-
-
-    goodPresses++;
-
-
-    message.textContent =
-      "GOOD!";
-
-  }
-
-
-  /*
-   * RITMO INCORRECTO
-   */
-
-  else {
-
-    playerDistance +=
-      PLAYER_STEP * 0.68;
-
-
-    message.textContent =
-
-      interval < PERFECT_MIN
-        ? "SLOW DOWN!"
-        : "FASTER!";
-
-  }
+  playerDistance +=
+    step;
 
 
   playerDistance =
-    Math.min(
-      100,
-      playerDistance
+    Math.max(
+      0,
+      Math.min(
+        100,
+        playerDistance
+      )
     );
 
+
+  /* ======================================
+     VISUAL
+     ====================================== */
 
   setRunnerPosition(
     player,
@@ -489,9 +686,16 @@ function press(button) {
   updatePosition();
 
 
-  /*
-   * META
-   */
+  message.textContent =
+    rhythmMessage(
+      interval,
+      quality
+    );
+
+
+  /* ======================================
+     META
+     ====================================== */
 
   if (
     playerDistance >= 100
@@ -538,7 +742,9 @@ function finishRace() {
 
 
   const time =
-    formatTime(elapsed);
+    formatTime(
+      elapsed
+    );
 
 
   timer.textContent =
@@ -549,9 +755,9 @@ function finishRace() {
     time;
 
 
-  /*
-   * Determinar clasificación
-   */
+  /* ======================================
+     CLASIFICACIÓN
+     ====================================== */
 
   const place =
     playerDistance >= cpuDistance
@@ -580,9 +786,9 @@ function finishRace() {
       : "2ND";
 
 
-  /*
-   * Puntuación
-   */
+  /* ======================================
+     PUNTUACIÓN
+     ====================================== */
 
   const rhythm =
     totalPresses > 0
@@ -595,32 +801,40 @@ function finishRace() {
 
   const score =
     Math.max(
+
       0,
 
       Math.round(
 
         100000 -
 
-        (elapsed / 1000) *
+        (
+          elapsed /
+          1000
+        ) *
         7000 +
 
         rhythm *
-        10000
+        15000
 
       )
+
     );
 
 
   scoreEl.textContent =
     "SCORE " +
+
     String(score)
-      .padStart(5, "0");
+      .padStart(
+        5,
+        "0"
+      );
 
 
-  /*
-   * Ocultar elementos
-   * durante el resultado
-   */
+  /* ======================================
+     RESULTADO
+     ====================================== */
 
   controls.classList.add(
     "hidden"
@@ -634,7 +848,9 @@ function finishRace() {
 
   document
     .querySelector(".race-hud")
-    .classList.add("hidden");
+    .classList.add(
+      "hidden"
+    );
 
 
   result.classList.remove(
@@ -666,8 +882,10 @@ function reset() {
   startTime =
     0;
 
+
   lastPress =
     0;
+
 
   lastButton =
     null;
@@ -751,7 +969,7 @@ ArcadeController.on(
 
 
 /* =========================================
-   BOTÓN REPETIR
+   REPETIR
    ========================================= */
 
 again.addEventListener(
