@@ -1,85 +1,81 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-
 /* =========================================================
-   OLYMPIA 8-BIT
-   100 METROS
+   OLYMPIA 8-BIT · 100 METROS
+   CSS exclusivo de 100m.html
    ========================================================= */
 
+:root {
+  --bg-1: #263544;
+  --bg-2: #18222d;
+  --bg-3: #0c1219;
+
+  --screen: #031a08;
+  --cyan: #00d9d9;
+  --yellow: #ffe66d;
+  --white: #ffffff;
+
+  --track: #ed594c;
+  --track-green: #13a52b;
+}
 
 * {
   box-sizing: border-box;
-
   -webkit-tap-highlight-color: transparent;
 }
 
-
 html,
 body {
-
   margin: 0;
   padding: 0;
-
   width: 100%;
   height: 100%;
-
   overflow: hidden;
 }
 
-
 body {
-
   min-height: 100vh;
   min-height: 100dvh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   background:
     radial-gradient(
       circle at 50% 20%,
-      #263544 0%,
-      #18222d 55%,
-      #0c1219 100%
+      var(--bg-1) 0%,
+      var(--bg-2) 55%,
+      var(--bg-3) 100%
     );
 
-  color: #ffffff;
-
-  font-family:
-    'Press Start 2P',
-    monospace;
-
+  color: var(--white);
+  font-family: 'Press Start 2P', monospace;
   touch-action: manipulation;
 }
 
-
-/* =========================================================
-   ARCADE
-   ========================================================= */
-
 .arcade {
-
   width: 100%;
   height: 100vh;
   height: 100dvh;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
   padding: 12px;
 }
 
-
-/* =========================================================
-   CABINET
-   ========================================================= */
-
 .cabinet {
-
   width: 100%;
   height: 100%;
 
   max-width: 1500px;
   max-height: 920px;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 
   padding: 8px;
 
@@ -92,25 +88,20 @@ body {
     );
 
   border: 4px solid #090d12;
-
   border-radius: 15px;
 
   box-shadow:
     0 0 0 3px #687583,
-    0 15px 35px rgba(0,0,0,0.55);
+    0 15px 35px rgba(0,0,0,.55);
 }
 
-
-/* =========================================================
-   SCREEN
-   ========================================================= */
-
 .screen {
-
   position: relative;
 
   width: 100%;
-  height: 100%;
+  height: auto;
+  flex: 1 1 auto;
+  min-height: 0;
 
   display: flex;
   flex-direction: column;
@@ -125,60 +116,46 @@ body {
     );
 
   border: 4px solid #090d12;
-
   border-radius: 8px;
 
   overflow: hidden;
 
   box-shadow:
     inset 0 0 0 2px #39444c,
-    inset 0 0 35px rgba(0,0,0,0.65);
+    inset 0 0 35px rgba(0,0,0,.65);
 }
 
-
-/* =========================================================
-   CRT
-   ========================================================= */
-
+/* CRT */
 .screen::after {
-
   content: "";
-
   position: absolute;
-
   inset: 0;
-
-  pointer-events: none;
-
   z-index: 50;
+  pointer-events: none;
 
   background:
     repeating-linear-gradient(
       0deg,
-      rgba(255,255,255,0.018) 0px,
-      rgba(255,255,255,0.018) 1px,
+      rgba(255,255,255,.018) 0,
+      rgba(255,255,255,.018) 1px,
       transparent 1px,
       transparent 4px
     );
 }
-
 
 /* =========================================================
    MARQUEE
    ========================================================= */
 
 .marquee {
-
   flex: 0 0 auto;
 
   height: 42px;
+  margin-bottom: 7px;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
-
-  margin-bottom: 7px;
 
   background:
     linear-gradient(
@@ -189,41 +166,31 @@ body {
     );
 
   border: 3px solid #11151a;
-
   border-radius: 5px;
 
-  color: #ffe66d;
+  color: var(--yellow);
 
-  font-size:
-    clamp(16px, 2.5vw, 25px);
-
+  font-size: clamp(16px, 2.5vw, 25px);
   line-height: 1;
 
-  text-shadow:
-    2px 2px 0 #65191d;
+  text-shadow: 2px 2px 0 #65191d;
 
   box-shadow:
-    inset 0 2px 0 rgba(255,255,255,0.16),
-    inset 0 -3px 0 rgba(0,0,0,0.25);
+    inset 0 2px 0 rgba(255,255,255,.16),
+    inset 0 -3px 0 rgba(0,0,0,.25);
 }
 
-
 /* =========================================================
-   START SCREEN
+   START
    ========================================================= */
 
 .start-screen {
-
   position: absolute;
-
   inset: 0;
-
   z-index: 100;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
 
@@ -240,38 +207,24 @@ body {
   text-align: center;
 }
 
-
 .start-screen h1 {
-
   margin: 0;
+  color: var(--yellow);
 
-  color: #ffe66d;
-
-  font-size:
-    clamp(22px, 5vw, 48px);
-
+  font-size: clamp(22px, 5vw, 48px);
   line-height: 1.4;
 
-  text-shadow:
-    4px 4px 0 #5a4918;
+  text-shadow: 4px 4px 0 #5a4918;
 }
-
 
 .start-screen p {
-
   margin: 0;
-
   color: #91d9df;
-
-  font-size:
-    clamp(8px, 1.7vw, 13px);
+  font-size: clamp(8px, 1.7vw, 13px);
 }
 
-
 #start-button {
-
   margin-top: 15px;
-
   padding: 18px 34px;
 
   background:
@@ -282,164 +235,108 @@ body {
     );
 
   border: 4px solid #11151a;
-
   border-radius: 8px;
 
-  color: #ffe66d;
-
-  font-family:
-    'Press Start 2P',
-    monospace;
-
-  font-size:
-    clamp(12px, 2vw, 18px);
+  color: var(--yellow);
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(12px, 2vw, 18px);
 
   cursor: pointer;
 
   box-shadow:
     0 7px 0 #55161c,
-    inset 0 2px 0 rgba(255,255,255,0.18);
+    inset 0 2px 0 rgba(255,255,255,.18);
 }
-
 
 #start-button:active {
-
   transform: translateY(5px);
-
-  box-shadow:
-    0 2px 0 #55161c;
+  box-shadow: 0 2px 0 #55161c;
 }
-
 
 /* =========================================================
    HUD
    ========================================================= */
 
 .race-hud {
-
   flex: 0 0 auto;
 
   display: grid;
-
-  grid-template-columns:
-    1fr
-    1.35fr
-    1fr
-    1fr
-    1fr;
-
+  grid-template-columns: 1fr 1.35fr 1fr 1fr 1fr;
   gap: 4px;
 
   height: 66px;
-
   margin-bottom: 6px;
 }
 
-
 .hud-box {
-
   min-width: 0;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
 
   background: #020505;
-
-  border: 3px solid #00d9d9;
+  border: 3px solid var(--cyan);
 
   text-align: center;
 }
 
-
 .hud-box span {
-
   margin-bottom: 7px;
-
   color: #5be7e7;
-
   font-size: 7px;
-
   line-height: 1;
 }
-
 
 .hud-box strong {
-
-  color: #ffffff;
-
-  font-size:
-    clamp(11px, 1.6vw, 18px);
-
+  color: var(--white);
+  font-size: clamp(11px, 1.6vw, 18px);
   line-height: 1;
 }
 
-
 .timer-box strong {
-
-  color: #ffffff;
-
-  font-size:
-    clamp(22px, 3vw, 34px);
+  color: var(--white);
+  font-size: clamp(22px, 3vw, 34px);
 }
 
-
 .hud-box:nth-child(3) strong {
-
   color: #ffe600;
 }
 
-
 /* =========================================================
-   GAME SCREEN
+   GAME
    ========================================================= */
 
 .game-screen {
-
   position: relative;
 
   flex: 1 1 auto;
-
   min-height: 0;
+  height: auto;
 
   display: flex;
-
   flex-direction: column;
+
+  overflow: hidden;
 }
 
-
-.game-screen.hidden {
-
-  display: none;
+.game-screen.hidden,
+.hidden {
+  display: none !important;
 }
-
 
 /* =========================================================
-   STADIUM
+   ESTADIO
    ========================================================= */
 
 .stadium {
-
   position: relative;
 
   flex: 1 1 auto;
-
   min-height: 0;
 
   display: grid;
-
-  /*
-     Cielo
-     Público
-     Cartel
-     CPU
-     Distancia
-     YOU
-     Distancia
-  */
 
   grid-template-rows:
     15%
@@ -453,18 +350,16 @@ body {
   overflow: hidden;
 
   border: 3px solid #00dddd;
-
   background: #14972c;
 }
 
-
 /* =========================================================
-   SKY
+   CIELO
    ========================================================= */
 
 .sky {
-
   position: relative;
+  overflow: hidden;
 
   background:
     linear-gradient(
@@ -473,59 +368,43 @@ body {
       #55d8ef 65%,
       #20a7d5 100%
     );
-
-  overflow: hidden;
 }
 
-
-/* =========================================================
-   NUBES PIXEL
-   ========================================================= */
-
+/* Nubes */
 .cloud {
-
   position: absolute;
 
   width: 46px;
   height: 10px;
 
-  background: #ffffff;
+  background: #fff;
 
   image-rendering: pixelated;
 
   box-shadow:
-    8px -8px 0 #ffffff,
-    16px -8px 0 #ffffff,
-    24px -8px 0 #ffffff,
-    32px 0 0 #ffffff,
-    16px -16px 0 #ffffff;
+    8px -8px 0 #fff,
+    16px -8px 0 #fff,
+    24px -8px 0 #fff,
+    32px 0 0 #fff,
+    16px -16px 0 #fff;
 }
 
-
 .cloud-left {
-
   left: 9%;
-
   top: 35%;
 }
 
-
 .cloud-right {
-
   right: 10%;
-
   top: 48%;
 }
-
 
 /* =========================================================
    BANDERAS
    ========================================================= */
 
 .flags {
-
   position: absolute;
-
   z-index: 10;
 
   left: 50%;
@@ -534,20 +413,14 @@ body {
   transform: translateX(-50%);
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
   gap: clamp(7px, 1vw, 13px);
-
   white-space: nowrap;
 }
 
-
-/* Bandera base */
-
 .flag {
-
   position: relative;
 
   display: block;
@@ -555,113 +428,80 @@ body {
   width: 25px;
   height: 16px;
 
-  border: 2px solid #111111;
-
-  box-shadow:
-    2px 2px 0 rgba(0,0,0,0.35);
+  border: 2px solid #111;
+  box-shadow: 2px 2px 0 rgba(0,0,0,.35);
 
   image-rendering: pixelated;
 }
 
-
 /* España */
-
 .flag-es {
-
   background:
     linear-gradient(
       to bottom,
-      #d62828 0%,
-      #d62828 25%,
-      #ffc928 25%,
-      #ffc928 75%,
-      #d62828 75%,
-      #d62828 100%
+      #d62828 0 25%,
+      #ffc928 25% 75%,
+      #d62828 75% 100%
     );
 }
-
 
 /* Francia */
-
 .flag-fr {
-
   background:
     linear-gradient(
       to right,
-      #174ea6 0%,
-      #174ea6 33%,
-      #ffffff 33%,
-      #ffffff 66%,
-      #e63b3b 66%,
-      #e63b3b 100%
+      #174ea6 0 33%,
+      #fff 33% 66%,
+      #e63b3b 66% 100%
     );
 }
-
 
 /* Italia */
-
 .flag-it {
-
   background:
     linear-gradient(
       to right,
-      #1b9b50 0%,
-      #1b9b50 33%,
-      #ffffff 33%,
-      #ffffff 66%,
-      #d93636 66%,
-      #d93636 100%
+      #1b9b50 0 33%,
+      #fff 33% 66%,
+      #d93636 66% 100%
     );
 }
 
-
 /* Alemania */
-
 .flag-de {
-
   background:
     linear-gradient(
       to bottom,
-      #111111 0%,
-      #111111 33%,
-      #d82e36 33%,
-      #d82e36 66%,
-      #e9c33c 66%,
-      #e9c33c 100%
+      #111 0 33%,
+      #d82e36 33% 66%,
+      #e9c33c 66% 100%
     );
 }
 
-
-/* Reino Unido - aproximación pixel */
-
+/* Reino Unido */
 .flag-gb {
+  overflow: hidden;
 
   background:
     linear-gradient(
       90deg,
       transparent 38%,
-      #ffffff 38%,
-      #ffffff 62%,
+      #fff 38% 62%,
       transparent 62%
     ),
     linear-gradient(
       0deg,
       transparent 38%,
-      #ffffff 38%,
-      #ffffff 62%,
+      #fff 38% 62%,
       transparent 62%
     ),
     #214b9b;
-
-  overflow: hidden;
 }
 
 .flag-gb::after {
-
   content: "";
 
   position: absolute;
-
   left: 0;
   top: 6px;
 
@@ -669,46 +509,34 @@ body {
   height: 4px;
 
   background: #d93842;
-
   transform: rotate(-27deg);
 }
 
-
 /* Japón */
-
 .flag-jp {
-
   background:
     radial-gradient(
       circle,
       #d93842 0 27%,
       transparent 29%
     ),
-    #ffffff;
+    #fff;
 }
 
-
 /* Estados Unidos */
-
 .flag-us {
-
   background:
     repeating-linear-gradient(
       to bottom,
-      #d93636 0px,
-      #d93636 2px,
-      #ffffff 2px,
-      #ffffff 4px
+      #d93636 0 2px,
+      #fff 2px 4px
     );
 }
 
-
 .flag-us::after {
-
   content: "";
 
   position: absolute;
-
   left: 0;
   top: 0;
 
@@ -718,15 +546,12 @@ body {
   background: #214b9b;
 }
 
-
 /* =========================================================
    PÚBLICO
    ========================================================= */
 
 .crowd {
-
   display: flex;
-
   align-items: center;
   justify-content: center;
 
@@ -742,52 +567,39 @@ body {
     );
 
   color: #ffe900;
-
-  font-size:
-    clamp(8px, 1.3vw, 14px);
+  font-size: clamp(8px, 1.3vw, 14px);
 }
 
-
 .crowd span {
-
   display: inline-block;
 
   animation:
     crowd-jump
     1.2s
-    steps(2,start)
+    steps(2, start)
     infinite;
 }
 
-
 .crowd span:nth-child(2n) {
-
   animation-delay: .2s;
 }
 
-
 .crowd span:nth-child(3n) {
-
   animation-delay: .4s;
 }
 
-
 @keyframes crowd-jump {
-
   50% {
     transform: translateY(-3px);
   }
 }
-
 
 /* =========================================================
    CARTEL
    ========================================================= */
 
 .stadium-banner {
-
   display: flex;
-
   align-items: center;
   justify-content: center;
 
@@ -798,60 +610,86 @@ body {
       #35146f
     );
 
-  border-top: 2px solid #ffe66d;
+  border-top: 2px solid var(--yellow);
+  border-bottom: 2px solid var(--yellow);
 
-  border-bottom: 2px solid #ffe66d;
+  color: var(--white);
 
-  color: #ffffff;
-
-  font-size:
-    clamp(9px, 1.5vw, 15px);
-
-  text-shadow:
-    2px 2px 0 #111111;
+  font-size: clamp(9px, 1.5vw, 15px);
+  text-shadow: 2px 2px 0 #111;
 }
-
 
 /* =========================================================
    PISTAS
    ========================================================= */
 
 .race-track {
-
   position: relative;
-
   min-height: 0;
 
   background:
     repeating-linear-gradient(
       0deg,
-      #ed594c 0px,
-      #ed594c calc(100% - 5px),
-      #ffffff calc(100% - 5px),
-      #ffffff 100%
+      var(--track) 0,
+      var(--track) calc(100% - 5px),
+      #fff calc(100% - 5px),
+      #fff 100%
     );
 
-  border-top: 3px solid #ffffff;
-
-  border-bottom: 3px solid #ffffff;
+  border-top: 3px solid #fff;
+  border-bottom: 3px solid #fff;
 
   overflow: hidden;
 }
 
+/*
+   LÍNEAS BLANCAS DE SALIDA / ZANCADA
 
-/* =========================================================
-   META
-   ========================================================= */
+   IMPORTANTE:
+   Están en .race-track y NO en .runner.
+   Por eso permanecen completamente fijas cuando el
+   corredor se desplaza.
+*/
 
-.finish-line {
+.race-track::before,
+.race-track::after {
+  content: "";
 
   position: absolute;
 
+  z-index: 3;
+
+  background: #fff;
+
+  transform: rotate(45deg);
+  transform-origin: left center;
+
+  pointer-events: none;
+}
+
+.race-track::before {
+  left: 6.5%;
+  bottom: 8px;
+
+  width: 62px;
+  height: 5px;
+}
+
+.race-track::after {
+  left: 8%;
+  bottom: 2px;
+
+  width: 38px;
+  height: 4px;
+}
+
+/* Meta */
+.finish-line {
+  position: absolute;
   z-index: 2;
 
   top: 0;
   bottom: 0;
-
   right: 3%;
 
   width: 14px;
@@ -859,25 +697,19 @@ body {
   background:
     repeating-linear-gradient(
       0deg,
-      #ffffff 0px,
-      #ffffff 9px,
-      #111111 9px,
-      #111111 18px
+      #fff 0 9px,
+      #111 9px 18px
     );
 
-  box-shadow:
-    -3px 0 0 rgba(0,0,0,0.25);
+  box-shadow: -3px 0 0 rgba(0,0,0,.25);
 }
-
 
 /* =========================================================
    NÚMERO DE CALLE
    ========================================================= */
 
 .lane-number {
-
   position: absolute;
-
   z-index: 8;
 
   left: 10px;
@@ -889,218 +721,186 @@ body {
   height: 34px;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
-  background: #111111;
+  background: #111;
+  border: 2px solid #fff;
 
-  border: 2px solid #ffffff;
-
-  color: #ffffff;
-
+  color: #fff;
   font-size: 11px;
 }
-
 
 /* =========================================================
    CPU / YOU
    ========================================================= */
 
 .lane-label {
-
   position: absolute;
-
   z-index: 8;
 
   left: 52px;
-  top: 50%;
+  top: 42%;
 
   transform: translateY(-50%);
 
   padding: 5px 7px;
 
-  background: #000000;
-
-  color: #ffffff;
+  background: #000;
+  color: #fff;
 
   font-size: 9px;
-
   line-height: 1;
 }
 
-
 .you-label {
-
   color: #00ff6a;
-
   border: 2px solid #00ff6a;
 }
-
 
 /* =========================================================
    CORREDORES
    ========================================================= */
 
 .runner {
-
   position: absolute;
-
-  z-index: 6;
+  z-index: 10;
 
   left: 2%;
   top: 50%;
-
-  transform:
-    translateY(-50%)
-    scaleX(-1);
 
   width: 64px;
   height: 64px;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
-  font-family:
-    "Segoe UI Emoji",
-    "Apple Color Emoji",
-    "Noto Color Emoji",
-    sans-serif;
+  transform: none;
 
-  font-size: 48px;
-
-  line-height: 1;
-
-  transition:
-    left .05s linear;
+  transition: left .05s linear;
 }
 
+.athlete-sprite {
+  display: block;
+
+  width: 64px;
+  height: 64px;
+
+  background-image: url("../assets/sprites/athlete-run.png");
+  background-repeat: no-repeat;
+  background-size: 384px 64px;
+
+  image-rendering: pixelated;
+
+  animation: athlete-run .65s steps(6) infinite;
+}
+
+.cpu-runner .athlete-sprite {
+  background-image: url("../assets/sprites/athlete-run-cpu.png");
+  transform: scale(1);
+}
+
+.player-runner .athlete-sprite {
+  transform: scale(1.18);
+}
 
 .cpu-runner {
-
-  filter:
-    drop-shadow(2px 2px 0 #111111);
+  filter: drop-shadow(2px 2px 0 #111);
 }
 
-
 .player-runner {
-
   filter:
-    drop-shadow(2px 2px 0 #111111)
+    drop-shadow(2px 2px 0 #111)
     drop-shadow(0 0 3px #00ff6a);
 }
 
+@keyframes athlete-run {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -384px 0;
+  }
+}
 
 /* =========================================================
    DISTANCIA
    ========================================================= */
 
 .distance-line {
-
   display: flex;
-
   align-items: center;
   justify-content: space-between;
 
-  padding:
-    0 7%;
+  padding: 0 7%;
 
-  background: #13a52b;
+  background: var(--track-green);
+  color: #fff;
 
-  color: #ffffff;
-
-  font-size:
-    clamp(7px, 1vw, 11px);
-
+  font-size: clamp(7px, 1vw, 11px);
   line-height: 1;
 
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 2px solid #fff;
 }
-
 
 /* =========================================================
    MENSAJE
    ========================================================= */
 
 .message {
-
   flex: 0 0 auto;
 
   height: 30px;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
-  color: #ffffff;
+  color: #fff;
 
-  font-size:
-    clamp(7px, 1vw, 10px);
-
+  font-size: clamp(7px, 1vw, 10px);
   text-align: center;
 
-  text-shadow:
-    1px 1px 0 #000000;
+  text-shadow: 1px 1px 0 #000;
 }
-
-
-.message.hidden {
-
-  display: none;
-}
-
 
 /* =========================================================
    CONTROLES
    ========================================================= */
 
 .nes-controls {
-
   position: relative;
 
   flex: 0 0 105px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
-  padding:
-    5px 3% 12px;
+  padding: 5px 3% 12px;
 }
 
-
 .nes-button {
-
   width: 70px;
   height: 70px;
 
-  border: 5px solid #111111;
-
+  border: 5px solid #111;
   border-radius: 50%;
 
-  font-family:
-    'Press Start 2P',
-    monospace;
-
+  font-family: 'Press Start 2P', monospace;
   font-size: 20px;
 
-  color: #ffffff;
-
+  color: #fff;
   cursor: pointer;
 
   box-shadow:
     0 8px 0 #050505,
-    inset 0 4px 0 rgba(255,255,255,0.25);
+    inset 0 4px 0 rgba(255,255,255,.25);
 }
 
-
 .button-a {
-
   background:
     linear-gradient(
       145deg,
@@ -1109,9 +909,7 @@ body {
     );
 }
 
-
 .button-b {
-
   background:
     linear-gradient(
       145deg,
@@ -1120,84 +918,63 @@ body {
     );
 }
 
-
 .nes-button:active {
-
   transform: translateY(6px);
 
   box-shadow:
     0 2px 0 #050505,
-    inset 0 2px 0 rgba(0,0,0,0.2);
+    inset 0 2px 0 rgba(0,0,0,.2);
 }
-
 
 /* =========================================================
    RITMO
    ========================================================= */
 
 .rhythm {
-
   position: absolute;
 
   left: 50%;
   top: 50%;
 
-  transform:
-    translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 
-  width:
-    min(300px,35vw);
+  width: min(300px, 35vw);
 
   text-align: center;
 
-  color: #ffffff;
-
-  font-size:
-    clamp(6px, .9vw, 9px);
-
+  color: #fff;
+  font-size: clamp(6px, .9vw, 9px);
   line-height: 1.6;
 }
 
-
 .rhythm-bar {
-
   display: flex;
-
   justify-content: center;
 
   gap: 4px;
-
   margin-top: 5px;
 }
 
-
 .rhythm-bar span {
-
   width: 7px;
   height: 11px;
 
   background: #12551e;
-
   border: 1px solid #071c0b;
 }
-
 
 /* =========================================================
    RESULTADO
    ========================================================= */
 
 .result {
-
   position: absolute;
-
   z-index: 100;
 
   inset: 8% 15%;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
 
@@ -1210,139 +987,81 @@ body {
       #092a32
     );
 
-  border: 5px solid #ffe66d;
-
+  border: 5px solid var(--yellow);
   border-radius: 10px;
 
   box-shadow:
     0 0 0 4px #10151a,
-    0 15px 30px rgba(0,0,0,0.65);
+    0 15px 30px rgba(0,0,0,.65);
 
   text-align: center;
 }
 
-
-.result.hidden {
-
-  display: none;
-}
-
-
 .result-title {
+  color: var(--yellow);
 
-  color: #ffe66d;
-
-  font-size:
-    clamp(18px,3vw,30px);
-
-  text-shadow:
-    3px 3px 0 #574716;
+  font-size: clamp(18px, 3vw, 30px);
+  text-shadow: 3px 3px 0 #574716;
 }
-
 
 .result-position {
-
-  color: #ffffff;
-
-  font-size:
-    clamp(10px,1.7vw,16px);
+  color: #fff;
+  font-size: clamp(10px, 1.7vw, 16px);
 }
 
-
 .result-time-label {
-
   color: #78dce2;
-
   font-size: 8px;
 }
 
-
 #final-time {
-
-  color: #ffffff;
-
-  font-size:
-    clamp(25px,4vw,45px);
+  color: #fff;
+  font-size: clamp(25px, 4vw, 45px);
 }
-
 
 .result-score {
-
-  color: #ffe66d;
-
-  font-size:
-    clamp(8px,1.4vw,12px);
+  color: var(--yellow);
+  font-size: clamp(8px, 1.4vw, 12px);
 }
 
-
 #again {
-
   margin-top: 5px;
-
   padding: 12px 18px;
 
   background: #e3423d;
 
-  border: 3px solid #111111;
-
+  border: 3px solid #111;
   border-radius: 6px;
 
-  color: #ffffff;
-
-  font-family:
-    'Press Start 2P',
-    monospace;
-
+  color: #fff;
+  font-family: 'Press Start 2P', monospace;
   font-size: 8px;
 
   cursor: pointer;
 
-  box-shadow:
-    0 4px 0 #5b171c;
+  box-shadow: 0 4px 0 #5b171c;
 }
-
 
 #again:active {
-
   transform: translateY(3px);
-
-  box-shadow:
-    0 1px 0 #5b171c;
+  box-shadow: 0 1px 0 #5b171c;
 }
 
-
 .result a {
-
   color: #8edce2;
-
   font-size: 7px;
-
   text-decoration: none;
 }
 
-
 .result a:hover {
-
-  color: #ffe66d;
+  color: var(--yellow);
 }
-
-
-/* =========================================================
-   HIDDEN
-   ========================================================= */
-
-.hidden {
-
-  display: none !important;
-}
-
 
 /* =========================================================
    PC GRANDE
    ========================================================= */
 
 @media (min-width: 1100px) {
-
   .cabinet {
     padding: 10px;
   }
@@ -1353,17 +1072,13 @@ body {
 
   .marquee {
     height: 48px;
-
     margin-bottom: 8px;
-
     font-size: 27px;
   }
 
   .race-hud {
     height: 72px;
-
     gap: 5px;
-
     margin-bottom: 8px;
   }
 
@@ -1391,8 +1106,6 @@ body {
   .runner {
     width: 72px;
     height: 72px;
-
-    font-size: 54px;
   }
 
   .lane-number {
@@ -1407,18 +1120,15 @@ body {
   .nes-button {
     width: 78px;
     height: 78px;
-
     font-size: 22px;
   }
 }
-
 
 /* =========================================================
    TABLET
    ========================================================= */
 
 @media (max-width: 900px) {
-
   .arcade {
     padding: 6px;
   }
@@ -1433,9 +1143,7 @@ body {
 
   .marquee {
     height: 38px;
-
     margin-bottom: 5px;
-
     font-size: 18px;
   }
 
@@ -1443,7 +1151,12 @@ body {
     height: 58px;
   }
 
+  .hud-box {
+    border-width: 2px;
+  }
+
   .hud-box span {
+    margin-bottom: 4px;
     font-size: 6px;
   }
 
@@ -1456,10 +1169,24 @@ body {
   }
 
   .runner {
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
+  }
 
-    font-size: 34px;
+  .athlete-sprite {
+    width: 52px;
+    height: 52px;
+    background-size: 312px 52px;
+  }
+
+  @keyframes athlete-run {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: -312px 0;
+    }
   }
 
   .flag {
@@ -1478,69 +1205,63 @@ body {
   .nes-button {
     width: 62px;
     height: 62px;
-
     font-size: 17px;
   }
-}
 
+  .race-track::before {
+    left: 7%;
+    bottom: 7px;
+    width: 52px;
+    height: 4px;
+  }
+
+  .race-track::after {
+    left: 8.5%;
+    bottom: 2px;
+    width: 32px;
+    height: 3px;
+  }
+}
 
 /* =========================================================
    MÓVIL
    ========================================================= */
 
 @media (max-width: 650px) {
-
   .arcade {
     padding: 0;
   }
 
   .cabinet {
-
     max-width: none;
     max-height: none;
 
     padding: 4px;
 
     border: 2px solid #687583;
-
     border-radius: 7px;
-
     box-shadow: none;
   }
 
   .screen {
-
     padding: 4px;
-
     border-width: 2px;
   }
 
   .marquee {
-
     height: 34px;
-
     margin-bottom: 4px;
-
     border-width: 2px;
-
     font-size: 15px;
   }
 
   .race-hud {
-
     height: 53px;
-
     gap: 2px;
   }
 
-  .hud-box {
-    border-width: 2px;
-  }
-
   .hud-box span {
-
     margin-bottom: 4px;
-
     font-size: 5px;
   }
 
@@ -1553,7 +1274,6 @@ body {
   }
 
   .stadium {
-
     grid-template-rows:
       14%
       8%
@@ -1565,22 +1285,17 @@ body {
   }
 
   .flags {
-
     bottom: 4px;
-
     gap: 3px;
   }
 
   .flag {
-
     width: 18px;
     height: 11px;
-
     border-width: 1px;
   }
 
   .cloud {
-
     transform: scale(.7);
   }
 
@@ -1593,30 +1308,38 @@ body {
   }
 
   .lane-number {
-
     width: 24px;
     height: 24px;
-
     left: 5px;
-
     font-size: 7px;
   }
 
   .lane-label {
-
     left: 34px;
-
+    top: 40%;
     padding: 3px 5px;
-
     font-size: 6px;
   }
 
   .runner {
-
     width: 40px;
     height: 40px;
+  }
 
-    font-size: 28px;
+  .athlete-sprite {
+    width: 40px;
+    height: 40px;
+    background-size: 240px 40px;
+  }
+
+  @keyframes athlete-run {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: -240px 0;
+    }
   }
 
   .finish-line {
@@ -1624,116 +1347,96 @@ body {
   }
 
   .distance-line {
-
     padding-left: 7%;
     padding-right: 7%;
-
     font-size: 6px;
   }
 
   .message {
-
     height: 24px;
-
     font-size: 7px;
   }
 
   .nes-controls {
-
     flex-basis: 78px;
-
     padding-left: 2%;
     padding-right: 2%;
   }
 
   .nes-button {
-
     width: 55px;
     height: 55px;
-
     border-width: 4px;
-
     font-size: 15px;
   }
 
   .rhythm {
-
     width: 180px;
-
     font-size: 6px;
   }
 
   .rhythm-bar {
-
     gap: 2px;
   }
 
   .rhythm-bar span {
-
     width: 5px;
     height: 8px;
   }
 
   .result {
-
     inset: 8% 7%;
+  }
 
-    border-width: 3px;
+  .race-track::before {
+    left: 7%;
+    bottom: 6px;
+    width: 46px;
+    height: 4px;
+  }
+
+  .race-track::after {
+    left: 8.5%;
+    bottom: 2px;
+    width: 29px;
+    height: 3px;
   }
 }
 
-
 /* =========================================================
-   MÓVIL HORIZONTAL
+   MÓVIL HORIZONTAL / PANTALLA BAJA
    ========================================================= */
 
-@media (
-  max-width: 900px
-) and (
-  orientation: landscape
-) {
-
+@media (max-width: 900px) and (orientation: landscape) {
   .arcade {
     padding: 0;
   }
 
   .cabinet {
-
     width: 100%;
     height: 100%;
-
     padding: 3px;
-
     border-width: 2px;
-
     border-radius: 5px;
   }
 
   .screen {
-
     padding: 3px;
-
     border-width: 2px;
   }
 
   .marquee {
-
     height: 28px;
-
     margin-bottom: 3px;
-
     font-size: 13px;
   }
 
   .race-hud {
-
     height: 43px;
   }
 
   .hud-box span {
-
     margin-bottom: 3px;
-
     font-size: 5px;
   }
 
@@ -1746,7 +1449,6 @@ body {
   }
 
   .stadium {
-
     grid-template-rows:
       14%
       8%
@@ -1758,63 +1460,64 @@ body {
   }
 
   .flags {
-
     bottom: 3px;
-
     gap: 2px;
   }
 
   .flag {
-
     width: 16px;
     height: 10px;
   }
 
   .cloud {
-
     transform: scale(.55);
   }
 
   .crowd {
-
     font-size: 6px;
   }
 
   .stadium-banner {
-
     font-size: 6px;
   }
 
   .race-track {
-
     border-top-width: 2px;
     border-bottom-width: 2px;
   }
 
   .runner {
+    width: 46px;
+    height: 46px;
+  }
 
-    width: 34px;
-    height: 34px;
+  .athlete-sprite {
+    width: 46px;
+    height: 46px;
+    background-size: 276px 46px;
+  }
 
-    font-size: 24px;
+  @keyframes athlete-run {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: -276px 0;
+    }
   }
 
   .lane-number {
-
     width: 20px;
     height: 20px;
-
     left: 4px;
-
     font-size: 6px;
   }
 
   .lane-label {
-
     left: 28px;
-
+    top: 40%;
     padding: 2px 4px;
-
     font-size: 5px;
   }
 
@@ -1823,31 +1526,23 @@ body {
   }
 
   .distance-line {
-
     font-size: 5px;
   }
 
   .message {
-
     height: 18px;
-
     font-size: 6px;
   }
 
   .nes-controls {
-
     flex-basis: 62px;
-
     padding-bottom: 5px;
   }
 
   .nes-button {
-
     width: 46px;
     height: 46px;
-
     border-width: 3px;
-
     font-size: 12px;
   }
 
@@ -1860,7 +1555,6 @@ body {
   }
 
   .rhythm-bar span {
-
     width: 4px;
     height: 6px;
   }
@@ -1868,15 +1562,27 @@ body {
   .result {
     inset: 5% 15%;
   }
-}
 
+  .race-track::before {
+    left: 7%;
+    bottom: 5px;
+    width: 42px;
+    height: 3px;
+  }
+
+  .race-track::after {
+    left: 8.5%;
+    bottom: 1px;
+    width: 27px;
+    height: 3px;
+  }
+}
 
 /* =========================================================
    PANTALLAS MUY BAJAS
    ========================================================= */
 
 @media (max-height: 500px) {
-
   .arcade {
     padding: 2px;
   }
@@ -1890,9 +1596,7 @@ body {
   }
 
   .marquee {
-
     height: 27px;
-
     font-size: 13px;
   }
 
@@ -1903,333 +1607,18 @@ body {
   .nes-controls {
     flex-basis: 60px;
   }
-}
 
-/* =========================================================
-   CORRECCIÓN DEFINITIVA DEL MARCO DEL ARCADE
-   ========================================================= */
-
-/* El cabinet reparte correctamente su altura entre
-   el marquee y la pantalla */
-
-.cabinet {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-
-/* La pantalla ocupa SOLO el espacio que queda
-   después del marquee */
-
-.screen {
-  flex: 1 1 auto;
-  height: auto;
-  min-height: 0;
-  overflow: hidden;
-}
-
-
-/* El contenido del juego también queda limitado
-   al interior de la pantalla */
-
-.game-screen {
-  flex: 1 1 auto;
-  min-height: 0;
-  height: auto;
-  overflow: hidden;
-}
-/* =========================================================
-   ATLETA PIXEL ART
-   ========================================================= */
-
-.runner {
-  width: 64px;
-  height: 64px;
-
-  position: absolute;
-
-  z-index: 10;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transform: none;
-}
-
-
-/* Sprite */
-
-.athlete-sprite {
-  display: block;
-
-  width: 64px;
-  height: 64px;
-
-  background-image: url("../assets/sprites/athlete-run.png");
-  background-repeat: no-repeat;
-  background-size: 384px 64px;
-
-  image-rendering: pixelated;
-
-  animation: athlete-run 0.65s steps(6) infinite;
-}
-
-.cpu-runner .athlete-sprite {
-  background-image: url("../assets/sprites/athlete-run-cpu.png");
-}
-
-/* Animación de los 6 frames */
-
-@keyframes athlete-run {
-
-  from {
-    background-position: 0 0;
-  }
-
-  to {
-    background-position: -384px 0;
-  }
-
-}
-
-
-/* CPU y jugador miran hacia la derecha */
-
-.cpu-runner,
-.player-runner {
-  transform: none;
-}
-
-
-/* =========================================================
-   CUANDO LA CARRERA TERMINA
-   ========================================================= */
-
-.game-screen.finished .athlete-sprite {
-  animation-play-state: paused;
-}
-
-
-/* =========================================================
-   TAMAÑO EN PANTALLAS PEQUEÑAS
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-  .runner {
-    width: 52px;
-    height: 52px;
-  }
-
-  .athlete-sprite {
-    width: 52px;
-    height: 52px;
-
-    background-size: 312px 52px;
-  }
-
-  @keyframes athlete-run {
-
-    from {
-      background-position: 0 0;
-    }
-
-    to {
-      background-position: -312px 0;
-    }
-
-  }
-
-}
-
-
-/* =========================================================
-   MÓVIL HORIZONTAL / PANTALLA BAJA
-   ========================================================= */
-
-@media (max-height: 500px) {
-
-  .runner {
-    width: 46px;
-    height: 46px;
-  }
-
-  .athlete-sprite {
-    width: 46px;
-    height: 46px;
-
-    background-size: 276px 46px;
-  }
-
-  @keyframes athlete-run {
-
-    from {
-      background-position: 0 0;
-    }
-
-    to {
-      background-position: -276px 0;
-    }
-
-  }
-
-}
-/* =========================================================
-   LÍNEAS DE MOVIMIENTO DEL CORREDOR
-   ========================================================= */
-
-.runner::after {
-  content: "";
-
-  position: absolute;
-
-  width: 72px;
-  height: 5px;
-
-  background: #ffffff;
-
-  left: 34px;
-  top: 47px;
-
-  transform: rotate(45deg);
-
-  transform-origin: left center;
-
-  z-index: -1;
-
-  image-rendering: pixelated;
-}
-
-
-/* Segunda línea más corta para dar sensación de velocidad */
-
-.runner::before {
-  content: "";
-
-  position: absolute;
-
-  width: 42px;
-  height: 4px;
-
-  background: #ffffff;
-
-  left: 20px;
-  top: 54px;
-
-  transform: rotate(45deg);
-
-  transform-origin: left center;
-
-  z-index: -1;
-}
-
-
-/* =========================================================
-   AJUSTE PARA EL TAMAÑO PEQUEÑO DEL CORREDOR
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-  .runner::after {
-    width: 58px;
-    height: 4px;
-
-    left: 28px;
-    top: 38px;
-  }
-
-  .runner::before {
-    width: 34px;
+  .race-track::before {
+    left: 7%;
+    bottom: 5px;
+    width: 42px;
     height: 3px;
-
-    left: 17px;
-    top: 44px;
   }
-}
 
-
-/* =========================================================
-   PANTALLAS BAJAS
-   ========================================================= */
-
-@media (max-height: 500px) {
-
-  .runner::after {
-    width: 50px;
+  .race-track::after {
+    left: 8.5%;
+    bottom: 1px;
+    width: 27px;
     height: 3px;
-
-    left: 25px;
-    top: 34px;
-  }
-
-  .runner::before {
-    width: 30px;
-    height: 3px;
-
-    left: 15px;
-    top: 40px;
-  }
-}
-/* =========================================================
-   AJUSTE DE TAMAÑO DE LOS CORREDORES
-   ========================================================= */
-
-/* El CPU mantiene el tamaño actual que nos gusta */
-
-.cpu-runner .athlete-sprite {
-  transform: scale(1);
-}
-
-
-/* El jugador se amplía para igualar visualmente al CPU */
-
-.player-runner .athlete-sprite {
-  transform: scale(1.18);
-}
-
-
-/* =========================================================
-   ETIQUETAS CPU / YOU
-   ========================================================= */
-
-.lane-label {
-  top: 42%;
-}
-
-
-/* =========================================================
-   PANTALLAS PEQUEÑAS
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-  .cpu-runner .athlete-sprite {
-    transform: scale(1);
-  }
-
-  .player-runner .athlete-sprite {
-    transform: scale(1.18);
-  }
-
-  .lane-label {
-    top: 40%;
-  }
-}
-
-
-/* =========================================================
-   PANTALLAS BAJAS / MÓVIL HORIZONTAL
-   ========================================================= */
-
-@media (max-height: 500px) {
-
-  .player-runner .athlete-sprite {
-    transform: scale(1.18);
-  }
-
-  .lane-label {
-    top: 40%;
   }
 }
