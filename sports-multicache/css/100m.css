@@ -2172,3 +2172,64 @@ body {
     top: 40px;
   }
 }
+/* =========================================================
+   AJUSTE DE TAMAÑO DE LOS CORREDORES
+   ========================================================= */
+
+/* El CPU mantiene el tamaño actual que nos gusta */
+
+.cpu-runner .athlete-sprite {
+  transform: scale(1);
+}
+
+
+/* El jugador se amplía para igualar visualmente al CPU */
+
+.player-runner .athlete-sprite {
+  transform: scale(1.18);
+}
+
+
+/* =========================================================
+   ETIQUETAS CPU / YOU
+   ========================================================= */
+
+.lane-label {
+  top: 42%;
+}
+
+
+/* =========================================================
+   PANTALLAS PEQUEÑAS
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .cpu-runner .athlete-sprite {
+    transform: scale(1);
+  }
+
+  .player-runner .athlete-sprite {
+    transform: scale(1.18);
+  }
+
+  .lane-label {
+    top: 40%;
+  }
+}
+
+
+/* =========================================================
+   PANTALLAS BAJAS / MÓVIL HORIZONTAL
+   ========================================================= */
+
+@media (max-height: 500px) {
+
+  .player-runner .athlete-sprite {
+    transform: scale(1.18);
+  }
+
+  .lane-label {
+    top: 40%;
+  }
+}
