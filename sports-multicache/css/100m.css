@@ -149,7 +149,9 @@ body {
 }
 
 
-/* Efecto CRT */
+/* =========================================================
+   EFECTO CRT
+   ========================================================= */
 
 .screen::after {
   content: "";
@@ -213,7 +215,7 @@ body {
 
 
 /* =========================================================
-   PANTALLA START
+   START SCREEN
    ========================================================= */
 
 .start-screen {
@@ -433,7 +435,9 @@ body {
 }
 
 
-/* Nubes */
+/* =========================================================
+   NUBES
+   ========================================================= */
 
 .cloud {
   position: absolute;
@@ -677,9 +681,11 @@ body {
 }
 
 @keyframes crowd-jump {
+
   50% {
     transform: translateY(-3px);
   }
+
 }
 
 
@@ -720,8 +726,7 @@ body {
 
   min-height: 0;
 
-  background:
-    var(--track);
+  background: var(--track);
 
   border-top: 3px solid #fff;
   border-bottom: 3px solid #fff;
@@ -730,17 +735,10 @@ body {
 }
 
 
-/*
-   LÍNEAS HORIZONTALES FIJAS DEL CARRIL
-
-   Estas líneas pertenecen a la pista.
-   NO pertenecen al corredor.
-
-   Por tanto:
-   - permanecen fijas;
-   - ocupan todo el carril;
-   - no se desplazan cuando corre el atleta.
-*/
+/* =========================================================
+   LÍNEA HORIZONTAL SUPERIOR
+   FIJA AL CARRIL
+   ========================================================= */
 
 .race-track::before {
   content: "";
@@ -751,28 +749,9 @@ body {
 
   left: 0;
   right: 0;
-
   top: 7px;
 
-  height: 5px;
-
-  background: #fff;
-
-  pointer-events: none;
-}
-
-.race-track::after {
-  content: "";
-
-  position: absolute;
-
-  z-index: 3;
-
-  left: 0;
-  right: 0;
-
-  bottom: 7px;
-
+  width: auto;
   height: 5px;
 
   background: #fff;
@@ -782,7 +761,43 @@ body {
 
 
 /* =========================================================
-   LÍNEA DE META
+   LÍNEA VERTICAL DE SALIDA
+   FIJA AL CARRIL
+   ========================================================= */
+
+.race-track::after {
+  content: "";
+
+  position: absolute;
+
+  z-index: 3;
+
+  left: 0;
+  top: 7px;
+  bottom: 7px;
+
+  width: 5px;
+
+  background: #fff;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   LÍNEA INFERIOR
+   ========================================================= */
+
+/*
+   La línea inferior se consigue mediante el propio
+   border-bottom del carril.
+
+   No se utiliza .runner para dibujar ninguna línea.
+*/
+
+
+/* =========================================================
+   META
    ========================================================= */
 
 .finish-line {
@@ -849,7 +864,12 @@ body {
   z-index: 8;
 
   left: 52px;
-  top: 40%;
+
+  /*
+     Antes estaban al 40%.
+     Ahora quedan más arriba del corredor.
+  */
+  top: 32%;
 
   transform: translateY(-50%);
 
@@ -860,6 +880,7 @@ body {
   color: #fff;
 
   font-size: 9px;
+
   line-height: 1;
 }
 
@@ -896,7 +917,9 @@ body {
 }
 
 
-/* Sprite común */
+/* =========================================================
+   SPRITE DEL ATLETA
+   ========================================================= */
 
 .athlete-sprite {
   display: block;
@@ -919,7 +942,9 @@ body {
 }
 
 
-/* CPU */
+/* =========================================================
+   CPU
+   ========================================================= */
 
 .cpu-runner .athlete-sprite {
   background-image:
@@ -929,14 +954,18 @@ body {
 }
 
 
-/* YOU */
+/* =========================================================
+   PLAYER / YOU
+   ========================================================= */
 
 .player-runner .athlete-sprite {
-  transform: scale(1.25);
+  transform: scale(1.35);
 }
 
 
-/* Sombras */
+/* =========================================================
+   SOMBRAS
+   ========================================================= */
 
 .cpu-runner {
   filter:
@@ -950,7 +979,9 @@ body {
 }
 
 
-/* Animación */
+/* =========================================================
+   ANIMACIÓN DE CARRERA
+   ========================================================= */
 
 @keyframes athlete-run {
 
@@ -961,13 +992,7 @@ body {
   to {
     background-position: -384px 0;
   }
-}
 
-
-/* Detener animación al terminar */
-
-.game-screen.finished .athlete-sprite {
-  animation-play-state: paused;
 }
 
 
@@ -1252,6 +1277,7 @@ body {
 
   .marquee {
     height: 48px;
+
     margin-bottom: 8px;
 
     font-size: 27px;
@@ -1295,7 +1321,8 @@ body {
     width: 64px;
     height: 64px;
 
-    background-size: 384px 64px;
+    background-size:
+      384px 64px;
   }
 
   .lane-number {
@@ -1373,7 +1400,12 @@ body {
     width: 52px;
     height: 52px;
 
-    background-size: 312px 52px;
+    background-size:
+      312px 52px;
+  }
+
+  .player-runner .athlete-sprite {
+    transform: scale(1.35);
   }
 
   @keyframes athlete-run {
@@ -1398,7 +1430,7 @@ body {
   }
 
   .lane-label {
-    top: 40%;
+    top: 32%;
   }
 
   .nes-controls {
@@ -1418,8 +1450,10 @@ body {
   }
 
   .race-track::after {
+    top: 6px;
     bottom: 6px;
-    height: 4px;
+
+    width: 4px;
   }
 }
 
@@ -1529,7 +1563,7 @@ body {
 
   .lane-label {
     left: 34px;
-    top: 40%;
+    top: 32%;
 
     padding: 3px 5px;
 
@@ -1545,11 +1579,12 @@ body {
     width: 40px;
     height: 40px;
 
-    background-size: 240px 40px;
+    background-size:
+      240px 40px;
   }
 
   .player-runner .athlete-sprite {
-    transform: scale(1.25);
+    transform: scale(1.35);
   }
 
   @keyframes athlete-run {
@@ -1622,8 +1657,10 @@ body {
   }
 
   .race-track::after {
+    top: 5px;
     bottom: 5px;
-    height: 3px;
+
+    width: 3px;
   }
 }
 
@@ -1723,6 +1760,18 @@ body {
     border-bottom-width: 2px;
   }
 
+  .race-track::before {
+    top: 4px;
+    height: 3px;
+  }
+
+  .race-track::after {
+    top: 4px;
+    bottom: 4px;
+
+    width: 3px;
+  }
+
   .runner {
     width: 46px;
     height: 46px;
@@ -1732,11 +1781,12 @@ body {
     width: 46px;
     height: 46px;
 
-    background-size: 276px 46px;
+    background-size:
+      276px 46px;
   }
 
   .player-runner .athlete-sprite {
-    transform: scale(1.25);
+    transform: scale(1.35);
   }
 
   @keyframes athlete-run {
@@ -1762,7 +1812,7 @@ body {
 
   .lane-label {
     left: 28px;
-    top: 40%;
+    top: 32%;
 
     padding: 2px 4px;
 
@@ -1814,16 +1864,6 @@ body {
   .result {
     inset: 5% 15%;
   }
-
-  .race-track::before {
-    top: 4px;
-    height: 3px;
-  }
-
-  .race-track::after {
-    bottom: 4px;
-    height: 3px;
-  }
 }
 
 
@@ -1865,7 +1905,17 @@ body {
   }
 
   .race-track::after {
+    top: 4px;
     bottom: 4px;
-    height: 3px;
+
+    width: 3px;
+  }
+
+  .lane-label {
+    top: 32%;
+  }
+
+  .player-runner .athlete-sprite {
+    transform: scale(1.35);
   }
 }
