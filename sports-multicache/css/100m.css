@@ -2,7 +2,6 @@
 
 /* =========================================================
    OLYMPIA 8-BIT · 100 METROS
-   CSS EXCLUSIVO DE 100m.html
    ========================================================= */
 
 :root {
@@ -34,10 +33,8 @@ html,
 body {
   width: 100%;
   height: 100%;
-
   margin: 0;
   padding: 0;
-
   overflow: hidden;
 }
 
@@ -123,7 +120,6 @@ body {
 
   flex: 1 1 auto;
 
-  height: auto;
   min-height: 0;
 
   display: flex;
@@ -150,7 +146,7 @@ body {
 
 
 /* =========================================================
-   EFECTO CRT
+   CRT
    ========================================================= */
 
 .screen::after {
@@ -215,7 +211,7 @@ body {
 
 
 /* =========================================================
-   START SCREEN
+   START
    ========================================================= */
 
 .start-screen {
@@ -307,7 +303,6 @@ body {
   flex: 1 1 auto;
 
   min-height: 0;
-  height: auto;
 
   display: flex;
   flex-direction: column;
@@ -507,9 +502,6 @@ body {
   image-rendering: pixelated;
 }
 
-
-/* España */
-
 .flag-es {
   background:
     linear-gradient(
@@ -519,9 +511,6 @@ body {
       #d62828 75% 100%
     );
 }
-
-
-/* Francia */
 
 .flag-fr {
   background:
@@ -533,9 +522,6 @@ body {
     );
 }
 
-
-/* Italia */
-
 .flag-it {
   background:
     linear-gradient(
@@ -546,9 +532,6 @@ body {
     );
 }
 
-
-/* Alemania */
-
 .flag-de {
   background:
     linear-gradient(
@@ -558,9 +541,6 @@ body {
       #e9c33c 66% 100%
     );
 }
-
-
-/* Reino Unido */
 
 .flag-gb {
   overflow: hidden;
@@ -597,9 +577,6 @@ body {
   transform: rotate(-27deg);
 }
 
-
-/* Japón */
-
 .flag-jp {
   background:
     radial-gradient(
@@ -609,9 +586,6 @@ body {
     ),
     #fff;
 }
-
-
-/* Estados Unidos */
 
 .flag-us {
   background:
@@ -681,16 +655,14 @@ body {
 }
 
 @keyframes crowd-jump {
-
   50% {
     transform: translateY(-3px);
   }
-
 }
 
 
 /* =========================================================
-   CARTEL DEL ESTADIO
+   CARTEL
    ========================================================= */
 
 .stadium-banner {
@@ -736,8 +708,7 @@ body {
 
 
 /* =========================================================
-   LÍNEA HORIZONTAL SUPERIOR
-   FIJA AL CARRIL
+   LÍNEA SUPERIOR FIJA
    ========================================================= */
 
 .race-track::before {
@@ -745,13 +716,13 @@ body {
 
   position: absolute;
 
-  z-index: 3;
+  z-index: 2;
 
   left: 0;
   right: 0;
+
   top: 7px;
 
-  width: auto;
   height: 5px;
 
   background: #fff;
@@ -761,8 +732,8 @@ body {
 
 
 /* =========================================================
-   LÍNEA VERTICAL DE SALIDA
-   FIJA AL CARRIL
+   LÍNEA DE SALIDA
+   AHORA ESTÁ JUSTO DELANTE DEL SPRITE
    ========================================================= */
 
 .race-track::after {
@@ -770,9 +741,16 @@ body {
 
   position: absolute;
 
-  z-index: 3;
+  z-index: 12;
 
-  left: 0;
+  /*
+     La salida está dentro del carril,
+     aproximadamente en la posición inicial
+     del corredor.
+  */
+
+  left: 3.2%;
+
   top: 7px;
   bottom: 7px;
 
@@ -782,18 +760,6 @@ body {
 
   pointer-events: none;
 }
-
-
-/* =========================================================
-   LÍNEA INFERIOR
-   ========================================================= */
-
-/*
-   La línea inferior se consigue mediante el propio
-   border-bottom del carril.
-
-   No se utiliza .runner para dibujar ninguna línea.
-*/
 
 
 /* =========================================================
@@ -807,6 +773,7 @@ body {
 
   top: 0;
   bottom: 0;
+
   right: 3%;
 
   width: 14px;
@@ -855,21 +822,21 @@ body {
 
 
 /* =========================================================
-   ETIQUETAS CPU / YOU
+   CPU / YOU
+   MÁS ARRIBA
    ========================================================= */
 
 .lane-label {
   position: absolute;
 
-  z-index: 8;
+  z-index: 15;
 
   left: 52px;
 
   /*
-     Antes estaban al 40%.
-     Ahora quedan más arriba del corredor.
+     MUCHO MÁS ARRIBA QUE ANTES
   */
-  top: 32%;
+  top: 21%;
 
   transform: translateY(-50%);
 
@@ -901,6 +868,7 @@ body {
   z-index: 10;
 
   left: 2%;
+
   top: 50%;
 
   width: 64px;
@@ -918,7 +886,7 @@ body {
 
 
 /* =========================================================
-   SPRITE DEL ATLETA
+   SPRITE
    ========================================================= */
 
 .athlete-sprite {
@@ -955,7 +923,7 @@ body {
 
 
 /* =========================================================
-   PLAYER / YOU
+   PLAYER
    ========================================================= */
 
 .player-runner .athlete-sprite {
@@ -964,7 +932,7 @@ body {
 
 
 /* =========================================================
-   SOMBRAS
+   SOMBRA
    ========================================================= */
 
 .cpu-runner {
@@ -980,7 +948,7 @@ body {
 
 
 /* =========================================================
-   ANIMACIÓN DE CARRERA
+   ANIMACIÓN
    ========================================================= */
 
 @keyframes athlete-run {
@@ -1108,7 +1076,7 @@ body {
 
 
 /* =========================================================
-   INDICADOR DE RITMO
+   RITMO
    ========================================================= */
 
 .rhythm {
@@ -1325,6 +1293,10 @@ body {
       384px 64px;
   }
 
+  .lane-label {
+    top: 21%;
+  }
+
   .lane-number {
     width: 36px;
     height: 36px;
@@ -1430,7 +1402,21 @@ body {
   }
 
   .lane-label {
-    top: 32%;
+    top: 21%;
+  }
+
+  .race-track::before {
+    top: 6px;
+    height: 4px;
+  }
+
+  .race-track::after {
+    left: 3.2%;
+
+    top: 6px;
+    bottom: 6px;
+
+    width: 4px;
   }
 
   .nes-controls {
@@ -1442,18 +1428,6 @@ body {
     height: 62px;
 
     font-size: 17px;
-  }
-
-  .race-track::before {
-    top: 6px;
-    height: 4px;
-  }
-
-  .race-track::after {
-    top: 6px;
-    bottom: 6px;
-
-    width: 4px;
   }
 }
 
@@ -1563,7 +1537,8 @@ body {
 
   .lane-label {
     left: 34px;
-    top: 32%;
+
+    top: 21%;
 
     padding: 3px 5px;
 
@@ -1657,6 +1632,8 @@ body {
   }
 
   .race-track::after {
+    left: 3.2%;
+
     top: 5px;
     bottom: 5px;
 
@@ -1766,6 +1743,8 @@ body {
   }
 
   .race-track::after {
+    left: 3.2%;
+
     top: 4px;
     bottom: 4px;
 
@@ -1812,7 +1791,8 @@ body {
 
   .lane-label {
     left: 28px;
-    top: 32%;
+
+    top: 21%;
 
     padding: 2px 4px;
 
@@ -1905,6 +1885,8 @@ body {
   }
 
   .race-track::after {
+    left: 3.2%;
+
     top: 4px;
     bottom: 4px;
 
@@ -1912,7 +1894,7 @@ body {
   }
 
   .lane-label {
-    top: 32%;
+    top: 21%;
   }
 
   .player-runner .athlete-sprite {
