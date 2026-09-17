@@ -2076,3 +2076,99 @@ body {
   }
 
 }
+/* =========================================================
+   LÍNEAS DE MOVIMIENTO DEL CORREDOR
+   ========================================================= */
+
+.runner::after {
+  content: "";
+
+  position: absolute;
+
+  width: 72px;
+  height: 5px;
+
+  background: #ffffff;
+
+  left: 34px;
+  top: 47px;
+
+  transform: rotate(45deg);
+
+  transform-origin: left center;
+
+  z-index: -1;
+
+  image-rendering: pixelated;
+}
+
+
+/* Segunda línea más corta para dar sensación de velocidad */
+
+.runner::before {
+  content: "";
+
+  position: absolute;
+
+  width: 42px;
+  height: 4px;
+
+  background: #ffffff;
+
+  left: 20px;
+  top: 54px;
+
+  transform: rotate(45deg);
+
+  transform-origin: left center;
+
+  z-index: -1;
+}
+
+
+/* =========================================================
+   AJUSTE PARA EL TAMAÑO PEQUEÑO DEL CORREDOR
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .runner::after {
+    width: 58px;
+    height: 4px;
+
+    left: 28px;
+    top: 38px;
+  }
+
+  .runner::before {
+    width: 34px;
+    height: 3px;
+
+    left: 17px;
+    top: 44px;
+  }
+}
+
+
+/* =========================================================
+   PANTALLAS BAJAS
+   ========================================================= */
+
+@media (max-height: 500px) {
+
+  .runner::after {
+    width: 50px;
+    height: 3px;
+
+    left: 25px;
+    top: 34px;
+  }
+
+  .runner::before {
+    width: 30px;
+    height: 3px;
+
+    left: 15px;
+    top: 40px;
+  }
+}
