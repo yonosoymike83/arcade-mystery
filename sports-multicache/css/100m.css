@@ -2,7 +2,7 @@
 
 /* =========================================================
    OLYMPIA 8-BIT · 100 METROS
-   CSS exclusivo de 100m.html
+   CSS EXCLUSIVO DE 100m.html
    ========================================================= */
 
 :root {
@@ -11,6 +11,7 @@
   --bg-3: #0c1219;
 
   --screen: #031a08;
+
   --cyan: #00d9d9;
   --yellow: #ffe66d;
   --white: #ffffff;
@@ -19,6 +20,11 @@
   --track-green: #13a52b;
 }
 
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
@@ -26,10 +32,12 @@
 
 html,
 body {
-  margin: 0;
-  padding: 0;
   width: 100%;
   height: 100%;
+
+  margin: 0;
+  padding: 0;
+
   overflow: hidden;
 }
 
@@ -50,9 +58,16 @@ body {
     );
 
   color: var(--white);
+
   font-family: 'Press Start 2P', monospace;
+
   touch-action: manipulation;
 }
+
+
+/* =========================================================
+   ARCADE
+   ========================================================= */
 
 .arcade {
   width: 100%;
@@ -75,6 +90,7 @@ body {
 
   display: flex;
   flex-direction: column;
+
   min-height: 0;
 
   padding: 8px;
@@ -92,15 +108,22 @@ body {
 
   box-shadow:
     0 0 0 3px #687583,
-    0 15px 35px rgba(0,0,0,.55);
+    0 15px 35px rgba(0, 0, 0, .55);
 }
+
+
+/* =========================================================
+   PANTALLA
+   ========================================================= */
 
 .screen {
   position: relative;
 
   width: 100%;
-  height: auto;
+
   flex: 1 1 auto;
+
+  height: auto;
   min-height: 0;
 
   display: flex;
@@ -122,15 +145,20 @@ body {
 
   box-shadow:
     inset 0 0 0 2px #39444c,
-    inset 0 0 35px rgba(0,0,0,.65);
+    inset 0 0 35px rgba(0, 0, 0, .65);
 }
 
-/* CRT */
+
+/* Efecto CRT */
+
 .screen::after {
   content: "";
+
   position: absolute;
   inset: 0;
+
   z-index: 50;
+
   pointer-events: none;
 
   background:
@@ -143,6 +171,7 @@ body {
     );
 }
 
+
 /* =========================================================
    MARQUEE
    ========================================================= */
@@ -151,6 +180,7 @@ body {
   flex: 0 0 auto;
 
   height: 42px;
+
   margin-bottom: 7px;
 
   display: flex;
@@ -173,20 +203,23 @@ body {
   font-size: clamp(16px, 2.5vw, 25px);
   line-height: 1;
 
-  text-shadow: 2px 2px 0 #65191d;
+  text-shadow:
+    2px 2px 0 #65191d;
 
   box-shadow:
     inset 0 2px 0 rgba(255,255,255,.16),
     inset 0 -3px 0 rgba(0,0,0,.25);
 }
 
+
 /* =========================================================
-   START
+   PANTALLA START
    ========================================================= */
 
 .start-screen {
   position: absolute;
   inset: 0;
+
   z-index: 100;
 
   display: flex;
@@ -209,22 +242,27 @@ body {
 
 .start-screen h1 {
   margin: 0;
+
   color: var(--yellow);
 
   font-size: clamp(22px, 5vw, 48px);
   line-height: 1.4;
 
-  text-shadow: 4px 4px 0 #5a4918;
+  text-shadow:
+    4px 4px 0 #5a4918;
 }
 
 .start-screen p {
   margin: 0;
+
   color: #91d9df;
+
   font-size: clamp(8px, 1.7vw, 13px);
 }
 
 #start-button {
   margin-top: 15px;
+
   padding: 18px 34px;
 
   background:
@@ -238,6 +276,7 @@ body {
   border-radius: 8px;
 
   color: var(--yellow);
+
   font-family: 'Press Start 2P', monospace;
   font-size: clamp(12px, 2vw, 18px);
 
@@ -250,8 +289,34 @@ body {
 
 #start-button:active {
   transform: translateY(5px);
-  box-shadow: 0 2px 0 #55161c;
+
+  box-shadow:
+    0 2px 0 #55161c;
 }
+
+
+/* =========================================================
+   GAME SCREEN
+   ========================================================= */
+
+.game-screen {
+  position: relative;
+
+  flex: 1 1 auto;
+
+  min-height: 0;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
 
 /* =========================================================
    HUD
@@ -261,10 +326,18 @@ body {
   flex: 0 0 auto;
 
   display: grid;
-  grid-template-columns: 1fr 1.35fr 1fr 1fr 1fr;
+
+  grid-template-columns:
+    1fr
+    1.35fr
+    1fr
+    1fr
+    1fr;
+
   gap: 4px;
 
   height: 66px;
+
   margin-bottom: 6px;
 }
 
@@ -277,6 +350,7 @@ body {
   justify-content: center;
 
   background: #020505;
+
   border: 3px solid var(--cyan);
 
   text-align: center;
@@ -284,19 +358,24 @@ body {
 
 .hud-box span {
   margin-bottom: 7px;
+
   color: #5be7e7;
+
   font-size: 7px;
   line-height: 1;
 }
 
 .hud-box strong {
-  color: var(--white);
+  color: #fff;
+
   font-size: clamp(11px, 1.6vw, 18px);
+
   line-height: 1;
 }
 
 .timer-box strong {
-  color: var(--white);
+  color: #fff;
+
   font-size: clamp(22px, 3vw, 34px);
 }
 
@@ -304,27 +383,6 @@ body {
   color: #ffe600;
 }
 
-/* =========================================================
-   GAME
-   ========================================================= */
-
-.game-screen {
-  position: relative;
-
-  flex: 1 1 auto;
-  min-height: 0;
-  height: auto;
-
-  display: flex;
-  flex-direction: column;
-
-  overflow: hidden;
-}
-
-.game-screen.hidden,
-.hidden {
-  display: none !important;
-}
 
 /* =========================================================
    ESTADIO
@@ -334,6 +392,7 @@ body {
   position: relative;
 
   flex: 1 1 auto;
+
   min-height: 0;
 
   display: grid;
@@ -349,9 +408,11 @@ body {
 
   overflow: hidden;
 
-  border: 3px solid #00dddd;
+  border: 3px solid var(--cyan);
+
   background: #14972c;
 }
+
 
 /* =========================================================
    CIELO
@@ -359,6 +420,7 @@ body {
 
 .sky {
   position: relative;
+
   overflow: hidden;
 
   background:
@@ -370,7 +432,9 @@ body {
     );
 }
 
+
 /* Nubes */
+
 .cloud {
   position: absolute;
 
@@ -399,12 +463,14 @@ body {
   top: 48%;
 }
 
+
 /* =========================================================
    BANDERAS
    ========================================================= */
 
 .flags {
   position: absolute;
+
   z-index: 10;
 
   left: 50%;
@@ -417,6 +483,7 @@ body {
   justify-content: center;
 
   gap: clamp(7px, 1vw, 13px);
+
   white-space: nowrap;
 }
 
@@ -429,12 +496,16 @@ body {
   height: 16px;
 
   border: 2px solid #111;
-  box-shadow: 2px 2px 0 rgba(0,0,0,.35);
+
+  box-shadow:
+    2px 2px 0 rgba(0,0,0,.35);
 
   image-rendering: pixelated;
 }
 
+
 /* España */
+
 .flag-es {
   background:
     linear-gradient(
@@ -445,7 +516,9 @@ body {
     );
 }
 
+
 /* Francia */
+
 .flag-fr {
   background:
     linear-gradient(
@@ -456,7 +529,9 @@ body {
     );
 }
 
+
 /* Italia */
+
 .flag-it {
   background:
     linear-gradient(
@@ -467,7 +542,9 @@ body {
     );
 }
 
+
 /* Alemania */
+
 .flag-de {
   background:
     linear-gradient(
@@ -478,7 +555,9 @@ body {
     );
 }
 
+
 /* Reino Unido */
+
 .flag-gb {
   overflow: hidden;
 
@@ -502,6 +581,7 @@ body {
   content: "";
 
   position: absolute;
+
   left: 0;
   top: 6px;
 
@@ -509,10 +589,13 @@ body {
   height: 4px;
 
   background: #d93842;
+
   transform: rotate(-27deg);
 }
 
+
 /* Japón */
+
 .flag-jp {
   background:
     radial-gradient(
@@ -523,7 +606,9 @@ body {
     #fff;
 }
 
+
 /* Estados Unidos */
+
 .flag-us {
   background:
     repeating-linear-gradient(
@@ -537,6 +622,7 @@ body {
   content: "";
 
   position: absolute;
+
   left: 0;
   top: 0;
 
@@ -545,6 +631,7 @@ body {
 
   background: #214b9b;
 }
+
 
 /* =========================================================
    PÚBLICO
@@ -567,6 +654,7 @@ body {
     );
 
   color: #ffe900;
+
   font-size: clamp(8px, 1.3vw, 14px);
 }
 
@@ -594,8 +682,9 @@ body {
   }
 }
 
+
 /* =========================================================
-   CARTEL
+   CARTEL DEL ESTADIO
    ========================================================= */
 
 .stadium-banner {
@@ -613,11 +702,14 @@ body {
   border-top: 2px solid var(--yellow);
   border-bottom: 2px solid var(--yellow);
 
-  color: var(--white);
+  color: #fff;
 
   font-size: clamp(9px, 1.5vw, 15px);
-  text-shadow: 2px 2px 0 #111;
+
+  text-shadow:
+    2px 2px 0 #111;
 }
+
 
 /* =========================================================
    PISTAS
@@ -625,16 +717,11 @@ body {
 
 .race-track {
   position: relative;
+
   min-height: 0;
 
   background:
-    repeating-linear-gradient(
-      0deg,
-      var(--track) 0,
-      var(--track) calc(100% - 5px),
-      #fff calc(100% - 5px),
-      #fff 100%
-    );
+    var(--track);
 
   border-top: 3px solid #fff;
   border-bottom: 3px solid #fff;
@@ -642,16 +729,38 @@ body {
   overflow: hidden;
 }
 
-/*
-   LÍNEAS BLANCAS DE SALIDA / ZANCADA
 
-   IMPORTANTE:
-   Están en .race-track y NO en .runner.
-   Por eso permanecen completamente fijas cuando el
-   corredor se desplaza.
+/*
+   LÍNEAS HORIZONTALES FIJAS DEL CARRIL
+
+   Estas líneas pertenecen a la pista.
+   NO pertenecen al corredor.
+
+   Por tanto:
+   - permanecen fijas;
+   - ocupan todo el carril;
+   - no se desplazan cuando corre el atleta.
 */
 
-.race-track::before,
+.race-track::before {
+  content: "";
+
+  position: absolute;
+
+  z-index: 3;
+
+  left: 0;
+  right: 0;
+
+  top: 7px;
+
+  height: 5px;
+
+  background: #fff;
+
+  pointer-events: none;
+}
+
 .race-track::after {
   content: "";
 
@@ -659,34 +768,27 @@ body {
 
   z-index: 3;
 
-  background: #fff;
+  left: 0;
+  right: 0;
 
-  transform: rotate(45deg);
-  transform-origin: left center;
+  bottom: 7px;
+
+  height: 5px;
+
+  background: #fff;
 
   pointer-events: none;
 }
 
-.race-track::before {
-  left: 6.5%;
-  bottom: 8px;
 
-  width: 62px;
-  height: 5px;
-}
+/* =========================================================
+   LÍNEA DE META
+   ========================================================= */
 
-.race-track::after {
-  left: 8%;
-  bottom: 2px;
-
-  width: 38px;
-  height: 4px;
-}
-
-/* Meta */
 .finish-line {
   position: absolute;
-  z-index: 2;
+
+  z-index: 4;
 
   top: 0;
   bottom: 0;
@@ -701,8 +803,10 @@ body {
       #111 9px 18px
     );
 
-  box-shadow: -3px 0 0 rgba(0,0,0,.25);
+  box-shadow:
+    -3px 0 0 rgba(0,0,0,.25);
 }
+
 
 /* =========================================================
    NÚMERO DE CALLE
@@ -710,6 +814,7 @@ body {
 
 .lane-number {
   position: absolute;
+
   z-index: 8;
 
   left: 10px;
@@ -725,28 +830,33 @@ body {
   justify-content: center;
 
   background: #111;
+
   border: 2px solid #fff;
 
   color: #fff;
+
   font-size: 11px;
 }
 
+
 /* =========================================================
-   CPU / YOU
+   ETIQUETAS CPU / YOU
    ========================================================= */
 
 .lane-label {
   position: absolute;
+
   z-index: 8;
 
   left: 52px;
-  top: 42%;
+  top: 40%;
 
   transform: translateY(-50%);
 
   padding: 5px 7px;
 
   background: #000;
+
   color: #fff;
 
   font-size: 9px;
@@ -755,8 +865,10 @@ body {
 
 .you-label {
   color: #00ff6a;
+
   border: 2px solid #00ff6a;
 }
+
 
 /* =========================================================
    CORREDORES
@@ -764,6 +876,7 @@ body {
 
 .runner {
   position: absolute;
+
   z-index: 10;
 
   left: 2%;
@@ -776,10 +889,14 @@ body {
   align-items: center;
   justify-content: center;
 
-  transform: none;
+  transform: translateY(-50%);
 
-  transition: left .05s linear;
+  transition:
+    left .05s linear;
 }
+
+
+/* Sprite común */
 
 .athlete-sprite {
   display: block;
@@ -787,26 +904,43 @@ body {
   width: 64px;
   height: 64px;
 
-  background-image: url("../assets/sprites/athlete-run.png");
+  background-image:
+    url("../assets/sprites/athlete-run.png");
+
   background-repeat: no-repeat;
-  background-size: 384px 64px;
+
+  background-size:
+    384px 64px;
 
   image-rendering: pixelated;
 
-  animation: athlete-run .65s steps(6) infinite;
+  animation:
+    athlete-run .65s steps(6) infinite;
 }
 
+
+/* CPU */
+
 .cpu-runner .athlete-sprite {
-  background-image: url("../assets/sprites/athlete-run-cpu.png");
+  background-image:
+    url("../assets/sprites/athlete-run-cpu.png");
+
   transform: scale(1);
 }
 
+
+/* YOU */
+
 .player-runner .athlete-sprite {
-  transform: scale(1.18);
+  transform: scale(1.25);
 }
 
+
+/* Sombras */
+
 .cpu-runner {
-  filter: drop-shadow(2px 2px 0 #111);
+  filter:
+    drop-shadow(2px 2px 0 #111);
 }
 
 .player-runner {
@@ -815,7 +949,11 @@ body {
     drop-shadow(0 0 3px #00ff6a);
 }
 
+
+/* Animación */
+
 @keyframes athlete-run {
+
   from {
     background-position: 0 0;
   }
@@ -824,6 +962,14 @@ body {
     background-position: -384px 0;
   }
 }
+
+
+/* Detener animación al terminar */
+
+.game-screen.finished .athlete-sprite {
+  animation-play-state: paused;
+}
+
 
 /* =========================================================
    DISTANCIA
@@ -837,13 +983,16 @@ body {
   padding: 0 7%;
 
   background: var(--track-green);
+
   color: #fff;
 
   font-size: clamp(7px, 1vw, 11px);
+
   line-height: 1;
 
   border-bottom: 2px solid #fff;
 }
+
 
 /* =========================================================
    MENSAJE
@@ -861,10 +1010,13 @@ body {
   color: #fff;
 
   font-size: clamp(7px, 1vw, 10px);
+
   text-align: center;
 
-  text-shadow: 1px 1px 0 #000;
+  text-shadow:
+    1px 1px 0 #000;
 }
+
 
 /* =========================================================
    CONTROLES
@@ -879,7 +1031,7 @@ body {
   align-items: center;
   justify-content: space-between;
 
-  padding: 5px 3% 12px;
+  padding: 5px 3% 8px;
 }
 
 .nes-button {
@@ -887,12 +1039,15 @@ body {
   height: 70px;
 
   border: 5px solid #111;
+
   border-radius: 50%;
 
   font-family: 'Press Start 2P', monospace;
+
   font-size: 20px;
 
   color: #fff;
+
   cursor: pointer;
 
   box-shadow:
@@ -926,8 +1081,9 @@ body {
     inset 0 2px 0 rgba(0,0,0,.2);
 }
 
+
 /* =========================================================
-   RITMO
+   INDICADOR DE RITMO
    ========================================================= */
 
 .rhythm {
@@ -943,7 +1099,9 @@ body {
   text-align: center;
 
   color: #fff;
+
   font-size: clamp(6px, .9vw, 9px);
+
   line-height: 1.6;
 }
 
@@ -952,6 +1110,7 @@ body {
   justify-content: center;
 
   gap: 4px;
+
   margin-top: 5px;
 }
 
@@ -960,8 +1119,10 @@ body {
   height: 11px;
 
   background: #12551e;
+
   border: 1px solid #071c0b;
 }
+
 
 /* =========================================================
    RESULTADO
@@ -969,6 +1130,7 @@ body {
 
 .result {
   position: absolute;
+
   z-index: 100;
 
   inset: 8% 15%;
@@ -988,6 +1150,7 @@ body {
     );
 
   border: 5px solid var(--yellow);
+
   border-radius: 10px;
 
   box-shadow:
@@ -1001,55 +1164,70 @@ body {
   color: var(--yellow);
 
   font-size: clamp(18px, 3vw, 30px);
-  text-shadow: 3px 3px 0 #574716;
+
+  text-shadow:
+    3px 3px 0 #574716;
 }
 
 .result-position {
   color: #fff;
+
   font-size: clamp(10px, 1.7vw, 16px);
 }
 
 .result-time-label {
   color: #78dce2;
+
   font-size: 8px;
 }
 
 #final-time {
   color: #fff;
+
   font-size: clamp(25px, 4vw, 45px);
 }
 
 .result-score {
   color: var(--yellow);
+
   font-size: clamp(8px, 1.4vw, 12px);
 }
 
 #again {
   margin-top: 5px;
+
   padding: 12px 18px;
 
   background: #e3423d;
 
   border: 3px solid #111;
+
   border-radius: 6px;
 
   color: #fff;
+
   font-family: 'Press Start 2P', monospace;
+
   font-size: 8px;
 
   cursor: pointer;
 
-  box-shadow: 0 4px 0 #5b171c;
+  box-shadow:
+    0 4px 0 #5b171c;
 }
 
 #again:active {
   transform: translateY(3px);
-  box-shadow: 0 1px 0 #5b171c;
+
+  box-shadow:
+    0 1px 0 #5b171c;
 }
 
 .result a {
   color: #8edce2;
+
   font-size: 7px;
+
   text-decoration: none;
 }
 
@@ -1057,11 +1235,13 @@ body {
   color: var(--yellow);
 }
 
+
 /* =========================================================
    PC GRANDE
    ========================================================= */
 
 @media (min-width: 1100px) {
+
   .cabinet {
     padding: 10px;
   }
@@ -1073,12 +1253,15 @@ body {
   .marquee {
     height: 48px;
     margin-bottom: 8px;
+
     font-size: 27px;
   }
 
   .race-hud {
     height: 72px;
+
     gap: 5px;
+
     margin-bottom: 8px;
   }
 
@@ -1108,27 +1291,37 @@ body {
     height: 72px;
   }
 
+  .athlete-sprite {
+    width: 64px;
+    height: 64px;
+
+    background-size: 384px 64px;
+  }
+
   .lane-number {
     width: 36px;
     height: 36px;
   }
 
   .nes-controls {
-    flex-basis: 120px;
+    flex-basis: 88px;
   }
 
   .nes-button {
     width: 78px;
     height: 78px;
+
     font-size: 22px;
   }
 }
+
 
 /* =========================================================
    TABLET
    ========================================================= */
 
 @media (max-width: 900px) {
+
   .arcade {
     padding: 6px;
   }
@@ -1143,7 +1336,9 @@ body {
 
   .marquee {
     height: 38px;
+
     margin-bottom: 5px;
+
     font-size: 18px;
   }
 
@@ -1157,6 +1352,7 @@ body {
 
   .hud-box span {
     margin-bottom: 4px;
+
     font-size: 6px;
   }
 
@@ -1176,10 +1372,12 @@ body {
   .athlete-sprite {
     width: 52px;
     height: 52px;
+
     background-size: 312px 52px;
   }
 
   @keyframes athlete-run {
+
     from {
       background-position: 0 0;
     }
@@ -1187,6 +1385,7 @@ body {
     to {
       background-position: -312px 0;
     }
+
   }
 
   .flag {
@@ -1198,36 +1397,39 @@ body {
     gap: 5px;
   }
 
+  .lane-label {
+    top: 40%;
+  }
+
   .nes-controls {
-    flex-basis: 90px;
+    flex-basis: 78px;
   }
 
   .nes-button {
     width: 62px;
     height: 62px;
+
     font-size: 17px;
   }
 
   .race-track::before {
-    left: 7%;
-    bottom: 7px;
-    width: 52px;
+    top: 6px;
     height: 4px;
   }
 
   .race-track::after {
-    left: 8.5%;
-    bottom: 2px;
-    width: 32px;
-    height: 3px;
+    bottom: 6px;
+    height: 4px;
   }
 }
+
 
 /* =========================================================
    MÓVIL
    ========================================================= */
 
 @media (max-width: 650px) {
+
   .arcade {
     padding: 0;
   }
@@ -1240,28 +1442,35 @@ body {
 
     border: 2px solid #687583;
     border-radius: 7px;
+
     box-shadow: none;
   }
 
   .screen {
     padding: 4px;
+
     border-width: 2px;
   }
 
   .marquee {
     height: 34px;
+
     margin-bottom: 4px;
+
     border-width: 2px;
+
     font-size: 15px;
   }
 
   .race-hud {
     height: 53px;
+
     gap: 2px;
   }
 
   .hud-box span {
     margin-bottom: 4px;
+
     font-size: 5px;
   }
 
@@ -1286,12 +1495,14 @@ body {
 
   .flags {
     bottom: 4px;
+
     gap: 3px;
   }
 
   .flag {
     width: 18px;
     height: 11px;
+
     border-width: 1px;
   }
 
@@ -1310,14 +1521,18 @@ body {
   .lane-number {
     width: 24px;
     height: 24px;
+
     left: 5px;
+
     font-size: 7px;
   }
 
   .lane-label {
     left: 34px;
     top: 40%;
+
     padding: 3px 5px;
+
     font-size: 6px;
   }
 
@@ -1329,10 +1544,16 @@ body {
   .athlete-sprite {
     width: 40px;
     height: 40px;
+
     background-size: 240px 40px;
   }
 
+  .player-runner .athlete-sprite {
+    transform: scale(1.25);
+  }
+
   @keyframes athlete-run {
+
     from {
       background-position: 0 0;
     }
@@ -1340,6 +1561,7 @@ body {
     to {
       background-position: -240px 0;
     }
+
   }
 
   .finish-line {
@@ -1349,16 +1571,19 @@ body {
   .distance-line {
     padding-left: 7%;
     padding-right: 7%;
+
     font-size: 6px;
   }
 
   .message {
     height: 24px;
+
     font-size: 7px;
   }
 
   .nes-controls {
-    flex-basis: 78px;
+    flex-basis: 70px;
+
     padding-left: 2%;
     padding-right: 2%;
   }
@@ -1366,12 +1591,15 @@ body {
   .nes-button {
     width: 55px;
     height: 55px;
+
     border-width: 4px;
+
     font-size: 15px;
   }
 
   .rhythm {
     width: 180px;
+
     font-size: 6px;
   }
 
@@ -1389,25 +1617,27 @@ body {
   }
 
   .race-track::before {
-    left: 7%;
-    bottom: 6px;
-    width: 46px;
-    height: 4px;
+    top: 5px;
+    height: 3px;
   }
 
   .race-track::after {
-    left: 8.5%;
-    bottom: 2px;
-    width: 29px;
+    bottom: 5px;
     height: 3px;
   }
 }
 
+
 /* =========================================================
-   MÓVIL HORIZONTAL / PANTALLA BAJA
+   MÓVIL HORIZONTAL
    ========================================================= */
 
-@media (max-width: 900px) and (orientation: landscape) {
+@media (
+  max-width: 900px
+) and (
+  orientation: landscape
+) {
+
   .arcade {
     padding: 0;
   }
@@ -1415,19 +1645,24 @@ body {
   .cabinet {
     width: 100%;
     height: 100%;
+
     padding: 3px;
+
     border-width: 2px;
     border-radius: 5px;
   }
 
   .screen {
     padding: 3px;
+
     border-width: 2px;
   }
 
   .marquee {
     height: 28px;
+
     margin-bottom: 3px;
+
     font-size: 13px;
   }
 
@@ -1437,6 +1672,7 @@ body {
 
   .hud-box span {
     margin-bottom: 3px;
+
     font-size: 5px;
   }
 
@@ -1461,6 +1697,7 @@ body {
 
   .flags {
     bottom: 3px;
+
     gap: 2px;
   }
 
@@ -1494,10 +1731,16 @@ body {
   .athlete-sprite {
     width: 46px;
     height: 46px;
+
     background-size: 276px 46px;
   }
 
+  .player-runner .athlete-sprite {
+    transform: scale(1.25);
+  }
+
   @keyframes athlete-run {
+
     from {
       background-position: 0 0;
     }
@@ -1505,19 +1748,24 @@ body {
     to {
       background-position: -276px 0;
     }
+
   }
 
   .lane-number {
     width: 20px;
     height: 20px;
+
     left: 4px;
+
     font-size: 6px;
   }
 
   .lane-label {
     left: 28px;
     top: 40%;
+
     padding: 2px 4px;
+
     font-size: 5px;
   }
 
@@ -1531,18 +1779,22 @@ body {
 
   .message {
     height: 18px;
+
     font-size: 6px;
   }
 
   .nes-controls {
-    flex-basis: 62px;
-    padding-bottom: 5px;
+    flex-basis: 58px;
+
+    padding-bottom: 3px;
   }
 
   .nes-button {
     width: 46px;
     height: 46px;
+
     border-width: 3px;
+
     font-size: 12px;
   }
 
@@ -1564,25 +1816,23 @@ body {
   }
 
   .race-track::before {
-    left: 7%;
-    bottom: 5px;
-    width: 42px;
+    top: 4px;
     height: 3px;
   }
 
   .race-track::after {
-    left: 8.5%;
-    bottom: 1px;
-    width: 27px;
+    bottom: 4px;
     height: 3px;
   }
 }
+
 
 /* =========================================================
    PANTALLAS MUY BAJAS
    ========================================================= */
 
 @media (max-height: 500px) {
+
   .arcade {
     padding: 2px;
   }
@@ -1597,6 +1847,7 @@ body {
 
   .marquee {
     height: 27px;
+
     font-size: 13px;
   }
 
@@ -1605,20 +1856,16 @@ body {
   }
 
   .nes-controls {
-    flex-basis: 60px;
+    flex-basis: 58px;
   }
 
   .race-track::before {
-    left: 7%;
-    bottom: 5px;
-    width: 42px;
+    top: 4px;
     height: 3px;
   }
 
   .race-track::after {
-    left: 8.5%;
-    bottom: 1px;
-    width: 27px;
+    bottom: 4px;
     height: 3px;
   }
 }
