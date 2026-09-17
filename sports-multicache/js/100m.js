@@ -726,7 +726,8 @@ function finishRace() {
   state =
     "finished";
 
-
+  document.querySelector(".game-screen").classList.add("finished");
+   
   clearInterval(
     timerInterval
   );
@@ -878,7 +879,8 @@ function reset() {
     cpuInterval
   );
 
-
+  document.querySelector(".game-screen").classList.remove("finished");
+   
   startTime =
     0;
 
