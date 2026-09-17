@@ -1939,3 +1939,137 @@ body {
   height: auto;
   overflow: hidden;
 }
+/* =========================================================
+   ATLETA PIXEL ART
+   ========================================================= */
+
+.runner {
+  width: 64px;
+  height: 64px;
+
+  position: absolute;
+
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: none;
+}
+
+
+/* Sprite */
+
+.athlete-sprite {
+  display: block;
+
+  width: 64px;
+  height: 64px;
+
+  background-image: url("../assets/sprites/athlete-run.png");
+  background-repeat: no-repeat;
+  background-size: 384px 64px;
+
+  image-rendering: pixelated;
+
+  animation: athlete-run 0.42s steps(6) infinite;
+}
+
+
+/* Animación de los 6 frames */
+
+@keyframes athlete-run {
+
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -384px 0;
+  }
+
+}
+
+
+/* CPU y jugador miran hacia la derecha */
+
+.cpu-runner,
+.player-runner {
+  transform: none;
+}
+
+
+/* =========================================================
+   CUANDO LA CARRERA TERMINA
+   ========================================================= */
+
+.game-screen.finished .athlete-sprite {
+  animation-play-state: paused;
+}
+
+
+/* =========================================================
+   TAMAÑO EN PANTALLAS PEQUEÑAS
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .runner {
+    width: 52px;
+    height: 52px;
+  }
+
+  .athlete-sprite {
+    width: 52px;
+    height: 52px;
+
+    background-size: 312px 52px;
+  }
+
+  @keyframes athlete-run {
+
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: -312px 0;
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   MÓVIL HORIZONTAL / PANTALLA BAJA
+   ========================================================= */
+
+@media (max-height: 500px) {
+
+  .runner {
+    width: 46px;
+    height: 46px;
+  }
+
+  .athlete-sprite {
+    width: 46px;
+    height: 46px;
+
+    background-size: 276px 46px;
+  }
+
+  @keyframes athlete-run {
+
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: -276px 0;
+    }
+
+  }
+
+}
