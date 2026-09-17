@@ -1976,6 +1976,9 @@ body {
   animation: athlete-run 0.65s steps(6) infinite;
 }
 
+.cpu-runner .athlete-sprite {
+  background-image: url("../assets/sprites/athlete-run-cpu.png");
+}
 
 /* Animación de los 6 frames */
 
