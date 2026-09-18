@@ -188,7 +188,10 @@
                 CPU
               </div>
 
-              <div id="cpu-runner" class="runner cpu-runner">
+              <div
+                id="cpu-runner"
+                class="runner cpu-runner"
+              >
                 <span class="athlete-sprite"></span>
               </div>
 
@@ -225,7 +228,10 @@
                 YOU
               </div>
 
-              <div id="player-runner" class="runner player-runner">
+              <div
+                id="player-runner"
+                class="runner player-runner"
+              >
                 <span class="athlete-sprite"></span>
               </div>
 
@@ -315,9 +321,9 @@
           </div>
 
 
-          <!-- =========================
+          <!-- =================================================
                RESULTADO
-               ========================= -->
+               ================================================= -->
 
           <div
             id="result"
@@ -328,12 +334,18 @@
               FINISH!
             </div>
 
+
+            <!-- POSICIÓN -->
+
             <div
               id="result-position"
               class="result-position"
             >
               1ST PLACE
             </div>
+
+
+            <!-- TIEMPO -->
 
             <div class="result-time-label">
               TIME
@@ -343,12 +355,117 @@
               00.00
             </strong>
 
+
+            <!-- SCORE -->
+
             <div
               id="score"
               class="result-score"
             >
               SCORE 00000
             </div>
+
+
+            <!-- =================================================
+                 COORDENADAS
+                 SOLO SE MOSTRARÁN SI EL JUGADOR QUEDA 1º
+                 ================================================= -->
+
+            <div
+              id="coordinates"
+              class="coordinates hidden"
+            >
+
+              <div class="coordinates-title">
+                COORDINATES
+              </div>
+
+              <div id="coordinates-value">
+                N 41° XX.XXX<br>
+                E 002° XX.XXX
+              </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 GUARDAR SCORE / RANKING
+                 ================================================= -->
+
+            <button
+              id="ranking-button"
+              class="ranking-button"
+              type="button"
+            >
+              SAVE SCORE / RANKING
+            </button>
+
+
+            <!-- =================================================
+                 FORMULARIO NICKNAME
+                 ================================================= -->
+
+            <div
+              id="nickname-panel"
+              class="nickname-panel hidden"
+            >
+
+              <div class="nickname-title">
+                ENTER YOUR NICKNAME
+              </div>
+
+              <input
+                id="nickname"
+                type="text"
+                maxlength="12"
+                autocomplete="off"
+                placeholder="NICKNAME"
+              >
+
+              <button
+                id="save-score"
+                type="button"
+              >
+                SAVE SCORE
+              </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 RANKING
+                 ================================================= -->
+
+            <div
+              id="ranking-panel"
+              class="ranking-panel hidden"
+            >
+
+              <div class="ranking-title">
+                TOP 10
+              </div>
+
+              <div id="ranking-list">
+
+                <!--
+                  Supabase rellenará aquí el ranking.
+                -->
+
+              </div>
+
+              <button
+                id="close-ranking"
+                type="button"
+              >
+                BACK
+              </button>
+
+            </div>
+
+
+            <!-- =========================
+                 VOLVER A JUGAR
+                 ========================= -->
 
             <button
               id="again"
@@ -357,9 +474,13 @@
               RUN AGAIN
             </button>
 
+
+            <!-- VOLVER AL MENÚ -->
+
             <a href="index.html">
               BACK TO EVENTS
             </a>
+
 
           </div>
 
