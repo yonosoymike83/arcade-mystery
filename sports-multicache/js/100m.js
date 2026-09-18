@@ -1412,20 +1412,15 @@ if (coordinates) {
         </div>
 
 
+      ${place === 1 ? `
         <div class="coordinates-title">
           COORDINATES
         </div>
 
         <div class="coordinates-value">
-          ${
-            escapeHTML(
-              coordinateText
-            ).replace(
-              /\n/g,
-              "<br>"
-            )
-          }
+          ${escapeHTML(coordinateText).replace(/\n/g, "<br>")}
         </div>
+      ` : ""}
 
 
         <!-- ==============================
