@@ -15,82 +15,64 @@ const $ = id =>
 const timer =
   $("timer");
 
-
 const distanceEl =
   $("distance");
-
 
 const positionEl =
   $("position");
 
-
 const player =
   $("player-runner");
-
 
 const cpu =
   $("cpu-runner");
 
-
 const message =
   $("message");
-
 
 const result =
   $("result");
 
-
 const finalTime =
   $("final-time");
-
 
 const resultPosition =
   $("result-position");
 
-
 const scoreEl =
   $("score");
 
-
 const controls =
   document.querySelector(".nes-controls");
-
 
 const again =
   $("again");
 
 
 /* =========================================
-   ELEMENTOS · RANKING
+   ELEMENTOS · SUPABASE / RANKING
    ========================================= */
 
 const coordinates =
   $("coordinates");
 
-
 const rankingButton =
   $("ranking-button");
-
 
 const nicknamePanel =
   $("nickname-panel");
 
-
 const nicknameInput =
   $("nickname");
-
 
 const saveScoreButton =
   $("save-score");
 
-
 const rankingPanel =
   $("ranking-panel");
 
-
 const rankingList =
   $("ranking-list");
-
 
 const closeRanking =
   $("close-ranking");
@@ -103,45 +85,52 @@ const closeRanking =
 let state =
   "ready";
 
-
 let startTime =
   0;
-
 
 let lastPress =
   0;
 
-
 let lastButton =
   null;
-
 
 let playerDistance =
   0;
 
-
 let cpuDistance =
   0;
-
 
 let cpuSpeed =
   0;
 
-
 let timerInterval =
   null;
-
 
 let cpuInterval =
   null;
 
-
 let goodPresses =
   0;
 
-
 let totalPresses =
   0;
+
+
+/* =========================================
+   RESULTADO · DATOS PARA RANKING
+   ========================================= */
+
+let finalScore =
+  0;
+
+let finalElapsed =
+  0;
+
+let finalPlace =
+  2;
+
+let scoreSaved =
+  false;
 
 
 /* =========================================
@@ -153,6 +142,9 @@ let totalPresses =
  * Ritmo ideal:
  *
  * aproximadamente 7 pulsaciones por segundo.
+ *
+ * El jugador debe intentar mantener
+ * un ritmo constante.
  */
 
 const IDEAL_INTERVAL =
@@ -224,7 +216,6 @@ function setRunnerPosition(
       92,
       2 + distance * 0.90
     );
-
 
   element.style.left =
     percent + "%";
@@ -764,650 +755,173 @@ function press(button) {
 
 
 /* =========================================
-   FINAL
+   SUPABASE · COMPROBAR CONEXIÓN
    ========================================= */
 
-function finishRace() {
+function getSupabase() {
 
   if (
-    state !== "running"
+    window.OlympiaSupabase &&
+    typeof window.OlympiaSupabase.from === "function"
+  ) {
+
+    return window.OlympiaSupabase;
+
+  }
+
+  return null;
+
+}
+
+
+/* =========================================
+   SUPABASE · GUARDAR SCORE
+   ========================================= */
+
+async function saveScore() {
+
+  if (scoreSaved) {
+
+    return;
+
+  }
+
+  const supabase =
+    getSupabase();
+
+  if (!supabase) {
+
+    alert("SUPABASE NO ESTÁ DISPONIBLE");
+
+    return;
+
+  }
+
+  const nickname =
+    nicknameInput
+      ? nicknameInput.value.trim().toUpperCase()
+      : "";
+
+  if (!nickname) {
+
+    if (nicknameInput) {
+
+      nicknameInput.focus();
+
+    }
+
+    return;
+
+  }
+
+  if (nickname.length > 12) {
+
+    if (nicknameInput) {
+
+      nicknameInput.value =
+        nickname.slice(0, 12);
+
+      nicknameInput.focus();
+
+    }
+
+    return;
+
+  }
+
+  if (
+    !Number.isFinite(finalScore) ||
+    !Number.isFinite(finalElapsed)
   ) {
 
     return;
 
   }
 
+  if (saveScoreButton) {
 
-  state =
-    "finished";
+    saveScoreButton.disabled =
+      true;
 
-
-  document
-    .querySelector(".game-screen")
-    .classList.add(
-      "finished"
-    );
-
-
-  clearInterval(
-    timerInterval
-  );
-
-
-  clearInterval(
-    cpuInterval
-  );
-
-
-  const elapsed =
-    performance.now() -
-    startTime;
-
-
-  const time =
-    formatTime(
-      elapsed
-    );
-
-
-  timer.textContent =
-    time;
-
-
-  finalTime.textContent =
-    time;
-
-
-  /* ======================================
-     CLASIFICACIÓN
-     ====================================== */
-
-  const place =
-    playerDistance >= cpuDistance
-      ? 1
-      : 2;
-
-
-  if (
-    place === 1
-  ) {
-
-    resultPosition.textContent =
-      "1ST PLACE";
-
-  } else {
-
-    resultPosition.textContent =
-      "2ND PLACE";
+    saveScoreButton.textContent =
+      "SAVING...";
 
   }
 
+  const { error } =
+    await supabase
+      .from("scores")
+      .insert({
+        nickname: nickname,
+        score: Math.round(finalScore),
+        time_ms: Math.round(finalElapsed),
+        event: "100m"
+      });
 
-  positionEl.textContent =
-    place === 1
-      ? "1ST"
-      : "2ND";
+  if (error) {
 
+    console.error(
+      "Error guardando score:",
+      error
+    );
 
-  /* ======================================
-     COORDENADAS
-     ====================================== */
+    if (saveScoreButton) {
 
-  /*
-   * Las coordenadas solo se muestran
-   * si el jugador termina en primera posición.
-   */
+      saveScoreButton.disabled =
+        false;
 
-  if (
-    coordinates
-  ) {
-
-    if (
-      place === 1
-    ) {
-
-      coordinates.classList.remove(
-        "hidden"
-      );
-
-    } else {
-
-      coordinates.classList.add(
-        "hidden"
-      );
+      saveScoreButton.textContent =
+        "SAVE SCORE";
 
     }
 
+    alert(
+      "NO SE HA PODIDO GUARDAR LA PUNTUACIÓN"
+    );
+
+    return;
+
   }
 
+  scoreSaved =
+    true;
 
-  /* ======================================
-     PUNTUACIÓN
-     ====================================== */
+  if (saveScoreButton) {
 
-  const rhythm =
-    totalPresses > 0
+    saveScoreButton.textContent =
+      "SAVED!";
 
-      ? goodPresses /
-        totalPresses
+  }
 
-      : 0;
+  await loadRanking();
 
+  if (rankingPanel) {
 
-  const score =
-    Math.max(
-
-      0,
-
-      Math.round(
-
-        100000 -
-
-        (
-          elapsed /
-          1000
-        ) *
-        7000 +
-
-        rhythm *
-        15000
-
-      )
-
-    );
-
-
-  scoreEl.textContent =
-    "SCORE " +
-
-    String(score)
-      .padStart(
-        5,
-        "0"
-      );
-
-
-  /*
-   * Guardamos temporalmente los datos
-   * de la carrera para el ranking.
-   */
-
-  result.dataset.score =
-    String(score);
-
-
-  result.dataset.time =
-    String(Math.round(elapsed));
-
-
-  result.dataset.place =
-    String(place);
-
-
-  /* ======================================
-     RESULTADO
-     ====================================== */
-
-  controls.classList.add(
-    "hidden"
-  );
-
-
-  message.classList.add(
-    "hidden"
-  );
-
-
-  document
-    .querySelector(".race-hud")
-    .classList.add(
-      "hidden"
-    );
-
-
-  result.classList.remove(
-    "hidden"
-  );
-
-}
-
-
-/* =========================================
-   RESET
-   ========================================= */
-
-function reset() {
-
-  state =
-    "ready";
-
-
-  clearInterval(
-    timerInterval
-  );
-
-
-  clearInterval(
-    cpuInterval
-  );
-
-
-  document
-    .querySelector(".game-screen")
-    .classList.remove(
-      "finished"
-    );
-
-
-  startTime =
-    0;
-
-
-  lastPress =
-    0;
-
-
-  lastButton =
-    null;
-
-
-  playerDistance =
-    0;
-
-
-  goodPresses =
-    0;
-
-
-  totalPresses =
-    0;
-
-
-  timer.textContent =
-    "00.00";
-
-
-  distanceEl.textContent =
-    "0 M";
-
-
-  positionEl.textContent =
-    "2ND";
-
-
-  message.textContent =
-    "READY!";
-
-
-  message.classList.remove(
-    "hidden"
-  );
-
-
-  document
-    .querySelector(".race-hud")
-    .classList.remove(
-      "hidden"
-    );
-
-
-  controls.classList.remove(
-    "hidden"
-  );
-
-
-  result.classList.add(
-    "hidden"
-  );
-
-
-  if (
-    coordinates
-  ) {
-
-    coordinates.classList.add(
+    rankingPanel.classList.remove(
       "hidden"
     );
 
   }
 
+}
 
-  if (
-    nicknamePanel
-  ) {
 
-    nicknamePanel.classList.add(
-      "hidden"
-    );
+/* =========================================
+   SUPABASE · CARGAR TOP 10
+   ========================================= */
+
+async function loadRanking() {
+
+  if (!rankingList) {
+
+    return;
 
   }
 
+  const supabase =
+    getSupabase();
 
-  if (
-    rankingPanel
-  ) {
+  if (!supabase) {
 
-    rankingPanel.classList.add(
-      "hidden"
-    );
-
-  }
-
-
-  if (
-    nicknameInput
-  ) {
-
-    nicknameInput.value =
-      "";
-
-  }
-
-
-  setRunnerPosition(
-    player,
-    0
-  );
-
-
-  resetCPU();
-
-}
-
-
-/* =========================================
-   CONTROLES A / B
-   ========================================= */
-
-/*
- * IMPORTANTE:
- *
- * Los botones de 100m se conectan directamente
- * aquí.
- *
- * No dependemos de controller.js.
- *
- * controller.js puede seguir cargado y funcionando
- * para los demás juegos, pero 100m controla sus
- * propios botones.
- */
-
-const buttonA =
-  $("buttonA");
-
-
-const buttonB =
-  $("buttonB");
-
-
-/* =========================================
-   BOTÓN A
-   ========================================= */
-
-if (
-  buttonA
-) {
-
-  buttonA.addEventListener(
-    "pointerdown",
-    event => {
-
-      event.preventDefault();
-      event.stopPropagation();
-
-      press("A");
-
-    },
-    {
-      passive: false
-    }
-  );
-
-
-  /*
-   * Fallback para navegadores que no gestionen
-   * pointerdown correctamente.
-   */
-
-  buttonA.addEventListener(
-    "touchstart",
-    event => {
-
-      event.preventDefault();
-
-      press("A");
-
-    },
-    {
-      passive: false
-    }
-  );
-
-}
-
-
-/* =========================================
-   BOTÓN B
-   ========================================= */
-
-if (
-  buttonB
-) {
-
-  buttonB.addEventListener(
-    "pointerdown",
-    event => {
-
-      event.preventDefault();
-      event.stopPropagation();
-
-      press("B");
-
-    },
-    {
-      passive: false
-    }
-  );
-
-
-  /*
-   * Fallback para navegadores que no gestionen
-   * pointerdown correctamente.
-   */
-
-  buttonB.addEventListener(
-    "touchstart",
-    event => {
-
-      event.preventDefault();
-
-      press("B");
-
-    },
-    {
-      passive: false
-    }
-  );
-
-}
-
-
-/* =========================================
-   TECLADO PC
-   ========================================= */
-
-document.addEventListener(
-  "keydown",
-  event => {
-
-    const key =
-      event.key.toLowerCase();
-
-
-    if (
-      key === "a"
-    ) {
-
-      press("A");
-
-    }
-
-
-    if (
-      key === "b"
-    ) {
-
-      press("B");
-
-    }
-
-  }
-);
-
-
-/* =========================================
-   RANKING · INTERFAZ
-   ========================================= */
-
-if (
-  rankingButton
-) {
-
-  rankingButton.addEventListener(
-    "click",
-    () => {
-
-      if (
-        nicknamePanel
-      ) {
-
-        nicknamePanel.classList.remove(
-          "hidden"
-        );
-
-      }
-
-      rankingButton.classList.add(
-        "hidden"
-      );
-
-      if (
-        nicknameInput
-      ) {
-
-        nicknameInput.focus();
-
-      }
-
-    }
-  );
-
-}
-
-
-/* =========================================
-   GUARDAR SCORE
-   ========================================= */
-
-if (
-  saveScoreButton
-) {
-
-  saveScoreButton.addEventListener(
-    "click",
-    () => {
-
-      const nickname =
-        nicknameInput
-          ? nicknameInput.value
-              .trim()
-              .toUpperCase()
-          : "";
-
-
-      if (
-        !nickname
-      ) {
-
-        if (
-          nicknameInput
-        ) {
-
-          nicknameInput.focus();
-
-        }
-
-        return;
-
-      }
-
-
-      /*
-       * Todavía no enviamos nada a Supabase.
-       *
-       * Este punto queda preparado para la
-       * conexión que haremos después.
-       */
-
-      console.log(
-        "SCORE READY",
-        {
-          nickname,
-          score:
-            result.dataset.score,
-          time:
-            result.dataset.time,
-          event:
-            "100m"
-        }
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================
-   RANKING
-   ========================================= */
-
-if (
-  closeRanking
-) {
-
-  closeRanking.addEventListener(
-    "click",
-    () => {
-
-      rankingPanel.classList.add(
-        "hidden"
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================
-   REPETIR
-   ========================================= */
-
-if (
-  again
-) {
-
-  again.addEventListener(
-    "click",
-    reset
-  );
-
-}
-
-
-/* =========================================
-   INICIO
-   ========================================= */
-
-reset();
+    rankingList.textContent =
+      "RANKING
