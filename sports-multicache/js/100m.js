@@ -1396,11 +1396,6 @@ if (coordinates) {
           ${time}
         </div>
 
-
-        <div class="finish-score-label">
-          SCORE
-        </div>
-
         <div class="finish-score">
           SCORE ${
             String(score)
