@@ -1908,3 +1908,802 @@ body {
     transform: scale(1.35);
   }
 }
+/* =========================================================
+   RESULTADO + RANKING
+   DISEÑO ARCADE DEFINITIVO
+   ========================================================= */
+
+/*
+ * El resultado ocupa toda la pantalla disponible.
+ * El ranking se coloca como panel lateral derecho.
+ */
+
+.result {
+  position: absolute;
+  z-index: 100;
+
+  inset: 8% 8%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  padding: 22px 42% 22px 7%;
+
+  gap: 10px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #103d48,
+      #092a32
+    );
+
+  border: 5px solid var(--yellow);
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 0 0 4px #10151a,
+    0 15px 30px rgba(0,0,0,.65);
+
+  text-align: center;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+}
+
+
+/* =========================================================
+   CONTENIDO DEL RESULTADO
+   ========================================================= */
+
+.result-title,
+.result-position,
+.result-time-label,
+#final-time,
+.result-score,
+#again,
+#coordinates,
+#ranking-button,
+#nickname-panel {
+  font-family:
+    'Press Start 2P',
+    monospace;
+}
+
+
+/* Título */
+
+.result-title {
+  width: 100%;
+
+  color: var(--yellow);
+
+  font-size:
+    clamp(14px, 2.5vw, 26px);
+
+  line-height: 1.4;
+
+  text-shadow:
+    3px 3px 0 #574716;
+}
+
+
+/* Posición */
+
+.result-position {
+  width: 100%;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(9px, 1.5vw, 15px);
+
+  line-height: 1.4;
+}
+
+
+/* TIME */
+
+.result-time-label {
+  width: 100%;
+
+  color: #78dce2;
+
+  font-size:
+    clamp(7px, 1vw, 10px);
+}
+
+
+/* Tiempo */
+
+#final-time {
+  width: 100%;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(25px, 4vw, 42px);
+
+  line-height: 1;
+}
+
+
+/* SCORE */
+
+.result-score {
+  width: 100%;
+
+  color: var(--yellow);
+
+  font-size:
+    clamp(8px, 1.2vw, 12px);
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   COORDENADAS
+   ========================================================= */
+
+.coordinates {
+  width: 100%;
+
+  margin-top: 2px;
+
+  color: #ffffff;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+  font-size:
+    clamp(7px, 1vw, 10px);
+
+  line-height: 1.6;
+
+  text-align: center;
+}
+
+.coordinates-title {
+  margin-bottom: 5px;
+
+  color: var(--yellow);
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+  font-size:
+    clamp(8px, 1.2vw, 12px);
+}
+
+#coordinates-value {
+  color: #ffffff;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+  font-size:
+    clamp(7px, 1vw, 10px);
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   BOTÓN SAVE SCORE / RANKING
+   ========================================================= */
+
+.ranking-button {
+  width: 100%;
+
+  margin-top: 4px;
+
+  padding: 9px 8px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #e94d42,
+      #a9262c
+    );
+
+  border: 3px solid #11151a;
+
+  border-radius: 5px;
+
+  color: #ffffff;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+  font-size:
+    clamp(6px, .9vw, 9px);
+
+  line-height: 1.3;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 0 #55161c;
+}
+
+.ranking-button:active {
+  transform: translateY(3px);
+
+  box-shadow:
+    0 1px 0 #55161c;
+}
+
+
+/* =========================================================
+   REPETIR
+   ========================================================= */
+
+#again {
+  width: 100%;
+
+  margin-top: 3px;
+
+  padding: 9px 12px;
+
+  background: #e3423d;
+
+  border: 3px solid #111;
+
+  border-radius: 5px;
+
+  color: #fff;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+  font-size:
+    clamp(6px, .9vw, 9px);
+
+  line-height: 1.3;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 0 #5b171c;
+}
+
+#again:active {
+  transform: translateY(3px);
+
+  box-shadow:
+    0 1px 0 #5b171c;
+}
+
+
+/* =========================================================
+   PANEL DE NICKNAME
+   ========================================================= */
+
+.nickname-panel {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 7px;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+}
+
+.nickname-title {
+  width: 100%;
+
+  color: #ffffff;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+  font-size:
+    clamp(6px, .9vw, 9px);
+
+  line-height: 1.4;
+
+  text-align: center;
+}
+
+
+/* Input */
+
+#nickname {
+  width: 100%;
+
+  height: 34px;
+
+  padding: 5px 8px;
+
+  background: #ffffff;
+
+  border: 3px solid #111111;
+
+  border-radius: 3px;
+
+  color: #111111;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+  font-size:
+    clamp(7px, .9vw, 10px);
+
+  outline: none;
+
+  text-transform: uppercase;
+}
+
+#nickname:focus {
+  border-color: var(--yellow);
+}
+
+
+/* SAVE SCORE */
+
+#save-score {
+  width: 100%;
+
+  padding: 8px 6px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #eeeeee,
+      #bbbbbb
+    );
+
+  border: 3px solid #111111;
+
+  border-radius: 4px;
+
+  color: #111111;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+  font-size:
+    clamp(6px, .85vw, 9px);
+
+  line-height: 1.3;
+
+  cursor: pointer;
+}
+
+#save-score:disabled {
+  opacity: .55;
+
+  cursor: default;
+}
+
+
+/* =========================================================
+   RANKING LATERAL
+   ========================================================= */
+
+.ranking-panel {
+  position: absolute;
+
+  top: 5%;
+  right: 3%;
+  bottom: 5%;
+
+  width: 38%;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 14px 12px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #08272f,
+      #061e25
+    );
+
+  border: 3px solid var(--cyan);
+
+  border-radius: 6px;
+
+  box-shadow:
+    inset 0 0 0 2px #071116;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+  text-align: center;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   TÍTULO TOP 10
+   ========================================================= */
+
+.ranking-title {
+  flex: 0 0 auto;
+
+  margin-bottom: 12px;
+
+  padding-bottom: 9px;
+
+  color: var(--yellow);
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+  font-size:
+    clamp(9px, 1.3vw, 14px);
+
+  line-height: 1;
+
+  border-bottom: 2px solid #78dce2;
+}
+
+
+/* =========================================================
+   LISTA
+   ========================================================= */
+
+#ranking-list {
+  flex: 1 1 auto;
+
+  min-height: 0;
+
+  width: 100%;
+
+  overflow-y: auto;
+
+  overflow-x: hidden;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+}
+
+
+/* =========================================================
+   FILA DEL RANKING
+   ========================================================= */
+
+.ranking-row {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    34px
+    minmax(0, 1fr)
+    82px
+    65px;
+
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 7px 3px;
+
+  border-bottom: 1px solid rgba(120,220,226,.35);
+
+  color: #ffffff;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+  font-size:
+    clamp(5px, .75vw, 8px);
+
+  line-height: 1.2;
+
+  text-align: left;
+}
+
+
+/* Número */
+
+.ranking-row > :nth-child(1) {
+  color: var(--yellow);
+
+  text-align: center;
+}
+
+
+/* Nickname */
+
+.ranking-row > :nth-child(2) {
+  min-width: 0;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+/* Score */
+
+.ranking-row > :nth-child(3) {
+  color: var(--yellow);
+
+  text-align: right;
+}
+
+
+/* Tiempo */
+
+.ranking-row > :nth-child(4) {
+  color: #78dce2;
+
+  text-align: right;
+}
+
+
+/* =========================================================
+   MENSAJE RANKING
+   ========================================================= */
+
+.ranking-message {
+  padding: 12px 4px;
+
+  color: #78dce2;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+  font-size:
+    clamp(6px, .8vw, 8px);
+
+  line-height: 1.6;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   BOTÓN BACK
+   ========================================================= */
+
+#close-ranking {
+  flex: 0 0 auto;
+
+  margin-top: 10px;
+
+  padding: 8px 14px;
+
+  align-self: center;
+
+  background:
+    linear-gradient(
+      180deg,
+      #eeeeee,
+      #bbbbbb
+    );
+
+  border: 3px solid #111111;
+
+  border-radius: 4px;
+
+  color: #111111;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+  font-size:
+    clamp(6px, .8vw, 9px);
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   ASEGURAR FUENTE EN TODO EL RESULTADO
+   ========================================================= */
+
+.result button,
+.result input,
+.result div,
+.result span,
+.result strong,
+.result p {
+  font-family:
+    'Press Start 2P',
+    monospace;
+}
+
+
+/* =========================================================
+   RANKING OCULTO
+   ========================================================= */
+
+.ranking-panel.hidden,
+.nickname-panel.hidden,
+.coordinates.hidden {
+  display: none !important;
+}
+
+
+/* =========================================================
+   PANTALLAS PEQUEÑAS
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .result {
+    inset: 6% 5%;
+
+    padding:
+      16px 42% 16px 5%;
+  }
+
+  .ranking-panel {
+    right: 2.5%;
+
+    width: 39%;
+
+    padding:
+      10px 7px;
+  }
+
+  .ranking-row {
+    grid-template-columns:
+      24px
+      minmax(0, 1fr)
+      65px
+      52px;
+
+    gap: 3px;
+
+    font-size: 6px;
+  }
+
+}
+
+
+/* =========================================================
+   MÓVIL HORIZONTAL
+   ========================================================= */
+
+@media (
+  max-width: 900px
+) and (
+  orientation: landscape
+) {
+
+  .result {
+    inset: 4% 7%;
+
+    padding:
+      10px 43% 10px 5%;
+
+    gap: 6px;
+  }
+
+  .result-title {
+    font-size: 11px;
+  }
+
+  .result-position {
+    font-size: 7px;
+  }
+
+  .result-time-label {
+    font-size: 5px;
+  }
+
+  #final-time {
+    font-size: 25px;
+  }
+
+  .result-score {
+    font-size: 6px;
+  }
+
+  .coordinates-title {
+    font-size: 6px;
+  }
+
+  #coordinates-value {
+    font-size: 5px;
+  }
+
+  .nickname-title {
+    font-size: 5px;
+  }
+
+  #nickname {
+    height: 25px;
+
+    font-size: 6px;
+  }
+
+  #save-score,
+  .ranking-button,
+  #again {
+    padding: 5px 4px;
+
+    font-size: 5px;
+  }
+
+  .ranking-panel {
+    top: 4%;
+    right: 2%;
+
+    width: 39%;
+
+    padding: 7px 5px;
+  }
+
+  .ranking-title {
+    margin-bottom: 6px;
+
+    padding-bottom: 5px;
+
+    font-size: 7px;
+  }
+
+  .ranking-row {
+    grid-template-columns:
+      20px
+      minmax(0, 1fr)
+      52px
+      43px;
+
+    gap: 2px;
+
+    padding: 4px 2px;
+
+    font-size: 4px;
+  }
+
+  #close-ranking {
+    margin-top: 5px;
+
+    padding: 5px 9px;
+
+    font-size: 5px;
+  }
+}
+
+
+/* =========================================================
+   PANTALLAS MUY BAJAS
+   ========================================================= */
+
+@media (max-height: 500px) {
+
+  .result {
+    inset: 4% 8%;
+  }
+
+  .ranking-panel {
+    top: 3%;
+    right: 2%;
+
+    bottom: 3%;
+  }
+     }
