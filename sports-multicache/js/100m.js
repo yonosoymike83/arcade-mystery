@@ -924,4 +924,676 @@ async function loadRanking() {
   if (!supabase) {
 
     rankingList.textContent =
-      "RANKING
+      "RANKING UNAVAILABLE";
+
+    return;
+
+  }
+
+  rankingList.textContent =
+    "LOADING...";
+
+  const { data, error } =
+    await supabase
+      .from("scores")
+      .select("nickname,score,time_ms,created_at")
+      .eq("event", "100m")
+      .order("score", {
+        ascending: false
+      })
+      .order("time_ms", {
+        ascending: true
+      })
+      .order("created_at", {
+        ascending: true
+      })
+      .limit(10);
+
+  if (error) {
+
+    console.error(
+      "Error cargando ranking:",
+      error
+    );
+
+    rankingList.textContent =
+      "RANKING UNAVAILABLE";
+
+    return;
+
+  }
+
+  rankingList.replaceChildren();
+
+  if (!data || data.length === 0) {
+
+    rankingList.textContent =
+      "NO SCORES YET";
+
+    return;
+
+  }
+
+  data.forEach(
+    (entry, index) => {
+
+      const row =
+        document.createElement("div");
+
+      row.className =
+        "ranking-row";
+
+      const rank =
+        document.createElement("span");
+
+      rank.className =
+        "ranking-rank";
+
+      rank.textContent =
+        String(index + 1);
+
+      const name =
+        document.createElement("span");
+
+      name.className =
+        "ranking-name";
+
+      name.textContent =
+        String(entry.nickname || "---")
+          .slice(0, 12);
+
+      const score =
+        document.createElement("span");
+
+      score.className =
+        "ranking-score";
+
+      score.textContent =
+        String(Number(entry.score) || 0)
+          .padStart(5, "0");
+
+      const time =
+        document.createElement("span");
+
+      time.className =
+        "ranking-time";
+
+      time.textContent =
+        formatTime(Number(entry.time_ms) || 0);
+
+      row.append(
+        rank,
+        name,
+        score,
+        time
+      );
+
+      rankingList.appendChild(
+        row
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================
+   RANKING · ABRIR
+   ========================================= */
+
+function openRanking() {
+
+  if (!rankingPanel) {
+
+    return;
+
+  }
+
+  rankingPanel.classList.remove(
+    "hidden"
+  );
+
+  loadRanking();
+
+}
+
+
+/* =========================================
+   RANKING · CERRAR
+   ========================================= */
+
+function closeRankingPanel() {
+
+  if (rankingPanel) {
+
+    rankingPanel.classList.add(
+      "hidden"
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   FINAL
+   ========================================= */
+
+function finishRace() {
+
+  if (
+    state !== "running"
+  ) {
+
+    return;
+
+  }
+
+
+  state =
+    "finished";
+
+  document.querySelector(".game-screen").classList.add("finished");
+   
+  clearInterval(
+    timerInterval
+  );
+
+  clearInterval(
+    cpuInterval
+  );
+
+
+  const elapsed =
+    performance.now() -
+    startTime;
+
+
+  const time =
+    formatTime(
+      elapsed
+    );
+
+
+  timer.textContent =
+    time;
+
+
+  finalTime.textContent =
+    time;
+
+
+  /* ======================================
+     CLASIFICACIÓN
+     ====================================== */
+
+  const place =
+    playerDistance >= cpuDistance
+      ? 1
+      : 2;
+
+
+  if (
+    place === 1
+  ) {
+
+    resultPosition.textContent =
+      "1ST PLACE";
+
+  } else {
+
+    resultPosition.textContent =
+      "2ND PLACE";
+
+  }
+
+
+  positionEl.textContent =
+    place === 1
+      ? "1ST"
+      : "2ND";
+
+
+  /* ======================================
+     PUNTUACIÓN
+     ====================================== */
+
+  const rhythm =
+    totalPresses > 0
+
+      ? goodPresses /
+        totalPresses
+
+      : 0;
+
+
+  const score =
+    Math.max(
+
+      0,
+
+      Math.round(
+
+        100000 -
+
+        (
+          elapsed /
+          1000
+        ) *
+        7000 +
+
+        rhythm *
+        15000
+
+      )
+
+    );
+
+
+  scoreEl.textContent =
+    "SCORE " +
+
+    String(score)
+      .padStart(
+        5,
+        "0"
+      );
+
+
+  /* ======================================
+     DATOS DEL RANKING
+     ====================================== */
+
+  finalScore =
+    score;
+
+  finalElapsed =
+    elapsed;
+
+  finalPlace =
+    place;
+
+  scoreSaved =
+    false;
+
+
+  /* ======================================
+     COORDENADAS
+     ====================================== */
+
+  if (coordinates) {
+
+    if (place === 1) {
+
+      coordinates.classList.remove(
+        "hidden"
+      );
+
+    } else {
+
+      coordinates.classList.add(
+        "hidden"
+      );
+
+    }
+
+  }
+
+
+  /* ======================================
+     RESULTADO
+     ====================================== */
+
+  controls.classList.add(
+    "hidden"
+  );
+
+
+  message.classList.add(
+    "hidden"
+  );
+
+
+  document
+    .querySelector(".race-hud")
+    .classList.add(
+      "hidden"
+    );
+
+
+  if (nicknamePanel) {
+
+    nicknamePanel.classList.remove(
+      "hidden"
+    );
+
+  }
+
+
+  if (rankingButton) {
+
+    rankingButton.classList.remove(
+      "hidden"
+    );
+
+  }
+
+
+  if (saveScoreButton) {
+
+    saveScoreButton.disabled =
+      false;
+
+    saveScoreButton.textContent =
+      "SAVE SCORE";
+
+  }
+
+
+  result.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+/* =========================================
+   RESET
+   ========================================= */
+
+function reset() {
+
+  state =
+    "ready";
+
+
+  clearInterval(
+    timerInterval
+  );
+
+  clearInterval(
+    cpuInterval
+  );
+
+  document.querySelector(".game-screen").classList.remove("finished");
+   
+  startTime =
+    0;
+
+
+  lastPress =
+    0;
+
+
+  lastButton =
+    null;
+
+
+  playerDistance =
+    0;
+
+
+  goodPresses =
+    0;
+
+
+  totalPresses =
+    0;
+
+
+  timer.textContent =
+    "00.00";
+
+
+  distanceEl.textContent =
+    "0 M";
+
+
+  positionEl.textContent =
+    "2ND";
+
+
+  message.textContent =
+    "READY!";
+
+
+  message.classList.remove(
+    "hidden"
+  );
+
+
+  document
+    .querySelector(".race-hud")
+    .classList.remove(
+      "hidden"
+    );
+
+
+  controls.classList.remove(
+    "hidden"
+  );
+
+
+  result.classList.add(
+    "hidden"
+  );
+
+
+  finalScore =
+    0;
+
+  finalElapsed =
+    0;
+
+  finalPlace =
+    2;
+
+  scoreSaved =
+    false;
+
+
+  if (coordinates) {
+
+    coordinates.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  if (nicknamePanel) {
+
+    nicknamePanel.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  if (rankingPanel) {
+
+    rankingPanel.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  if (nicknameInput) {
+
+    nicknameInput.value =
+      "";
+
+  }
+
+
+  if (saveScoreButton) {
+
+    saveScoreButton.disabled =
+      false;
+
+    saveScoreButton.textContent =
+      "SAVE SCORE";
+
+  }
+
+
+  setRunnerPosition(
+    player,
+    0
+  );
+
+
+  resetCPU();
+
+}
+
+
+/* =========================================
+   CONTROLES
+   ========================================= */
+
+/*
+ * Utilizamos el controlador compartido cuando está
+ * disponible. Si no se ha cargado correctamente,
+ * usamos los botones directamente como respaldo.
+ */
+
+if (
+  window.ArcadeController &&
+  typeof window.ArcadeController.on === "function"
+) {
+
+  ArcadeController.on(
+    "A",
+    () => press("A")
+  );
+
+
+  ArcadeController.on(
+    "B",
+    () => press("B")
+  );
+
+} else {
+
+  const buttonA =
+    $("buttonA");
+
+  const buttonB =
+    $("buttonB");
+
+
+  if (buttonA) {
+
+    buttonA.addEventListener(
+      "pointerdown",
+      event => {
+
+        event.preventDefault();
+
+        press("A");
+
+      },
+      { passive: false }
+    );
+
+  }
+
+
+  if (buttonB) {
+
+    buttonB.addEventListener(
+      "pointerdown",
+      event => {
+
+        event.preventDefault();
+
+        press("B");
+
+      },
+      { passive: false }
+    );
+
+  }
+
+
+  /*
+   * Teclado como respaldo para PC.
+   */
+
+  document.addEventListener(
+    "keydown",
+    event => {
+
+      const key =
+        event.key.toLowerCase();
+
+      if (key === "a") {
+
+        press("A");
+
+      }
+
+      if (key === "b") {
+
+        press("B");
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================
+   RANKING · BOTONES
+   ========================================= */
+
+if (saveScoreButton) {
+
+  saveScoreButton.addEventListener(
+    "click",
+    saveScore
+  );
+
+}
+
+
+if (rankingButton) {
+
+  rankingButton.addEventListener(
+    "click",
+    openRanking
+  );
+
+}
+
+
+if (closeRanking) {
+
+  closeRanking.addEventListener(
+    "click",
+    closeRankingPanel
+  );
+
+}
+
+
+/* =========================================
+   REPETIR
+   ========================================= */
+
+again.addEventListener(
+  "click",
+  reset
+);
+
+
+/* =========================================
+   INICIO
+   ========================================= */
+
+reset();
