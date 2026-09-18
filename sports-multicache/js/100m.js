@@ -50,7 +50,7 @@ const again =
 
 
 /* =========================================
-   ELEMENTOS · SUPABASE / RANKING
+   ELEMENTOS · SUPABASE
    ========================================= */
 
 const coordinates =
@@ -117,7 +117,7 @@ let totalPresses =
 
 
 /* =========================================
-   RESULTADO · DATOS PARA RANKING
+   RESULTADO
    ========================================= */
 
 let finalScore =
@@ -137,49 +137,17 @@ let scoreSaved =
    CONFIGURACIÓN
    ========================================= */
 
-
-/*
- * Ritmo ideal:
- *
- * aproximadamente 7 pulsaciones por segundo.
- *
- * El jugador debe intentar mantener
- * un ritmo constante.
- */
-
 const IDEAL_INTERVAL =
   140;
-
-
-/*
- * Zona en la que el ritmo se considera
- * prácticamente perfecto.
- */
 
 const PERFECT_RANGE =
   20;
 
-
-/*
- * Pulsaciones demasiado rápidas.
- */
-
 const TOO_FAST =
   65;
 
-
-/*
- * Distancia máxima por pulsación.
- */
-
 const MAX_STEP =
   2.65;
-
-
-/*
- * Distancia mínima cuando el ritmo
- * es bastante malo.
- */
 
 const MIN_STEP =
   0.15;
@@ -192,9 +160,7 @@ const MIN_STEP =
 function formatTime(ms) {
 
   return (
-
     ms / 1000
-
   )
     .toFixed(2)
     .padStart(5, "0");
@@ -210,6 +176,10 @@ function setRunnerPosition(
   element,
   distance
 ) {
+
+  if (!element) {
+    return;
+  }
 
   const percent =
     Math.min(
@@ -232,18 +202,9 @@ function resetCPU() {
   cpuDistance =
     0;
 
-
-  /*
-   * CPU más rápida que antes.
-   *
-   * La variación hace que cada partida
-   * sea ligeramente diferente.
-   */
-
   cpuSpeed =
     1.30 +
     Math.random() * 0.14;
-
 
   setRunnerPosition(
     cpu,
@@ -259,32 +220,24 @@ function resetCPU() {
 
 function updatePosition() {
 
-  if (
-    playerDistance >=
-    cpuDistance
-  ) {
+  if (positionEl) {
 
     positionEl.textContent =
-      "1ST";
-
-  } else {
-
-    positionEl.textContent =
-      "2ND";
+      playerDistance >= cpuDistance
+        ? "1ST"
+        : "2ND";
 
   }
 
+  if (distanceEl) {
 
-  distanceEl.textContent =
+    distanceEl.textContent =
+      Math.min(
+        100,
+        Math.round(playerDistance)
+      ) + " M";
 
-    Math.min(
-      100,
-      Math.round(
-        playerDistance
-      )
-    ) +
-
-    " M";
+  }
 
 }
 
@@ -303,20 +256,13 @@ function updateCPU() {
 
   }
 
-
-  /*
-   * Variación natural de la CPU.
-   */
-
   const variation =
     0.82 +
     Math.random() * 0.30;
 
-
   cpuDistance +=
     cpuSpeed *
     variation;
-
 
   cpuDistance =
     Math.min(
@@ -324,19 +270,12 @@ function updateCPU() {
       cpuDistance
     );
 
-
   setRunnerPosition(
     cpu,
     cpuDistance
   );
 
-
   updatePosition();
-
-
-  /*
-   * CPU llega primero.
-   */
 
   if (
     cpuDistance >= 100
@@ -363,28 +302,26 @@ function updateTimer() {
 
   }
 
+  if (timer) {
 
-  timer.textContent =
-    formatTime(
-      performance.now() -
-      startTime
-    );
+    timer.textContent =
+      formatTime(
+        performance.now() -
+        startTime
+      );
+
+  }
 
 }
 
 
 /* =========================================
-   CALCULAR CALIDAD DEL RITMO
+   CALIDAD DEL RITMO
    ========================================= */
 
 function getRhythmQuality(
   interval
 ) {
-
-  /*
-   * Si es demasiado rápido,
-   * penalización fuerte.
-   */
 
   if (
     interval < TOO_FAST
@@ -394,23 +331,11 @@ function getRhythmQuality(
 
   }
 
-
-  /*
-   * Distancia respecto al ritmo ideal.
-   */
-
   const difference =
     Math.abs(
       interval -
       IDEAL_INTERVAL
     );
-
-
-  /*
-   * Fuera de una ventana razonable
-   * todavía se puede avanzar,
-   * pero muy poco.
-   */
 
   if (
     difference >= 130
@@ -420,23 +345,9 @@ function getRhythmQuality(
 
   }
 
-
-  /*
-   * 0 = perfecto
-   * 1 = límite de la zona
-   */
-
   const normalized =
     difference /
     130;
-
-
-  /*
-   * Curva suave:
-   *
-   * cerca del ritmo ideal
-   * se obtiene mucha más velocidad.
-   */
 
   return Math.max(
     0.08,
@@ -467,7 +378,6 @@ function rhythmMessage(
 
   }
 
-
   if (
     Math.abs(
       interval -
@@ -479,7 +389,6 @@ function rhythmMessage(
 
   }
 
-
   if (
     quality > 0.72
   ) {
@@ -487,7 +396,6 @@ function rhythmMessage(
     return "GOOD!";
 
   }
-
 
   if (
     interval <
@@ -497,7 +405,6 @@ function rhythmMessage(
     return "SLOW DOWN!";
 
   }
-
 
   return "FASTER!";
 
@@ -527,41 +434,39 @@ function press(button) {
     state === "ready"
   ) {
 
-    /*
-     * La carrera empieza con A.
-     */
-
     if (
       button !== "A"
     ) {
 
-      message.textContent =
-        "PRESS A!";
+      if (message) {
+
+        message.textContent =
+          "PRESS A!";
+
+      }
 
       return;
 
     }
 
-
     state =
       "running";
-
 
     startTime =
       performance.now();
 
-
     lastPress =
       startTime;
-
 
     lastButton =
       "A";
 
+    if (message) {
 
-    message.textContent =
-      "RUN!";
+      message.textContent =
+        "RUN!";
 
+    }
 
     timerInterval =
       setInterval(
@@ -569,13 +474,11 @@ function press(button) {
         20
       );
 
-
     cpuInterval =
       setInterval(
         updateCPU,
         100
       );
-
 
     return;
 
@@ -590,17 +493,12 @@ function press(button) {
     button === lastButton
   ) {
 
-    /*
-     * Repetir A o B rompe el ritmo.
-     */
+    if (message) {
 
-    message.textContent =
-      "ALTERNATE!";
+      message.textContent =
+        "ALTERNATE!";
 
-
-    /*
-     * Pequeña penalización.
-     */
+    }
 
     playerDistance =
       Math.max(
@@ -608,12 +506,10 @@ function press(button) {
         playerDistance - 0.25
       );
 
-
     setRunnerPosition(
       player,
       playerDistance
     );
-
 
     updatePosition();
 
@@ -629,19 +525,15 @@ function press(button) {
   const now =
     performance.now();
 
-
   const interval =
     now -
     lastPress;
 
-
   lastPress =
     now;
 
-
   lastButton =
     button;
-
 
   totalPresses++;
 
@@ -656,11 +548,6 @@ function press(button) {
     );
 
 
-  /*
-   * Convertimos la calidad
-   * en distancia recorrida.
-   */
-
   let step =
     MIN_STEP +
     (
@@ -670,10 +557,9 @@ function press(button) {
     quality;
 
 
-  /*
-   * Perfecto:
-   * pequeño bonus.
-   */
+  /* ======================================
+     PERFECTO
+     ====================================== */
 
   if (
     Math.abs(
@@ -690,10 +576,9 @@ function press(button) {
   }
 
 
-  /*
-   * Demasiado rápido:
-   * prácticamente no avanza.
-   */
+  /* ======================================
+     DEMASIADO RÁPIDO
+     ====================================== */
 
   if (
     interval < TOO_FAST
@@ -707,7 +592,6 @@ function press(button) {
 
   playerDistance +=
     step;
-
 
   playerDistance =
     Math.max(
@@ -728,15 +612,17 @@ function press(button) {
     playerDistance
   );
 
-
   updatePosition();
 
+  if (message) {
 
-  message.textContent =
-    rhythmMessage(
-      interval,
-      quality
-    );
+    message.textContent =
+      rhythmMessage(
+        interval,
+        quality
+      );
+
+  }
 
 
   /* ======================================
@@ -755,7 +641,7 @@ function press(button) {
 
 
 /* =========================================
-   SUPABASE · COMPROBAR CONEXIÓN
+   SUPABASE
    ========================================= */
 
 function getSupabase() {
@@ -775,825 +661,148 @@ function getSupabase() {
 
 
 /* =========================================
-   SUPABASE · GUARDAR SCORE
+   ESCAPAR HTML
+   ========================================= */
+
+function escapeHTML(value) {
+
+  return String(value)
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+/* =========================================
+   GUARDAR SCORE
    ========================================= */
 
 async function saveScore() {
 
-  if (scoreSaved) {
-
-    return;
-
-  }
-
-  const supabase =
-    getSupabase();
-
-  if (!supabase) {
-
-    alert("SUPABASE NO ESTÁ DISPONIBLE");
-
-    return;
-
-  }
-
-  const nickname =
-    nicknameInput
-      ? nicknameInput.value.trim().toUpperCase()
-      : "";
-
-  if (!nickname) {
-
-    if (nicknameInput) {
-
-      nicknameInput.focus();
-
-    }
-
-    return;
-
-  }
-
-  if (nickname.length > 12) {
-
-    if (nicknameInput) {
-
-      nicknameInput.value =
-        nickname.slice(0, 12);
-
-      nicknameInput.focus();
-
-    }
-
-    return;
-
-  }
-
   if (
-    !Number.isFinite(finalScore) ||
-    !Number.isFinite(finalElapsed)
+    scoreSaved
   ) {
 
     return;
 
   }
 
-  if (saveScoreButton) {
 
-    saveScoreButton.disabled =
-      true;
+  const supabase =
+    getSupabase();
 
-    saveScoreButton.textContent =
-      "SAVING...";
-
-  }
-
-  const { error } =
-    await supabase
-      .from("scores")
-      .insert({
-        nickname: nickname,
-        score: Math.round(finalScore),
-        time_ms: Math.round(finalElapsed),
-        event: "100m"
-      });
-
-  if (error) {
-
-    console.error(
-      "Error guardando score:",
-      error
-    );
-
-    if (saveScoreButton) {
-
-      saveScoreButton.disabled =
-        false;
-
-      saveScoreButton.textContent =
-        "SAVE SCORE";
-
-    }
+  if (!supabase) {
 
     alert(
-      "NO SE HA PODIDO GUARDAR LA PUNTUACIÓN"
+      "SUPABASE NO ESTÁ DISPONIBLE"
     );
 
     return;
-
-  }
-
-  scoreSaved =
-    true;
-
-  if (saveScoreButton) {
-
-    saveScoreButton.textContent =
-      "SAVED!";
-
-  }
-
-  await loadRanking();
-
-  if (rankingPanel) {
-
-    rankingPanel.classList.remove(
-      "hidden"
-    );
-
-  }
-
-}
-
-
-/* =========================================
-   SUPABASE · CARGAR TOP 10
-   ========================================= */
-
-async function loadRanking() {
-
-  if (!rankingList) {
-
-    return;
-
-  }
-
-  const supabase =
-    getSupabase();
-
-  if (!supabase) {
-
-    rankingList.textContent =
-      "RANKING UNAVAILABLE";
-
-    return;
-
-  }
-
-  rankingList.textContent =
-    "LOADING...";
-
-  const { data, error } =
-    await supabase
-      .from("scores")
-      .select("nickname,score,time_ms,created_at")
-      .eq("event", "100m")
-      .order("score", {
-        ascending: false
-      })
-      .order("time_ms", {
-        ascending: true
-      })
-      .order("created_at", {
-        ascending: true
-      })
-      .limit(10);
-
-  if (error) {
-
-    console.error(
-      "Error cargando ranking:",
-      error
-    );
-
-    rankingList.textContent =
-      "RANKING UNAVAILABLE";
-
-    return;
-
-  }
-
-  rankingList.replaceChildren();
-
-  if (!data || data.length === 0) {
-
-    rankingList.textContent =
-      "NO SCORES YET";
-
-    return;
-
-  }
-
-  data.forEach(
-    (entry, index) => {
-
-      const row =
-        document.createElement("div");
-
-      row.className =
-        "ranking-row";
-
-      const rank =
-        document.createElement("span");
-
-      rank.className =
-        "ranking-rank";
-
-      rank.textContent =
-        String(index + 1);
-
-      const name =
-        document.createElement("span");
-
-      name.className =
-        "ranking-name";
-
-      name.textContent =
-        String(entry.nickname || "---")
-          .slice(0, 12);
-
-      const score =
-        document.createElement("span");
-
-      score.className =
-        "ranking-score";
-
-      score.textContent =
-        String(Number(entry.score) || 0)
-          .padStart(5, "0");
-
-      const time =
-        document.createElement("span");
-
-      time.className =
-        "ranking-time";
-
-      time.textContent =
-        formatTime(Number(entry.time_ms) || 0);
-
-      row.append(
-        rank,
-        name,
-        score,
-        time
-      );
-
-      rankingList.appendChild(
-        row
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================
-   RANKING · ABRIR
-   ========================================= */
-
-function openRanking() {
-
-  if (!rankingPanel) {
-
-    return;
-
-  }
-
-  rankingPanel.classList.remove(
-    "hidden"
-  );
-
-  loadRanking();
-
-}
-
-
-/* =========================================
-   RANKING · CERRAR
-   ========================================= */
-
-function closeRankingPanel() {
-
-  if (rankingPanel) {
-
-    rankingPanel.classList.add(
-      "hidden"
-    );
-
-  }
-
-}
-
-
-/* =========================================
-   FINAL
-   ========================================= */
-
-function finishRace() {
-
-  if (
-    state !== "running"
-  ) {
-
-    return;
-
-  }
-
-
-  state =
-    "finished";
-
-  document.querySelector(".game-screen").classList.add("finished");
-   
-  clearInterval(
-    timerInterval
-  );
-
-  clearInterval(
-    cpuInterval
-  );
-
-
-  const elapsed =
-    performance.now() -
-    startTime;
-
-
-  const time =
-    formatTime(
-      elapsed
-    );
-
-
-  timer.textContent =
-    time;
-
-
-  finalTime.textContent =
-    time;
-
-
-  /* ======================================
-     CLASIFICACIÓN
-     ====================================== */
-
-  const place =
-    playerDistance >= cpuDistance
-      ? 1
-      : 2;
-
-
-  if (
-    place === 1
-  ) {
-
-    resultPosition.textContent =
-      "1ST PLACE";
-
-  } else {
-
-    resultPosition.textContent =
-      "2ND PLACE";
-
-  }
-
-
-  positionEl.textContent =
-    place === 1
-      ? "1ST"
-      : "2ND";
-
-
-  /* ======================================
-     PUNTUACIÓN
-     ====================================== */
-
-  const rhythm =
-    totalPresses > 0
-
-      ? goodPresses /
-        totalPresses
-
-      : 0;
-
-
-  const score =
-    Math.max(
-
-      0,
-
-      Math.round(
-
-        100000 -
-
-        (
-          elapsed /
-          1000
-        ) *
-        7000 +
-
-        rhythm *
-        15000
-
-      )
-
-    );
-
-
-  scoreEl.textContent =
-    "SCORE " +
-
-    String(score)
-      .padStart(
-        5,
-        "0"
-      );
-
-
-  /* ======================================
-     DATOS DEL RANKING
-     ====================================== */
-
-  finalScore =
-    score;
-
-  finalElapsed =
-    elapsed;
-
-  finalPlace =
-    place;
-
-  scoreSaved =
-    false;
-
-
-  /* ======================================
-     COORDENADAS
-     ====================================== */
-
-  if (coordinates) {
-
-    if (place === 1) {
-
-      coordinates.classList.remove(
-        "hidden"
-      );
-
-    } else {
-
-      coordinates.classList.add(
-        "hidden"
-      );
-
-    }
-
-  }
-
-
-  /* ======================================
-     RESULTADO
-     ====================================== */
-
-  controls.classList.add(
-    "hidden"
-  );
-
-
-  message.classList.add(
-    "hidden"
-  );
-
-
-  document
-    .querySelector(".race-hud")
-    .classList.add(
-      "hidden"
-    );
-
-
-  if (nicknamePanel) {
-
-    nicknamePanel.classList.remove(
-      "hidden"
-    );
-
-  }
-
-
-  if (rankingButton) {
-
-    rankingButton.classList.remove(
-      "hidden"
-    );
-
-  }
-
-
-  if (saveScoreButton) {
-
-    saveScoreButton.disabled =
-      false;
-
-    saveScoreButton.textContent =
-      "SAVE SCORE";
-
-  }
-
-
-  result.classList.remove(
-    "hidden"
-  );
-
-}
-
-
-/* =========================================
-   RESET
-   ========================================= */
-
-function reset() {
-
-  state =
-    "ready";
-
-
-  clearInterval(
-    timerInterval
-  );
-
-  clearInterval(
-    cpuInterval
-  );
-
-  document.querySelector(".game-screen").classList.remove("finished");
-   
-  startTime =
-    0;
-
-
-  lastPress =
-    0;
-
-
-  lastButton =
-    null;
-
-
-  playerDistance =
-    0;
-
-
-  goodPresses =
-    0;
-
-
-  totalPresses =
-    0;
-
-
-  timer.textContent =
-    "00.00";
-
-
-  distanceEl.textContent =
-    "0 M";
-
-
-  positionEl.textContent =
-    "2ND";
-
-
-  message.textContent =
-    "READY!";
-
-
-  message.classList.remove(
-    "hidden"
-  );
-
-
-  document
-    .querySelector(".race-hud")
-    .classList.remove(
-      "hidden"
-    );
-
-
-  controls.classList.remove(
-    "hidden"
-  );
-
-
-  result.classList.add(
-    "hidden"
-  );
-
-
-  finalScore =
-    0;
-
-  finalElapsed =
-    0;
-
-  finalPlace =
-    2;
-
-  scoreSaved =
-    false;
-
-
-  if (coordinates) {
-
-    coordinates.classList.add(
-      "hidden"
-    );
-
-  }
-
-
-  if (nicknamePanel) {
-
-    nicknamePanel.classList.add(
-      "hidden"
-    );
-
-  }
-
-
-  if (rankingPanel) {
-
-    rankingPanel.classList.add(
-      "hidden"
-    );
-
-  }
-
-
-  if (nicknameInput) {
-
-    nicknameInput.value =
-      "";
-
-  }
-
-
-  if (saveScoreButton) {
-
-    saveScoreButton.disabled =
-      false;
-
-    saveScoreButton.textContent =
-      "SAVE SCORE";
-
-  }
-
-
-  setRunnerPosition(
-    player,
-    0
-  );
-
-
-  resetCPU();
-
-}
-
-
-/* =========================================
-   CONTROLES
-   ========================================= */
-
-/*
- * Utilizamos el controlador compartido cuando está
- * disponible. Si no se ha cargado correctamente,
- * usamos los botones directamente como respaldo.
- */
-
-if (
-  window.ArcadeController &&
-  typeof window.ArcadeController.on === "function"
-) {
-
-  ArcadeController.on(
-    "A",
-    () => press("A")
-  );
-
-
-  ArcadeController.on(
-    "B",
-    () => press("B")
-  );
-
-} else {
-
-  const buttonA =
-    $("buttonA");
-
-  const buttonB =
-    $("buttonB");
-
-
-  if (buttonA) {
-
-    buttonA.addEventListener(
-      "pointerdown",
-      event => {
-
-        event.preventDefault();
-
-        press("A");
-
-      },
-      { passive: false }
-    );
-
-  }
-
-
-  if (buttonB) {
-
-    buttonB.addEventListener(
-      "pointerdown",
-      event => {
-
-        event.preventDefault();
-
-        press("B");
-
-      },
-      { passive: false }
-    );
 
   }
 
 
   /*
-   * Teclado como respaldo para PC.
+   * Estos elementos existen únicamente
+   * en la pantalla final.
    */
 
-  document.addEventListener(
-    "keydown",
-    event => {
+  const input =
+    $("finish-nickname");
 
-      const key =
-        event.key.toLowerCase();
+  const button =
+    $("finish-save-score");
 
-      if (key === "a") {
 
-        press("A");
+  const nickname =
+    input
+      ? input.value
+          .trim()
+          .toUpperCase()
+      : "";
 
-      }
 
-      if (key === "b") {
+  if (!nickname) {
 
-        press("B");
+    if (input) {
 
-      }
+      input.focus();
 
     }
-  );
 
-}
+    return;
 
-
-/* =========================================
-   RANKING · BOTONES
-   ========================================= */
-
-if (saveScoreButton) {
-
-  saveScoreButton.addEventListener(
-    "click",
-    saveScore
-  );
-
-}
+  }
 
 
-if (rankingButton) {
+  if (
+    nickname.length > 12
+  ) {
 
-  rankingButton.addEventListener(
-    "click",
-    openRanking
-  );
+    if (input) {
 
-}
+      input.value =
+        nickname.slice(
+          0,
+          12
+        );
 
+      input.focus();
 
-if (closeRanking) {
+    }
 
-  closeRanking.addEventListener(
-    "click",
-    closeRankingPanel
-  );
+    return;
 
-}
-
-
-/* =========================================
-   REPETIR
-   ========================================= */
-
-again.addEventListener(
-  "click",
-  reset
-);
+  }
 
 
-/* =========================================
-   INICIO
-   ========================================= */
+  if (
+    !Number.isFinite(
+      finalScore
+    ) ||
+    !Number.isFinite(
+      finalElapsed
+    )
+  ) {
 
-reset();
+    return;
+
+  }
+
+
+  if (button) {
+
+    button.disabled =
+      true;
+
+    button.textContent =
+      "SAVING...";
+
+  }
+
+
+  const { error } =
+    await supabase
+      .from("scores")
+      .insert({
+
+        nickname:
+          nickname
