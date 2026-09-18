@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+
 /* =========================================================
    OLYMPIA 8-BIT · 100 METROS
    CSS EXCLUSIVO DE 100m.html
    ========================================================= */
 
 :root {
+
   --bg-1: #263544;
   --bg-2: #18222d;
   --bg-3: #0c1219;
@@ -18,6 +20,7 @@
 
   --track: #ed594c;
   --track-green: #13a52b;
+
 }
 
 
@@ -26,24 +29,33 @@
    ========================================================= */
 
 * {
+
   box-sizing: border-box;
+
   -webkit-tap-highlight-color: transparent;
+
 }
 
 html,
 body {
+
   width: 100%;
   height: 100%;
+
   margin: 0;
   padding: 0;
+
   overflow: hidden;
+
 }
 
 body {
+
   min-height: 100vh;
   min-height: 100dvh;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -57,9 +69,12 @@ body {
 
   color: var(--white);
 
-  font-family: 'Press Start 2P', monospace;
+  font-family:
+    'Press Start 2P',
+    monospace;
 
   touch-action: manipulation;
+
 }
 
 
@@ -68,18 +83,24 @@ body {
    ========================================================= */
 
 .arcade {
+
   width: 100%;
+
   height: 100vh;
   height: 100dvh;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
   padding: 12px;
+
 }
 
+
 .cabinet {
+
   width: 100%;
   height: 100%;
 
@@ -87,6 +108,7 @@ body {
   max-height: 920px;
 
   display: flex;
+
   flex-direction: column;
 
   min-height: 0;
@@ -102,11 +124,13 @@ body {
     );
 
   border: 4px solid #090d12;
+
   border-radius: 15px;
 
   box-shadow:
     0 0 0 3px #687583,
     0 15px 35px rgba(0, 0, 0, .55);
+
 }
 
 
@@ -115,6 +139,7 @@ body {
    ========================================================= */
 
 .screen {
+
   position: relative;
 
   width: 100%;
@@ -124,6 +149,7 @@ body {
   min-height: 0;
 
   display: flex;
+
   flex-direction: column;
 
   padding: 7px;
@@ -136,6 +162,7 @@ body {
     );
 
   border: 4px solid #090d12;
+
   border-radius: 8px;
 
   overflow: hidden;
@@ -143,6 +170,7 @@ body {
   box-shadow:
     inset 0 0 0 2px #39444c,
     inset 0 0 35px rgba(0, 0, 0, .65);
+
 }
 
 
@@ -151,9 +179,11 @@ body {
    ========================================================= */
 
 .screen::after {
+
   content: "";
 
   position: absolute;
+
   inset: 0;
 
   z-index: 50;
@@ -168,6 +198,7 @@ body {
       transparent 1px,
       transparent 4px
     );
+
 }
 
 
@@ -176,6 +207,7 @@ body {
    ========================================================= */
 
 .marquee {
+
   flex: 0 0 auto;
 
   height: 42px;
@@ -183,6 +215,7 @@ body {
   margin-bottom: 7px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -195,11 +228,14 @@ body {
     );
 
   border: 3px solid #11151a;
+
   border-radius: 5px;
 
   color: var(--yellow);
 
-  font-size: clamp(16px, 2.5vw, 25px);
+  font-size:
+    clamp(16px, 2.5vw, 25px);
+
   line-height: 1;
 
   text-shadow:
@@ -208,6 +244,7 @@ body {
   box-shadow:
     inset 0 2px 0 rgba(255,255,255,.16),
     inset 0 -3px 0 rgba(0,0,0,.25);
+
 }
 
 
@@ -216,13 +253,17 @@ body {
    ========================================================= */
 
 .start-screen {
+
   position: absolute;
+
   inset: 0;
 
   z-index: 100;
 
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
   justify-content: center;
 
@@ -237,29 +278,41 @@ body {
     );
 
   text-align: center;
+
 }
 
+
 .start-screen h1 {
+
   margin: 0;
 
   color: var(--yellow);
 
-  font-size: clamp(22px, 5vw, 48px);
+  font-size:
+    clamp(22px, 5vw, 48px);
+
   line-height: 1.4;
 
   text-shadow:
     4px 4px 0 #5a4918;
+
 }
 
+
 .start-screen p {
+
   margin: 0;
 
   color: #91d9df;
 
-  font-size: clamp(8px, 1.7vw, 13px);
+  font-size:
+    clamp(8px, 1.7vw, 13px);
+
 }
 
+
 #start-button {
+
   margin-top: 15px;
 
   padding: 18px 34px;
@@ -272,25 +325,34 @@ body {
     );
 
   border: 4px solid #11151a;
+
   border-radius: 8px;
 
   color: var(--yellow);
 
-  font-family: 'Press Start 2P', monospace;
-  font-size: clamp(12px, 2vw, 18px);
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+  font-size:
+    clamp(12px, 2vw, 18px);
 
   cursor: pointer;
 
   box-shadow:
     0 7px 0 #55161c,
     inset 0 2px 0 rgba(255,255,255,.18);
+
 }
 
+
 #start-button:active {
+
   transform: translateY(5px);
 
   box-shadow:
     0 2px 0 #55161c;
+
 }
 
 
@@ -299,6 +361,7 @@ body {
    ========================================================= */
 
 .game-screen {
+
   position: relative;
 
   flex: 1 1 auto;
@@ -306,13 +369,18 @@ body {
   min-height: 0;
 
   display: flex;
+
   flex-direction: column;
 
   overflow: hidden;
+
 }
 
+
 .hidden {
+
   display: none !important;
+
 }
 
 
@@ -321,6 +389,7 @@ body {
    ========================================================= */
 
 .race-hud {
+
   flex: 0 0 auto;
 
   display: grid;
@@ -337,13 +406,18 @@ body {
   height: 66px;
 
   margin-bottom: 6px;
+
 }
 
+
 .hud-box {
+
   min-width: 0;
 
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
   justify-content: center;
 
@@ -352,33 +426,49 @@ body {
   border: 3px solid var(--cyan);
 
   text-align: center;
+
 }
 
+
 .hud-box span {
+
   margin-bottom: 7px;
 
   color: #5be7e7;
 
   font-size: 7px;
+
   line-height: 1;
+
 }
+
 
 .hud-box strong {
+
   color: #fff;
 
-  font-size: clamp(11px, 1.6vw, 18px);
+  font-size:
+    clamp(11px, 1.6vw, 18px);
 
   line-height: 1;
+
 }
+
 
 .timer-box strong {
+
   color: #fff;
 
-  font-size: clamp(22px, 3vw, 34px);
+  font-size:
+    clamp(22px, 3vw, 34px);
+
 }
 
+
 .hud-box:nth-child(3) strong {
+
   color: #ffe600;
+
 }
 
 
@@ -387,6 +477,7 @@ body {
    ========================================================= */
 
 .stadium {
+
   position: relative;
 
   flex: 1 1 auto;
@@ -409,6 +500,7 @@ body {
   border: 3px solid var(--cyan);
 
   background: #14972c;
+
 }
 
 
@@ -417,6 +509,7 @@ body {
    ========================================================= */
 
 .sky {
+
   position: relative;
 
   overflow: hidden;
@@ -428,6 +521,7 @@ body {
       #55d8ef 65%,
       #20a7d5 100%
     );
+
 }
 
 
@@ -436,6 +530,7 @@ body {
    ========================================================= */
 
 .cloud {
+
   position: absolute;
 
   width: 46px;
@@ -451,16 +546,23 @@ body {
     24px -8px 0 #fff,
     32px 0 0 #fff,
     16px -16px 0 #fff;
+
 }
+
 
 .cloud-left {
+
   left: 9%;
   top: 35%;
+
 }
 
+
 .cloud-right {
+
   right: 10%;
   top: 48%;
+
 }
 
 
@@ -469,6 +571,7 @@ body {
    ========================================================= */
 
 .flags {
+
   position: absolute;
 
   z-index: 10;
@@ -476,18 +579,24 @@ body {
   left: 50%;
   bottom: 8px;
 
-  transform: translateX(-50%);
+  transform:
+    translateX(-50%);
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
-  gap: clamp(7px, 1vw, 13px);
+  gap:
+    clamp(7px, 1vw, 13px);
 
   white-space: nowrap;
+
 }
 
+
 .flag {
+
   position: relative;
 
   display: block;
@@ -501,9 +610,12 @@ body {
     2px 2px 0 rgba(0,0,0,.35);
 
   image-rendering: pixelated;
+
 }
 
+
 .flag-es {
+
   background:
     linear-gradient(
       to bottom,
@@ -511,9 +623,12 @@ body {
       #ffc928 25% 75%,
       #d62828 75% 100%
     );
+
 }
 
+
 .flag-fr {
+
   background:
     linear-gradient(
       to right,
@@ -521,9 +636,12 @@ body {
       #fff 33% 66%,
       #e63b3b 66% 100%
     );
+
 }
 
+
 .flag-it {
+
   background:
     linear-gradient(
       to right,
@@ -531,9 +649,12 @@ body {
       #fff 33% 66%,
       #d93636 66% 100%
     );
+
 }
 
+
 .flag-de {
+
   background:
     linear-gradient(
       to bottom,
@@ -541,9 +662,12 @@ body {
       #d82e36 33% 66%,
       #e9c33c 66% 100%
     );
+
 }
 
+
 .flag-gb {
+
   overflow: hidden;
 
   background:
@@ -560,9 +684,12 @@ body {
       transparent 62%
     ),
     #214b9b;
+
 }
 
+
 .flag-gb::after {
+
   content: "";
 
   position: absolute;
@@ -575,10 +702,14 @@ body {
 
   background: #d93842;
 
-  transform: rotate(-27deg);
+  transform:
+    rotate(-27deg);
+
 }
 
+
 .flag-jp {
+
   background:
     radial-gradient(
       circle,
@@ -586,18 +717,24 @@ body {
       transparent 29%
     ),
     #fff;
+
 }
 
+
 .flag-us {
+
   background:
     repeating-linear-gradient(
       to bottom,
       #d93636 0 2px,
       #fff 2px 4px
     );
+
 }
 
+
 .flag-us::after {
+
   content: "";
 
   position: absolute;
@@ -609,6 +746,7 @@ body {
   height: 8px;
 
   background: #214b9b;
+
 }
 
 
@@ -617,11 +755,14 @@ body {
    ========================================================= */
 
 .crowd {
+
   display: flex;
+
   align-items: center;
   justify-content: center;
 
-  gap: clamp(5px, 1vw, 12px);
+  gap:
+    clamp(5px, 1vw, 12px);
 
   overflow: hidden;
 
@@ -634,10 +775,14 @@ body {
 
   color: #ffe900;
 
-  font-size: clamp(8px, 1.3vw, 14px);
+  font-size:
+    clamp(8px, 1.3vw, 14px);
+
 }
 
+
 .crowd span {
+
   display: inline-block;
 
   animation:
@@ -645,20 +790,31 @@ body {
     1.2s
     steps(2, start)
     infinite;
+
 }
+
 
 .crowd span:nth-child(2n) {
+
   animation-delay: .2s;
+
 }
 
+
 .crowd span:nth-child(3n) {
+
   animation-delay: .4s;
+
 }
+
 
 @keyframes crowd-jump {
 
   50% {
-    transform: translateY(-3px);
+
+    transform:
+      translateY(-3px);
+
   }
 
 }
@@ -669,7 +825,9 @@ body {
    ========================================================= */
 
 .stadium-banner {
+
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -680,15 +838,20 @@ body {
       #35146f
     );
 
-  border-top: 2px solid var(--yellow);
-  border-bottom: 2px solid var(--yellow);
+  border-top:
+    2px solid var(--yellow);
+
+  border-bottom:
+    2px solid var(--yellow);
 
   color: #fff;
 
-  font-size: clamp(9px, 1.5vw, 15px);
+  font-size:
+    clamp(9px, 1.5vw, 15px);
 
   text-shadow:
     2px 2px 0 #111;
+
 }
 
 
@@ -697,16 +860,21 @@ body {
    ========================================================= */
 
 .race-track {
+
   position: relative;
 
   min-height: 0;
 
   background: var(--track);
 
-  border-top: 3px solid #fff;
-  border-bottom: 3px solid #fff;
+  border-top:
+    3px solid #fff;
+
+  border-bottom:
+    3px solid #fff;
 
   overflow: hidden;
+
 }
 
 
@@ -715,6 +883,7 @@ body {
    ========================================================= */
 
 .race-track::before {
+
   content: "";
 
   position: absolute;
@@ -723,6 +892,7 @@ body {
 
   left: 0;
   right: 0;
+
   top: 7px;
 
   height: 5px;
@@ -730,22 +900,24 @@ body {
   background: #fff;
 
   pointer-events: none;
+
 }
 
 
 /* =========================================================
    LÍNEA DE SALIDA
-   FIJA Y DELANTE DE LA POSICIÓN INICIAL
    ========================================================= */
 
 .race-track::after {
+
   content: "";
 
   position: absolute;
 
   z-index: 12;
 
-  left: calc(2% + 58px);
+  left:
+    calc(2% + 58px);
 
   top: 7px;
   bottom: 7px;
@@ -755,6 +927,7 @@ body {
   background: #fff;
 
   pointer-events: none;
+
 }
 
 
@@ -763,6 +936,7 @@ body {
    ========================================================= */
 
 .finish-line {
+
   position: absolute;
 
   z-index: 4;
@@ -783,6 +957,7 @@ body {
 
   box-shadow:
     -3px 0 0 rgba(0,0,0,.25);
+
 }
 
 
@@ -791,6 +966,7 @@ body {
    ========================================================= */
 
 .lane-number {
+
   position: absolute;
 
   z-index: 8;
@@ -798,22 +974,26 @@ body {
   left: 10px;
   top: 50%;
 
-  transform: translateY(-50%);
+  transform:
+    translateY(-50%);
 
   width: 34px;
   height: 34px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
   background: #111;
 
-  border: 2px solid #fff;
+  border:
+    2px solid #fff;
 
   color: #fff;
 
   font-size: 11px;
+
 }
 
 
@@ -822,6 +1002,7 @@ body {
    ========================================================= */
 
 .lane-label {
+
   position: absolute;
 
   z-index: 15;
@@ -829,7 +1010,8 @@ body {
   left: 52px;
   top: 21%;
 
-  transform: translateY(-50%);
+  transform:
+    translateY(-50%);
 
   padding: 5px 7px;
 
@@ -840,22 +1022,26 @@ body {
   font-size: 9px;
 
   line-height: 1;
+
 }
 
+
 .you-label {
+
   color: #00ff6a;
 
-  border: 2px solid #00ff6a;
+  border:
+    2px solid #00ff6a;
+
 }
 
 
 /* =========================================================
    CORREDORES
-   IMPORTANTE:
-   z-index 20 > línea de salida 12
    ========================================================= */
 
 .runner {
+
   position: absolute;
 
   z-index: 20;
@@ -867,13 +1053,16 @@ body {
   height: 64px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
-  transform: translateY(-50%);
+  transform:
+    translateY(-50%);
 
   transition:
     left .05s linear;
+
 }
 
 
@@ -882,6 +1071,7 @@ body {
    ========================================================= */
 
 .athlete-sprite {
+
   display: block;
 
   width: 64px;
@@ -899,6 +1089,7 @@ body {
 
   animation:
     athlete-run .65s steps(6) infinite;
+
 }
 
 
@@ -907,10 +1098,12 @@ body {
    ========================================================= */
 
 .cpu-runner .athlete-sprite {
+
   background-image:
     url("../assets/sprites/athlete-run-cpu.png");
 
   transform: scale(1);
+
 }
 
 
@@ -919,7 +1112,9 @@ body {
    ========================================================= */
 
 .player-runner .athlete-sprite {
+
   transform: scale(1.35);
+
 }
 
 
@@ -928,14 +1123,19 @@ body {
    ========================================================= */
 
 .cpu-runner {
+
   filter:
     drop-shadow(2px 2px 0 #111);
+
 }
 
+
 .player-runner {
+
   filter:
     drop-shadow(2px 2px 0 #111)
     drop-shadow(0 0 3px #00ff6a);
+
 }
 
 
@@ -946,11 +1146,15 @@ body {
 @keyframes athlete-run {
 
   from {
+
     background-position: 0 0;
+
   }
 
   to {
+
     background-position: -384px 0;
+
   }
 
 }
@@ -961,21 +1165,28 @@ body {
    ========================================================= */
 
 .distance-line {
+
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 7%;
+  padding:
+    0 7%;
 
-  background: var(--track-green);
+  background:
+    var(--track-green);
 
   color: #fff;
 
-  font-size: clamp(7px, 1vw, 11px);
+  font-size:
+    clamp(7px, 1vw, 11px);
 
   line-height: 1;
 
-  border-bottom: 2px solid #fff;
+  border-bottom:
+    2px solid #fff;
+
 }
 
 
@@ -984,22 +1195,26 @@ body {
    ========================================================= */
 
 .message {
+
   flex: 0 0 auto;
 
   height: 30px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
   color: #fff;
 
-  font-size: clamp(7px, 1vw, 10px);
+  font-size:
+    clamp(7px, 1vw, 10px);
 
   text-align: center;
 
   text-shadow:
     1px 1px 0 #000;
+
 }
 
 
@@ -1008,26 +1223,35 @@ body {
    ========================================================= */
 
 .nes-controls {
+
   position: relative;
 
   flex: 0 0 105px;
 
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
-  padding: 5px 3% 8px;
+  padding:
+    5px 3% 8px;
+
 }
 
+
 .nes-button {
+
   width: 70px;
   height: 70px;
 
-  border: 5px solid #111;
+  border:
+    5px solid #111;
 
   border-radius: 50%;
 
-  font-family: 'Press Start 2P', monospace;
+  font-family:
+    'Press Start 2P',
+    monospace;
 
   font-size: 20px;
 
@@ -1038,32 +1262,43 @@ body {
   box-shadow:
     0 8px 0 #050505,
     inset 0 4px 0 rgba(255,255,255,.25);
+
 }
 
+
 .button-a {
+
   background:
     linear-gradient(
       145deg,
       #ff4352,
       #d91f35
     );
+
 }
 
+
 .button-b {
+
   background:
     linear-gradient(
       145deg,
       #3f79ff,
       #214dcc
     );
+
 }
 
+
 .nes-button:active {
-  transform: translateY(6px);
+
+  transform:
+    translateY(6px);
 
   box-shadow:
     0 2px 0 #050505,
     inset 0 2px 0 rgba(0,0,0,.2);
+
 }
 
 
@@ -1072,40 +1307,53 @@ body {
    ========================================================= */
 
 .rhythm {
+
   position: absolute;
 
   left: 50%;
   top: 50%;
 
-  transform: translate(-50%, -50%);
+  transform:
+    translate(-50%, -50%);
 
-  width: min(300px, 35vw);
+  width:
+    min(300px, 35vw);
 
   text-align: center;
 
   color: #fff;
 
-  font-size: clamp(6px, .9vw, 9px);
+  font-size:
+    clamp(6px, .9vw, 9px);
 
   line-height: 1.6;
+
 }
 
+
 .rhythm-bar {
+
   display: flex;
+
   justify-content: center;
 
   gap: 4px;
 
   margin-top: 5px;
+
 }
 
+
 .rhythm-bar span {
+
   width: 7px;
   height: 11px;
 
   background: #12551e;
 
-  border: 1px solid #071c0b;
+  border:
+    1px solid #071c0b;
+
 }
 
 
@@ -1114,18 +1362,29 @@ body {
    ========================================================= */
 
 .result {
+
   position: absolute;
 
   z-index: 100;
 
-  inset: 8% 15%;
+  inset:
+    6% 8%;
 
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
   justify-content: center;
 
-  gap: 13px;
+  gap: 7px;
+
+  padding:
+    14px
+    42%
+    14px
+    5%;
 
   background:
     linear-gradient(
@@ -1134,815 +1393,10 @@ body {
       #092a32
     );
 
-  border: 5px solid var(--yellow);
+  border:
+    5px solid var(--yellow);
 
-  border-radius: 10px;
-
-  box-shadow:
-    0 0 0 4px #10151a,
-    0 15px 30px rgba(0,0,0,.65);
-
-  text-align: center;
-}
-
-.result-title {
-  color: var(--yellow);
-
-  font-size: clamp(18px, 3vw, 30px);
-
-  text-shadow:
-    3px 3px 0 #574716;
-}
-
-.result-position {
-  color: #fff;
-
-  font-size: clamp(10px, 1.7vw, 16px);
-}
-
-.result-time-label {
-  color: #78dce2;
-
-  font-size: 8px;
-}
-
-#final-time {
-  color: #fff;
-
-  font-size: clamp(25px, 4vw, 45px);
-}
-
-.result-score {
-  color: var(--yellow);
-
-  font-size: clamp(8px, 1.4vw, 12px);
-}
-
-#again {
-  margin-top: 5px;
-
-  padding: 12px 18px;
-
-  background: #e3423d;
-
-  border: 3px solid #111;
-
-  border-radius: 6px;
-
-  color: #fff;
-
-  font-family: 'Press Start 2P', monospace;
-
-  font-size: 8px;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 4px 0 #5b171c;
-}
-
-#again:active {
-  transform: translateY(3px);
-
-  box-shadow:
-    0 1px 0 #5b171c;
-}
-
-.result a {
-  color: #8edce2;
-
-  font-size: 7px;
-
-  text-decoration: none;
-}
-
-.result a:hover {
-  color: var(--yellow);
-}
-
-
-/* =========================================================
-   PC GRANDE
-   ========================================================= */
-
-@media (min-width: 1100px) {
-
-  .cabinet {
-    padding: 10px;
-  }
-
-  .screen {
-    padding: 9px;
-  }
-
-  .marquee {
-    height: 48px;
-
-    margin-bottom: 8px;
-
-    font-size: 27px;
-  }
-
-  .race-hud {
-    height: 72px;
-
-    gap: 5px;
-
-    margin-bottom: 8px;
-  }
-
-  .hud-box span {
-    font-size: 8px;
-  }
-
-  .hud-box strong {
-    font-size: 18px;
-  }
-
-  .timer-box strong {
-    font-size: 36px;
-  }
-
-  .flags {
-    gap: 12px;
-  }
-
-  .flag {
-    width: 29px;
-    height: 18px;
-  }
-
-  .runner {
-    width: 72px;
-    height: 72px;
-  }
-
-  .athlete-sprite {
-    width: 64px;
-    height: 64px;
-
-    background-size:
-      384px 64px;
-  }
-
-  .lane-label {
-    top: 21%;
-  }
-
-  .race-track::after {
-    left: calc(2% + 58px);
-
-    top: 7px;
-    bottom: 7px;
-
-    width: 5px;
-  }
-
-  .lane-number {
-    width: 36px;
-    height: 36px;
-  }
-
-  .nes-controls {
-    flex-basis: 88px;
-  }
-
-  .nes-button {
-    width: 78px;
-    height: 78px;
-
-    font-size: 22px;
-  }
-}
-
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-  .arcade {
-    padding: 6px;
-  }
-
-  .cabinet {
-    padding: 6px;
-  }
-
-  .screen {
-    padding: 5px;
-  }
-
-  .marquee {
-    height: 38px;
-
-    margin-bottom: 5px;
-
-    font-size: 18px;
-  }
-
-  .race-hud {
-    height: 58px;
-  }
-
-  .hud-box {
-    border-width: 2px;
-  }
-
-  .hud-box span {
-    margin-bottom: 4px;
-
-    font-size: 6px;
-  }
-
-  .hud-box strong {
-    font-size: 10px;
-  }
-
-  .timer-box strong {
-    font-size: 23px;
-  }
-
-  .runner {
-    width: 52px;
-    height: 52px;
-  }
-
-  .athlete-sprite {
-    width: 52px;
-    height: 52px;
-
-    background-size:
-      312px 52px;
-  }
-
-  .player-runner .athlete-sprite {
-    transform: scale(1.35);
-  }
-
-  @keyframes athlete-run {
-
-    from {
-      background-position: 0 0;
-    }
-
-    to {
-      background-position: -312px 0;
-    }
-
-  }
-
-  .flag {
-    width: 22px;
-    height: 14px;
-  }
-
-  .flags {
-    gap: 5px;
-  }
-
-  .lane-label {
-    top: 21%;
-  }
-
-  .race-track::before {
-    top: 6px;
-    height: 4px;
-  }
-
-  .race-track::after {
-    left: calc(2% + 47px);
-
-    top: 6px;
-    bottom: 6px;
-
-    width: 4px;
-  }
-
-  .nes-controls {
-    flex-basis: 78px;
-  }
-
-  .nes-button {
-    width: 62px;
-    height: 62px;
-
-    font-size: 17px;
-  }
-}
-
-
-/* =========================================================
-   MÓVIL
-   ========================================================= */
-
-@media (max-width: 650px) {
-
-  .arcade {
-    padding: 0;
-  }
-
-  .cabinet {
-    max-width: none;
-    max-height: none;
-
-    padding: 4px;
-
-    border: 2px solid #687583;
-    border-radius: 7px;
-
-    box-shadow: none;
-  }
-
-  .screen {
-    padding: 4px;
-
-    border-width: 2px;
-  }
-
-  .marquee {
-    height: 34px;
-
-    margin-bottom: 4px;
-
-    border-width: 2px;
-
-    font-size: 15px;
-  }
-
-  .race-hud {
-    height: 53px;
-
-    gap: 2px;
-  }
-
-  .hud-box span {
-    margin-bottom: 4px;
-
-    font-size: 5px;
-  }
-
-  .hud-box strong {
-    font-size: 8px;
-  }
-
-  .timer-box strong {
-    font-size: 18px;
-  }
-
-  .stadium {
-    grid-template-rows:
-      14%
-      8%
-      8%
-      27%
-      5%
-      30%
-      8%;
-  }
-
-  .flags {
-    bottom: 4px;
-
-    gap: 3px;
-  }
-
-  .flag {
-    width: 18px;
-    height: 11px;
-
-    border-width: 1px;
-  }
-
-  .cloud {
-    transform: scale(.7);
-  }
-
-  .crowd {
-    font-size: 7px;
-  }
-
-  .stadium-banner {
-    font-size: 7px;
-  }
-
-  .lane-number {
-    width: 24px;
-    height: 24px;
-
-    left: 5px;
-
-    font-size: 7px;
-  }
-
-  .lane-label {
-    left: 34px;
-
-    top: 21%;
-
-    padding: 3px 5px;
-
-    font-size: 6px;
-  }
-
-  .runner {
-    width: 40px;
-    height: 40px;
-  }
-
-  .athlete-sprite {
-    width: 40px;
-    height: 40px;
-
-    background-size:
-      240px 40px;
-  }
-
-  .player-runner .athlete-sprite {
-    transform: scale(1.35);
-  }
-
-  @keyframes athlete-run {
-
-    from {
-      background-position: 0 0;
-    }
-
-    to {
-      background-position: -240px 0;
-    }
-
-  }
-
-  .finish-line {
-    width: 10px;
-  }
-
-  .distance-line {
-    padding-left: 7%;
-    padding-right: 7%;
-
-    font-size: 6px;
-  }
-
-  .message {
-    height: 24px;
-
-    font-size: 7px;
-  }
-
-  .nes-controls {
-    flex-basis: 70px;
-
-    padding-left: 2%;
-    padding-right: 2%;
-  }
-
-  .nes-button {
-    width: 55px;
-    height: 55px;
-
-    border-width: 4px;
-
-    font-size: 15px;
-  }
-
-  .rhythm {
-    width: 180px;
-
-    font-size: 6px;
-  }
-
-  .rhythm-bar {
-    gap: 2px;
-  }
-
-  .rhythm-bar span {
-    width: 5px;
-    height: 8px;
-  }
-
-  .result {
-    inset: 8% 7%;
-  }
-
-  .race-track::before {
-    top: 5px;
-    height: 3px;
-  }
-
-  .race-track::after {
-    left: calc(2% + 37px);
-
-    top: 5px;
-    bottom: 5px;
-
-    width: 3px;
-  }
-}
-
-
-/* =========================================================
-   MÓVIL HORIZONTAL
-   ========================================================= */
-
-@media (
-  max-width: 900px
-) and (
-  orientation: landscape
-) {
-
-  .arcade {
-    padding: 0;
-  }
-
-  .cabinet {
-    width: 100%;
-    height: 100%;
-
-    padding: 3px;
-
-    border-width: 2px;
-    border-radius: 5px;
-  }
-
-  .screen {
-    padding: 3px;
-
-    border-width: 2px;
-  }
-
-  .marquee {
-    height: 28px;
-
-    margin-bottom: 3px;
-
-    font-size: 13px;
-  }
-
-  .race-hud {
-    height: 43px;
-  }
-
-  .hud-box span {
-    margin-bottom: 3px;
-
-    font-size: 5px;
-  }
-
-  .hud-box strong {
-    font-size: 8px;
-  }
-
-  .timer-box strong {
-    font-size: 17px;
-  }
-
-  .stadium {
-    grid-template-rows:
-      14%
-      8%
-      8%
-      27%
-      5%
-      30%
-      8%;
-  }
-
-  .flags {
-    bottom: 3px;
-
-    gap: 2px;
-  }
-
-  .flag {
-    width: 16px;
-    height: 10px;
-  }
-
-  .cloud {
-    transform: scale(.55);
-  }
-
-  .crowd {
-    font-size: 6px;
-  }
-
-  .stadium-banner {
-    font-size: 6px;
-  }
-
-  .race-track {
-    border-top-width: 2px;
-    border-bottom-width: 2px;
-  }
-
-  .race-track::before {
-    top: 4px;
-    height: 3px;
-  }
-
-  .race-track::after {
-    left: calc(2% + 43px);
-
-    top: 4px;
-    bottom: 4px;
-
-    width: 3px;
-  }
-
-  .runner {
-    width: 46px;
-    height: 46px;
-
-    z-index: 20;
-  }
-
-  .athlete-sprite {
-    width: 46px;
-    height: 46px;
-
-    background-size:
-      276px 46px;
-  }
-
-  .player-runner .athlete-sprite {
-    transform: scale(1.35);
-  }
-
-  @keyframes athlete-run {
-
-    from {
-      background-position: 0 0;
-    }
-
-    to {
-      background-position: -276px 0;
-    }
-
-  }
-
-  .lane-number {
-    width: 20px;
-    height: 20px;
-
-    left: 4px;
-
-    font-size: 6px;
-  }
-
-  .lane-label {
-    left: 28px;
-
-    top: 21%;
-
-    padding: 2px 4px;
-
-    font-size: 5px;
-  }
-
-  .finish-line {
-    width: 8px;
-  }
-
-  .distance-line {
-    font-size: 5px;
-  }
-
-  .message {
-    height: 18px;
-
-    font-size: 6px;
-  }
-
-  .nes-controls {
-    flex-basis: 58px;
-
-    padding-bottom: 3px;
-  }
-
-  .nes-button {
-    width: 46px;
-    height: 46px;
-
-    border-width: 3px;
-
-    font-size: 12px;
-  }
-
-  .rhythm {
-    font-size: 5px;
-  }
-
-  .rhythm-bar {
-    margin-top: 2px;
-  }
-
-  .rhythm-bar span {
-    width: 4px;
-    height: 6px;
-  }
-
-  .result {
-    inset: 5% 15%;
-  }
-}
-
-
-/* =========================================================
-   PANTALLAS MUY BAJAS
-   ========================================================= */
-
-@media (max-height: 500px) {
-
-  .arcade {
-    padding: 2px;
-  }
-
-  .cabinet {
-    padding: 3px;
-  }
-
-  .screen {
-    padding: 3px;
-  }
-
-  .marquee {
-    height: 27px;
-
-    font-size: 13px;
-  }
-
-  .race-hud {
-    height: 42px;
-  }
-
-  .nes-controls {
-    flex-basis: 58px;
-  }
-
-  .race-track::before {
-    top: 4px;
-    height: 3px;
-  }
-
-  .race-track::after {
-    left: calc(2% + 43px);
-
-    top: 4px;
-    bottom: 4px;
-
-    width: 3px;
-  }
-
-  .lane-label {
-    top: 21%;
-  }
-
-  .runner {
-    z-index: 20;
-  }
-
-  .player-runner .athlete-sprite {
-    transform: scale(1.35);
-  }
-}
-/* =========================================================
-   RESULTADO + RANKING
-   DISEÑO ARCADE DEFINITIVO
-   ========================================================= */
-
-/*
- * El resultado ocupa toda la pantalla disponible.
- * El ranking se coloca como panel lateral derecho.
- */
-
-.result {
-  position: absolute;
-  z-index: 100;
-
-  inset: 8% 8%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-
-  padding: 22px 42% 22px 7%;
-
-  gap: 10px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #103d48,
-      #092a32
-    );
-
-  border: 5px solid var(--yellow);
-
-  border-radius: 10px;
+  border-radius: 12px;
 
   box-shadow:
     0 0 0 4px #10151a,
@@ -1953,96 +1407,137 @@ body {
   font-family:
     'Press Start 2P',
     monospace;
+
 }
 
 
 /* =========================================================
-   CONTENIDO DEL RESULTADO
+   CONTENIDO RESULTADO
    ========================================================= */
 
-.result-title,
-.result-position,
-.result-time-label,
-#final-time,
-.result-score,
-#again,
-#coordinates,
-#ranking-button,
-#nickname-panel {
+.result > *:not(.ranking-panel) {
+
+  width: 100%;
+
+  max-width: 430px;
+
+  flex-shrink: 0;
+
   font-family:
     'Press Start 2P',
     monospace;
+
 }
 
 
-/* Título */
+/* =========================================================
+   TÍTULO
+   ========================================================= */
 
 .result-title {
-  width: 100%;
+
+  margin: 0;
 
   color: var(--yellow);
 
-  font-size:
-    clamp(14px, 2.5vw, 26px);
+  font-family:
+    'Press Start 2P',
+    monospace;
 
-  line-height: 1.4;
+  font-size:
+    clamp(13px, 2vw, 23px);
+
+  line-height: 1.3;
+
+  text-align: center;
 
   text-shadow:
     3px 3px 0 #574716;
+
 }
 
 
-/* Posición */
+/* =========================================================
+   POSICIÓN
+   ========================================================= */
 
 .result-position {
-  width: 100%;
 
-  color: #ffffff;
+  margin: 0;
+
+  color: #fff;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
 
   font-size:
-    clamp(9px, 1.5vw, 15px);
+    clamp(7px, 1.1vw, 11px);
 
   line-height: 1.4;
+
 }
 
 
-/* TIME */
+/* =========================================================
+   TIEMPO
+   ========================================================= */
 
 .result-time-label {
-  width: 100%;
+
+  margin: 0;
 
   color: #78dce2;
 
+  font-family:
+    'Press Start 2P',
+    monospace;
+
   font-size:
-    clamp(7px, 1vw, 10px);
+    clamp(6px, .9vw, 9px);
+
+  line-height: 1;
+
 }
 
 
-/* Tiempo */
-
 #final-time {
-  width: 100%;
 
-  color: #ffffff;
+  margin: 0;
+
+  color: #fff;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
 
   font-size:
     clamp(25px, 4vw, 42px);
 
   line-height: 1;
+
 }
 
 
-/* SCORE */
+/* =========================================================
+   SCORE
+   ========================================================= */
 
 .result-score {
-  width: 100%;
+
+  margin: 0;
 
   color: var(--yellow);
 
+  font-family:
+    'Press Start 2P',
+    monospace;
+
   font-size:
-    clamp(8px, 1.2vw, 12px);
+    clamp(7px, 1vw, 10px);
 
   line-height: 1.4;
+
 }
 
 
@@ -2051,25 +1546,23 @@ body {
    ========================================================= */
 
 .coordinates {
-  width: 100%;
 
-  margin-top: 2px;
+  width: 100% !important;
 
-  color: #ffffff;
+  margin:
+    2px 0 0;
+
+  text-align: center;
 
   font-family:
     'Press Start 2P',
     monospace;
 
-  font-size:
-    clamp(7px, 1vw, 10px);
-
-  line-height: 1.6;
-
-  text-align: center;
 }
 
+
 .coordinates-title {
+
   margin-bottom: 5px;
 
   color: var(--yellow);
@@ -2079,86 +1572,14 @@ body {
     monospace;
 
   font-size:
-    clamp(8px, 1.2vw, 12px);
-}
-
-#coordinates-value {
-  color: #ffffff;
-
-  font-family:
-    'Press Start 2P',
-    monospace;
-
-  font-size:
     clamp(7px, 1vw, 10px);
 
-  line-height: 1.6;
+  line-height: 1.2;
+
 }
 
 
-/* =========================================================
-   BOTÓN SAVE SCORE / RANKING
-   ========================================================= */
-
-.ranking-button {
-  width: 100%;
-
-  margin-top: 4px;
-
-  padding: 9px 8px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #e94d42,
-      #a9262c
-    );
-
-  border: 3px solid #11151a;
-
-  border-radius: 5px;
-
-  color: #ffffff;
-
-  font-family:
-    'Press Start 2P',
-    monospace;
-
-  font-size:
-    clamp(6px, .9vw, 9px);
-
-  line-height: 1.3;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 4px 0 #55161c;
-}
-
-.ranking-button:active {
-  transform: translateY(3px);
-
-  box-shadow:
-    0 1px 0 #55161c;
-}
-
-
-/* =========================================================
-   REPETIR
-   ========================================================= */
-
-#again {
-  width: 100%;
-
-  margin-top: 3px;
-
-  padding: 9px 12px;
-
-  background: #e3423d;
-
-  border: 3px solid #111;
-
-  border-radius: 5px;
+#coordinates-value {
 
   color: #fff;
 
@@ -2169,111 +1590,37 @@ body {
   font-size:
     clamp(6px, .9vw, 9px);
 
-  line-height: 1.3;
+  line-height: 1.5;
 
-  cursor: pointer;
-
-  box-shadow:
-    0 4px 0 #5b171c;
-}
-
-#again:active {
-  transform: translateY(3px);
-
-  box-shadow:
-    0 1px 0 #5b171c;
 }
 
 
 /* =========================================================
-   PANEL DE NICKNAME
+   NICKNAME
    ========================================================= */
 
 .nickname-panel {
-  width: 100%;
+
+  width: 100% !important;
 
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
 
-  gap: 7px;
+  gap: 5px;
 
   font-family:
     'Press Start 2P',
     monospace;
+
 }
+
 
 .nickname-title {
-  width: 100%;
 
-  color: #ffffff;
-
-  font-family:
-    'Press Start 2P',
-    monospace;
-
-  font-size:
-    clamp(6px, .9vw, 9px);
-
-  line-height: 1.4;
-
-  text-align: center;
-}
-
-
-/* Input */
-
-#nickname {
-  width: 100%;
-
-  height: 34px;
-
-  padding: 5px 8px;
-
-  background: #ffffff;
-
-  border: 3px solid #111111;
-
-  border-radius: 3px;
-
-  color: #111111;
-
-  font-family:
-    'Press Start 2P',
-    monospace;
-
-  font-size:
-    clamp(7px, .9vw, 10px);
-
-  outline: none;
-
-  text-transform: uppercase;
-}
-
-#nickname:focus {
-  border-color: var(--yellow);
-}
-
-
-/* SAVE SCORE */
-
-#save-score {
-  width: 100%;
-
-  padding: 8px 6px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #eeeeee,
-      #bbbbbb
-    );
-
-  border: 3px solid #111111;
-
-  border-radius: 4px;
-
-  color: #111111;
+  color: #fff;
 
   font-family:
     'Press Start 2P',
@@ -2282,57 +1629,253 @@ body {
   font-size:
     clamp(6px, .85vw, 9px);
 
-  line-height: 1.3;
+  line-height: 1.4;
 
-  cursor: pointer;
-}
-
-#save-score:disabled {
-  opacity: .55;
-
-  cursor: default;
 }
 
 
-/* =========================================================
-   RANKING LATERAL
-   ========================================================= */
+#nickname {
 
-.ranking-panel {
-  position: absolute;
+  width: 100%;
 
-  top: 5%;
-  right: 3%;
-  bottom: 5%;
+  height: 32px;
 
-  width: 38%;
+  padding:
+    5px 7px;
 
-  display: flex;
-  flex-direction: column;
+  background: #fff;
 
-  padding: 14px 12px;
+  border:
+    3px solid #111;
 
-  background:
-    linear-gradient(
-      180deg,
-      #08272f,
-      #061e25
-    );
+  border-radius: 3px;
 
-  border: 3px solid var(--cyan);
-
-  border-radius: 6px;
-
-  box-shadow:
-    inset 0 0 0 2px #071116;
+  color: #111;
 
   font-family:
     'Press Start 2P',
     monospace;
 
-  text-align: center;
+  font-size:
+    clamp(6px, .85vw, 9px);
+
+  text-transform: uppercase;
+
+  outline: none;
+
+}
+
+
+#nickname::placeholder {
+
+  color: #777;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+}
+
+
+/* =========================================================
+   SAVE SCORE
+   ========================================================= */
+
+#save-score {
+
+  padding:
+    7px 10px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #eee,
+      #bcbcbc
+    );
+
+  border:
+    3px solid #111;
+
+  border-radius: 4px;
+
+  color: #111;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+  font-size:
+    clamp(6px, .8vw, 9px);
+
+  cursor: pointer;
+
+}
+
+
+#save-score:disabled {
+
+  opacity: .5;
+
+  cursor: default;
+
+}
+
+
+/* =========================================================
+   SAVE SCORE / RANKING
+   ========================================================= */
+
+.ranking-button {
+
+  width: 100% !important;
+
+  padding:
+    7px 6px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #e94d42,
+      #a9262c
+    );
+
+  border:
+    3px solid #111;
+
+  border-radius: 4px;
+
+  color: #fff;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+  font-size:
+    clamp(6px, .8vw, 9px);
+
+  line-height: 1.3;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 0 #55161c;
+
+}
+
+
+.ranking-button:active {
+
+  transform:
+    translateY(3px);
+
+  box-shadow:
+    0 1px 0 #55161c;
+
+}
+
+
+/* =========================================================
+   RUN AGAIN
+   ========================================================= */
+
+#again {
+
+  width: auto !important;
+
+  padding:
+    7px 12px;
+
+  background: #e3423d;
+
+  border:
+    3px solid #111;
+
+  border-radius: 4px;
+
+  color: #fff;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
+  font-size:
+    clamp(6px, .8vw, 9px);
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 0 #5b171c;
+
+}
+
+
+#again:active {
+
+  transform:
+    translateY(3px);
+
+  box-shadow:
+    0 1px 0 #5b171c;
+
+}
+
+
+/* =========================================================
+   TOP 10
+   PANEL LATERAL
+   ========================================================= */
+
+.ranking-panel {
+
+  position: absolute !important;
+
+  z-index: 200;
+
+  top: 4%;
+
+  right: 2.5%;
+
+  bottom: 4%;
+
+  width: 38%;
+
+  min-width: 0;
+
+  display: flex !important;
+
+  flex-direction: column;
+
+  align-items: stretch;
+
+  justify-content: flex-start;
+
+  padding:
+    10px 9px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #092f38,
+      #061f26
+    );
+
+  border:
+    3px solid #78dce2;
+
+  border-radius: 7px;
+
+  box-shadow:
+    inset 0 0 0 2px #071217,
+    0 5px 15px rgba(0,0,0,.45);
 
   overflow: hidden;
+
+  text-align: center;
+
+  font-family:
+    'Press Start 2P',
+    monospace;
+
 }
 
 
@@ -2341,11 +1884,16 @@ body {
    ========================================================= */
 
 .ranking-title {
+
   flex: 0 0 auto;
 
-  margin-bottom: 12px;
+  width: 100%;
 
-  padding-bottom: 9px;
+  margin:
+    0 0 7px;
+
+  padding:
+    3px 0 8px;
 
   color: var(--yellow);
 
@@ -2354,19 +1902,24 @@ body {
     monospace;
 
   font-size:
-    clamp(9px, 1.3vw, 14px);
+    clamp(8px, 1.2vw, 13px);
 
-  line-height: 1;
+  line-height: 1.2;
 
-  border-bottom: 2px solid #78dce2;
+  text-align: center;
+
+  border-bottom:
+    2px solid #78dce2;
+
 }
 
 
 /* =========================================================
-   LISTA
+   LISTA TOP 10
    ========================================================= */
 
 #ranking-list {
+
   flex: 1 1 auto;
 
   min-height: 0;
@@ -2380,59 +1933,72 @@ body {
   font-family:
     'Press Start 2P',
     monospace;
+
 }
 
 
 /* =========================================================
-   FILA DEL RANKING
+   FILAS
    ========================================================= */
 
 .ranking-row {
+
   width: 100%;
 
   display: grid;
 
   grid-template-columns:
-    34px
+    24px
     minmax(0, 1fr)
-    82px
-    65px;
+    62px
+    48px;
 
   align-items: center;
 
-  gap: 5px;
+  gap: 3px;
 
-  padding: 7px 3px;
+  padding:
+    5px 2px;
 
-  border-bottom: 1px solid rgba(120,220,226,.35);
+  color: #fff;
 
-  color: #ffffff;
+  border-bottom:
+    1px solid
+    rgba(120,220,226,.25);
 
   font-family:
     'Press Start 2P',
     monospace;
 
   font-size:
-    clamp(5px, .75vw, 8px);
+    clamp(5px, .72vw, 8px);
 
-  line-height: 1.2;
+  line-height: 1.25;
 
   text-align: left;
+
 }
 
 
-/* Número */
+/* =========================================================
+   POSICIÓN
+   ========================================================= */
 
 .ranking-row > :nth-child(1) {
+
   color: var(--yellow);
 
   text-align: center;
+
 }
 
 
-/* Nickname */
+/* =========================================================
+   NICKNAME
+   ========================================================= */
 
 .ranking-row > :nth-child(2) {
+
   min-width: 0;
 
   overflow: hidden;
@@ -2440,24 +2006,33 @@ body {
   text-overflow: ellipsis;
 
   white-space: nowrap;
+
 }
 
 
-/* Score */
+/* =========================================================
+   SCORE
+   ========================================================= */
 
 .ranking-row > :nth-child(3) {
+
   color: var(--yellow);
 
   text-align: right;
+
 }
 
 
-/* Tiempo */
+/* =========================================================
+   TIME
+   ========================================================= */
 
 .ranking-row > :nth-child(4) {
+
   color: #78dce2;
 
   text-align: right;
+
 }
 
 
@@ -2466,7 +2041,9 @@ body {
    ========================================================= */
 
 .ranking-message {
-  padding: 12px 4px;
+
+  padding:
+    8px 3px;
 
   color: #78dce2;
 
@@ -2474,40 +2051,43 @@ body {
     'Press Start 2P',
     monospace;
 
-  font-size:
-    clamp(6px, .8vw, 8px);
+  font-size: 6px;
 
-  line-height: 1.6;
+  line-height: 1.5;
 
   text-align: center;
+
 }
 
 
 /* =========================================================
-   BOTÓN BACK
+   BACK
    ========================================================= */
 
 #close-ranking {
+
   flex: 0 0 auto;
 
-  margin-top: 10px;
-
-  padding: 8px 14px;
-
   align-self: center;
+
+  margin-top: 7px;
+
+  padding:
+    6px 12px;
 
   background:
     linear-gradient(
       180deg,
-      #eeeeee,
-      #bbbbbb
+      #eee,
+      #bcbcbc
     );
 
-  border: 3px solid #111111;
+  border:
+    3px solid #111;
 
   border-radius: 4px;
 
-  color: #111111;
+  color: #111;
 
   font-family:
     'Press Start 2P',
@@ -2517,68 +2097,895 @@ body {
     clamp(6px, .8vw, 9px);
 
   cursor: pointer;
+
 }
 
 
 /* =========================================================
-   ASEGURAR FUENTE EN TODO EL RESULTADO
+   FUENTE
    ========================================================= */
 
-.result button,
-.result input,
-.result div,
-.result span,
-.result strong,
-.result p {
+.result,
+.result *,
+.ranking-panel,
+.ranking-panel * {
+
   font-family:
     'Press Start 2P',
     monospace;
+
 }
 
 
 /* =========================================================
-   RANKING OCULTO
+   OCULTOS
    ========================================================= */
 
+.result.hidden,
 .ranking-panel.hidden,
 .nickname-panel.hidden,
 .coordinates.hidden {
+
   display: none !important;
+
 }
 
 
 /* =========================================================
-   PANTALLAS PEQUEÑAS
+   PC GRANDE
+   ========================================================= */
+
+@media (min-width: 1100px) {
+
+  .cabinet {
+
+    padding: 10px;
+
+  }
+
+
+  .screen {
+
+    padding: 9px;
+
+  }
+
+
+  .marquee {
+
+    height: 48px;
+
+    margin-bottom: 8px;
+
+    font-size: 27px;
+
+  }
+
+
+  .race-hud {
+
+    height: 72px;
+
+    gap: 5px;
+
+    margin-bottom: 8px;
+
+  }
+
+
+  .hud-box span {
+
+    font-size: 8px;
+
+  }
+
+
+  .hud-box strong {
+
+    font-size: 18px;
+
+  }
+
+
+  .timer-box strong {
+
+    font-size: 36px;
+
+  }
+
+
+  .flags {
+
+    gap: 12px;
+
+  }
+
+
+  .flag {
+
+    width: 29px;
+    height: 18px;
+
+  }
+
+
+  .runner {
+
+    width: 72px;
+    height: 72px;
+
+  }
+
+
+  .athlete-sprite {
+
+    width: 64px;
+    height: 64px;
+
+    background-size:
+      384px 64px;
+
+  }
+
+
+  .lane-label {
+
+    top: 21%;
+
+  }
+
+
+  .race-track::after {
+
+    left:
+      calc(2% + 58px);
+
+    top: 7px;
+    bottom: 7px;
+
+    width: 5px;
+
+  }
+
+
+  .lane-number {
+
+    width: 36px;
+    height: 36px;
+
+  }
+
+
+  .nes-controls {
+
+    flex-basis: 88px;
+
+  }
+
+
+  .nes-button {
+
+    width: 78px;
+    height: 78px;
+
+    font-size: 22px;
+
+  }
+
+
+  /* RESULTADO EN PC */
+
+  .result {
+
+    inset:
+      6% 8%;
+
+    padding:
+      14px
+      42%
+      14px
+      5%;
+
+  }
+
+
+  .ranking-panel {
+
+    top: 4%;
+
+    right: 2.5%;
+
+    bottom: 4%;
+
+    width: 38%;
+
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
    ========================================================= */
 
 @media (max-width: 900px) {
 
+  .arcade {
+
+    padding: 6px;
+
+  }
+
+
+  .cabinet {
+
+    padding: 6px;
+
+  }
+
+
+  .screen {
+
+    padding: 5px;
+
+  }
+
+
+  .marquee {
+
+    height: 38px;
+
+    margin-bottom: 5px;
+
+    font-size: 18px;
+
+  }
+
+
+  .race-hud {
+
+    height: 58px;
+
+  }
+
+
+  .hud-box {
+
+    border-width: 2px;
+
+  }
+
+
+  .hud-box span {
+
+    margin-bottom: 4px;
+
+    font-size: 6px;
+
+  }
+
+
+  .hud-box strong {
+
+    font-size: 10px;
+
+  }
+
+
+  .timer-box strong {
+
+    font-size: 23px;
+
+  }
+
+
+  .runner {
+
+    width: 52px;
+    height: 52px;
+
+  }
+
+
+  .athlete-sprite {
+
+    width: 52px;
+    height: 52px;
+
+    background-size:
+      312px 52px;
+
+  }
+
+
+  .player-runner .athlete-sprite {
+
+    transform: scale(1.35);
+
+  }
+
+
+  @keyframes athlete-run {
+
+    from {
+
+      background-position: 0 0;
+
+    }
+
+    to {
+
+      background-position: -312px 0;
+
+    }
+
+  }
+
+
+  .flag {
+
+    width: 22px;
+    height: 14px;
+
+  }
+
+
+  .flags {
+
+    gap: 5px;
+
+  }
+
+
+  .lane-label {
+
+    top: 21%;
+
+  }
+
+
+  .race-track::before {
+
+    top: 6px;
+
+    height: 4px;
+
+  }
+
+
+  .race-track::after {
+
+    left:
+      calc(2% + 47px);
+
+    top: 6px;
+    bottom: 6px;
+
+    width: 4px;
+
+  }
+
+
+  .nes-controls {
+
+    flex-basis: 78px;
+
+  }
+
+
+  .nes-button {
+
+    width: 62px;
+    height: 62px;
+
+    font-size: 17px;
+
+  }
+
+
+  /* RESULTADO TABLET */
+
   .result {
-    inset: 6% 5%;
+
+    inset:
+      5% 5%;
 
     padding:
-      16px 42% 16px 5%;
+      10px
+      43%
+      10px
+      4%;
+
   }
+
 
   .ranking-panel {
-    right: 2.5%;
 
-    width: 39%;
+    top: 4%;
+
+    right: 2%;
+
+    bottom: 4%;
+
+    width: 40%;
 
     padding:
-      10px 7px;
+      8px 6px;
+
   }
 
+
   .ranking-row {
+
     grid-template-columns:
-      24px
-      minmax(0, 1fr)
-      65px
-      52px;
+      20px
+      minmax(0,1fr)
+      54px
+      43px;
+
+    font-size: 5px;
+
+    padding:
+      4px 2px;
+
+  }
+
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  .arcade {
+
+    padding: 0;
+
+  }
+
+
+  .cabinet {
+
+    max-width: none;
+    max-height: none;
+
+    padding: 4px;
+
+    border:
+      2px solid #687583;
+
+    border-radius: 7px;
+
+    box-shadow: none;
+
+  }
+
+
+  .screen {
+
+    padding: 4px;
+
+    border-width: 2px;
+
+  }
+
+
+  .marquee {
+
+    height: 34px;
+
+    margin-bottom: 4px;
+
+    border-width: 2px;
+
+    font-size: 15px;
+
+  }
+
+
+  .race-hud {
+
+    height: 53px;
+
+    gap: 2px;
+
+  }
+
+
+  .hud-box span {
+
+    margin-bottom: 4px;
+
+    font-size: 5px;
+
+  }
+
+
+  .hud-box strong {
+
+    font-size: 8px;
+
+  }
+
+
+  .timer-box strong {
+
+    font-size: 18px;
+
+  }
+
+
+  .stadium {
+
+    grid-template-rows:
+      14%
+      8%
+      8%
+      27%
+      5%
+      30%
+      8%;
+
+  }
+
+
+  .flags {
+
+    bottom: 4px;
 
     gap: 3px;
 
+  }
+
+
+  .flag {
+
+    width: 18px;
+    height: 11px;
+
+    border-width: 1px;
+
+  }
+
+
+  .cloud {
+
+    transform: scale(.7);
+
+  }
+
+
+  .crowd {
+
+    font-size: 7px;
+
+  }
+
+
+  .stadium-banner {
+
+    font-size: 7px;
+
+  }
+
+
+  .lane-number {
+
+    width: 24px;
+    height: 24px;
+
+    left: 5px;
+
+    font-size: 7px;
+
+  }
+
+
+  .lane-label {
+
+    left: 34px;
+
+    top: 21%;
+
+    padding:
+      3px 5px;
+
     font-size: 6px;
+
+  }
+
+
+  .runner {
+
+    width: 40px;
+    height: 40px;
+
+  }
+
+
+  .athlete-sprite {
+
+    width: 40px;
+    height: 40px;
+
+    background-size:
+      240px 40px;
+
+  }
+
+
+  .player-runner .athlete-sprite {
+
+    transform:
+      scale(1.35);
+
+  }
+
+
+  @keyframes athlete-run {
+
+    from {
+
+      background-position: 0 0;
+
+    }
+
+    to {
+
+      background-position: -240px 0;
+
+    }
+
+  }
+
+
+  .finish-line {
+
+    width: 10px;
+
+  }
+
+
+  .distance-line {
+
+    padding-left: 7%;
+    padding-right: 7%;
+
+    font-size: 6px;
+
+  }
+
+
+  .message {
+
+    height: 24px;
+
+    font-size: 7px;
+
+  }
+
+
+  .nes-controls {
+
+    flex-basis: 70px;
+
+    padding-left: 2%;
+    padding-right: 2%;
+
+  }
+
+
+  .nes-button {
+
+    width: 55px;
+    height: 55px;
+
+    border-width: 4px;
+
+    font-size: 15px;
+
+  }
+
+
+  .rhythm {
+
+    width: 180px;
+
+    font-size: 6px;
+
+  }
+
+
+  .rhythm-bar {
+
+    gap: 2px;
+
+  }
+
+
+  .rhythm-bar span {
+
+    width: 5px;
+    height: 8px;
+
+  }
+
+
+  .race-track::before {
+
+    top: 5px;
+
+    height: 3px;
+
+  }
+
+
+  .race-track::after {
+
+    left:
+      calc(2% + 37px);
+
+    top: 5px;
+    bottom: 5px;
+
+    width: 3px;
+
+  }
+
+
+  /* =====================================================
+     RESULTADO MÓVIL
+     ===================================================== */
+
+  .result {
+
+    inset:
+      5% 4%;
+
+    padding:
+      7px
+      43%
+      7px
+      3%;
+
+    gap: 4px;
+
+  }
+
+
+  .result-title {
+
+    font-size: 8px;
+
+  }
+
+
+  .result-position {
+
+    font-size: 5px;
+
+  }
+
+
+  .result-time-label {
+
+    font-size: 4px;
+
+  }
+
+
+  #final-time {
+
+    font-size: 21px;
+
+  }
+
+
+  .result-score {
+
+    font-size: 4px;
+
+  }
+
+
+  .coordinates-title {
+
+    font-size: 4px;
+
+  }
+
+
+  #coordinates-value {
+
+    font-size: 3.5px;
+
+  }
+
+
+  .nickname-title {
+
+    font-size: 4px;
+
+  }
+
+
+  #nickname {
+
+    height: 22px;
+
+    font-size: 4px;
+
+  }
+
+
+  #save-score,
+  .ranking-button,
+  #again {
+
+    padding:
+      4px 5px;
+
+    font-size: 4px;
+
+  }
+
+
+  .ranking-panel {
+
+    top: 3%;
+
+    right: 2%;
+
+    bottom: 3%;
+
+    width: 41%;
+
+    padding:
+      5px 4px;
+
+  }
+
+
+  .ranking-title {
+
+    margin-bottom: 4px;
+
+    padding-bottom: 4px;
+
+    font-size: 5px;
+
+  }
+
+
+  .ranking-row {
+
+    grid-template-columns:
+      15px
+      minmax(0,1fr)
+      40px
+      32px;
+
+    gap: 2px;
+
+    padding:
+      3px 1px;
+
+    font-size: 3.2px;
+
+  }
+
+
+  #close-ranking {
+
+    margin-top: 4px;
+
+    padding:
+      4px 6px;
+
+    font-size: 4px;
+
   }
 
 }
@@ -2594,99 +3001,475 @@ body {
   orientation: landscape
 ) {
 
-  .result {
-    inset: 4% 7%;
+  .arcade {
+
+    padding: 0;
+
+  }
+
+
+  .cabinet {
+
+    width: 100%;
+    height: 100%;
+
+    padding: 3px;
+
+    border-width: 2px;
+
+    border-radius: 5px;
+
+  }
+
+
+  .screen {
+
+    padding: 3px;
+
+    border-width: 2px;
+
+  }
+
+
+  .marquee {
+
+    height: 28px;
+
+    margin-bottom: 3px;
+
+    font-size: 13px;
+
+  }
+
+
+  .race-hud {
+
+    height: 43px;
+
+  }
+
+
+  .hud-box span {
+
+    margin-bottom: 3px;
+
+    font-size: 5px;
+
+  }
+
+
+  .hud-box strong {
+
+    font-size: 8px;
+
+  }
+
+
+  .timer-box strong {
+
+    font-size: 17px;
+
+  }
+
+
+  .stadium {
+
+    grid-template-rows:
+      14%
+      8%
+      8%
+      27%
+      5%
+      30%
+      8%;
+
+  }
+
+
+  .flags {
+
+    bottom: 3px;
+
+    gap: 2px;
+
+  }
+
+
+  .flag {
+
+    width: 16px;
+    height: 10px;
+
+  }
+
+
+  .cloud {
+
+    transform: scale(.55);
+
+  }
+
+
+  .crowd {
+
+    font-size: 6px;
+
+  }
+
+
+  .stadium-banner {
+
+    font-size: 6px;
+
+  }
+
+
+  .race-track {
+
+    border-top-width: 2px;
+
+    border-bottom-width: 2px;
+
+  }
+
+
+  .race-track::before {
+
+    top: 4px;
+
+    height: 3px;
+
+  }
+
+
+  .race-track::after {
+
+    left:
+      calc(2% + 43px);
+
+    top: 4px;
+    bottom: 4px;
+
+    width: 3px;
+
+  }
+
+
+  .runner {
+
+    width: 46px;
+    height: 46px;
+
+    z-index: 20;
+
+  }
+
+
+  .athlete-sprite {
+
+    width: 46px;
+    height: 46px;
+
+    background-size:
+      276px 46px;
+
+  }
+
+
+  .player-runner .athlete-sprite {
+
+    transform:
+      scale(1.35);
+
+  }
+
+
+  @keyframes athlete-run {
+
+    from {
+
+      background-position: 0 0;
+
+    }
+
+    to {
+
+      background-position: -276px 0;
+
+    }
+
+  }
+
+
+  .lane-number {
+
+    width: 20px;
+    height: 20px;
+
+    left: 4px;
+
+    font-size: 6px;
+
+  }
+
+
+  .lane-label {
+
+    left: 28px;
+
+    top: 21%;
 
     padding:
-      10px 43% 10px 5%;
+      2px 4px;
 
-    gap: 6px;
+    font-size: 5px;
+
   }
+
+
+  .finish-line {
+
+    width: 8px;
+
+  }
+
+
+  .distance-line {
+
+    font-size: 5px;
+
+  }
+
+
+  .message {
+
+    height: 18px;
+
+    font-size: 6px;
+
+  }
+
+
+  .nes-controls {
+
+    flex-basis: 58px;
+
+    padding-bottom: 3px;
+
+  }
+
+
+  .nes-button {
+
+    width: 46px;
+    height: 46px;
+
+    border-width: 3px;
+
+    font-size: 12px;
+
+  }
+
+
+  .rhythm {
+
+    font-size: 5px;
+
+  }
+
+
+  .rhythm-bar {
+
+    margin-top: 2px;
+
+  }
+
+
+  .rhythm-bar span {
+
+    width: 4px;
+    height: 6px;
+
+  }
+
+
+  /* =====================================================
+     RESULTADO EN HORIZONTAL
+     ===================================================== */
+
+  .result {
+
+    inset:
+      3% 5%;
+
+    padding:
+      5px
+      42%
+      5px
+      3%;
+
+    gap: 3px;
+
+  }
+
 
   .result-title {
-    font-size: 11px;
+
+    font-size: 7px;
+
   }
+
 
   .result-position {
-    font-size: 7px;
+
+    font-size: 4px;
+
   }
+
 
   .result-time-label {
-    font-size: 5px;
+
+    font-size: 4px;
+
   }
+
 
   #final-time {
-    font-size: 25px;
+
+    font-size: 20px;
+
   }
+
 
   .result-score {
-    font-size: 6px;
+
+    font-size: 4px;
+
   }
+
 
   .coordinates-title {
-    font-size: 6px;
+
+    font-size: 4px;
+
+    margin-bottom: 2px;
+
   }
+
 
   #coordinates-value {
-    font-size: 5px;
+
+    font-size: 3.5px;
+
+    line-height: 1.4;
+
   }
+
 
   .nickname-title {
-    font-size: 5px;
+
+    font-size: 4px;
+
   }
+
 
   #nickname {
-    height: 25px;
 
-    font-size: 6px;
+    height: 21px;
+
+    font-size: 4px;
+
+    border-width: 2px;
+
   }
+
 
   #save-score,
   .ranking-button,
   #again {
-    padding: 5px 4px;
 
-    font-size: 5px;
+    padding:
+      4px 5px;
+
+    font-size: 4px;
+
+    border-width: 2px;
+
   }
+
 
   .ranking-panel {
-    top: 4%;
+
+    top: 2%;
+
     right: 2%;
 
-    width: 39%;
+    bottom: 2%;
 
-    padding: 7px 5px;
+    width: 40%;
+
+    padding:
+      4px 4px;
+
+    border-width: 2px;
+
   }
+
 
   .ranking-title {
-    margin-bottom: 6px;
 
-    padding-bottom: 5px;
+    margin:
+      0 0 3px;
 
-    font-size: 7px;
+    padding:
+      2px 0 3px;
+
+    font-size: 5px;
+
   }
 
+
   .ranking-row {
+
     grid-template-columns:
-      20px
-      minmax(0, 1fr)
-      52px
-      43px;
+      14px
+      minmax(0,1fr)
+      39px
+      31px;
 
     gap: 2px;
 
-    padding: 4px 2px;
+    padding:
+      2px 1px;
 
-    font-size: 4px;
+    font-size: 3px;
+
   }
+
+
+  .ranking-message {
+
+    padding:
+      4px 2px;
+
+    font-size: 3px;
+
+  }
+
 
   #close-ranking {
-    margin-top: 5px;
 
-    padding: 5px 9px;
+    margin-top: 3px;
 
-    font-size: 5px;
+    padding:
+      3px 6px;
+
+    font-size: 3.5px;
+
+    border-width: 2px;
+
   }
+
 }
 
 
@@ -2696,14 +3479,124 @@ body {
 
 @media (max-height: 500px) {
 
-  .result {
-    inset: 4% 8%;
+  .arcade {
+
+    padding: 2px;
+
   }
+
+
+  .cabinet {
+
+    padding: 3px;
+
+  }
+
+
+  .screen {
+
+    padding: 3px;
+
+  }
+
+
+  .marquee {
+
+    height: 27px;
+
+    font-size: 13px;
+
+  }
+
+
+  .race-hud {
+
+    height: 42px;
+
+  }
+
+
+  .nes-controls {
+
+    flex-basis: 58px;
+
+  }
+
+
+  .race-track::before {
+
+    top: 4px;
+
+    height: 3px;
+
+  }
+
+
+  .race-track::after {
+
+    left:
+      calc(2% + 43px);
+
+    top: 4px;
+    bottom: 4px;
+
+    width: 3px;
+
+  }
+
+
+  .lane-label {
+
+    top: 21%;
+
+  }
+
+
+  .runner {
+
+    z-index: 20;
+
+  }
+
+
+  .player-runner .athlete-sprite {
+
+    transform:
+      scale(1.35);
+
+  }
+
+
+  /* =====================================================
+     RESULTADO PANTALLA MUY BAJA
+     ===================================================== */
+
+  .result {
+
+    inset:
+      3% 5%;
+
+    padding:
+      5px
+      42%
+      5px
+      3%;
+
+    gap: 3px;
+
+  }
+
 
   .ranking-panel {
-    top: 3%;
+
+    top: 2%;
+
     right: 2%;
 
-    bottom: 3%;
+    bottom: 2%;
+
+    width: 40%;
+
   }
-     }
+
+}
