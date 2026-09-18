@@ -1,15 +1,38 @@
-/* =========================================================
-   OLYMPIA 8-BIT · SUPABASE
-   Conexión con la base de datos
-   ========================================================= */
+/* =========================================
+   OLYMPIA 8-BIT
+   SUPABASE
+   ========================================= */
 
-const SUPABASE_URL = "https://wbtwgojhgdayrifiwfxn.supabase.co";
+window.OlympiaSupabase = null;
 
-const SUPABASE_KEY = "sb_publishable_27MkfTAFhUb8Uckfnxm3eg_XVgDgb58";
 
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
+/* =========================================
+   COMPROBAR SUPABASE
+   ========================================= */
 
-window.OlympiaSupabase = supabaseClient;
+if (
+  window.supabase &&
+  typeof window.supabase.createClient === "function"
+) {
+
+  const SUPABASE_URL =
+    "https://wbtwgojhgdayrifiwfxn.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_27MkfTAFhUb8Uckfnxm3eg_XVgDgb58";
+
+
+  window.OlympiaSupabase =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+}
+else {
+
+  console.warn(
+    "Supabase no está disponible."
+  );
+
+}
