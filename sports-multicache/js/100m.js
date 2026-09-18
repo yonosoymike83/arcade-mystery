@@ -50,6 +50,66 @@ const again =
 
 
 /* =========================================
+   SUPABASE / RANKING
+   ========================================= */
+
+const coordinates =
+  $("coordinates");
+
+const rankingButton =
+  $("ranking-button");
+
+const nicknamePanel =
+  $("nickname-panel");
+
+const nicknameInput =
+  $("nickname");
+
+const saveScoreButton =
+  $("save-score");
+
+const rankingPanel =
+  $("ranking-panel");
+
+const rankingList =
+  $("ranking-list");
+
+const closeRanking =
+  $("close-ranking");
+
+
+/*
+ * Cliente Supabase creado en supabase.js
+ */
+
+const supabaseClient =
+  window.OlympiaSupabase;
+
+
+/*
+ * Datos del resultado actual.
+ */
+
+let finalScore =
+  0;
+
+let finalTimeMs =
+  0;
+
+let finalPlace =
+  0;
+
+
+/*
+ * Evita guardar la misma carrera
+ * más de una vez.
+ */
+
+let scoreSaved =
+  false;
+
+
+/* =========================================
    ESTADO
    ========================================= */
 
@@ -709,6 +769,572 @@ function press(button) {
 
 
 /* =========================================
+   RESULTADO · COORDENADAS
+   ========================================= */
+
+function showCoordinates() {
+
+  if (!coordinates) {
+
+    return;
+
+  }
+
+
+  /*
+   * Las coordenadas reales se encuentran
+   * actualmente en 100m.html.
+   *
+   * Solo las mostramos al quedar primero.
+   */
+
+  coordinates.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+/* =========================================
+   OCULTAR COORDENADAS
+   ========================================= */
+
+function hideCoordinates() {
+
+  if (!coordinates) {
+
+    return;
+
+  }
+
+
+  coordinates.classList.add(
+    "hidden"
+  );
+
+}
+
+
+/* =========================================
+   RANKING · ABRIR
+   ========================================= */
+
+function openRankingForm() {
+
+  if (!rankingButton) {
+
+    return;
+
+  }
+
+
+  if (scoreSaved) {
+
+    showRanking();
+
+    return;
+
+  }
+
+
+  if (rankingPanel) {
+
+    rankingPanel.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  if (nicknamePanel) {
+
+    nicknamePanel.classList.remove(
+      "hidden"
+    );
+
+  }
+
+
+  if (nicknameInput) {
+
+    nicknameInput.value = "";
+
+    nicknameInput.focus();
+
+  }
+
+}
+
+
+/* =========================================
+   RANKING · GUARDAR
+   ========================================= */
+
+async function saveScore() {
+
+  if (
+    scoreSaved
+  ) {
+
+    showRanking();
+
+    return;
+
+  }
+
+
+  if (
+    !supabaseClient
+  ) {
+
+    showRankingMessage(
+      "SUPABASE CONNECTION ERROR"
+    );
+
+    return;
+
+  }
+
+
+  let nickname =
+    nicknameInput
+      ? nicknameInput.value.trim()
+      : "";
+
+
+  /*
+   * Convertimos a mayúsculas para mantener
+   * la estética arcade.
+   */
+
+  nickname =
+    nickname.toUpperCase();
+
+
+  if (
+    nickname.length < 1
+  ) {
+
+    showRankingMessage(
+      "ENTER YOUR NICKNAME"
+    );
+
+    if (nicknameInput) {
+
+      nicknameInput.focus();
+
+    }
+
+    return;
+
+  }
+
+
+  if (
+    nickname.length > 12
+  ) {
+
+    nickname =
+      nickname.substring(
+        0,
+        12
+      );
+
+  }
+
+
+  if (saveScoreButton) {
+
+    saveScoreButton.disabled =
+      true;
+
+    saveScoreButton.textContent =
+      "SAVING...";
+
+  }
+
+
+  try {
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .from("scores")
+        .insert({
+
+          nickname:
+            nickname,
+
+          score:
+            finalScore,
+
+          time_ms:
+            finalTimeMs,
+
+          event:
+            "100m"
+
+        });
+
+
+    if (error) {
+
+      console.error(
+        "Supabase save error:",
+        error
+      );
+
+      showRankingMessage(
+        "ERROR SAVING SCORE"
+      );
+
+      return;
+
+    }
+
+
+    scoreSaved =
+      true;
+
+
+    if (nicknamePanel) {
+
+      nicknamePanel.classList.add(
+        "hidden"
+      );
+
+    }
+
+
+    await showRanking();
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Supabase error:",
+      error
+    );
+
+    showRankingMessage(
+      "CONNECTION ERROR"
+    );
+
+  }
+
+  finally {
+
+    if (saveScoreButton) {
+
+      saveScoreButton.disabled =
+        false;
+
+      saveScoreButton.textContent =
+        "SAVE SCORE";
+
+    }
+
+  }
+
+}
+
+
+/* =========================================
+   RANKING · MENSAJE
+   ========================================= */
+
+function showRankingMessage(
+  text
+) {
+
+  if (!rankingList) {
+
+    return;
+
+  }
+
+
+  rankingList.innerHTML = "";
+
+
+  const message =
+    document.createElement(
+      "div"
+    );
+
+
+  message.className =
+    "ranking-message";
+
+
+  message.textContent =
+    text;
+
+
+  rankingList.appendChild(
+    message
+  );
+
+}
+
+
+/* =========================================
+   RANKING · CARGAR TOP 10
+   ========================================= */
+
+async function showRanking() {
+
+  if (!rankingPanel) {
+
+    return;
+
+  }
+
+
+  rankingPanel.classList.remove(
+    "hidden"
+  );
+
+
+  if (nicknamePanel) {
+
+    nicknamePanel.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  showRankingMessage(
+    "LOADING..."
+  );
+
+
+  if (
+    !supabaseClient
+  ) {
+
+    showRankingMessage(
+      "SUPABASE CONNECTION ERROR"
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("scores")
+        .select(
+          "nickname, score, time_ms, created_at"
+        )
+        .eq(
+          "event",
+          "100m"
+        )
+        .order(
+          "score",
+          {
+            ascending: false
+          }
+        )
+        .order(
+          "time_ms",
+          {
+            ascending: true
+          }
+        )
+        .order(
+          "created_at",
+          {
+            ascending: true
+          }
+        )
+        .limit(10);
+
+
+    if (error) {
+
+      console.error(
+        "Supabase ranking error:",
+        error
+      );
+
+      showRankingMessage(
+        "ERROR LOADING RANKING"
+      );
+
+      return;
+
+    }
+
+
+    renderRanking(
+      data || []
+    );
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Ranking error:",
+      error
+    );
+
+    showRankingMessage(
+      "CONNECTION ERROR"
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   RANKING · RENDER
+   ========================================= */
+
+function renderRanking(
+  scores
+) {
+
+  if (!rankingList) {
+
+    return;
+
+  }
+
+
+  rankingList.innerHTML =
+    "";
+
+
+  if (
+    scores.length === 0
+  ) {
+
+    showRankingMessage(
+      "NO SCORES YET"
+    );
+
+    return;
+
+  }
+
+
+  scores.forEach(
+    (
+      entry,
+      index
+    ) => {
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+
+      row.className =
+        "ranking-row";
+
+
+      const rank =
+        document.createElement(
+          "span"
+        );
+
+      rank.className =
+        "rank";
+
+      rank.textContent =
+        String(
+          index + 1
+        );
+
+
+      const nick =
+        document.createElement(
+          "span"
+        );
+
+      nick.className =
+        "nick";
+
+      nick.textContent =
+        String(
+          entry.nickname || ""
+        );
+
+
+      const score =
+        document.createElement(
+          "span"
+        );
+
+      score.className =
+        "score";
+
+      score.textContent =
+        String(
+          Number(
+            entry.score || 0
+          )
+        ).padStart(
+          5,
+          "0"
+        );
+
+
+      row.appendChild(
+        rank
+      );
+
+      row.appendChild(
+        nick
+      );
+
+      row.appendChild(
+        score
+      );
+
+
+      rankingList.appendChild(
+        row
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================
+   RANKING · CERRAR
+   ========================================= */
+
+function closeRankingPanel() {
+
+  if (rankingPanel) {
+
+    rankingPanel.classList.add(
+      "hidden"
+    );
+
+  }
+
+}
+
+
+/* =========================================
    FINAL
    ========================================= */
 
@@ -726,8 +1352,16 @@ function finishRace() {
   state =
     "finished";
 
-  document.querySelector(".game-screen").classList.add("finished");
-   
+
+  document
+    .querySelector(
+      ".game-screen"
+    )
+    .classList.add(
+      "finished"
+    );
+
+
   clearInterval(
     timerInterval
   );
@@ -766,6 +1400,10 @@ function finishRace() {
       : 2;
 
 
+  finalPlace =
+    place;
+
+
   if (
     place === 1
   ) {
@@ -773,10 +1411,26 @@ function finishRace() {
     resultPosition.textContent =
       "1ST PLACE";
 
+
+    /*
+     * Las coordenadas SOLO aparecen
+     * si el jugador gana.
+     */
+
+    showCoordinates();
+
   } else {
 
     resultPosition.textContent =
       "2ND PLACE";
+
+
+    /*
+     * Segundo puesto:
+     * no hay coordenadas.
+     */
+
+    hideCoordinates();
 
   }
 
@@ -823,6 +1477,20 @@ function finishRace() {
     );
 
 
+  finalScore =
+    score;
+
+
+  finalTimeMs =
+    Math.round(
+      elapsed
+    );
+
+
+  scoreSaved =
+    false;
+
+
   scoreEl.textContent =
     "SCORE " +
 
@@ -831,6 +1499,28 @@ function finishRace() {
         5,
         "0"
       );
+
+
+  /* ======================================
+     LIMPIAR PANELES DE RANKING
+     ====================================== */
+
+  if (nicknamePanel) {
+
+    nicknamePanel.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  if (rankingPanel) {
+
+    rankingPanel.classList.add(
+      "hidden"
+    );
+
+  }
 
 
   /* ======================================
@@ -848,7 +1538,9 @@ function finishRace() {
 
 
   document
-    .querySelector(".race-hud")
+    .querySelector(
+      ".race-hud"
+    )
     .classList.add(
       "hidden"
     );
@@ -879,8 +1571,16 @@ function reset() {
     cpuInterval
   );
 
-  document.querySelector(".game-screen").classList.remove("finished");
-   
+
+  document
+    .querySelector(
+      ".game-screen"
+    )
+    .classList.remove(
+      "finished"
+    );
+
+
   startTime =
     0;
 
@@ -905,6 +1605,22 @@ function reset() {
     0;
 
 
+  finalScore =
+    0;
+
+
+  finalTimeMs =
+    0;
+
+
+  finalPlace =
+    0;
+
+
+  scoreSaved =
+    false;
+
+
   timer.textContent =
     "00.00";
 
@@ -927,7 +1643,9 @@ function reset() {
 
 
   document
-    .querySelector(".race-hud")
+    .querySelector(
+      ".race-hud"
+    )
     .classList.remove(
       "hidden"
     );
@@ -941,6 +1659,35 @@ function reset() {
   result.classList.add(
     "hidden"
   );
+
+
+  if (nicknamePanel) {
+
+    nicknamePanel.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  if (rankingPanel) {
+
+    rankingPanel.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  if (nicknameInput) {
+
+    nicknameInput.value =
+      "";
+
+  }
+
+
+  hideCoordinates();
 
 
   setRunnerPosition(
@@ -978,6 +1725,67 @@ again.addEventListener(
   "click",
   reset
 );
+
+
+/* =========================================
+   RANKING
+   ========================================= */
+
+if (rankingButton) {
+
+  rankingButton.addEventListener(
+    "click",
+    openRankingForm
+  );
+
+}
+
+
+if (saveScoreButton) {
+
+  saveScoreButton.addEventListener(
+    "click",
+    saveScore
+  );
+
+}
+
+
+if (closeRanking) {
+
+  closeRanking.addEventListener(
+    "click",
+    closeRankingPanel
+  );
+
+}
+
+
+/*
+ * Permitir guardar pulsando ENTER
+ * dentro del campo de nickname.
+ */
+
+if (nicknameInput) {
+
+  nicknameInput.addEventListener(
+    "keydown",
+    event => {
+
+      if (
+        event.key === "Enter"
+      ) {
+
+        event.preventDefault();
+
+        saveScore();
+
+      }
+
+    }
+  );
+
+}
 
 
 /* =========================================
