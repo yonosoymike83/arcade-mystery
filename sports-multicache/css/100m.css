@@ -4913,3 +4913,32 @@ body {
     font-size: 6px !important;
   }
    }
+/* =========================================================
+   COPY COORDINATES
+   ========================================================= */
+
+.result:not(.hidden) .copy-coordinates-button {
+  flex: 0 0 auto;
+
+  margin: 0 0 8px 0;
+
+  padding: 8px 12px;
+
+  border: 3px solid #111;
+  border-radius: 3px;
+
+  background: #e3423d;
+  color: #fff;
+
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(7px, .8vw, 10px);
+
+  box-shadow: 0 3px 0 #5b171c;
+
+  cursor: pointer;
+}
+
+.result:not(.hidden) .copy-coordinates-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #5b171c;
+       }
