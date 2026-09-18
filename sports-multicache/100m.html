@@ -113,7 +113,9 @@
           <div class="stadium">
 
 
-            <!-- CIELO -->
+            <!-- =========================
+                 CIELO
+                 ========================= -->
 
             <div class="sky">
 
@@ -139,7 +141,9 @@
             </div>
 
 
-            <!-- PÚBLICO -->
+            <!-- =========================
+                 PÚBLICO
+                 ========================= -->
 
             <div class="crowd">
 
@@ -167,7 +171,9 @@
             </div>
 
 
-            <!-- CARTEL -->
+            <!-- =========================
+                 CARTEL
+                 ========================= -->
 
             <div class="stadium-banner">
               OLYMPIA 8-BIT
@@ -192,7 +198,9 @@
                 id="cpu-runner"
                 class="runner cpu-runner"
               >
+
                 <span class="athlete-sprite"></span>
+
               </div>
 
               <div class="finish-line"></div>
@@ -200,7 +208,9 @@
             </div>
 
 
-            <!-- DISTANCIA -->
+            <!-- =========================
+                 DISTANCIA
+                 ========================= -->
 
             <div class="distance-line">
 
@@ -232,7 +242,9 @@
                 id="player-runner"
                 class="runner player-runner"
               >
+
                 <span class="athlete-sprite"></span>
+
               </div>
 
               <div class="finish-line"></div>
@@ -240,7 +252,9 @@
             </div>
 
 
-            <!-- DISTANCIA -->
+            <!-- =========================
+                 DISTANCIA
+                 ========================= -->
 
             <div class="distance-line">
 
@@ -330,12 +344,18 @@
             class="result hidden"
           >
 
+            <!-- =========================
+                 TITULO
+                 ========================= -->
+
             <div class="result-title">
               FINISH!
             </div>
 
 
-            <!-- POSICIÓN -->
+            <!-- =========================
+                 POSICION
+                 ========================= -->
 
             <div
               id="result-position"
@@ -345,31 +365,46 @@
             </div>
 
 
-            <!-- TIEMPO -->
+            <!-- =========================
+                 TIEMPO + SCORE
+                 ========================= -->
 
-            <div class="result-time-label">
-              TIME
+            <div class="result-stats">
+
+              <div class="result-stat">
+
+                <div class="result-stat-label">
+                  TIME
+                </div>
+
+                <strong id="final-time">
+                  00.00
+                </strong>
+
+              </div>
+
+
+              <div class="result-stat">
+
+                <div class="result-stat-label">
+                  SCORE
+                </div>
+
+                <div
+                  id="score"
+                  class="result-score"
+                >
+                  00000
+                </div>
+
+              </div>
+
             </div>
 
-            <strong id="final-time">
-              00.00
-            </strong>
 
-
-            <!-- SCORE -->
-
-            <div
-              id="score"
-              class="result-score"
-            >
-              SCORE 00000
-            </div>
-
-
-            <!-- =================================================
+            <!-- =========================
                  COORDENADAS
-                 SOLO SE MOSTRARÁN SI EL JUGADOR QUEDA 1º
-                 ================================================= -->
+                 ========================= -->
 
             <div
               id="coordinates"
@@ -389,76 +424,96 @@
 
 
             <!-- =================================================
-                 GUARDAR SCORE / RANKING
+                 GUARDAR SCORE + RANKING
                  ================================================= -->
 
-            <button
-              id="ranking-button"
-              class="ranking-button"
-              type="button"
-            >
-              SAVE SCORE / RANKING
-            </button>
+            <div class="result-content">
 
 
-            <!-- =================================================
-                 FORMULARIO NICKNAME
-                 ================================================= -->
+              <!-- =========================
+                   GUARDAR SCORE
+                   ========================= -->
 
-            <div
-              id="nickname-panel"
-              class="nickname-panel hidden"
-            >
+              <div class="score-box">
 
-              <div class="nickname-title">
-                ENTER YOUR NICKNAME
-              </div>
-
-              <input
-                id="nickname"
-                type="text"
-                maxlength="12"
-                autocomplete="off"
-                placeholder="NICKNAME"
-              >
-
-              <button
-                id="save-score"
-                type="button"
-              >
-                SAVE SCORE
-              </button>
-
-            </div>
+                <div class="score-box-title">
+                  SAVE YOUR SCORE
+                </div>
 
 
-            <!-- =================================================
-                 RANKING
-                 ================================================= -->
+                <div
+                  id="nickname-panel"
+                  class="nickname-panel hidden"
+                >
 
-            <div
-              id="ranking-panel"
-              class="ranking-panel hidden"
-            >
+                  <div class="nickname-title">
+                    NICKNAME · MAX 12
+                  </div>
 
-              <div class="ranking-title">
-                TOP 10
-              </div>
 
-              <div id="ranking-list">
+                  <input
+                    id="nickname"
+                    type="text"
+                    maxlength="12"
+                    autocomplete="off"
+                    placeholder="NICKNAME"
+                  >
 
-                <!--
-                  Supabase rellenará aquí el ranking.
-                -->
+
+                  <button
+                    id="save-score"
+                    type="button"
+                  >
+                    SAVE SCORE
+                  </button>
+
+                </div>
+
+
+                <button
+                  id="ranking-button"
+                  class="ranking-button"
+                  type="button"
+                >
+                  SAVE SCORE / RANKING
+                </button>
 
               </div>
 
-              <button
-                id="close-ranking"
-                type="button"
+
+              <!-- =========================
+                   TOP 10
+                   ========================= -->
+
+              <div
+                id="ranking-panel"
+                class="ranking-panel hidden"
               >
-                BACK
-              </button>
+
+                <div class="ranking-title">
+                  TOP 10
+                </div>
+
+
+                <div id="ranking-list">
+
+                  <!--
+                    Supabase rellenará aquí
+                    el ranking.
+                  -->
+
+                </div>
+
+
+                <button
+                  id="close-ranking"
+                  type="button"
+                >
+                  BACK
+                </button>
+
+              </div>
+
 
             </div>
 
@@ -475,7 +530,9 @@
             </button>
 
 
-            <!-- VOLVER AL MENÚ -->
+            <!-- =========================
+                 VOLVER AL MENU
+                 ========================= -->
 
             <a href="index.html">
               BACK TO EVENTS
@@ -503,16 +560,30 @@
     async function startGame() {
 
       const startScreen =
-        document.getElementById("start-screen");
+        document.getElementById(
+          "start-screen"
+        );
+
 
       const gameScreen =
-        document.getElementById("game-screen");
+        document.getElementById(
+          "game-screen"
+        );
 
 
-      startScreen.classList.add("hidden");
+      startScreen.classList.add(
+        "hidden"
+      );
 
-      gameScreen.classList.remove("hidden");
 
+      gameScreen.classList.remove(
+        "hidden"
+      );
+
+
+      /* =========================
+         FULLSCREEN
+         ========================= */
 
       try {
 
@@ -525,7 +596,9 @@
 
         }
 
-      } catch (error) {
+      }
+
+      catch (error) {
 
         console.log(
           "Fullscreen no disponible",
@@ -534,6 +607,10 @@
 
       }
 
+
+      /* =========================
+         LANDSCAPE
+         ========================= */
 
       try {
 
@@ -548,7 +625,9 @@
 
         }
 
-      } catch (error) {
+      }
+
+      catch (error) {
 
         console.log(
           "Orientation lock no disponible",
@@ -561,10 +640,19 @@
 
   </script>
 
+
+  <!-- =====================================================
+       SCRIPTS
+       ===================================================== -->
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script src="js/supabase.js"></script>
+
   <script src="js/controller.js"></script>
+
   <script src="js/100m.js"></script>
+
 
 </body>
 
