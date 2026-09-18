@@ -1413,12 +1413,19 @@ if (coordinates) {
 
 
       ${place === 1 ? `
-        <div class="coordinates-title">
-          COORDINATES
-        </div>
+        <button
+          id="copy-coordinates"
+          class="copy-coordinates-button"
+          type="button"
+        >
+          COPY COORDINATES
+        </button>
 
-        <div class="coordinates-value">
-          ${escapeHTML(coordinateText).replace(/\n/g, "<br>")}
+        <div
+          class="coordinates-value"
+          id="finish-coordinates-value"
+        >
+      ${escapeHTML(coordinateText).replace(/\n/g, "<br>")}
         </div>
       ` : ""}
 
@@ -1626,6 +1633,56 @@ if (coordinates) {
   const finishBack =
     $("finish-back-events");
 
+  const copyCoordinates =
+    $("copy-coordinates");
+
+  if (copyCoordinates) {
+
+  copyCoordinates.addEventListener(
+    "click",
+    async () => {
+
+      const value =
+        document
+          .getElementById(
+            "finish-coordinates-value"
+          )
+          ?.textContent
+          .trim();
+
+      if (!value) {
+        return;
+      }
+
+      try {
+
+        await navigator.clipboard.writeText(
+          value.replace(/\s+/g, " ")
+        );
+
+        copyCoordinates.textContent =
+          "COPIED!";
+
+        setTimeout(() => {
+
+          copyCoordinates.textContent =
+            "COPY COORDINATES";
+
+        }, 1500);
+
+      } catch (error) {
+
+        console.error(
+          "Error copiando coordenadas:",
+          error
+        );
+
+      }
+
+    }
+  );
+
+}
 
   if (finishBack) {
 
