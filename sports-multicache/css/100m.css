@@ -711,7 +711,7 @@ body {
 
 
 /* =========================================================
-   LÍNEA HORIZONTAL SUPERIOR
+   LÍNEA HORIZONTAL DEL CARRIL
    ========================================================= */
 
 .race-track::before {
@@ -734,8 +734,8 @@ body {
 
 
 /* =========================================================
-   LÍNEA VERTICAL DE SALIDA
-   FIJA Y DELANTE DEL CORREDOR
+   LÍNEA DE SALIDA
+   FIJA Y DELANTE DE LA POSICIÓN INICIAL
    ========================================================= */
 
 .race-track::after {
@@ -745,12 +745,6 @@ body {
 
   z-index: 12;
 
-  /*
-     El corredor parte aproximadamente del 2%.
-     Su sprite ocupa unos 64 px.
-     Esta línea queda justo delante.
-  */
-
   left: calc(2% + 58px);
 
   top: 7px;
@@ -758,7 +752,7 @@ body {
 
   width: 5px;
 
-  background: #ffffff;
+  background: #fff;
 
   pointer-events: none;
 }
@@ -833,11 +827,6 @@ body {
   z-index: 15;
 
   left: 52px;
-
-  /*
-     Más arriba del corredor.
-  */
-
   top: 21%;
 
   transform: translateY(-50%);
@@ -862,12 +851,14 @@ body {
 
 /* =========================================================
    CORREDORES
+   IMPORTANTE:
+   z-index 20 > línea de salida 12
    ========================================================= */
 
 .runner {
   position: absolute;
 
-  z-index: 10;
+  z-index: 20;
 
   left: 2%;
   top: 50%;
@@ -1764,6 +1755,8 @@ body {
   .runner {
     width: 46px;
     height: 46px;
+
+    z-index: 20;
   }
 
   .athlete-sprite {
@@ -1905,6 +1898,10 @@ body {
 
   .lane-label {
     top: 21%;
+  }
+
+  .runner {
+    z-index: 20;
   }
 
   .player-runner .athlete-sprite {
