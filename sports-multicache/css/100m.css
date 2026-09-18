@@ -5238,3 +5238,58 @@ body {
     padding-right: 10px !important;
   }
 }
+/* =========================================================
+   AJUSTE FINAL · BOTONES Y ESPACIADOS
+   ========================================================= */
+
+/* SAVE SCORE = mismo ancho que BACK TO EVENTS */
+.result:not(.hidden) .save-score-button {
+  width: 160px !important;
+  min-width: 160px !important;
+  max-width: 160px !important;
+
+  box-sizing: border-box !important;
+
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+}
+
+
+/* Más espacio después del SCORE */
+.result:not(.hidden) .finish-score {
+  margin-bottom: 16px !important;
+}
+
+
+/* Más espacio antes de SAVE YOUR SCORE */
+.result:not(.hidden) .coordinates-value {
+  margin-bottom: 16px !important;
+}
+
+
+/* Mantener el botón de coordenadas centrado */
+.result:not(.hidden) .copy-coordinates-button {
+  margin-bottom: 3px !important;
+}
+
+
+/* =========================================================
+   HORIZONTAL / PANTALLA BAJA
+   ========================================================= */
+
+@media (max-height: 600px) and (orientation: landscape) {
+
+  .result:not(.hidden) .save-score-button {
+    width: 140px !important;
+    min-width: 140px !important;
+    max-width: 140px !important;
+  }
+
+  .result:not(.hidden) .finish-score {
+    margin-bottom: 11px !important;
+  }
+
+  .result:not(.hidden) .coordinates-value {
+    margin-bottom: 11px !important;
+  }
+}
