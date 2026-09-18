@@ -1,1 +1,171 @@
-window.ArcadeController=(()=>{const ls={A:[],B:[],C:[]};function on(b,fn){ls[b]?.push(fn)}function emit(b,e){ls[b]?.forEach(fn=>fn(e))}function bind(id,b){const el=document.getElementById(id);if(!el)return;el.addEventListener("pointerdown",e=>{e.preventDefault();emit(b,e)},{passive:false})}bind("buttonA","A");bind("buttonB","B");bind("buttonC","C");document.addEventListener("keydown",e=>{const k=e.key.toLowerCase();if(k==="a")emit("A",e);if(k==="b")emit("B",e);if(k==="c"||e.code==="Space")emit("C",e)});return{on}})();
+/* =========================================================
+   OLYMPIA 8-BIT · ARCADE CONTROLLER
+   Controlador compartido para los juegos
+   ========================================================= */
+
+
+/* =========================================================
+   EVENTOS
+   ========================================================= */
+
+const listeners = {
+  A: [],
+  B: [],
+  C: []
+};
+
+
+/* =========================================================
+   REGISTRAR EVENTO
+   ========================================================= */
+
+function on(button, callback) {
+
+  if (!listeners[button]) {
+    return;
+  }
+
+  listeners[button].push(callback);
+}
+
+
+/* =========================================================
+   LANZAR EVENTO
+   ========================================================= */
+
+function emit(button, event) {
+
+  if (!listeners[button]) {
+    return;
+  }
+
+  listeners[button].forEach(
+    callback => callback(event)
+  );
+
+}
+
+
+/* =========================================================
+   VINCULAR BOTÓN DE PANTALLA
+   ========================================================= */
+
+function bindButton(elementId, button) {
+
+  const element =
+    document.getElementById(elementId);
+
+  if (!element) {
+    return;
+  }
+
+
+  element.addEventListener(
+    "pointerdown",
+    event => {
+
+      event.preventDefault();
+
+      emit(
+        button,
+        event
+      );
+
+    },
+    {
+      passive: false
+    }
+  );
+
+}
+
+
+/* =========================================================
+   BOTONES A / B / C
+   ========================================================= */
+
+bindButton(
+  "buttonA",
+  "A"
+);
+
+bindButton(
+  "buttonB",
+  "B"
+);
+
+bindButton(
+  "buttonC",
+  "C"
+);
+
+
+/* =========================================================
+   TECLADO
+   ========================================================= */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    const key =
+      event.key.toLowerCase();
+
+
+    /* -------------------------
+       TECLA A
+       ------------------------- */
+
+    if (key === "a") {
+
+      emit(
+        "A",
+        event
+      );
+
+    }
+
+
+    /* -------------------------
+       TECLA B
+       ------------------------- */
+
+    if (key === "b") {
+
+      emit(
+        "B",
+        event
+      );
+
+    }
+
+
+    /* -------------------------
+       TECLA C / ESPACIO
+       ------------------------- */
+
+    if (
+      key === "c" ||
+      event.code === "Space"
+    ) {
+
+      emit(
+        "C",
+        event
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   API PÚBLICA
+   ========================================================= */
+
+window.ArcadeController = {
+
+  on
+
+};
