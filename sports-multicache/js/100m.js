@@ -1436,10 +1436,6 @@ if (coordinates) {
           SAVE YOUR SCORE
         </div>
 
-        <div class="nickname-info">
-          NICKNAME · MAX 12
-        </div>
-
 
         <input
           id="finish-nickname"
