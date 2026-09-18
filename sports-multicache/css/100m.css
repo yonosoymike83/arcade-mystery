@@ -5305,3 +5305,6 @@ body {
   padding-left: 8px !important;
   padding-right: 8px !important;
 }
+.result:not(.hidden) .finish-place {
+  margin-bottom: 14px !important;
+}
