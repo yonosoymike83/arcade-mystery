@@ -2,6 +2,7 @@
 
 /* =========================================================
    OLYMPIA 8-BIT · 100 METROS
+   CSS EXCLUSIVO DE 100m.html
    ========================================================= */
 
 :root {
@@ -211,7 +212,7 @@ body {
 
 
 /* =========================================================
-   START
+   START SCREEN
    ========================================================= */
 
 .start-screen {
@@ -655,14 +656,16 @@ body {
 }
 
 @keyframes crowd-jump {
+
   50% {
     transform: translateY(-3px);
   }
+
 }
 
 
 /* =========================================================
-   CARTEL
+   CARTEL DEL ESTADIO
    ========================================================= */
 
 .stadium-banner {
@@ -708,7 +711,7 @@ body {
 
 
 /* =========================================================
-   LÍNEA SUPERIOR FIJA
+   LÍNEA HORIZONTAL SUPERIOR
    ========================================================= */
 
 .race-track::before {
@@ -716,11 +719,10 @@ body {
 
   position: absolute;
 
-  z-index: 2;
+  z-index: 3;
 
   left: 0;
   right: 0;
-
   top: 7px;
 
   height: 5px;
@@ -732,8 +734,8 @@ body {
 
 
 /* =========================================================
-   LÍNEA DE SALIDA
-   AHORA ESTÁ JUSTO DELANTE DEL SPRITE
+   LÍNEA VERTICAL DE SALIDA
+   FIJA Y DELANTE DEL CORREDOR
    ========================================================= */
 
 .race-track::after {
@@ -744,19 +746,19 @@ body {
   z-index: 12;
 
   /*
-     La salida está dentro del carril,
-     aproximadamente en la posición inicial
-     del corredor.
+     El corredor parte aproximadamente del 2%.
+     Su sprite ocupa unos 64 px.
+     Esta línea queda justo delante.
   */
 
-  left: 3.2%;
+  left: calc(2% + 58px);
 
   top: 7px;
   bottom: 7px;
 
   width: 5px;
 
-  background: #fff;
+  background: #ffffff;
 
   pointer-events: none;
 }
@@ -822,8 +824,7 @@ body {
 
 
 /* =========================================================
-   CPU / YOU
-   MÁS ARRIBA
+   ETIQUETAS CPU / YOU
    ========================================================= */
 
 .lane-label {
@@ -834,8 +835,9 @@ body {
   left: 52px;
 
   /*
-     MUCHO MÁS ARRIBA QUE ANTES
+     Más arriba del corredor.
   */
+
   top: 21%;
 
   transform: translateY(-50%);
@@ -868,7 +870,6 @@ body {
   z-index: 10;
 
   left: 2%;
-
   top: 50%;
 
   width: 64px;
@@ -932,7 +933,7 @@ body {
 
 
 /* =========================================================
-   SOMBRA
+   SOMBRAS
    ========================================================= */
 
 .cpu-runner {
@@ -1297,6 +1298,15 @@ body {
     top: 21%;
   }
 
+  .race-track::after {
+    left: calc(2% + 58px);
+
+    top: 7px;
+    bottom: 7px;
+
+    width: 5px;
+  }
+
   .lane-number {
     width: 36px;
     height: 36px;
@@ -1411,7 +1421,7 @@ body {
   }
 
   .race-track::after {
-    left: 3.2%;
+    left: calc(2% + 47px);
 
     top: 6px;
     bottom: 6px;
@@ -1632,7 +1642,7 @@ body {
   }
 
   .race-track::after {
-    left: 3.2%;
+    left: calc(2% + 37px);
 
     top: 5px;
     bottom: 5px;
@@ -1743,7 +1753,7 @@ body {
   }
 
   .race-track::after {
-    left: 3.2%;
+    left: calc(2% + 43px);
 
     top: 4px;
     bottom: 4px;
@@ -1885,7 +1895,7 @@ body {
   }
 
   .race-track::after {
-    left: 3.2%;
+    left: calc(2% + 43px);
 
     top: 4px;
     bottom: 4px;
