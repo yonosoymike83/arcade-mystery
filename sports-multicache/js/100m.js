@@ -1307,22 +1307,21 @@ function finishRace() {
     "N 41° XX.XXX\nE 002° XX.XXX";
 
 
-  if (coordinates) {
+if (coordinates) {
 
-    const text =
-      coordinates
-        .textContent
-        .trim();
+  const value =
+    coordinates.querySelector(
+      ".coordinates-value"
+    );
 
+  if (value) {
 
-    if (text) {
-
-      coordinateText =
-        text;
-
-    }
+    coordinateText =
+      value.textContent.trim();
 
   }
+
+}
 
 
   /* ======================================
