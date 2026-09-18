@@ -5293,3 +5293,15 @@ body {
     margin-bottom: 11px !important;
   }
 }
+
+/* SAVE SCORE = BACK TO EVENTS */
+.result:not(.hidden) .back-events-button {
+  width: 160px !important;
+  min-width: 160px !important;
+  max-width: 160px !important;
+
+  box-sizing: border-box !important;
+
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+}
