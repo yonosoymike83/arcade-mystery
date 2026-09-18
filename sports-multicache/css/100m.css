@@ -1381,10 +1381,7 @@ body {
   gap: 7px;
 
   padding:
-    14px
-    42%
-    14px
-    5%;
+    14px;
 
   background:
     linear-gradient(
@@ -2281,10 +2278,7 @@ body {
       6% 8%;
 
     padding:
-      14px
-      42%
-      14px
-      5%;
+      14px;
 
   }
 
@@ -2491,10 +2485,7 @@ body {
       5% 5%;
 
     padding:
-      10px
-      43%
-      10px
-      4%;
+      10px;
 
   }
 
@@ -2845,10 +2836,7 @@ body {
       5% 4%;
 
     padding:
-      7px
-      43%
-      7px
-      3%;
+      7px;
 
     gap: 4px;
 
@@ -3303,10 +3291,7 @@ body {
       3% 5%;
 
     padding:
-      5px
-      42%
-      5px
-      3%;
+      5px;
 
     gap: 3px;
 
@@ -3577,10 +3562,7 @@ body {
       3% 5%;
 
     padding:
-      5px
-      42%
-      5px
-      3%;
+      5px;
 
     gap: 3px;
 
@@ -3599,4 +3581,4 @@ body {
 
   }
 
-}
+   }
