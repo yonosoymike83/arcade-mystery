@@ -4942,3 +4942,299 @@ body {
   transform: translateY(2px);
   box-shadow: 0 1px 0 #5b171c;
        }
+/* =========================================================
+   RESULTADO · BOTONES INFERIORES
+   ========================================================= */
+
+/* Reorganizamos solamente la columna izquierda */
+.result:not(.hidden) .finish-left {
+  display: grid !important;
+
+  grid-template-columns: minmax(0, 1fr) max-content !important;
+
+  grid-template-rows:
+    auto   /* FINISH */
+    auto   /* PLACE */
+    auto   /* TIME LABEL */
+    auto   /* TIME */
+    auto   /* SCORE */
+    auto   /* COPY */
+    auto   /* COORDINATES */
+    auto   /* SAVE YOUR SCORE */
+    auto   /* NICKNAME INFO */
+    auto   /* INPUT + SAVE */
+    auto   /* RUN + BACK */
+    !important;
+
+  column-gap: 8px !important;
+  row-gap: 5px !important;
+
+  align-content: start !important;
+}
+
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+.result:not(.hidden) .finish-title {
+  grid-column: 1 / 3 !important;
+  grid-row: 1 !important;
+
+  margin: 0 0 2px 0 !important;
+}
+
+
+/* =========================================================
+   POSICIÓN
+   ========================================================= */
+
+.result:not(.hidden) .finish-place {
+  grid-column: 1 / 3 !important;
+  grid-row: 2 !important;
+
+  margin: 0 0 5px 0 !important;
+}
+
+
+/* =========================================================
+   TIME
+   ========================================================= */
+
+.result:not(.hidden) .finish-time-label {
+  grid-column: 1 / 3 !important;
+  grid-row: 3 !important;
+
+  margin: 0 !important;
+}
+
+.result:not(.hidden) .finish-time {
+  grid-column: 1 / 3 !important;
+  grid-row: 4 !important;
+
+  margin: 0 0 5px 0 !important;
+}
+
+
+/* =========================================================
+   SCORE
+   ========================================================= */
+
+.result:not(.hidden) .finish-score {
+  grid-column: 1 / 3 !important;
+  grid-row: 5 !important;
+
+  margin: 0 0 5px 0 !important;
+}
+
+
+/* =========================================================
+   COPY COORDINATES
+   ========================================================= */
+
+.result:not(.hidden) .copy-coordinates-button {
+  grid-column: 1 / 3 !important;
+  grid-row: 6 !important;
+
+  justify-self: center !important;
+
+  margin: 0 0 3px 0 !important;
+}
+
+
+/* =========================================================
+   COORDENADAS
+   ========================================================= */
+
+.result:not(.hidden) .coordinates-value {
+  grid-column: 1 / 3 !important;
+  grid-row: 7 !important;
+
+  margin: 0 0 4px 0 !important;
+}
+
+
+/* =========================================================
+   SAVE YOUR SCORE
+   ========================================================= */
+
+.result:not(.hidden) .save-title {
+  grid-column: 1 / 3 !important;
+  grid-row: 8 !important;
+
+  margin: 0 !important;
+}
+
+
+/* =========================================================
+   NICKNAME · MAX 12
+   ========================================================= */
+
+/*
+   Este elemento ya no queremos mostrarlo.
+*/
+
+.result:not(.hidden) .nickname-info {
+  display: none !important;
+}
+
+
+/* =========================================================
+   NICKNAME + SAVE SCORE
+   ========================================================= */
+
+.result:not(.hidden) .nickname-input {
+  grid-column: 1 !important;
+  grid-row: 9 !important;
+
+  width: 100% !important;
+  max-width: none !important;
+
+  margin: 0 !important;
+
+  height: 36px !important;
+
+  box-sizing: border-box !important;
+}
+
+
+.result:not(.hidden) .save-score-button {
+  grid-column: 2 !important;
+  grid-row: 9 !important;
+
+  width: max-content !important;
+  min-width: 0 !important;
+
+  height: 36px !important;
+  min-height: 36px !important;
+
+  margin: 0 !important;
+
+  padding: 6px 14px !important;
+
+  white-space: nowrap !important;
+}
+
+
+/* =========================================================
+   RUN AGAIN + BACK TO EVENTS
+   ========================================================= */
+
+.result:not(.hidden) .run-again-button {
+  grid-column: 1 !important;
+  grid-row: 10 !important;
+
+  width: 100% !important;
+
+  min-width: 0 !important;
+  min-height: 34px !important;
+
+  height: 34px !important;
+
+  margin: 3px 0 0 0 !important;
+
+  padding: 6px 8px !important;
+}
+
+
+.result:not(.hidden) .back-events-button {
+  grid-column: 2 !important;
+  grid-row: 10 !important;
+
+  width: max-content !important;
+
+  min-width: 0 !important;
+  min-height: 34px !important;
+
+  height: 34px !important;
+
+  margin: 3px 0 0 0 !important;
+
+  padding: 6px 12px !important;
+
+  white-space: nowrap !important;
+
+  border: 3px solid #111 !important;
+  border-radius: 3px !important;
+
+  background: #e3423d !important;
+  color: #fff !important;
+
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 7px !important;
+
+  box-shadow: 0 3px 0 #5b171c !important;
+
+  cursor: pointer !important;
+}
+
+
+/* =========================================================
+   EFECTO BOTÓN BACK
+   ========================================================= */
+
+.result:not(.hidden) .back-events-button:active {
+  transform: translateY(2px) !important;
+
+  box-shadow:
+    0 1px 0 #5b171c !important;
+}
+
+
+/* =========================================================
+   EN PANTALLA HORIZONTAL BAJA
+   ========================================================= */
+
+@media (max-height: 600px) and (orientation: landscape) {
+
+  .result:not(.hidden) .finish-left {
+    grid-template-columns:
+      minmax(0, 1fr)
+      max-content !important;
+
+    column-gap: 7px !important;
+    row-gap: 3px !important;
+  }
+
+  .result:not(.hidden) .finish-title {
+    margin-bottom: 1px !important;
+  }
+
+  .result:not(.hidden) .finish-place {
+    margin-bottom: 3px !important;
+  }
+
+  .result:not(.hidden) .finish-time {
+    margin-bottom: 3px !important;
+  }
+
+  .result:not(.hidden) .finish-score {
+    margin-bottom: 3px !important;
+  }
+
+  .result:not(.hidden) .copy-coordinates-button {
+    margin-bottom: 2px !important;
+  }
+
+  .result:not(.hidden) .coordinates-value {
+    margin-bottom: 2px !important;
+  }
+
+  .result:not(.hidden) .nickname-input,
+  .result:not(.hidden) .save-score-button {
+    height: 29px !important;
+    min-height: 29px !important;
+  }
+
+  .result:not(.hidden) .run-again-button,
+  .result:not(.hidden) .back-events-button {
+    height: 28px !important;
+    min-height: 28px !important;
+  }
+
+  .result:not(.hidden) .save-score-button,
+  .result:not(.hidden) .back-events-button {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+}
