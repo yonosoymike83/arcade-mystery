@@ -1220,6 +1220,438 @@ body {
   color: var(--yellow);
 }
 
+/* =========================================================
+   RESULTADO · COORDENADAS / RANKING
+   ========================================================= */
+
+.coordinates {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+
+  margin-top: 2px;
+  padding: 8px 18px;
+
+  background: #020505;
+
+  border: 3px solid #00d9d9;
+  border-radius: 6px;
+
+  text-align: center;
+}
+
+.coordinates-title {
+  color: #5be7e7;
+
+  font-size: 8px;
+
+  line-height: 1;
+}
+
+#coordinates-value {
+  color: #fff;
+
+  font-size: clamp(8px, 1.2vw, 11px);
+
+  line-height: 1.8;
+
+  text-shadow:
+    2px 2px 0 #000;
+}
+
+
+/* =========================================================
+   BOTÓN RANKING
+   ========================================================= */
+
+.ranking-button,
+#save-score,
+#close-ranking {
+
+  padding: 11px 16px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #e3423d,
+      #a9262c
+    );
+
+  border: 3px solid #111;
+
+  border-radius: 6px;
+
+  color: #fff;
+
+  font-family: 'Press Start 2P', monospace;
+
+  font-size: 7px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 0 #5b171c;
+
+  text-transform: uppercase;
+}
+
+.ranking-button:active,
+#save-score:active,
+#close-ranking:active {
+
+  transform: translateY(3px);
+
+  box-shadow:
+    0 1px 0 #5b171c;
+}
+
+
+/* =========================================================
+   NICKNAME
+   ========================================================= */
+
+.nickname-panel {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 8px 12px;
+
+  background: #020505;
+
+  border: 2px solid #5be7e7;
+
+  border-radius: 6px;
+}
+
+.nickname-title {
+
+  color: #5be7e7;
+
+  font-size: 7px;
+
+  line-height: 1.5;
+}
+
+#nickname {
+
+  width: 180px;
+
+  padding: 9px 8px;
+
+  background: #fff;
+
+  border: 3px solid #111;
+
+  border-radius: 4px;
+
+  color: #111;
+
+  font-family: 'Press Start 2P', monospace;
+
+  font-size: 8px;
+
+  text-align: center;
+
+  text-transform: uppercase;
+
+  outline: none;
+}
+
+#nickname:focus {
+
+  border-color: var(--yellow);
+}
+
+
+/* =========================================================
+   RANKING
+   ========================================================= */
+
+.ranking-panel {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 8px;
+
+  width: min(330px, 80%);
+
+  padding: 10px;
+
+  background: #020505;
+
+  border: 3px solid var(--yellow);
+
+  border-radius: 6px;
+}
+
+.ranking-title {
+
+  color: var(--yellow);
+
+  font-size: 10px;
+
+  text-shadow:
+    2px 2px 0 #574716;
+}
+
+#ranking-list {
+
+  width: 100%;
+}
+
+.ranking-row {
+
+  display: grid;
+
+  grid-template-columns:
+    28px
+    1fr
+    80px;
+
+  gap: 5px;
+
+  padding: 5px 3px;
+
+  color: #fff;
+
+  border-bottom: 1px solid #17444b;
+
+  font-size: 6px;
+
+  text-align: left;
+}
+
+.ranking-row:first-child {
+
+  color: var(--yellow);
+}
+
+.ranking-row .rank {
+  text-align: center;
+}
+
+.ranking-row .nick {
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+.ranking-row .score {
+
+  text-align: right;
+
+  color: #5be7e7;
+}
+
+
+/* =========================================================
+   MENSAJES DEL RANKING
+   ========================================================= */
+
+.ranking-message {
+
+  color: #8edce2;
+
+  font-size: 6px;
+
+  line-height: 1.6;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   RESPONSIVE · RESULTADO
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  .result {
+
+    gap: 8px;
+
+    inset: 6% 7%;
+
+    padding: 8px;
+  }
+
+  .coordinates {
+
+    padding: 6px 12px;
+
+    border-width: 2px;
+
+    gap: 5px;
+  }
+
+  .coordinates-title {
+    font-size: 6px;
+  }
+
+  #coordinates-value {
+    font-size: 7px;
+  }
+
+  .ranking-button,
+  #save-score,
+  #close-ranking {
+
+    padding: 8px 10px;
+
+    border-width: 2px;
+
+    font-size: 6px;
+
+    box-shadow:
+      0 3px 0 #5b171c;
+  }
+
+  .nickname-panel {
+
+    gap: 6px;
+
+    padding: 6px 8px;
+  }
+
+  .nickname-title {
+    font-size: 6px;
+  }
+
+  #nickname {
+
+    width: 145px;
+
+    padding: 7px 5px;
+
+    border-width: 2px;
+
+    font-size: 7px;
+  }
+
+  .ranking-panel {
+
+    width: 90%;
+
+    padding: 7px;
+
+    gap: 6px;
+
+    border-width: 2px;
+  }
+
+  .ranking-title {
+    font-size: 8px;
+  }
+
+  .ranking-row {
+
+    grid-template-columns:
+      22px
+      1fr
+      65px;
+
+    padding: 4px 2px;
+
+    font-size: 5px;
+  }
+
+}
+
+
+@media (
+  max-width: 900px
+) and (
+  orientation: landscape
+) {
+
+  .result {
+
+    inset: 4% 15%;
+
+    gap: 6px;
+
+    padding: 6px;
+  }
+
+  .coordinates {
+
+    padding: 5px 12px;
+
+    gap: 4px;
+  }
+
+  .coordinates-title {
+    font-size: 5px;
+  }
+
+  #coordinates-value {
+    font-size: 6px;
+  }
+
+  .ranking-button,
+  #save-score,
+  #close-ranking {
+
+    padding: 7px 10px;
+
+    font-size: 5px;
+  }
+
+  .nickname-panel {
+
+    gap: 5px;
+
+    padding: 5px 8px;
+  }
+
+  .nickname-title {
+    font-size: 5px;
+  }
+
+  #nickname {
+
+    width: 140px;
+
+    padding: 6px;
+
+    font-size: 6px;
+  }
+
+  .ranking-panel {
+
+    width: 80%;
+
+    padding: 6px;
+
+    gap: 5px;
+  }
+
+  .ranking-title {
+    font-size: 7px;
+  }
+
+  .ranking-row {
+
+    grid-template-columns:
+      20px
+      1fr
+      60px;
+
+    padding: 3px;
+
+    font-size: 5px;
+  }
+
+}
 
 /* =========================================================
    PC GRANDE
