@@ -195,8 +195,8 @@ function resetCPU() {
    */
 
   cpuSpeed =
-    1.18 +
-    Math.random() * 0.12;
+    1.30 +
+    Math.random() * 0.14;
 
 
   setRunnerPosition(
