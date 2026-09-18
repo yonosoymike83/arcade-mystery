@@ -3582,3 +3582,612 @@ body {
   }
 
    }
+/* =========================================================
+   OLYMPIA 8-BIT · RESULT SCREEN · FIX DEFINITIVO
+   SOLO PANTALLA FINAL
+   ========================================================= */
+
+/* CONTENEDOR PRINCIPAL */
+.result:not(.hidden) {
+    position: absolute !important;
+    z-index: 1000 !important;
+
+    left: 5% !important;
+    right: 5% !important;
+    top: 5% !important;
+    bottom: 5% !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    display: block !important;
+
+    box-sizing: border-box !important;
+
+    overflow: hidden !important;
+}
+
+
+/* ---------------------------------------------------------
+   TÍTULO
+   --------------------------------------------------------- */
+
+.result:not(.hidden) .result-title {
+    position: absolute !important;
+
+    top: 18px !important;
+    left: 0 !important;
+    right: 0 !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    text-align: center !important;
+
+    font-family: "Press Start 2P", monospace !important;
+    font-size: clamp(24px, 3vw, 42px) !important;
+
+    line-height: 1.2 !important;
+
+    z-index: 20 !important;
+}
+
+
+/* ---------------------------------------------------------
+   POSICIÓN
+   --------------------------------------------------------- */
+
+.result:not(.hidden) .result-position {
+    position: absolute !important;
+
+    top: 65px !important;
+    left: 0 !important;
+    right: 0 !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    text-align: center !important;
+
+    font-family: "Press Start 2P", monospace !important;
+    font-size: clamp(20px, 2.5vw, 34px) !important;
+
+    line-height: 1.2 !important;
+
+    z-index: 20 !important;
+}
+
+
+/* ---------------------------------------------------------
+   RESULT STATS
+   --------------------------------------------------------- */
+
+.result:not(.hidden) .result-stats {
+    position: absolute !important;
+
+    top: 125px !important;
+    left: 4% !important;
+
+    width: 42% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    gap: 22px !important;
+
+    box-sizing: border-box !important;
+
+    text-align: center !important;
+}
+
+
+/* Cada bloque TIME / SCORE */
+
+.result:not(.hidden) .result-stat {
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    text-align: center !important;
+}
+
+
+/* Etiquetas */
+
+.result:not(.hidden) .result-stat-label {
+    display: block !important;
+
+    margin: 0 0 10px 0 !important;
+    padding: 0 !important;
+
+    font-family: "Press Start 2P", monospace !important;
+    font-size: clamp(15px, 1.8vw, 24px) !important;
+
+    line-height: 1.2 !important;
+
+    text-align: center !important;
+}
+
+
+/* TIME */
+
+.result:not(.hidden) #final-time {
+    display: block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-family: "Press Start 2P", monospace !important;
+    font-size: clamp(22px, 2.7vw, 36px) !important;
+
+    line-height: 1.2 !important;
+
+    text-align: center !important;
+}
+
+
+/* SCORE */
+
+.result:not(.hidden) .result-score {
+    display: block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-family: "Press Start 2P", monospace !important;
+    font-size: clamp(22px, 2.7vw, 36px) !important;
+
+    line-height: 1.2 !important;
+
+    text-align: center !important;
+}
+
+
+/* ---------------------------------------------------------
+   COORDENADAS
+   --------------------------------------------------------- */
+
+.result:not(.hidden) .coordinates {
+    position: absolute !important;
+
+    top: 275px !important;
+    left: 4% !important;
+
+    width: 42% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    text-align: center !important;
+
+    box-sizing: border-box !important;
+}
+
+
+.result:not(.hidden) .coordinates-title {
+    margin: 0 0 18px 0 !important;
+    padding: 0 !important;
+
+    font-family: "Press Start 2P", monospace !important;
+    font-size: clamp(15px, 1.7vw, 23px) !important;
+
+    line-height: 1.2 !important;
+}
+
+
+.result:not(.hidden) #coordinates-value {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-family: "Press Start 2P", monospace !important;
+    font-size: clamp(15px, 1.8vw, 24px) !important;
+
+    line-height: 1.6 !important;
+
+    text-align: center !important;
+}
+
+
+/* ---------------------------------------------------------
+   RESULT-CONTENT
+   --------------------------------------------------------- */
+
+/*
+   Muy importante:
+   no queremos que result-content cree otra columna,
+   otra fila ni otro flex/grid que interfiera.
+*/
+
+.result:not(.hidden) .result-content {
+    position: static !important;
+
+    display: block !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   CAJA SAVE SCORE
+   --------------------------------------------------------- */
+
+.result:not(.hidden) .score-box {
+    position: absolute !important;
+
+    top: 365px !important;
+    left: 4% !important;
+
+    width: 42% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    text-align: center !important;
+}
+
+
+.result:not(.hidden) .score-box-title {
+    width: 100% !important;
+
+    margin: 0 0 12px 0 !important;
+    padding: 0 !important;
+
+    font-family: "Press Start 2P", monospace !important;
+    font-size: clamp(14px, 1.6vw, 21px) !important;
+
+    line-height: 1.2 !important;
+
+    text-align: center !important;
+}
+
+
+/* ---------------------------------------------------------
+   NICKNAME
+   --------------------------------------------------------- */
+
+.result:not(.hidden) .nickname-panel {
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    gap: 8px !important;
+}
+
+
+.result:not(.hidden) .nickname-title {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-family: "Press Start 2P", monospace !important;
+    font-size: clamp(11px, 1.3vw, 17px) !important;
+
+    line-height: 1.2 !important;
+
+    text-align: center !important;
+}
+
+
+.result:not(.hidden) #nickname {
+    width: 90% !important;
+    max-width: 400px !important;
+
+    height: 38px !important;
+
+    box-sizing: border-box !important;
+
+    margin: 0 !important;
+
+    font-family: "Press Start 2P", monospace !important;
+    font-size: 14px !important;
+
+    padding: 5px 10px !important;
+}
+
+
+/* BOTÓN SAVE */
+
+.result:not(.hidden) #save-score {
+    min-width: 190px !important;
+
+    margin: 0 !important;
+
+    font-family: "Press Start 2P", monospace !important;
+    font-size: 13px !important;
+}
+
+
+/* ---------------------------------------------------------
+   BOTÓN RANKING
+   --------------------------------------------------------- */
+
+.result:not(.hidden) #ranking-button {
+    margin: 0 !important;
+
+    font-family: "Press Start 2P", monospace !important;
+    font-size: 13px !important;
+}
+
+
+/* ---------------------------------------------------------
+   TOP 10 — PANEL LATERAL
+   --------------------------------------------------------- */
+
+.result:not(.hidden) .ranking-panel {
+    position: absolute !important;
+
+    top: 115px !important;
+    right: 4% !important;
+
+    width: 46% !important;
+    height: 400px !important;
+
+    box-sizing: border-box !important;
+
+    margin: 0 !important;
+
+    padding: 18px 20px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: stretch !important;
+
+    overflow: hidden !important;
+
+    z-index: 15 !important;
+}
+
+
+/*
+   El panel lleva "hidden" en el HTML.
+   En la pantalla final queremos que TOP 10
+   aparezca directamente.
+*/
+
+.result:not(.hidden) .ranking-panel.hidden {
+    display: flex !important;
+}
+
+
+/* TÍTULO TOP 10 */
+
+.result:not(.hidden) .ranking-title {
+    flex: 0 0 auto !important;
+
+    margin: 0 0 18px 0 !important;
+    padding: 0 !important;
+
+    font-family: "Press Start 2P", monospace !important;
+    font-size: clamp(17px, 2vw, 27px) !important;
+
+    line-height: 1.2 !important;
+
+    text-align: center !important;
+}
+
+
+/* LISTA */
+
+.result:not(.hidden) #ranking-list {
+    flex: 1 1 auto !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+
+    font-family: "Press Start 2P", monospace !important;
+}
+
+
+/* FILAS DEL RANKING */
+
+.result:not(.hidden) .ranking-row {
+    width: 100% !important;
+
+    min-height: 27px !important;
+
+    margin: 0 !important;
+    padding: 4px 0 !important;
+
+    box-sizing: border-box !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+        45px
+        minmax(0, 1fr)
+        95px !important;
+
+    column-gap: 8px !important;
+
+    align-items: center !important;
+
+    font-family: "Press Start 2P", monospace !important;
+
+    font-size: clamp(9px, 1vw, 13px) !important;
+
+    line-height: 1.2 !important;
+}
+
+
+/* Elementos internos */
+
+.result:not(.hidden) .ranking-row > * {
+    min-width: 0 !important;
+
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+
+/* Botón BACK del ranking */
+
+.result:not(.hidden) #close-ranking {
+    flex: 0 0 auto !important;
+
+    align-self: center !important;
+
+    margin: 15px 0 0 0 !important;
+
+    font-family: "Press Start 2P", monospace !important;
+    font-size: 12px !important;
+}
+
+
+/* ---------------------------------------------------------
+   BOTONES FINALES
+   --------------------------------------------------------- */
+
+.result:not(.hidden) #again {
+    position: absolute !important;
+
+    bottom: 52px !important;
+
+    left: 4% !important;
+    width: 42% !important;
+
+    margin: 0 !important;
+
+    font-family: "Press Start 2P", monospace !important;
+    font-size: 13px !important;
+}
+
+
+/* BACK TO EVENTS */
+
+.result:not(.hidden) > a {
+    position: absolute !important;
+
+    bottom: 18px !important;
+
+    left: 4% !important;
+    width: 42% !important;
+
+    margin: 0 !important;
+
+    text-align: center !important;
+
+    font-family: "Press Start 2P", monospace !important;
+    font-size: 11px !important;
+}
+
+
+/* ---------------------------------------------------------
+   OCULTAR BOTÓN SAVE SCORE / RANKING CUANDO
+   EL PANEL DE NICKNAME YA ESTÁ ACTIVO
+   --------------------------------------------------------- */
+
+.result:not(.hidden) .nickname-panel:not(.hidden) ~ .ranking-button {
+    display: none !important;
+}
+
+
+/* =========================================================
+   PANTALLAS PEQUEÑAS / MÓVIL
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .result:not(.hidden) {
+        left: 3% !important;
+        right: 3% !important;
+        top: 3% !important;
+        bottom: 3% !important;
+    }
+
+    .result:not(.hidden) .result-stats,
+    .result:not(.hidden) .coordinates,
+    .result:not(.hidden) .score-box {
+        left: 3% !important;
+        width: 43% !important;
+    }
+
+    .result:not(.hidden) .ranking-panel {
+        right: 3% !important;
+        width: 47% !important;
+    }
+
+    .result:not(.hidden) .ranking-row {
+        grid-template-columns:
+            30px
+            minmax(0, 1fr)
+            75px !important;
+
+        column-gap: 5px !important;
+
+        font-size: 8px !important;
+    }
+}
+
+
+/* =========================================================
+   MÓVIL MUY ESTRECHO
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .result:not(.hidden) .result-title {
+        font-size: 20px !important;
+    }
+
+    .result:not(.hidden) .result-position {
+        font-size: 17px !important;
+    }
+
+    .result:not(.hidden) .result-stats {
+        top: 105px !important;
+    }
+
+    .result:not(.hidden) .coordinates {
+        top: 240px !important;
+    }
+
+    .result:not(.hidden) .score-box {
+        top: 325px !important;
+    }
+
+    .result:not(.hidden) .ranking-panel {
+        top: 95px !important;
+        height: 350px !important;
+    }
+
+    .result:not(.hidden) #again {
+        bottom: 42px !important;
+    }
+
+    .result:not(.hidden) > a {
+        bottom: 12px !important;
+    }
+   }
