@@ -5308,15 +5308,38 @@ body {
 .result:not(.hidden) .finish-place {
   margin-bottom: 14px !important;
 }
+
 /* =========================================================
-   PANTALLA FINAL · PC · 50 / 50
+   PANTALLA FINAL · PC
+   APROVECHAR TODO EL ANCHO · 50 / 50
    NO AFECTA A MÓVIL
    ========================================================= */
 
 @media (min-width: 901px) {
 
   .result:not(.hidden) .finish-screen {
-    grid-template-columns: 1fr 1fr !important;
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  }
+
+  .result:not(.hidden) .finish-left,
+  .result:not(.hidden) .finish-right {
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+  }
+
+  .result:not(.hidden) .finish-left {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+  }
+
+  .result:not(.hidden) .finish-right {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
   }
 
 }
