@@ -5308,3 +5308,15 @@ body {
 .result:not(.hidden) .finish-place {
   margin-bottom: 14px !important;
 }
+/* =========================================================
+   PANTALLA FINAL · PC · 50 / 50
+   NO AFECTA A MÓVIL
+   ========================================================= */
+
+@media (min-width: 901px) {
+
+  .result:not(.hidden) .finish-screen {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+}
