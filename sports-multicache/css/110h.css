@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 /* =========================================================
-   OLYMPIA 8-BIT · 100 METROS
+   OLYMPIA 8-BIT · 110 M HURDLES
    CSS EXCLUSIVO DE 110h.html
    ========================================================= */
 
@@ -396,13 +396,13 @@ body {
   display: grid;
 
   grid-template-rows:
-    15%
-    8%
-    8%
-    28%
+    14%
+    7%
+    7%
+    31%
     5%
-    28%
-    8%;
+    31%
+    5%;
 
   overflow: hidden;
 
@@ -735,7 +735,6 @@ body {
 
 /* =========================================================
    LÍNEA DE SALIDA
-   FIJA Y DELANTE DE LA POSICIÓN INICIAL
    ========================================================= */
 
 .race-track::after {
@@ -851,8 +850,6 @@ body {
 
 /* =========================================================
    CORREDORES
-   IMPORTANTE:
-   z-index 20 > línea de salida 12
    ========================================================= */
 
 .runner {
@@ -986,7 +983,7 @@ body {
 .message {
   flex: 0 0 auto;
 
-  height: 30px;
+  height: 24px;
 
   display: flex;
   align-items: center;
@@ -1010,7 +1007,7 @@ body {
 .nes-controls {
   position: relative;
 
-  flex: 0 0 105px;
+  flex: 0 0 88px;
 
   display: flex;
   align-items: center;
@@ -1123,10 +1120,8 @@ body {
 }
 
 
-
 /* =========================================================
-   PANTALLA FINAL · VERSIÓN LIMPIA
-   Todo lo anterior al bloque RESULTADO permanece intacto.
+   PANTALLA FINAL
    ========================================================= */
 
 .result:not(.hidden) {
@@ -1141,11 +1136,12 @@ body {
 
   box-sizing: border-box !important;
 
-  background: linear-gradient(
-    180deg,
-    #103d48,
-    #092a32
-  ) !important;
+  background:
+    linear-gradient(
+      180deg,
+      #103d48,
+      #092a32
+    ) !important;
 
   border: 5px solid var(--yellow) !important;
   border-radius: 12px !important;
@@ -1160,7 +1156,7 @@ body {
 
 
 /* =========================================================
-   CONTENEDOR
+   CONTENEDOR FINAL
    ========================================================= */
 
 .result:not(.hidden) .finish-screen {
@@ -1203,9 +1199,6 @@ body {
   box-sizing: border-box !important;
 }
 
-
-/* TÍTULO */
-
 .result:not(.hidden) .finish-title {
   flex: 0 0 auto !important;
 
@@ -1217,11 +1210,10 @@ body {
   line-height: 1.1 !important;
 
   text-align: center !important;
-  text-shadow: 3px 3px 0 #574716 !important;
+
+  text-shadow:
+    3px 3px 0 #574716 !important;
 }
-
-
-/* POSICIÓN */
 
 .result:not(.hidden) .finish-place {
   flex: 0 0 auto !important;
@@ -1235,9 +1227,6 @@ body {
 
   text-align: center !important;
 }
-
-
-/* TIME */
 
 .result:not(.hidden) .finish-time-label {
   margin: 0 0 8px !important;
@@ -1256,9 +1245,6 @@ body {
   font-size: clamp(24px, 3vw, 40px) !important;
   line-height: 1 !important;
 }
-
-
-/* SCORE */
 
 .result:not(.hidden) .finish-score {
   margin: 0 0 16px !important;
@@ -1300,9 +1286,6 @@ body {
   text-align: center !important;
 }
 
-
-/* BOTÓN COPY COORDINATES */
-
 .result:not(.hidden) .copy-coordinates-button {
   flex: 0 0 auto !important;
 
@@ -1326,7 +1309,9 @@ body {
 
 .result:not(.hidden) .copy-coordinates-button:active {
   transform: translateY(2px) !important;
-  box-shadow: 0 1px 0 #5b171c !important;
+
+  box-shadow:
+    0 1px 0 #5b171c !important;
 }
 
 
@@ -1347,22 +1332,18 @@ body {
   text-align: center !important;
 }
 
-
-/* Eliminado visualmente: NICKNAME · MAX 12 */
-
 .result:not(.hidden) .nickname-info {
   display: none !important;
 }
-
-
-/* NICKNAME + SAVE SCORE */
 
 .result:not(.hidden) .nickname-panel {
   width: 100% !important;
 
   display: grid !important;
 
-  grid-template-columns: minmax(0, 1fr) 160px !important;
+  grid-template-columns:
+    minmax(0, 1fr)
+    160px !important;
 
   gap: 8px !important;
 
@@ -1412,7 +1393,8 @@ body {
   font-family: 'Press Start 2P', monospace !important;
   font-size: 8px !important;
 
-  box-shadow: 0 3px 0 #5b171c !important;
+  box-shadow:
+    0 3px 0 #5b171c !important;
 
   cursor: pointer !important;
 }
@@ -1450,7 +1432,8 @@ body {
   font-family: 'Press Start 2P', monospace !important;
   font-size: 7px !important;
 
-  box-shadow: 0 3px 0 #5b171c !important;
+  box-shadow:
+    0 3px 0 #5b171c !important;
 
   cursor: pointer !important;
 
@@ -1469,7 +1452,9 @@ body {
 .result:not(.hidden) .run-again-button:active,
 .result:not(.hidden) .back-events-button:active {
   transform: translateY(2px) !important;
-  box-shadow: 0 1px 0 #5b171c !important;
+
+  box-shadow:
+    0 1px 0 #5b171c !important;
 }
 
 
@@ -1497,9 +1482,6 @@ body {
   overflow: hidden !important;
 }
 
-
-/* CABECERA */
-
 .result:not(.hidden) .top10-header {
   flex: 0 0 auto !important;
 
@@ -1525,12 +1507,15 @@ body {
 
 .result:not(.hidden) .laurel {
   color: var(--yellow) !important;
+
   font-size: 18px !important;
   line-height: 1 !important;
 }
 
 
-/* TABLA */
+/* =========================================================
+   TABLA
+   ========================================================= */
 
 .result:not(.hidden) .ranking-table {
   flex: 1 1 auto !important;
@@ -1571,6 +1556,7 @@ body {
   border-bottom: 3px solid #23616b !important;
 
   color: #78dce2 !important;
+
   font-size: clamp(7px, .8vw, 10px) !important;
 
   text-align: left !important;
@@ -1599,6 +1585,7 @@ body {
   padding: 5px 7px !important;
 
   background: #0d3038 !important;
+
   border-bottom: 2px solid #174953 !important;
 
   color: #fff !important;
@@ -1611,6 +1598,7 @@ body {
 
 .result:not(.hidden) .ranking-row.first-place {
   border: 2px solid var(--yellow) !important;
+
   background: #263d3b !important;
 }
 
@@ -1624,6 +1612,7 @@ body {
 
 .result:not(.hidden) .ranking-row .rank {
   color: var(--yellow) !important;
+
   text-align: center !important;
 }
 
@@ -1633,11 +1622,13 @@ body {
 
 .result:not(.hidden) .ranking-row .rank-time {
   color: #78dce2 !important;
+
   text-align: right !important;
 }
 
 .result:not(.hidden) .ranking-row .rank-score {
   color: var(--yellow) !important;
+
   text-align: right !important;
 }
 
@@ -1648,6 +1639,7 @@ body {
   padding: 20px 5px !important;
 
   color: #78dce2 !important;
+
   font-size: 9px !important;
 
   text-align: center !important;
@@ -1671,7 +1663,9 @@ body {
       minmax(300px, 1.10fr) !important;
 
     gap: 0 10px !important;
-    grid-template-rows: 48px 1fr !important;
+
+    grid-template-rows:
+      48px 1fr !important;
   }
 
   .result:not(.hidden) .finish-left {
@@ -1714,7 +1708,10 @@ body {
   }
 
   .result:not(.hidden) .nickname-panel {
-    grid-template-columns: minmax(0, 1fr) 140px !important;
+    grid-template-columns:
+      minmax(0, 1fr)
+      140px !important;
+
     gap: 6px !important;
   }
 
@@ -1728,6 +1725,7 @@ body {
     width: 140px !important;
     min-width: 140px !important;
     max-width: 140px !important;
+
     font-size: 6px !important;
   }
 
@@ -1736,9 +1734,12 @@ body {
     width: 140px !important;
     min-width: 140px !important;
     max-width: 140px !important;
+
     height: 28px !important;
     min-height: 28px !important;
+
     font-size: 6px !important;
+
     bottom: 10px !important;
   }
 
@@ -1756,7 +1757,9 @@ body {
 
   .result:not(.hidden) .top10-header {
     height: 28px !important;
+
     margin-bottom: 4px !important;
+
     gap: 8px !important;
   }
 
@@ -1779,13 +1782,17 @@ body {
 
   .result:not(.hidden) .ranking-head {
     min-height: 22px !important;
+
     padding: 3px 4px !important;
+
     font-size: 6px !important;
   }
 
   .result:not(.hidden) .ranking-row {
     min-height: 21px !important;
+
     padding: 3px 4px !important;
+
     font-size: 6px !important;
   }
 }
@@ -1797,6 +1804,7 @@ body {
     grid-template-columns:
       minmax(170px, .90fr)
       minmax(220px, 1.10fr) !important;
+
     gap: 0 7px !important;
   }
 
@@ -1830,13 +1838,16 @@ body {
   }
 
   .result:not(.hidden) .nickname-panel {
-    grid-template-columns: minmax(0, 1fr) 115px !important;
+    grid-template-columns:
+      minmax(0, 1fr)
+      115px !important;
   }
 
   .result:not(.hidden) .save-score-button {
     width: 115px !important;
     min-width: 115px !important;
     max-width: 115px !important;
+
     font-size: 5px !important;
   }
 
@@ -1845,6 +1856,7 @@ body {
     width: 115px !important;
     min-width: 115px !important;
     max-width: 115px !important;
+
     font-size: 5px !important;
   }
 
@@ -1867,6 +1879,7 @@ body {
 
   .result:not(.hidden) .ranking-row {
     font-size: 4.5px !important;
+
     min-height: 18px !important;
   }
 }
@@ -1888,7 +1901,9 @@ body {
       minmax(300px, .9fr)
       minmax(390px, 1.1fr) !important;
 
-    grid-template-rows: 50px 1fr !important;
+    grid-template-rows:
+      50px 1fr !important;
+
     gap: 0 12px !important;
   }
 
@@ -1932,7 +1947,10 @@ body {
   }
 
   .result:not(.hidden) .nickname-panel {
-    grid-template-columns: minmax(0, 1fr) 140px !important;
+    grid-template-columns:
+      minmax(0, 1fr)
+      140px !important;
+
     gap: 6px !important;
   }
 
@@ -1946,6 +1964,7 @@ body {
     width: 140px !important;
     min-width: 140px !important;
     max-width: 140px !important;
+
     font-size: 6px !important;
   }
 
@@ -1954,9 +1973,12 @@ body {
     width: 140px !important;
     min-width: 140px !important;
     max-width: 140px !important;
+
     height: 28px !important;
     min-height: 28px !important;
+
     bottom: 10px !important;
+
     font-size: 6px !important;
   }
 
@@ -1974,7 +1996,9 @@ body {
 
   .result:not(.hidden) .top10-header {
     height: 28px !important;
+
     margin-bottom: 4px !important;
+
     gap: 8px !important;
   }
 
@@ -1997,13 +2021,17 @@ body {
 
   .result:not(.hidden) .ranking-head {
     min-height: 22px !important;
+
     padding: 3px 4px !important;
+
     font-size: 6px !important;
   }
 
   .result:not(.hidden) .ranking-row {
     min-height: 21px !important;
+
     padding: 3px 4px !important;
+
     font-size: 6px !important;
   }
 }
@@ -2015,6 +2043,7 @@ body {
 
 .hurdle {
   position: absolute;
+
   z-index: 16;
 
   bottom: 4px;
@@ -2023,6 +2052,7 @@ body {
   height: 34px;
 
   transform: translateX(-50%);
+
   pointer-events: none;
 }
 
@@ -2030,6 +2060,7 @@ body {
   content: "";
 
   position: absolute;
+
   left: 0;
   right: 0;
   top: 5px;
@@ -2037,6 +2068,7 @@ body {
   height: 5px;
 
   background: var(--yellow);
+
   border: 2px solid #111;
 }
 
@@ -2044,6 +2076,7 @@ body {
   content: "";
 
   position: absolute;
+
   left: 3px;
   bottom: 0;
 
@@ -2051,10 +2084,17 @@ body {
   height: 27px;
 
   background: #fff;
-  box-shadow: 9px 0 0 #fff;
+
+  box-shadow:
+    9px 0 0 #fff;
 }
 
 .player-runner.jumping,
 .cpu-runner.jumping {
   transform: translateY(-78%);
 }
+
+
+/* =========================================================
+   FIN
+   ========================================================= */
