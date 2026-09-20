@@ -1058,6 +1058,20 @@ body {
     );
 }
 
+.button-c {
+  background:
+    linear-gradient(
+      145deg,
+      #ffe66d,
+      #d6a928
+    );
+
+  color: #111;
+
+  margin-left: auto;
+  margin-right: 12px;
+}
+
 .nes-button:active {
   transform: translateY(6px);
 
@@ -2043,62 +2057,4 @@ body {
 .player-runner.jumping,
 .cpu-runner.jumping {
   transform: translateY(-78%);
-}
-
-.jump-button {
-  display: block;
-
-  margin: 5px auto 0;
-  padding: 5px 7px;
-
-  border: 2px solid #111;
-  border-radius: 3px;
-
-  background: linear-gradient(145deg, #ffe66d, #d6a928);
-  color: #111;
-
-  font-family: 'Press Start 2P', monospace;
-  font-size: 7px;
-  line-height: 1;
-
-  box-shadow: 0 3px 0 #5d4610;
-  cursor: pointer;
-}
-
-.jump-button:active {
-  transform: translateY(2px);
-  box-shadow: 0 1px 0 #5d4610;
-}
-
-@media (max-width: 900px) {
-  .hurdle {
-    width: 14px;
-    height: 27px;
-  }
-
-  .hurdle::before {
-    top: 4px;
-    height: 4px;
-    border-width: 1px;
-  }
-
-  .hurdle::after {
-    left: 2px;
-    width: 2px;
-    height: 22px;
-    box-shadow: 7px 0 0 #fff;
-  }
-
-  .jump-button {
-    font-size: 6px;
-    padding: 4px 5px;
-    margin-top: 3px;
-  }
-}
-
-@media (max-width: 650px) {
-  .jump-button {
-    font-size: 5px;
-    padding: 4px;
-  }
 }
