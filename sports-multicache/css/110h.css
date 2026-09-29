@@ -2019,39 +2019,73 @@ body {
 
   bottom: 4px;
 
-  width: 18px;
-  height: 34px;
+  width: 20px;
+  height: 36px;
 
   transform: translateX(-50%);
   pointer-events: none;
+
+  /* Dos patas blancas con pequeña sombra negra */
+  background:
+    linear-gradient(
+      to right,
+      transparent 0 3px,
+      #111 3px 6px,
+      transparent 6px 14px,
+      #111 14px 17px,
+      transparent 17px 100%
+    );
 }
 
+/* Barra superior de la valla */
 .hurdle::before {
   content: "";
 
   position: absolute;
+  z-index: 2;
+
   left: 0;
   right: 0;
-  top: 5px;
+  top: 3px;
 
-  height: 5px;
+  height: 7px;
 
-  background: var(--yellow);
+  background:
+    linear-gradient(
+      to right,
+      #ffffff 0 30%,
+      #e3423d 30% 70%,
+      #ffffff 70% 100%
+    );
+
   border: 2px solid #111;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.45);
 }
 
+/* Patas blancas */
 .hurdle::after {
   content: "";
 
   position: absolute;
+  z-index: 1;
+
   left: 3px;
+  right: 3px;
   bottom: 0;
 
-  width: 3px;
   height: 27px;
 
-  background: #fff;
-  box-shadow: 9px 0 0 #fff;
+  background:
+    linear-gradient(
+      to right,
+      #ffffff 0 3px,
+      transparent 3px 11px,
+      #ffffff 11px 14px,
+      transparent 14px 100%
+    );
+
+  filter: drop-shadow(1px 0 0 #111);
 }
 
 .player-runner.jumping,
@@ -2062,564 +2096,89 @@ body {
 /* =========================================================
    110 M VALLAS · AJUSTE VISUAL MÓVIL
    Basado en la proporción visual del 100 M.
-   Solo modifica la presentación; no afecta al juego.
    ========================================================= */
 
 @media (max-width: 900px) {
-  .arcade {
-    padding: 6px;
-  }
-
-  .cabinet {
-    padding: 6px;
-  }
-
-  .screen {
-    padding: 5px;
-  }
-
-  .marquee {
-    height: 38px;
-    margin-bottom: 5px;
-    font-size: 18px;
-  }
-
-  .race-hud {
-    height: 58px;
-  }
-
-  .hud-box {
-    border-width: 2px;
-  }
-
-  .hud-box span {
-    margin-bottom: 4px;
-    font-size: 6px;
-  }
-
-  .hud-box strong {
-    font-size: 10px;
-  }
-
-  .timer-box strong {
-    font-size: 23px;
-  }
-
-  .stadium {
-    grid-template-rows:
-      14%
-      8%
-      8%
-      27%
-      5%
-      30%
-      8%;
-  }
-
-  .runner {
-    width: 52px;
-    height: 52px;
-  }
-
-  .athlete-sprite {
-    width: 52px;
-    height: 52px;
-    background-size: 312px 52px;
-  }
-
-  @keyframes athlete-run {
-    from {
-      background-position: 0 0;
-    }
-
-    to {
-      background-position: -312px 0;
-    }
-  }
-
-  .flag {
-    width: 22px;
-    height: 14px;
-  }
-
-  .flags {
-    gap: 5px;
-  }
-
-  .nes-controls {
-    flex-basis: 90px;
-  }
-
-  .nes-button {
-    width: 62px;
-    height: 62px;
-    font-size: 17px;
-  }
-
-  .button-c {
-    width: 62px;
-    height: 62px;
-    margin: 0;
-    position: absolute;
-    left: auto;
-    right: calc(2% + 72px);
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 17px;
-    border-width: 4px;
-  }
-
-  .button-c:active {
-    transform: translateY(calc(-50% + 6px));
-  }
-
   .hurdle {
-    width: 14px;
-    height: 29px;
+    width: 15px;
+    height: 30px;
     bottom: 3px;
   }
 
   .hurdle::before {
-    top: 4px;
-    height: 4px;
+    top: 3px;
+    height: 6px;
     border-width: 1px;
   }
 
   .hurdle::after {
     left: 2px;
-    width: 2px;
+    right: 2px;
     height: 23px;
-    box-shadow: 7px 0 0 #fff;
-  }
-
-  .lane-number {
-    width: 24px;
-    height: 24px;
-    left: 5px;
-    font-size: 7px;
-  }
-
-  .lane-label {
-    left: 34px;
-    top: 40%;
-    padding: 3px 5px;
-    font-size: 6px;
-  }
-
-  .finish-line {
-    width: 10px;
-  }
-
-  .distance-line {
-    padding-left: 7%;
-    padding-right: 7%;
-    font-size: 6px;
-  }
-
-  .message {
-    height: 24px;
-    font-size: 7px;
-  }
-
-  .rhythm {
-    width: 180px;
-    font-size: 6px;
-  }
-
-  .rhythm-bar {
-    gap: 2px;
-  }
-
-  .rhythm-bar span {
-    width: 5px;
-    height: 8px;
+    background:
+      linear-gradient(
+        to right,
+        #ffffff 0 2px,
+        transparent 2px 9px,
+        #ffffff 9px 11px,
+        transparent 11px 100%
+      );
+    filter: drop-shadow(1px 0 0 #111);
   }
 }
-
-/* =========================================================
-   110 M VALLAS · MÓVIL PEQUEÑO
-   ========================================================= */
 
 @media (max-width: 650px) {
-  .arcade {
-    padding: 0;
-  }
-
-  .cabinet {
-    max-width: none;
-    max-height: none;
-    padding: 4px;
-    border: 2px solid #687583;
-    border-radius: 7px;
-    box-shadow: none;
-  }
-
-  .screen {
-    padding: 4px;
-    border-width: 2px;
-  }
-
-  .marquee {
-    height: 34px;
-    margin-bottom: 4px;
-    border-width: 2px;
-    font-size: 15px;
-  }
-
-  .race-hud {
-    height: 53px;
-    gap: 2px;
-  }
-
-  .hud-box span {
-    margin-bottom: 4px;
-    font-size: 5px;
-  }
-
-  .hud-box strong {
-    font-size: 8px;
-  }
-
-  .timer-box strong {
-    font-size: 18px;
-  }
-
-  .stadium {
-    grid-template-rows:
-      14%
-      8%
-      8%
-      27%
-      5%
-      30%
-      8%;
-  }
-
-  .flags {
-    bottom: 4px;
-    gap: 3px;
-  }
-
-  .flag {
-    width: 18px;
-    height: 11px;
-    border-width: 1px;
-  }
-
-  .cloud {
-    transform: scale(.7);
-  }
-
-  .crowd {
-    font-size: 7px;
-  }
-
-  .stadium-banner {
-    font-size: 7px;
-  }
-
-  .lane-number {
-    width: 24px;
-    height: 24px;
-    left: 5px;
-    font-size: 7px;
-  }
-
-  .lane-label {
-    left: 34px;
-    top: 40%;
-    padding: 3px 5px;
-    font-size: 6px;
-  }
-
-  .runner {
-    width: 40px;
-    height: 40px;
-  }
-
-  .athlete-sprite {
-    width: 40px;
-    height: 40px;
-    background-size: 240px 40px;
-  }
-
-  @keyframes athlete-run {
-    from {
-      background-position: 0 0;
-    }
-
-    to {
-      background-position: -240px 0;
-    }
-  }
-
-  .finish-line {
-    width: 10px;
-  }
-
-  .distance-line {
-    padding-left: 7%;
-    padding-right: 7%;
-    font-size: 6px;
-  }
-
-  .message {
-    height: 24px;
-    font-size: 7px;
-  }
-
-  .nes-controls {
-    flex-basis: 78px;
-    padding-left: 2%;
-    padding-right: 2%;
-  }
-
-  .nes-button {
-    width: 55px;
-    height: 55px;
-    border-width: 4px;
-    font-size: 15px;
-  }
-
-  .button-c {
-    width: 55px;
-    height: 55px;
-    left: auto;
-    right: calc(2% + 65px);
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 15px;
-    border-width: 4px;
-  }
-
-  .button-c:active {
-    transform: translateY(calc(-50% + 5px));
-  }
-
-  .rhythm {
-    width: 180px;
-    font-size: 6px;
-  }
-
-  .rhythm-bar {
-    gap: 2px;
-  }
-
-  .rhythm-bar span {
-    width: 5px;
-    height: 8px;
-  }
-
   .hurdle {
-    width: 12px;
-    height: 25px;
-    bottom: 3px;
-  }
-
-  .hurdle::before {
-    top: 4px;
-    height: 4px;
-    border-width: 1px;
-  }
-
-  .hurdle::after {
-    left: 2px;
-    width: 2px;
-    height: 20px;
-    box-shadow: 6px 0 0 #fff;
-  }
-}
-
-/* =========================================================
-   110 M VALLAS · MÓVIL HORIZONTAL / PANTALLA BAJA
-   Misma proporción general que el 100 M.
-   ========================================================= */
-
-@media (max-width: 900px) and (orientation: landscape) {
-  .arcade {
-    padding: 0;
-  }
-
-  .cabinet {
-    width: 100%;
-    height: 100%;
-    padding: 3px;
-    border-width: 2px;
-    border-radius: 5px;
-  }
-
-  .screen {
-    padding: 3px;
-    border-width: 2px;
-  }
-
-  .marquee {
-    height: 28px;
-    margin-bottom: 3px;
-    font-size: 13px;
-  }
-
-  .race-hud {
-    height: 43px;
-  }
-
-  .hud-box span {
-    margin-bottom: 3px;
-    font-size: 5px;
-  }
-
-  .hud-box strong {
-    font-size: 8px;
-  }
-
-  .timer-box strong {
-    font-size: 17px;
-  }
-
-  .stadium {
-    grid-template-rows:
-      14%
-      8%
-      8%
-      27%
-      5%
-      30%
-      8%;
-  }
-
-  .flags {
-    bottom: 3px;
-    gap: 2px;
-  }
-
-  .flag {
-    width: 16px;
-    height: 10px;
-  }
-
-  .cloud {
-    transform: scale(.55);
-  }
-
-  .crowd {
-    font-size: 6px;
-  }
-
-  .stadium-banner {
-    font-size: 6px;
-  }
-
-  .race-track {
-    border-top-width: 2px;
-    border-bottom-width: 2px;
-  }
-
-  .runner {
-    width: 46px;
-    height: 46px;
-  }
-
-  .athlete-sprite {
-    width: 46px;
-    height: 46px;
-    background-size: 276px 46px;
-  }
-
-  @keyframes athlete-run {
-    from {
-      background-position: 0 0;
-    }
-
-    to {
-      background-position: -276px 0;
-    }
-  }
-
-  .lane-number {
-    width: 20px;
-    height: 20px;
-    left: 4px;
-    font-size: 6px;
-  }
-
-  .lane-label {
-    left: 28px;
-    top: 40%;
-    padding: 2px 4px;
-    font-size: 5px;
-  }
-
-  .finish-line {
-    width: 8px;
-  }
-
-  .distance-line {
-    font-size: 5px;
-  }
-
-  .message {
-    height: 18px;
-    font-size: 6px;
-  }
-
-  .nes-controls {
-    flex-basis: 62px;
-    padding-bottom: 5px;
-  }
-
-  .nes-button {
-    width: 46px;
-    height: 46px;
-    border-width: 3px;
-    font-size: 12px;
-  }
-
-  .button-c {
-    width: 46px;
-    height: 46px;
-    left: auto;
-    right: calc(2% + 56px);
-    top: 50%;
-    transform: translateY(-50%);
-    border-width: 3px;
-    font-size: 12px;
-  }
-
-  .button-c:active {
-    transform: translateY(calc(-50% + 5px));
-  }
-
-  .rhythm {
-    width: 160px;
-    font-size: 5px;
-  }
-
-  .rhythm-bar {
-    margin-top: 2px;
-    gap: 2px;
-  }
-
-  .rhythm-bar span {
-    width: 4px;
-    height: 6px;
-  }
-
-  .hurdle {
-    width: 10px;
-    height: 22px;
+    width: 13px;
+    height: 27px;
     bottom: 2px;
   }
 
   .hurdle::before {
     top: 3px;
-    height: 3px;
+    height: 5px;
     border-width: 1px;
   }
 
   .hurdle::after {
     left: 2px;
-    width: 2px;
+    right: 2px;
+    height: 20px;
+    background:
+      linear-gradient(
+        to right,
+        #ffffff 0 2px,
+        transparent 2px 7px,
+        #ffffff 7px 9px,
+        transparent 9px 100%
+      );
+  }
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .hurdle {
+    width: 11px;
+    height: 23px;
+    bottom: 2px;
+  }
+
+  .hurdle::before {
+    top: 2px;
+    height: 4px;
+    border-width: 1px;
+  }
+
+  .hurdle::after {
+    left: 1px;
+    right: 1px;
     height: 18px;
-    box-shadow: 5px 0 0 #fff;
+    background:
+      linear-gradient(
+        to right,
+        #ffffff 0 2px,
+        transparent 2px 6px,
+        #ffffff 6px 8px,
+        transparent 8px 100%
+      );
   }
 }
