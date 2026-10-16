@@ -2655,3 +2655,66 @@ body {
 .nes-controls {
   flex-grow: 0;
 }
+
+
+/* =========================================================
+   AJUSTE FINAL DE CONTROLES · C JUSTO A LA IZQUIERDA DE B
+   C y B comparten tamaño y diseño; solo cambia la letra.
+   ========================================================= */
+.button-c {
+  position: absolute;
+  left: auto;
+  right: calc(3% + 70px + 14px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 70px;
+  height: 70px;
+  margin: 0;
+  padding: 0;
+  border: 5px solid #111;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #3f79ff, #214dcc);
+  color: #fff;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 20px;
+  box-shadow: 0 8px 0 #050505, inset 0 4px 0 rgba(255,255,255,.25);
+  z-index: 2;
+}
+
+.button-c:active {
+  transform: translateY(calc(-50% + 6px));
+  box-shadow: 0 2px 0 #050505, inset 0 2px 0 rgba(0,0,0,.2);
+}
+
+@media (max-width: 900px) {
+  .button-c {
+    right: calc(2% + 62px + 12px);
+    width: 62px;
+    height: 62px;
+    border-width: 4px;
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 650px) {
+  .button-c {
+    right: calc(2% + 55px + 10px);
+    width: 55px;
+    height: 55px;
+    border-width: 4px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .button-c {
+    right: calc(2% + 46px + 8px);
+    width: 46px;
+    height: 46px;
+    border-width: 3px;
+    font-size: 12px;
+  }
+  .button-c:active {
+    transform: translateY(calc(-50% + 5px));
+  }
+}
