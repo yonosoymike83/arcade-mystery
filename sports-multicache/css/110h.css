@@ -2673,8 +2673,8 @@ body {
   padding: 0;
   border: 5px solid #111;
   border-radius: 50%;
-  background: linear-gradient(145deg, #3f79ff, #214dcc);
-  color: #fff;
+  background: linear-gradient(145deg, #ffe66d, #d6a928);
+  color: #111;
   font-family: 'Press Start 2P', monospace;
   font-size: 20px;
   box-shadow: 0 8px 0 #050505, inset 0 4px 0 rgba(255,255,255,.25);
