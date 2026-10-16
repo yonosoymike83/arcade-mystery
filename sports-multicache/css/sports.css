@@ -41,7 +41,6 @@ body {
   overflow-x: hidden;
 }
 
-
 /* =========================================================
    ARCADE
    ========================================================= */
@@ -49,10 +48,8 @@ body {
 .arcade {
   width: 100%;
   max-width: 900px;
-
   padding: 20px;
 }
-
 
 /* =========================================================
    CABINET
@@ -60,7 +57,6 @@ body {
 
 .cabinet {
   width: 100%;
-
   padding: 14px;
 
   background:
@@ -79,14 +75,12 @@ body {
     0 20px 45px rgba(0, 0, 0, 0.55);
 }
 
-
 /* =========================================================
    MARQUEE
    ========================================================= */
 
 .marquee {
   width: 100%;
-
   padding: 22px 15px;
   margin-bottom: 14px;
 
@@ -108,14 +102,12 @@ body {
   font-size: clamp(20px, 4vw, 36px);
   line-height: 1.3;
 
-  text-shadow:
-    3px 3px 0 #64191e;
+  text-shadow: 3px 3px 0 #64191e;
 
   box-shadow:
     inset 0 3px 0 rgba(255, 255, 255, 0.15),
     inset 0 -5px 0 rgba(0, 0, 0, 0.22);
 }
-
 
 /* =========================================================
    SCREEN
@@ -123,9 +115,7 @@ body {
 
 .screen {
   position: relative;
-
   width: 100%;
-
   padding: 35px 30px 28px;
 
   background:
@@ -145,7 +135,6 @@ body {
 
   overflow: hidden;
 }
-
 
 /* =========================================================
    EFECTO CRT
@@ -167,16 +156,14 @@ body {
       transparent 1px,
       transparent 4px
     );
-    border: 4px solid #0b0e13;
-    border-radius: 18px;
-    box-shadow:
-        0 0 0 3px #697482,
-        0 18px 40px rgba(0, 0, 0, 0.55);
-}
 
-/* =========================================================
-   MARQUEE
-   ========================================================= */
+  border: 4px solid #0b0e13;
+  border-radius: 18px;
+
+  box-shadow:
+    0 0 0 3px #697482,
+    0 18px 40px rgba(0, 0, 0, 0.55);
+}
 
 /* =========================================================
    TÍTULO
@@ -187,7 +174,6 @@ body {
   z-index: 1;
 
   margin: 0;
-
   text-align: center;
 
   color: #ffe66d;
@@ -195,13 +181,8 @@ body {
   font-size: clamp(18px, 4vw, 30px);
   line-height: 1.5;
 
-  text-shadow:
-    3px 3px 0 #554514;
+  text-shadow: 3px 3px 0 #554514;
 }
-
-/* =========================================================
-   CABECERA DEL MENÚ
-   ========================================================= */
 
 /* =========================================================
    SUBTÍTULO
@@ -212,16 +193,13 @@ body {
   z-index: 1;
 
   margin: 14px 0 30px;
-
   text-align: center;
 
   color: #8ed5dc;
 
   font-size: clamp(8px, 1.8vw, 12px);
-
   line-height: 1.6;
 }
-
 
 /* =========================================================
    EVENT CARDS
@@ -239,10 +217,10 @@ body {
 
   display: grid;
 
-  grid-template-columns: 70px 1fr 100px;
+  /* Columna fija para el número y para PLAY / SOON */
+  grid-template-columns: 70px minmax(0, 1fr) 100px;
 
   align-items: center;
-
   gap: 15px;
 
   text-decoration: none;
@@ -270,11 +248,7 @@ body {
 }
 
 /* =========================================================
-   BOTÓN / EVENTO
-   ========================================================= */
-
-/* =========================================================
-   NÚMERO
+   NÚMERO DEL EVENTO
    ========================================================= */
 
 .event-card > span:first-child {
@@ -291,14 +265,10 @@ body {
   border-radius: 50%;
 
   color: #ffe66d;
-
   font-size: 13px;
 
-  box-shadow:
-    0 3px 0 #751d23;
+  box-shadow: 0 3px 0 #751d23;
 }
-
-/* número del evento */
 
 /* =========================================================
    NOMBRE DEL EVENTO
@@ -306,29 +276,26 @@ body {
 
 .event-card b {
   display: block;
-
   color: #ffffff;
 
   font-size: clamp(10px, 2vw, 15px);
-
   line-height: 1.5;
 }
-
 
 /* =========================================================
    PLAY / SOON
    ========================================================= */
 
 .event-card > span:last-child {
+  justify-self: center;
   text-align: center;
+  white-space: nowrap;
 
   color: #ffe66d;
 
   font-size: clamp(8px, 1.6vw, 11px);
-
   line-height: 1.5;
 }
-
 
 /* =========================================================
    HOVER
@@ -349,9 +316,6 @@ body {
     inset 0 2px 0 rgba(255, 255, 255, 0.15);
 }
 
-.event:active {
-    transform: translateY(4px);
-
 /* =========================================================
    CLICK / ACTIVE
    ========================================================= */
@@ -368,15 +332,9 @@ body {
    EVENTO BLOQUEADO / PRÓXIMAMENTE
    ========================================================= */
 
-/* =========================================================
-   LOCKED
-   ========================================================= */
-
 .event-card.locked {
   opacity: 0.55;
-
   filter: grayscale(0.25);
-
   cursor: default;
 }
 
@@ -392,22 +350,16 @@ body {
    PIE DEL MENÚ
    ========================================================= */
 
-/* =========================================================
-   SELECT EVENT
-   ========================================================= */
-
 .insert {
   position: relative;
   z-index: 1;
 
   margin: 26px 0 0;
-
   text-align: center;
 
   color: #75adb5;
 
   font-size: 8px;
-
   line-height: 1.8;
 
   animation: blink 1.2s steps(2, start) infinite;
@@ -422,7 +374,6 @@ body {
     opacity: 0.35;
   }
 }
-
 
 /* =========================================================
    MÓVIL
@@ -441,16 +392,13 @@ body {
 
   .cabinet {
     padding: 8px;
-
     border-width: 3px;
     border-radius: 13px;
   }
 
   .marquee {
     padding: 14px 8px;
-
     margin-bottom: 8px;
-
     border-width: 3px;
 
     font-size: clamp(17px, 6vw, 25px);
@@ -458,7 +406,6 @@ body {
 
   .screen {
     padding: 24px 14px 20px;
-
     border-width: 3px;
   }
 
@@ -469,28 +416,22 @@ body {
   .subtitle {
     margin-top: 9px;
     margin-bottom: 20px;
-
     font-size: 8px;
   }
 
   .event-card {
     min-height: 68px;
-
     margin-bottom: 10px;
-
     padding: 10px;
 
-    grid-template-columns: 48px 1fr 65px;
-
+    grid-template-columns: 48px minmax(0, 1fr) 65px;
     gap: 10px;
   }
 
   .event-card > span:first-child {
     width: 38px;
     height: 38px;
-
     border-width: 2px;
-
     font-size: 9px;
   }
 
@@ -504,14 +445,9 @@ body {
 
   .insert {
     margin-top: 18px;
-
     font-size: 7px;
   }
 }
-
-/* =========================================================
-   MÓVIL
-   ========================================================= */
 
 /* =========================================================
    MÓVIL MUY PEQUEÑO
@@ -532,10 +468,8 @@ body {
   }
 
   .event-card {
-    grid-template-columns: 42px 1fr 55px;
-
+    grid-template-columns: 42px minmax(0, 1fr) 55px;
     gap: 7px;
-
     min-height: 62px;
   }
 
@@ -552,7 +486,6 @@ body {
     font-size: 6px;
   }
 }
-
 
 /* =========================================================
    MÓVIL HORIZONTAL
@@ -575,9 +508,7 @@ body {
 
   .marquee {
     padding: 9px;
-
     margin-bottom: 7px;
-
     font-size: 20px;
   }
 
@@ -591,26 +522,21 @@ body {
 
   .subtitle {
     margin: 5px 0 12px;
-
     font-size: 7px;
   }
 
   .event-card {
     min-height: 52px;
-
     margin-bottom: 7px;
-
     padding: 6px 10px;
 
-    grid-template-columns: 40px 1fr 70px;
-
+    grid-template-columns: 40px minmax(0, 1fr) 70px;
     gap: 8px;
   }
 
   .event-card > span:first-child {
     width: 32px;
     height: 32px;
-
     font-size: 8px;
   }
 
@@ -624,7 +550,6 @@ body {
 
   .insert {
     margin-top: 8px;
-
     font-size: 6px;
   }
 }
