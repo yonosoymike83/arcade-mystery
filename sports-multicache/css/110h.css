@@ -2659,3 +2659,91 @@ body {
     height: 46px;
   }
 }
+
+
+/* =========================================================
+   AJUSTE FINAL · VALLAS RESPONSIVAS Y MÁS VISIBLES
+   Escalan con la pantalla sin tocar controles ni corredores.
+   ========================================================= */
+.hurdle {
+  width: clamp(14px, 1.4vw, 24px) !important;
+  height: clamp(28px, 2.6vw, 42px) !important;
+  bottom: 3px !important;
+  z-index: 40 !important;
+}
+
+.hurdle::before {
+  top: 4px !important;
+  height: clamp(4px, 0.45vw, 7px) !important;
+  border-width: 1px !important;
+}
+
+.hurdle::after {
+  left: 3px !important;
+  width: 3px !important;
+  height: calc(100% - 7px) !important;
+  box-shadow: 9px 0 0 #fff !important;
+}
+
+@media (max-width: 600px) {
+  .hurdle {
+    width: 14px !important;
+    height: 28px !important;
+  }
+  .hurdle::before {
+    top: 4px !important;
+    height: 4px !important;
+  }
+  .hurdle::after {
+    left: 2px !important;
+    width: 2px !important;
+    height: 22px !important;
+    box-shadow: 7px 0 0 #fff !important;
+  }
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .hurdle {
+    width: clamp(16px, 1.5vw, 23px) !important;
+    height: clamp(30px, 3.5vw, 40px) !important;
+  }
+  .hurdle::after {
+    left: 3px !important;
+    width: 3px !important;
+    height: calc(100% - 7px) !important;
+    box-shadow: 9px 0 0 #fff !important;
+  }
+}
+
+
+/* =========================================================
+   AJUSTE DEFINITIVO · LOS TRES BOTONES CON EL MISMO TAMAÑO
+   Conserva la posición del botón C; iguala sus dimensiones
+   a las de A y B en cada tamaño de pantalla.
+   ========================================================= */
+.button-c.nes-button {
+  box-sizing: border-box !important;
+  width: 70px !important;
+  height: 70px !important;
+  min-width: 70px !important;
+  min-height: 70px !important;
+  padding: 0 !important;
+}
+
+@media (max-width: 900px) {
+  .button-c.nes-button {
+    width: 62px !important;
+    height: 62px !important;
+    min-width: 62px !important;
+    min-height: 62px !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .button-c.nes-button {
+    width: 46px !important;
+    height: 46px !important;
+    min-width: 46px !important;
+    min-height: 46px !important;
+  }
+}
