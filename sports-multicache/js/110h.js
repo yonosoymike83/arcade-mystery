@@ -115,6 +115,10 @@ let goodPresses =
 let totalPresses =
   0;
 
+/* Último avance válido de carrera: C no debe frenar al jugador. */
+let lastRunStep =
+  1.5;
+
 
 /* =========================================
    VALLAS
@@ -137,7 +141,7 @@ const JUMP_WINDOW =
   2.8;
 
 const JUMP_DURATION =
-  430;
+  380;
 
 const HURDLE_PENALTY =
   1.25;
@@ -301,7 +305,27 @@ function jump() {
 
   player.classList.add("jumping");
 
-  message.textContent = "JUMP!";
+  /*
+   * C inicia el salto, pero también compensa el avance
+   * de una pulsación de carrera. Así, saltar no equivale
+   * a quedarse parado mientras la CPU sigue avanzando.
+   * No modifica lastPress ni lastButton: el ritmo A/B
+   * continúa exactamente donde estaba.
+   */
+  playerDistance = Math.min(110, playerDistance + lastRunStep);
+
+  checkPlayerHurdles();
+  setRunnerPosition(player, playerDistance);
+  updatePosition();
+
+  if (playerDistance >= 100) {
+    finishRace();
+    return;
+  }
+
+  if (message.textContent !== "CLEAR!") {
+    message.textContent = "JUMP!";
+  }
 
   jumpTimer =
     setTimeout(() => {
@@ -875,6 +899,8 @@ function press(button) {
 
   playerDistance +=
     step;
+
+  lastRunStep = Math.max(0, step);
 
 
   playerDistance =
@@ -1521,6 +1547,9 @@ function reset() {
 
   totalPresses =
     0;
+
+  lastRunStep =
+    1.5;
 
   hurdleHits =
     0;
