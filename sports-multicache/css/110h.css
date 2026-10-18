@@ -2633,9 +2633,8 @@ body {
 
 
 /* =========================================================
-   AJUSTE FINAL V12 · MÓVIL VERTICAL
-   La pista mantiene una altura estable; el espacio extra
-   de pantallas altas se añade al cielo.
+   AJUSTE V13 · PISTA ESTABLE EN MÓVIL VERTICAL
+   La altura sobrante se asigna al cielo, no a los carriles.
    ========================================================= */
 @media (max-width: 650px) and (orientation: portrait) {
   .stadium {
@@ -2643,35 +2642,64 @@ body {
       minmax(180px, 1fr)
       20px
       20px
-      clamp(120px, 32vw, 175px)
+      145px
       20px
-      clamp(120px, 32vw, 175px)
-      20px;
+      145px
+      20px !important;
   }
 
-  /* Mantener el sprite proporcionado al carril. */
+  /* Corredores de tamaño fijo, sin escalar con la altura disponible. */
   .runner {
-    width: 40px;
-    height: 40px;
+    width: 40px !important;
+    height: 40px !important;
+    z-index: 5 !important;
   }
 
   .athlete-sprite {
-    width: 40px;
-    height: 40px;
-    background-size: 240px 40px;
+    width: 40px !important;
+    height: 40px !important;
+    background-size: 240px 40px !important;
+  }
+
+  /* C debe igualar exactamente el tamaño de A y B en vertical. */
+  .nes-controls .button-c {
+    box-sizing: border-box !important;
+    width: 55px !important;
+    height: 55px !important;
+    min-width: 55px !important;
+    min-height: 55px !important;
+    flex: 0 0 55px !important;
+    margin-left: auto !important;
+    margin-right: 8px !important;
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    font-size: 15px !important;
+    border-width: 4px !important;
+  }
+
+  .nes-controls .button-c:active {
+    transform: translateY(5px) !important;
   }
 }
 
-/* Las vallas deben quedar delante del sprite en todas las orientaciones. */
+/* =========================================================
+   CAPAS DE PISTA · VALLAS POR DELANTE DEL CORREDOR
+   ========================================================= */
 .race-track {
   isolation: isolate;
 }
 
-.hurdle {
-  z-index: 40 !important;
+.race-track .runner {
+  z-index: 5 !important;
 }
 
-.hurdle::before,
-.hurdle::after {
-  z-index: 41;
+.race-track .hurdle {
+  z-index: 25 !important;
+}
+
+.race-track .hurdle::before,
+.race-track .hurdle::after {
+  z-index: 26 !important;
 }
