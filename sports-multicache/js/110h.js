@@ -158,6 +158,10 @@ let hurdleHits =
 let jumping =
   false;
 
+/* Cada salto exige al menos una pulsación A/B válida antes del siguiente. */
+let canJump =
+  true;
+
 let jumpTimer =
   null;
 
@@ -298,10 +302,11 @@ function setHurdlePositions() {
 
 function jump() {
 
-  if (state !== "running") {
+  if (state !== "running" || !canJump) {
     return;
   }
 
+  canJump = false;
   jumping = true;
 
   clearTimeout(jumpTimer);
@@ -858,6 +863,8 @@ function press(button) {
   lastButton =
     button;
 
+  /* Para volver a saltar hay que correr con A/B. */
+  canJump = true;
 
   totalPresses++;
 
@@ -1586,6 +1593,9 @@ function reset() {
 
   jumping =
     false;
+
+  canJump =
+    true;
 
   clearTimeout(jumpTimer);
   clearInterval(jumpMoveInterval);
