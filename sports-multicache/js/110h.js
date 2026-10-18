@@ -144,7 +144,7 @@ const JUMP_DURATION =
   380;
 
 const HURDLE_PENALTY =
-  1.25;
+  2.4;
 
 let nextHurdle =
   0;
@@ -159,6 +159,9 @@ let jumping =
   false;
 
 let jumpTimer =
+  null;
+
+let jumpInterval =
   null;
 
 
@@ -299,39 +302,47 @@ function jump() {
     return;
   }
 
-  jumping = true;
-
+  // Reiniciar cualquier salto anterior sin acumular temporizadores.
   clearTimeout(jumpTimer);
+  clearInterval(jumpInterval);
 
+  jumping = true;
   player.classList.add("jumping");
+  message.textContent = "JUMP!";
 
   /*
-   * C inicia el salto, pero también compensa el avance
-   * de una pulsación de carrera. Así, saltar no equivale
-   * a quedarse parado mientras la CPU sigue avanzando.
-   * No modifica lastPress ni lastButton: el ritmo A/B
-   * continúa exactamente donde estaba.
+   * El salto también desplaza al corredor durante su animación.
+   * Así C no sustituye una pulsación A/B por una pausa completa.
+   * El avance es continuo y moderado; A/B siguen funcionando con
+   * normalidad y conservan el ritmo anterior.
    */
-  playerDistance = Math.min(110, playerDistance + lastRunStep);
+  jumpInterval = setInterval(() => {
+    if (state !== "running" || !jumping) {
+      return;
+    }
 
-  checkPlayerHurdles();
-  setRunnerPosition(player, playerDistance);
-  updatePosition();
+    playerDistance = Math.min(110, playerDistance + 0.45);
+    checkPlayerHurdles();
+    setRunnerPosition(player, playerDistance);
+    updatePosition();
 
-  if (playerDistance >= 100) {
-    finishRace();
-    return;
-  }
-
-  if (message.textContent !== "CLEAR!") {
-    message.textContent = "JUMP!";
-  }
-
-  jumpTimer =
-    setTimeout(() => {
+    if (playerDistance >= 100) {
+      clearInterval(jumpInterval);
+      jumpInterval = null;
+      clearTimeout(jumpTimer);
+      jumpTimer = null;
       jumping = false;
       player.classList.remove("jumping");
-    }, JUMP_DURATION);
+      finishRace();
+    }
+  }, 40);
+
+  jumpTimer = setTimeout(() => {
+    clearInterval(jumpInterval);
+    jumpInterval = null;
+    jumping = false;
+    player.classList.remove("jumping");
+  }, JUMP_DURATION);
 
 }
 
@@ -1510,6 +1521,12 @@ function finishRace() {
    ========================================= */
 
 function reset() {
+
+  clearTimeout(jumpTimer);
+  clearInterval(jumpInterval);
+  jumpTimer = null;
+  jumpInterval = null;
+  jumping = false;
 
   state =
     "ready";
