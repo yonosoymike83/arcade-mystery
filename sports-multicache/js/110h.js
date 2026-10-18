@@ -144,7 +144,7 @@ const JUMP_DURATION =
   380;
 
 const HURDLE_PENALTY =
-  2.4;
+  1.25;
 
 let nextHurdle =
   0;
@@ -161,7 +161,7 @@ let jumping =
 let jumpTimer =
   null;
 
-let jumpInterval =
+let jumpMoveInterval =
   null;
 
 
@@ -302,47 +302,63 @@ function jump() {
     return;
   }
 
-  // Reiniciar cualquier salto anterior sin acumular temporizadores.
-  clearTimeout(jumpTimer);
-  clearInterval(jumpInterval);
-
   jumping = true;
+
+  clearTimeout(jumpTimer);
+  clearInterval(jumpMoveInterval);
+
   player.classList.add("jumping");
-  message.textContent = "JUMP!";
 
   /*
-   * El salto también desplaza al corredor durante su animación.
-   * Así C no sustituye una pulsación A/B por una pausa completa.
-   * El avance es continuo y moderado; A/B siguen funcionando con
-   * normalidad y conservan el ritmo anterior.
+   * C inicia el salto, pero también compensa el avance
+   * de una pulsación de carrera. Así, saltar no equivale
+   * a quedarse parado mientras la CPU sigue avanzando.
+   * No modifica lastPress ni lastButton: el ritmo A/B
+   * continúa exactamente donde estaba.
    */
-  jumpInterval = setInterval(() => {
+  playerDistance = Math.min(110, playerDistance + Math.max(1.5, lastRunStep));
+
+  checkPlayerHurdles();
+  setRunnerPosition(player, playerDistance);
+  updatePosition();
+
+  if (playerDistance >= 100) {
+    finishRace();
+    return;
+  }
+
+  /* Durante el salto se avanza horizontalmente de forma continua.
+     El ritmo de salto es más rápido que una pulsación A/B normal. */
+  jumpMoveInterval = setInterval(() => {
     if (state !== "running" || !jumping) {
+      clearInterval(jumpMoveInterval);
+      jumpMoveInterval = null;
       return;
     }
 
-    playerDistance = Math.min(110, playerDistance + 0.45);
+    playerDistance = Math.min(110, playerDistance + 0.62);
     checkPlayerHurdles();
     setRunnerPosition(player, playerDistance);
     updatePosition();
 
     if (playerDistance >= 100) {
-      clearInterval(jumpInterval);
-      jumpInterval = null;
-      clearTimeout(jumpTimer);
-      jumpTimer = null;
-      jumping = false;
-      player.classList.remove("jumping");
+      clearInterval(jumpMoveInterval);
+      jumpMoveInterval = null;
       finishRace();
     }
-  }, 40);
+  }, 35);
 
-  jumpTimer = setTimeout(() => {
-    clearInterval(jumpInterval);
-    jumpInterval = null;
-    jumping = false;
-    player.classList.remove("jumping");
-  }, JUMP_DURATION);
+  if (message.textContent !== "CLEAR!") {
+    message.textContent = "JUMP!";
+  }
+
+  jumpTimer =
+    setTimeout(() => {
+      jumping = false;
+      player.classList.remove("jumping");
+      clearInterval(jumpMoveInterval);
+      jumpMoveInterval = null;
+    }, JUMP_DURATION);
 
 }
 
@@ -422,8 +438,8 @@ function resetCPU() {
    */
 
   cpuSpeed =
-    1.30 +
-    Math.random() * 0.14;
+    1.00 +
+    Math.random() * 0.10;
 
 
   setRunnerPosition(
@@ -490,8 +506,8 @@ function updateCPU() {
    */
 
   const variation =
-    0.82 +
-    Math.random() * 0.30;
+    0.88 +
+    Math.random() * 0.12;
 
 
   const previousDistance =
@@ -1522,12 +1538,6 @@ function finishRace() {
 
 function reset() {
 
-  clearTimeout(jumpTimer);
-  clearInterval(jumpInterval);
-  jumpTimer = null;
-  jumpInterval = null;
-  jumping = false;
-
   state =
     "ready";
 
@@ -1578,6 +1588,8 @@ function reset() {
     false;
 
   clearTimeout(jumpTimer);
+  clearInterval(jumpMoveInterval);
+  jumpMoveInterval = null;
 
   player.classList.remove("jumping");
 
@@ -1738,11 +1750,15 @@ if (
 
   if (buttonA) {
 
+    buttonA.style.touchAction = "none";
+    buttonA.style.userSelect = "none";
     buttonA.addEventListener(
       "pointerdown",
       event => {
 
         event.preventDefault();
+        event.stopPropagation();
+        try { event.currentTarget.setPointerCapture(event.pointerId); } catch (_) {}
 
         press("A");
 
@@ -1755,11 +1771,15 @@ if (
 
   if (buttonB) {
 
+    buttonB.style.touchAction = "none";
+    buttonB.style.userSelect = "none";
     buttonB.addEventListener(
       "pointerdown",
       event => {
 
         event.preventDefault();
+        event.stopPropagation();
+        try { event.currentTarget.setPointerCapture(event.pointerId); } catch (_) {}
 
         press("B");
 
@@ -1771,11 +1791,15 @@ if (
 
   if (buttonC) {
 
+    buttonC.style.touchAction = "none";
+    buttonC.style.userSelect = "none";
     buttonC.addEventListener(
       "pointerdown",
       event => {
 
         event.preventDefault();
+        event.stopPropagation();
+        try { event.currentTarget.setPointerCapture(event.pointerId); } catch (_) {}
 
         press("C");
 
@@ -1812,6 +1836,8 @@ if (
       if (key === "c" || event.code === "Space") {
 
         event.preventDefault();
+        event.stopPropagation();
+        try { event.currentTarget.setPointerCapture(event.pointerId); } catch (_) {}
 
         press("C");
 
