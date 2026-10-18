@@ -2015,8 +2015,8 @@ body {
 
 .hurdle {
   position: absolute;
-  /* Les valles han de quedar davant del corredor en PC i mòbil. */
-  z-index: 25;
+  /* Las vallas deben dibujarse por delante del corredor. */
+  z-index: 40 !important;
 
   bottom: 4px;
 
@@ -2613,5 +2613,49 @@ body {
     width: 2px;
     height: 18px;
     box-shadow: 5px 0 0 #fff;
+  }
+}
+
+
+/* =========================================================
+   AJUSTE FINAL · BOTÓN C JUNTO A B, MISMO TAMAÑO
+   Mantiene el diseño aprobado y evita que se superponga
+   al indicador de ritmo en móviles.
+   ========================================================= */
+@media (max-width: 900px) {
+  .button-c {
+    position: absolute;
+    left: auto;
+    right: 66px;
+    top: 50%;
+    width: 46px;
+    height: 46px;
+    margin: 0;
+    transform: translateY(-50%);
+    font-size: 12px;
+    border-width: 3px;
+    z-index: 30;
+  }
+
+  .button-c:active {
+    transform: translateY(calc(-50% + 5px));
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .button-c {
+    right: 78px;
+    width: 62px;
+    height: 62px;
+    font-size: 17px;
+    border-width: 4px;
+  }
+}
+
+@media (max-width: 400px) {
+  .button-c {
+    right: 58px;
+    width: 46px;
+    height: 46px;
   }
 }
